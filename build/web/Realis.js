@@ -1,5 +1,7 @@
 
 function init_function(geojsonFeature){
+    
+    alert(JSON.stringify(geojsonFeature));
         var map = L.map('map').setView([1.3667, 103.8], 11);//create map
         //create options for opencagemaps:Max 1500 hits per day
         var options = {
@@ -40,8 +42,8 @@ function init_function(geojsonFeature){
        
     // A function to put popups in each data point added by the layer
     function onEachFeature(feature, layer) {
-        if (feature.properties && feature.properties.popupContent) {
-            //layer.bindPopup(feature.properties.popupContent);
+        if (feature.popupContent) {
+            layer.bindPopup(feature.popupContent);
             
         }
     }

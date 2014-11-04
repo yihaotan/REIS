@@ -43,7 +43,12 @@
 
         <script src="Upload/dropzone.js"></script>
         <script src="Upload/svy21.js"></script>
-
+        
+        <!-- ONEMAP API -->
+        <script type='text/JavaScript' src='http://www.onemap.sg/API/JS?accessKEY=xkg8VRu6Ol+gMH+SUamkRIEB7fKzhwMvfMo/2U8UJcFhdvR4yN1GutmUIA3A6r3LDhot215OVVkZvNRzjl28TNUZgYFSswOi'></script>
+        
+        
+        
         <style>
             #map { 
                 height: 90%; 
@@ -76,8 +81,9 @@
     <body> 
 
         <!-- Our javascript -->
-        <script src="Realis.js"></script>
         <script src="boyang.js"></script>
+        <script src="Realis.js"></script>
+        
 
         <form action="dummy.jsp"
               class="dropzone"
@@ -85,11 +91,9 @@
         </form>
 
         <script>
-            var geojsonFeature= init_dropzone();
-
-           
+            init_dropzone(); 
         </script>
-
+        
         <!-- top nav bar -->
         <nav class="top-bar" data-topbar role="navigation">
             <ul class="title-area">
@@ -135,12 +139,6 @@
 
         <!-- map -->
         <div id="map"></div>
-        
-        <script>
-            
-                
-            
-        </script>
 
         <div class="panel">
             <h5>REALIS Analysis Component.</h5>
