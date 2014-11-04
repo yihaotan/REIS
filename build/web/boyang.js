@@ -102,7 +102,6 @@ function csvJSON(csv) {
     
     
     
-    //alert(JSON.stringify(result));
     return result; //JavaScript object
     // return JSON.stringify(result); //JSON
 
