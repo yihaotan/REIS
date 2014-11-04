@@ -7,7 +7,7 @@
         <!-- If you delete this meta tag World War Z will become a reality -->
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Foundation 5</title>
-
+        
         <!-- If you are using the CSS version, only link these 2 files -->
         <link rel="stylesheet" href="Css/normalize.css">
         <link rel="stylesheet" href="Css/foundation.css">
@@ -85,7 +85,9 @@
         </form>
 
         <script>
-            init_dropzone();
+            var geojsonFeature= init_dropzone();
+
+           
         </script>
 
         <!-- top nav bar -->
@@ -130,13 +132,14 @@
             <span>Price Range (PSF):</span>
             <div id="PriceRange"></div>
         </div>
-        <script>
 
-        </script>
         <!-- map -->
         <div id="map"></div>
+        
         <script>
-            init_function();
+            
+                
+            
         </script>
 
         <div class="panel">

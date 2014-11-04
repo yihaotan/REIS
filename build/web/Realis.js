@@ -1,5 +1,5 @@
 
-function init_function(){
+function init_function(geojsonFeature){
         var map = L.map('map').setView([1.3667, 103.8], 11);//create map
         
         //create options for opencagemaps:Max 1500 hits per day
@@ -48,67 +48,8 @@ function init_function(){
 
     }
       
-      //hardcoded data
-        var geojsonFeature = [
-        {
-            "type": "Feature",
-            "properties": {
-                "project_name": "VILLA AZURA",
-                "property_type": "Executive Condominium",
-                "sale_type": "Resale",
-                "unit_price": 1200,
-                "popupContent": "First Transaction"
-            },
-            "geometry": {
-                "type": "Point",
-                "coordinates": [1.3667, 103.8]
-            }
-        },
-        {
-            "type": "Feature",
-            "properties": {
-                "project_name": "THE SKYWOODS",
-                "property_type": "Terrace House",
-                "sale_type": "New Sale",
-                "unit_price": 1400,
-                "popupContent": "Second Transaction"
-            },
-            "geometry": {
-                "type": "Point",
-                "coordinates": [1.2826, 103.8584]
-            }
-        },
-        {
-            "type": "Feature",
-            "properties": {
-                "project_name": "VILLA AZURA",
-                "property_type": "Condominium",
-                "sale_type": "Subsale",
-                "unit_price": 2009,
-                "popupContent": "First Transaction"
-            },
-            "geometry": {
-                "type": "Point",
-                "coordinates": [1.38946,103.83041]
-            }
-        },
-        {
-            "type": "Feature",
-            "properties": {
-                "project_name": "VILLA AZURA",
-                "property_type": "Condominium",
-                "sale_type": "Subsale",
-                "unit_price": 2009,
-                "popupContent": "First Transaction"
-            },
-            "geometry": {
-                "type": "Point",
-                "coordinates": [1.38946,103.83041]
-            }
-        }
-
-    ];
-
+   
+        
     
     var newsaleexeccondoIcon=L.icon({iconUrl: 'Icons/greenexeccondo.png',iconSize:[40, 40]});
     var subsaleexeccondoIcon=L.icon({iconUrl: 'Icons/blueexeccondo.png',iconSize:[40, 40]});
@@ -156,7 +97,7 @@ function init_function(){
     //These layers are for the sliders
     var priceCluster= new PruneClusterForLeaflet();
     var dateCluster= new PruneClusterForLeaflet();
-    
+
    
         // A big loop to put the respective features into layers for the filtering of markers.
       for(var i=0;i<geojsonFeature.length;i++){
@@ -164,145 +105,145 @@ function init_function(){
         var geojson=geojsonFeature[i];  
         
         var allclustmarker=new PruneCluster.Marker(geojson.geometry.coordinates[0].toString(),geojson.geometry.coordinates[1].toString());
-        allclustmarker.data.popup=("Name: "+geojson.properties.project_name+ "<br> Location: "+geojson.properties.property_type+"<br> Price:"+geojson.properties.sale_type);
+        //allclustmarker.data.popup=("Name: "+geojson.properties.PROJECT_NAME+ "<br> Location: "+geojson.properties.property_type+"<br> Price:"+geojson.properties.sale_type);
         allCluster.RegisterMarker(allclustmarker);
         //map.addLayer(allCluster);
         
 
-        if(geojson.properties.property_type=="Executive Condominium" && geojson.properties.sale_type=="New Sale"){
+        if(geojson.properties.PROPERTY_TYPE=="Executive Condominium" && geojson.properties.TYPE_OF_SALE=="New Sale"){
             var execcondoclustmarker=new PruneCluster.Marker(geojson.geometry.coordinates[0].toString(),geojson.geometry.coordinates[1].toString());
             execcondoclustmarker.data.icon=newsaleexeccondoIcon;
-            execcondoclustmarker.data.popup=("Name: "+geojson.properties.project_name+ "<br> Location: "+geojson.properties.property_type+"<br> Price:"+geojson.properties.sale_type);
+          //  execcondoclustmarker.data.popup=("Name: "+geojson.properties.project_name+ "<br> Location: "+geojson.properties.property_type+"<br> Price:"+geojson.properties.sale_type);
             execcondoCluster.RegisterMarker(execcondoclustmarker);
             newsaleCluster.RegisterMarker(execcondoclustmarker);
             
             
         }
-        if(geojson.properties.property_type=="Executive Condominium" && geojson.properties.sale_type=="Subsale"){
+        if(geojson.properties.PROPERTY_TYPE=="Executive Condominium" && geojson.properties.TYPE_OF_SALE=="Sub Sale"){
             var execcondoclustmarker=new PruneCluster.Marker(geojson.geometry.coordinates[0].toString(),geojson.geometry.coordinates[1].toString());
             execcondoclustmarker.data.icon=subsaleexeccondoIcon;
-            execcondoclustmarker.data.popup=("Name: "+geojson.properties.project_name+ "<br> Location: "+geojson.properties.property_type+"<br> Price:"+geojson.properties.sale_type);
+           // execcondoclustmarker.data.popup=("Name: "+geojson.properties.project_name+ "<br> Location: "+geojson.properties.property_type+"<br> Price:"+geojson.properties.sale_type);
             execcondoCluster.RegisterMarker(execcondoclustmarker);
             subsaleCluster.RegisterMarker(execcondoclustmarker);
             
             
         }
-        if(geojson.properties.property_type=="Executive Condominium" && geojson.properties.sale_type=="Resale"){
+        if(geojson.properties.PROPERTY_TYPE=="Executive Condominium" && geojson.properties.TYPE_OF_SALE=="Resale"){
             var execcondoclustmarker=new PruneCluster.Marker(geojson.geometry.coordinates[0].toString(),geojson.geometry.coordinates[1].toString());
             execcondoclustmarker.data.icon=resaleexeccondoIcon;
-            execcondoclustmarker.data.popup=("Name: "+geojson.properties.project_name+ "<br> Location: "+geojson.properties.property_type+"<br> Price:"+geojson.properties.sale_type);
+           // execcondoclustmarker.data.popup=("Name: "+geojson.properties.project_name+ "<br> Location: "+geojson.properties.property_type+"<br> Price:"+geojson.properties.sale_type);
             execcondoCluster.RegisterMarker(execcondoclustmarker);
             resaleCluster.RegisterMarker(execcondoclustmarker);
             
             
         }
         
-        if(geojson.properties.property_type=="Condominium" && geojson.properties.sale_type=="New Sale"){
+        if(geojson.properties.PROPERTY_TYPE=="Condominium" && geojson.properties.TYPE_OF_SALE=="New Sale"){
             var condoclustmarker=new PruneCluster.Marker(geojson.geometry.coordinates[0].toString(),geojson.geometry.coordinates[1].toString());
             condoclustmarker.data.icon=newsalecondoIcon;
-            condoclustmarker.data.popup=("Name: "+geojson.properties.project_name+ "<br> Location: "+geojson.properties.property_type+"<br> Price:"+geojson.properties.sale_type);
+            //condoclustmarker.data.popup=("Name: "+geojson.properties.project_name+ "<br> Location: "+geojson.properties.property_type+"<br> Price:"+geojson.properties.sale_type);
             condoCluster.RegisterMarker(condoclustmarker);
             newsaleCluster.RegisterMarker(condoclustmarker);
         }
-        if(geojson.properties.property_type=="Condominium" && geojson.properties.sale_type=="Subsale"){
+        if(geojson.properties.PROPERTY_TYPE=="Condominium" && geojson.properties.TYPE_OF_SALE=="Sub Sale"){
             var condoclustmarker=new PruneCluster.Marker(geojson.geometry.coordinates[0].toString(),geojson.geometry.coordinates[1].toString());
             condoclustmarker.data.icon=subsalecondoIcon;
-            condoclustmarker.data.popup=("Name: "+geojson.properties.project_name+ "<br> Location: "+geojson.properties.property_type+"<br> Price:"+geojson.properties.sale_type);
+            //condoclustmarker.data.popup=("Name: "+geojson.properties.project_name+ "<br> Location: "+geojson.properties.property_type+"<br> Price:"+geojson.properties.sale_type);
             condoCluster.RegisterMarker(condoclustmarker);
             subsaleCluster.RegisterMarker(condoclustmarker);
         }
-        if(geojson.properties.property_type=="Condominium" && geojson.properties.sale_type=="Resale"){
+        if(geojson.properties.PROPERTY_TYPE=="Condominium" && geojson.properties.TYPE_OF_SALE=="Resale"){
             var condoclustmarker=new PruneCluster.Marker(geojson.geometry.coordinates[0].toString(),geojson.geometry.coordinates[1].toString());
             condoclustmarker.data.icon=resalecondoIcon;
-            condoclustmarker.data.popup=("Name: "+geojson.properties.project_name+ "<br> Location: "+geojson.properties.property_type+"<br> Price:"+geojson.properties.sale_type);
+            //condoclustmarker.data.popup=("Name: "+geojson.properties.project_name+ "<br> Location: "+geojson.properties.property_type+"<br> Price:"+geojson.properties.sale_type);
             condoCluster.RegisterMarker(condoclustmarker);
             resaleCluster.RegisterMarker(condoclustmarker);
         }
         
-        if(geojson.properties.property_type=="Apartment" && geojson.properties.sale_type=="New Sale"){
+        if(geojson.properties.PROPERTY_TYPE=="Apartment" && geojson.properties.TYPE_OF_SALE=="New Sale"){
             var apartmentclustmarker=new PruneCluster.Marker(geojson.geometry.coordinates[0].toString(),geojson.geometry.coordinates[1].toString());
             apartmentclustmarker.data.icon=newsaleapartmentIcon;
-            apartmentclustmarker.data.popup=("Name: "+geojson.properties.project_name+ "<br> Location: "+geojson.properties.property_type+"<br> Price:"+geojson.properties.sale_type);
+            //apartmentclustmarker.data.popup=("Name: "+geojson.properties.project_name+ "<br> Location: "+geojson.properties.property_type+"<br> Price:"+geojson.properties.sale_type);
             apartmentCluster.RegisterMarker(apartmentclustmarker);
             newsaleCluster.RegisterMarker(apartmentclustmarker);
         }
-        if(geojson.properties.property_type=="Apartment" && geojson.properties.sale_type=="Subsale"){
+        if(geojson.properties.PROPERTY_TYPE=="Apartment" && geojson.properties.TYPE_OF_SALE=="Sub Sale"){
             var apartmentclustmarker=new PruneCluster.Marker(geojson.geometry.coordinates[0].toString(),geojson.geometry.coordinates[1].toString());
             apartmentclustmarker.data.icon=subsaleapartmentIcon;
-            apartmentclustmarker.data.popup=("Name: "+geojson.properties.project_name+ "<br> Location: "+geojson.properties.property_type+"<br> Price:"+geojson.properties.sale_type);
+            //apartmentclustmarker.data.popup=("Name: "+geojson.properties.project_name+ "<br> Location: "+geojson.properties.property_type+"<br> Price:"+geojson.properties.sale_type);
             apartmentCluster.RegisterMarker(apartmentclustmarker);
             subsaleCluster.RegisterMarker(apartmentclustmarker);
         }
-        if(geojson.properties.property_type=="Apartment" && geojson.properties.sale_type=="Resale"){
+        if(geojson.properties.PROPERTY_TYPE=="Apartment" && geojson.properties.TYPE_OF_SALE=="Resale"){
             var apartmentclustmarker=new PruneCluster.Marker(geojson.geometry.coordinates[0].toString(),geojson.geometry.coordinates[1].toString());
             apartmentclustmarker.data.icon=resaleapartmentIcon;
-            apartmentclustmarker.data.popup=("Name: "+geojson.properties.project_name+ "<br> Location: "+geojson.properties.property_type+"<br> Price:"+geojson.properties.sale_type);
+           // apartmentclustmarker.data.popup=("Name: "+geojson.properties.project_name+ "<br> Location: "+geojson.properties.property_type+"<br> Price:"+geojson.properties.sale_type);
             apartmentCluster.RegisterMarker(apartmentclustmarker);
             resaleCluster.RegisterMarker(apartmentclustmarker);
         }
         
-        if(geojson.properties.property_type=="Terrace House" && geojson.properties.sale_type=="New Sale"){
+        if(geojson.properties.PROPERTY_TYPE=="Terrace House" && geojson.properties.TYPE_OF_SALE=="New Sale"){
             var terraceclustmarker=new PruneCluster.Marker(geojson.geometry.coordinates[0].toString(),geojson.geometry.coordinates[1].toString());
             terraceclustmarker.data.icon=newsaleterraceIcon;
-            terraceclustmarker.data.popup=("Name: "+geojson.properties.project_name+ "<br> Location: "+geojson.properties.property_type+"<br> Price:"+geojson.properties.sale_type);
+           // terraceclustmarker.data.popup=("Name: "+geojson.properties.project_name+ "<br> Location: "+geojson.properties.property_type+"<br> Price:"+geojson.properties.sale_type);
             terraceCluster.RegisterMarker(terraceclustmarker);
             newsaleCluster.RegisterMarker(terraceclustmarker);
         }
-        if(geojson.properties.property_type=="Terrace House" && geojson.properties.sale_type=="Subsale"){
+        if(geojson.properties.PROPERTY_TYPE=="Terrace House" && geojson.properties.TYPE_OF_SALE=="Sub Sale"){
             var terraceclustmarker=new PruneCluster.Marker(geojson.geometry.coordinates[0].toString(),geojson.geometry.coordinates[1].toString());
             terraceclustmarker.data.icon=subsaleterraceIcon;
-            terraceclustmarker.data.popup=("Name: "+geojson.properties.project_name+ "<br> Location: "+geojson.properties.property_type+"<br> Price:"+geojson.properties.sale_type);
+           // terraceclustmarker.data.popup=("Name: "+geojson.properties.project_name+ "<br> Location: "+geojson.properties.property_type+"<br> Price:"+geojson.properties.sale_type);
             terraceCluster.RegisterMarker(terraceclustmarker);
             subsaleCluster.RegisterMarker(terraceclustmarker);
         }
-        if(geojson.properties.property_type=="Terrace House" && geojson.properties.sale_type=="Resale"){
+        if(geojson.properties.PROPERTY_TYPE=="Terrace House" && geojson.properties.TYPE_OF_SALE=="Resale"){
             var terraceclustmarker=new PruneCluster.Marker(geojson.geometry.coordinates[0].toString(),geojson.geometry.coordinates[1].toString());
             terraceclustmarker.data.icon=resaleterraceIcon;
-            terraceclustmarker.data.popup=("Name: "+geojson.properties.project_name+ "<br> Location: "+geojson.properties.property_type+"<br> Price:"+geojson.properties.sale_type);
+            //terraceclustmarker.data.popup=("Name: "+geojson.properties.project_name+ "<br> Location: "+geojson.properties.property_type+"<br> Price:"+geojson.properties.sale_type);
             terraceCluster.RegisterMarker(terraceclustmarker);
             resaleCluster.RegisterMarker(terraceclustmarker);
         }
         
-        if(geojson.properties.property_type=="Semi-Detached House" && geojson.properties.sale_type=="New Sale"){
+        if(geojson.properties.PROPERTY_TYPE=="Semi-Detached House" && geojson.properties.TYPE_OF_SALE=="New Sale"){
             var semidclustmarker=new PruneCluster.Marker(geojson.geometry.coordinates[0].toString(),geojson.geometry.coordinates[1].toString());
             semidclustmarker.data.icon=newsalesemidIcon;
-            semidclustmarker.data.popup=("Name: "+geojson.properties.project_name+ "<br> Location: "+geojson.properties.property_type+"<br> Price:"+geojson.properties.sale_type);
+            //semidclustmarker.data.popup=("Name: "+geojson.properties.project_name+ "<br> Location: "+geojson.properties.property_type+"<br> Price:"+geojson.properties.sale_type);
             semidCluster.RegisterMarker(semidclustmarker);
             newsaleCluster.RegisterMarker(semidclustmarker);
         }   
-        if(geojson.properties.property_type=="Semi-Detached House" && geojson.properties.sale_type=="Subsale"){
+        if(geojson.properties.PROPERTY_TYPE=="Semi-Detached House" && geojson.properties.TYPE_OF_SALE=="Sub Sale"){
             var semidclustmarker=new PruneCluster.Marker(geojson.geometry.coordinates[0].toString(),geojson.geometry.coordinates[1].toString());
             semidclustmarker.data.icon=subsalesemidIcon;
-            semidclustmarker.data.popup=("Name: "+geojson.properties.project_name+ "<br> Location: "+geojson.properties.property_type+"<br> Price:"+geojson.properties.sale_type);
+            //semidclustmarker.data.popup=("Name: "+geojson.properties.project_name+ "<br> Location: "+geojson.properties.property_type+"<br> Price:"+geojson.properties.sale_type);
             semidCluster.RegisterMarker(semidclustmarker);
             subsaleCluster.RegisterMarker(semidclustmarker);
         }
-        if(geojson.properties.property_type=="Semi-Detached House" && geojson.properties.sale_type=="Resale"){
+        if(geojson.properties.PROPERTY_TYPE=="Semi-Detached House" && geojson.properties.TYPE_OF_SALE=="Resale"){
             var semidclustmarker=new PruneCluster.Marker(geojson.geometry.coordinates[0].toString(),geojson.geometry.coordinates[1].toString());
             semidclustmarker.data.icon=resalesemidIcon;
-            semidclustmarker.data.popup=("Name: "+geojson.properties.project_name+ "<br> Location: "+geojson.properties.property_type+"<br> Price:"+geojson.properties.sale_type);
+            //semidclustmarker.data.popup=("Name: "+geojson.properties.project_name+ "<br> Location: "+geojson.properties.property_type+"<br> Price:"+geojson.properties.sale_type);
             semidCluster.RegisterMarker(semidclustmarker);
             resaleCluster.RegisterMarker(semidclustmarker);
         }
-        if(geojson.properties.property_type=="Detached House" && geojson.properties.sale_type=="New Sale"){
+        if(geojson.properties.PROPERTY_TYPE=="Detached House" && geojson.properties.TYPE_OF_SALE=="New Sale"){
             var detachedclustmarker=new PruneCluster.Marker(geojson.geometry.coordinates[0].toString(),geojson.geometry.coordinates[1].toString());
             detachedclustmarker.data.icon=newsaledetachedIcon;
-            detachedclustmarker.data.popup=("Name: "+geojson.properties.project_name+ "<br> Location: "+geojson.properties.property_type+"<br> Price:"+geojson.properties.sale_type);
+            //detachedclustmarker.data.popup=("Name: "+geojson.properties.project_name+ "<br> Location: "+geojson.properties.property_type+"<br> Price:"+geojson.properties.sale_type);
             detachedCluster.RegisterMarker(detachedclustmarker);
             newsaleCluster.RegisterMarker(detachedclustmarker);
         }
-        if(geojson.properties.property_type=="Detached House" && geojson.properties.sale_type=="Subsale"){
+        if(geojson.properties.PROPERTY_TYPE=="Detached House" && geojson.properties.TYPE_OF_SALE=="Sub Sale"){
             var detachedclustmarker=new PruneCluster.Marker(geojson.geometry.coordinates[0].toString(),geojson.geometry.coordinates[1].toString());
             detachedclustmarker.data.icon=subsaledetachedIcon;
-            detachedclustmarker.data.popup=("Name: "+geojson.properties.project_name+ "<br> Location: "+geojson.properties.property_type+"<br> Price:"+geojson.properties.sale_type);
+            //detachedclustmarker.data.popup=("Name: "+geojson.properties.project_name+ "<br> Location: "+geojson.properties.property_type+"<br> Price:"+geojson.properties.sale_type);
             detachedCluster.RegisterMarker(detachedclustmarker);
             subsaleCluster.RegisterMarker(detachedclustmarker);
             
         }
-        if(geojson.properties.property_type=="Detached House" && geojson.properties.sale_type=="Resale"){
+        if(geojson.properties.PROPERTY_TYPE=="Detached House" && geojson.properties.TYPE_OF_SALE=="Resale"){
             var detachedclustmarker=new PruneCluster.Marker(geojson.geometry.coordinates[0].toString(),geojson.geometry.coordinates[1].toString());
             detachedclustmarker.data.icon=resaledetachedIcon;
-            detachedclustmarker.data.popup=("Name: "+geojson.properties.project_name+ "<br> Location: "+geojson.properties.property_type+"<br> Price:"+geojson.properties.sale_type);
+            //detachedclustmarker.data.popup=("Name: "+geojson.properties.project_name+ "<br> Location: "+geojson.properties.property_type+"<br> Price:"+geojson.properties.sale_type);
             detachedCluster.RegisterMarker(detachedclustmarker);
             resaleCluster.RegisterMarker(detachedclustmarker);
         }
@@ -401,7 +342,7 @@ function init_function(){
                 prices=L.layerGroup([]);
                 for(var i=0;i<geojsonFeature.length;i++){
                  var geojsonprice=geojsonFeature[i];
-                   if(Number(geojsonprice.properties.unit_price)>=data.values.min && Number(geojsonprice.properties.unit_price)<=data.values.max){
+                   if(Number(geojsonprice.properties.UNIT_PRICE_PSF)>=data.values.min && Number(geojsonprice.properties.UNIT_PRICE_PSF)<=data.values.max){
                         var price=L.marker(geojsonprice.geometry.coordinates,{icon:priceIcon});
                         prices.addLayer(price);
                     }    

@@ -27,6 +27,7 @@ function init_dropzone() {
                 reader.onload = function() {
                     alert("The reading operation is successfully completed.");
                     var geoJSON = csvJSON(reader.result);
+                    init_function(geoJSON);
                     //init_mapbox(geoJSON);
                 };
             });
@@ -34,6 +35,7 @@ function init_dropzone() {
         }
     };
 }
+
 
 // This method converts a csv (as Text String) into a well-formed JSON object
 function csvJSON(csv) {
@@ -94,7 +96,7 @@ function csvJSON(csv) {
 
 
             result.push(record);
-            alert(JSON.stringify(record));
+            //alert(JSON.stringify(record));
 
     }
     
