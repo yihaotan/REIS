@@ -55,7 +55,7 @@ function csvJSON(csv) {
 
         // here use library to convert SVY21 to WGS84 --> Lat/Lon
         var cv = new SVY21();
-        var resultLatLon = cv.computeLatLon(x, y);
+        var resultLatLon = cv.computeLatLon(y, x);
         var lat = resultLatLon.lat;
         var lon = resultLatLon.lon;
 
