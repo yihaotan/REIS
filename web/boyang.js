@@ -1,37 +1,24 @@
 // Uploading a csv file is the first step
 function init_dropzone() {
 
-    // "myAwesomeDropzone" is the camelized version of the HTML element's ID
-    Dropzone.options.myAwesomeDropzone = {
-        // The name that will be used to transfer the file
-        paramName: "file",
-        // Change method from post to put
-        method: "put",
-        // File size in MB
-        maxFilesize: 10,
-        // Accepted file extension - only csv
-        acceptedFiles: ".csv",
-        accept: function(file, done) {
-            done();
-        },
-        init: function() {
-            // Upon loading success, do some operations on file
-            this.on("success", function(file, server_response) {
-                // Create a new FileReader object
-                var reader = new FileReader();
-                // Read the file as Text String (not raw binary string)
-                reader.readAsText(file);
-                // Upon loading data successfully, convert it to JSON object
-                reader.onload = function() {
-                    alert("The reading operation is successfully completed.");
-                    var geoJSON = csvJSON(reader.result);
-                    //alert(JSON.stringify(geoJSON));
-                    init_function(geoJSON);
-                };
-            });
+    var inputElement = document.getElementById("input");
+    inputElement.addEventListener("change", handleFiles, false);
+    function handleFiles() {
+        var fileList = this.files; /* now you can work with the file list */
+        var first_file = fileList[0];
+        // Create a new FileReader object
+        var reader = new FileReader();
+        // Read the file as Text String (not raw binary string)
+        reader.readAsText(first_file);
+        // Upon loading data successfully, convert it to JSON object
+        reader.onload = function() {
+            alert("The reading operation is successfully completed.");
+            var geoJSON = csvJSON(reader.result);
+            alert(JSON.stringify(geoJSON));
+            init_function(geoJSON);
+        };
+    }
 
-        }
-    };
 }
 
 
@@ -43,7 +30,7 @@ function csvJSON(csv) {
 
     // var headers = lines[0].split(",");
     // The headers are modified to conform to naming convention for JSON
-    var headers = ["REC_NO","PROJECT_NAME", "ADDRESS", "NO_OF_UNITS", "AREA_SQM",
+    var headers = ["PROJECT_NAME", "ADDRESS", "NO_OF_UNITS", "AREA_SQM",
         "TYPE_OF_AREA", "TRANSACTED_PRICE", "UNIT_PRICE_PSM",
         "UNIT_PRICE_PSF", "CONTRACT_DATE", "PROPERTY_TYPE", "TENURE",
         "COMPLETION_DATE", "TYPE_OF_SALE", "PURCHASE_ADDRESS_INDICATOR",
@@ -138,3 +125,22 @@ function displayData(resultData) {
     }
 }
 
+function test() {
+    proj4.defs("urn:ogc:def:crs:EPSG::26915", "+proj=utm +zone=15 +ellps=GRS80 +datum=NAD83 +units=m +no_defs");
+    var geojson = {
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [481650, 4980105]
+        },
+        "crs": {
+            "type": "name",
+            "properties": {
+                "name": "urn:ogc:def:crs:EPSG::26915"
+            }
+        }
+    };
+    var map = L.map('map');
+// ...
+    L.Proj.geoJson(geojson).addTo(map);
+}
