@@ -329,20 +329,21 @@ function init_function(geojsonFeature) {
 
     //Assigning control to overlays, create checkboxes and added to map   
     map.addControl(new L.Control.PanelLayers(baselayers, overlayall, {collapsed: false}));
-    $("#slider").editRangeSlider({bounds: {min: 0, max: 4000}}, {defaultValues: {min: 1500, max: 3000}});
+    
     var prices = L.layerGroup([]);
-    //Price slider logic
-    $("#slider").on("valuesChanged", function(e, data) {
-        map.removeLayer(prices);
-        prices = L.layerGroup([]);
-        for (var i = 0; i < geojsonFeature.length; i++) {
-            var geojsonprice = geojsonFeature[i];
-            if (Number(geojsonprice.properties.UNIT_PRICE_PSF) >= data.values.min && Number(geojsonprice.properties.UNIT_PRICE_PSF) <= data.values.max) {
-                var price = L.marker(geojsonprice.geometry.coordinates, {icon: priceIcon});
-                prices.addLayer(price);
+        
+        //Price slider logic
+        $("#slider").on("valuesChanged", function(e, data) {
+            map.removeLayer(prices);
+            prices = L.layerGroup([]);
+            for (var i = 0; i < geojsonFeature.length; i++) {
+                var geojsonprice = geojsonFeature[i];
+                if (Number(geojsonprice.properties.UNIT_PRICE_PSF) >= data.values.min && Number(geojsonprice.properties.UNIT_PRICE_PSF) <= data.values.max) {
+                    var price = L.marker(geojsonprice.geometry.coordinates, {icon: priceIcon});
+                    prices.addLayer(price);
+                }
             }
-        }
-        prices.addTo(map);
-    });
-
+            prices.addTo(map);
+        });
+        
 }
