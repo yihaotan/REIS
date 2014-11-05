@@ -120,27 +120,6 @@ function displayData(resultData) {
 
         var new_record = row.X + "," + row.Y;
 
-
         document.getElementById('divResults').innerHTML = existing + "</br>" + new_record;
     }
-}
-
-function test() {
-    proj4.defs("urn:ogc:def:crs:EPSG::26915", "+proj=utm +zone=15 +ellps=GRS80 +datum=NAD83 +units=m +no_defs");
-    var geojson = {
-        "type": "Feature",
-        "geometry": {
-            "type": "Point",
-            "coordinates": [481650, 4980105]
-        },
-        "crs": {
-            "type": "name",
-            "properties": {
-                "name": "urn:ogc:def:crs:EPSG::26915"
-            }
-        }
-    };
-    var map = L.map('map');
-// ...
-    L.Proj.geoJson(geojson).addTo(map);
 }
