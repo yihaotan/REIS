@@ -6,10 +6,13 @@
         <meta charset="utf-8">
         <!-- If you delete this meta tag World War Z will become a reality -->
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Foundation 5</title>
+        <title>REALIS</title>
 
         <!-- If you are using the CSS version, only link these 2 files -->
         <link rel="stylesheet" href="Css/iThing.css" type="text/css" />
+        <link rel="stylesheet" href="Css/d3averageprice.css">
+        <link rel="stylesheet" href="Css/d3averagepricebar.css">
+        <link rel="stylesheet" href="Css/d3averagepricebar.css">
         <link rel="stylesheet" href="Css/normalize.css">
         <link rel="stylesheet" href="Css/foundation.css">
         <link rel="stylesheet" href="Css/foundation-icons.css">
@@ -49,10 +52,16 @@
         <script src="geo/proj4.js"></script>
         <script src="geo/proj4leaflet.js"></script>
         
+        
+       
+        
         <script src="JQUERY/jquery-1.8.3.js"></script>
         <script src="JQUERY/jquery-ui-1.9.2.custom.js"></script>
         <script src="UIlibraries/jQEditRangeSlider-min.js"></script>
-
+        <script src="UIlibraries/d3.js"></script>
+        <script src="UIlibraries/d3.min.js"></script>
+        <script src="UIlibraries/d3.v3.min.js"></script>
+        
         <style>
             #map { 
                 height: 90%; 
@@ -135,17 +144,12 @@
                 </ul>
             </section>
         </nav>
-        <!--Priceslider-->
-        <div id="slider" style="display:inline-block;">
-            <img src="Icons/PriceMarker.png" height="25" width="25"/>
-            <span>Price Range (PSF):</span>
-            <div id="PriceRange"></div>
-        </div>
+
         <!-- map -->
         <div id="map"></div>
         <script>
-            $("#slider").editRangeSlider({bounds: {min: 0, max: 4000}}, {defaultValues: {min: 1500, max: 3000}});
-            init_dropzone();
+           init_dropzone();
+      
         </script>
 
         <div class="panel">
@@ -217,7 +221,7 @@
 
 
                 <div class="content" id="panel2">
-                    <p>YI HAO PUT YOUR CHARTS HERE</p>
+                    <div id="yihao"></div>
                 </div>
 
 

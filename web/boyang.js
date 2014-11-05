@@ -16,6 +16,7 @@ function init_dropzone() {
             var geoJSON = csvJSON(reader.result);
             alert(JSON.stringify(geoJSON));
             init_function(geoJSON);
+            
         };
     }
 
@@ -90,7 +91,7 @@ function csvJSON(csv) {
     }
 
 
-    alert(JSON.stringify(result));
+   // alert(JSON.stringify(result));
     return result; //JavaScript object
     // return JSON.stringify(result); //JSON
 
