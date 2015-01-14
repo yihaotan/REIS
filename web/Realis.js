@@ -379,7 +379,10 @@ function init_function(geojsonFeature) {
     map.addControl(new L.Control.PanelLayers(baselayers, overlayall, {collapsed: false}));
     
     var prices = L.layerGroup([]);
-        
+       // var t=document.createElement("div")
+       // var i=document.createTextNode("slider");
+        //t.appendChild(i);
+        //$('#slider').append("<div class='slider'></div>");
         $("#slider").editRangeSlider({bounds: {min: 0, max: 4000}}, {defaultValues: {min: 1500, max: 3000}});
         //Price slider logic
         $("#slider").on("valuesChanged", function(e, data) {

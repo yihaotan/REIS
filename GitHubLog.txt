@@ -1,0 +1,675 @@
+2014-11-04 15:53:34.2959|WARN|thread: 1|StandardUserErrors|Showing user error Failed to create a new commit.
+LibGit2Sharp.UnmergedIndexEntriesException: Cannot create a tree from a not fully merged index.
+   at LibGit2Sharp.Core.Ensure.HandleError(Int32 result)
+   at LibGit2Sharp.Core.Proxy.git_tree_create_fromindex(Index index)
+   at LibGit2Sharp.Repository.Commit(String message, Signature author, Signature committer, CommitOptions options)
+   at LibGit2Sharp.RepositoryExtensions.Commit(IRepository repository, String message, Signature author, CommitOptions options)
+   at LibGit2Sharp.RepositoryExtensions.Commit(IRepository repository, String message, CommitOptions options)
+   at GitHub.ExclusiveRepositoryConnection.<>c__DisplayClass1.<Commit>b__0()
+   at System.Reactive.Linq.ObservableImpl.Defer`1.Eval()
+   at System.Reactive.Linq.ObservableImpl.Defer`1._.Run()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Reactive.PlatformServices.ExceptionServicesImpl.Rethrow(Exception exception)
+   at System.Reactive.ExceptionHelpers.ThrowIfNotNull(Exception exception)
+   at System.Reactive.Subjects.AsyncSubject`1.GetResult()
+   at GitHub.Helpers.GitClient.<>c__DisplayClass27.<<CreateCommit>b__1e>d__30.MoveNext()
+2014-11-04 15:50:16.9556|INFO|thread: 1|CommandLineHandler|Parsing command line arguments:C:\Users\ASUS\AppData\Local\Apps\2.0\4YJRTP4Q.0NG\834OQ69Z.30E\gith..tion_317444273a93ac29_0002.0005_f2bbfed8cb3268d4\GitHub.exe
+2014-11-04 15:50:16.9666|INFO|thread: 1|AppInstanceCommunicator|Starting up as master instance of GitHub for Windows
+2014-11-04 15:50:17.0056|INFO|thread: 8|StartupLogging| #########################################
+2014-11-04 15:50:17.0056|INFO|thread: 8|StartupLogging| GitHub for Windows started. VERSION: 2.5.2.2
+2014-11-04 15:50:17.0056|INFO|thread: 8|StartupLogging| Build version: fe6395bd352b8fc51f0927d4cdb931a54e7d72e1
+2014-11-04 15:50:17.0056|INFO|thread: 8|StartupLogging| ***************************************
+2014-11-04 15:50:17.0056|INFO|thread: 8|StartupLogging| ***                                 ***
+2014-11-04 15:50:17.0056|INFO|thread: 8|StartupLogging| ***                                 ***
+2014-11-04 15:50:17.0056|INFO|thread: 8|StartupLogging| ***        Have a problem?          ***
+2014-11-04 15:50:17.0056|INFO|thread: 8|StartupLogging| ***    Email support@github.com     ***
+2014-11-04 15:50:17.0056|INFO|thread: 8|StartupLogging| ***      and include this file      ***
+2014-11-04 15:50:17.0056|INFO|thread: 8|StartupLogging| ***                                 ***
+2014-11-04 15:50:17.0056|INFO|thread: 8|StartupLogging| ***                                 ***
+2014-11-04 15:50:17.0056|INFO|thread: 8|StartupLogging| ***************************************
+2014-11-04 15:50:17.0056|INFO|thread: 8|StartupLogging| OS Version: Windows 7 Service Pack 1 6.1.7601.65536 amd64
+2014-11-04 15:50:17.0056|INFO|thread: 8|StartupLogging| CLR Version: 4.0.30319.18444
+2014-11-04 15:50:17.0056|INFO|thread: 8|StartupLogging| Current culture: en-US
+2014-11-04 15:50:17.0056|INFO|thread: 8|StartupLogging| Terminal Services session: no
+2014-11-04 15:50:17.0056|INFO|thread: 8|StartupLogging| Location: C:\Users\ASUS\AppData\Local\Apps\2.0\4YJRTP4Q.0NG\834OQ69Z.30E\gith..tion_317444273a93ac29_0002.0005_f2bbfed8cb3268d4\GitHub.exe
+2014-11-04 15:50:17.0156|INFO|thread: 8|StartupLogging| ActivationUri: https://github-windows.s3.amazonaws.com/GitHub.application
+2014-11-04 15:50:17.0256|INFO|thread: 1|HardwareRenderingHelper|Your video card appears to support hardware rendering. If this isn't the case and you see glitches
+2014-11-04 15:50:17.0256|INFO|thread: 1|HardwareRenderingHelper|set the GH_FORCE_SW_RENDERING environment variable to 1
+2014-11-04 15:50:17.0256|INFO|thread: 7|PortablePackageManager|About to cleanup old package 'C:\Users\ASUS\AppData\Local\GitHub\PortableGit_7eaa994416ae7b397b2628033ac45f8ff6ac2010', current version is 'C:\Users\ASUS\AppData\Local\GitHub\PortableGit_ed44d00daa128db527396557813e7b68709ed0e2'
+2014-11-04 15:50:17.0516|INFO|thread: 8|GitEnvironment|Process set up with this SSH Agent info: 7236:/tmp/ssh-ts39npKIWvkC/agent.5148
+2014-11-04 15:50:17.0516|INFO|thread: 8|GitEnvironment|PATH is C:\Users\ASUS\AppData\Local\GitHub\PortableGit_ed44d00daa128db527396557813e7b68709ed0e2\cmd;C:\Users\ASUS\AppData\Local\GitHub\PortableGit_ed44d00daa128db527396557813e7b68709ed0e2\bin;C:\Users\ASUS\AppData\Local\Apps\2.0\4YJRTP4Q.0NG\834OQ69Z.30E\gith..tion_317444273a93ac29_0002.0005_f2bbfed8cb3268d4;C:\Users\ASUS\AppData\Local\GitHub\git-media-amd64_0.2.2;C:\windows\Microsoft.NET\Framework\v4.0.30319;C:\ProgramData\Oracle\Java\javapath;C:\Tcl\bin;C:\Ruby187\bin;C:\tibco\tibrv\8.3\bin;C:\Program Files\Common Files\Microsoft Shared\Windows Live;C:\Program Files (x86)\Common Files\Microsoft Shared\Windows Live;C:\windows\system32;C:\windows;C:\windows\System32\Wbem;C:\windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Windows Live\Shared;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files\Java\jdk1.7.0_05\bin;C:\Program Files (x86)\Liquid Technologies\Liquid XML Studio 2012\XmlDataBinder10\Redist10\cpp\win32\bin;C:\tibco\tpcl\5.7\jdbc\mysql-connector-java-5.1.16\mysql-connector-java-5.1.16-bin.jar;C:\Program Files\Microsoft\Web Platform Installer\;C:\Program Files (x86)\Microsoft ASP.NET\ASP.NET Web Pages\v1.0\;C:\Program Files (x86)\Windows Kits\8.0\Windows Performance Toolkit\;C:\Program Files\Microsoft SQL Server\110\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\110\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\110\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\110\Tools\Binn\ManagementStudio\;C:\Program Files (x86)\MySQL\MySQL Utilities 1.4.3\;C:\Program Files (x86)\MySQL\MySQL Utilities 1.4.3\Doctrine extensions for PHP\;C:\mysqlc\bin;C:\Program Files\PostgreSQL\9.3\bin
+2014-11-04 15:50:17.0516|INFO|thread: 8|StartupLogging| =====================================================
+2014-11-04 15:50:17.0516|INFO|thread: 8|StartupLogging|  DIAGNOSTICS                                        |
+2014-11-04 15:50:17.0516|INFO|thread: 8|StartupLogging| =====================================================
+2014-11-04 15:50:17.0516|INFO|thread: 8|StartupLogging| Git Extracted: 'False:
+2014-11-04 15:50:17.0516|ERROR|thread: 8|StartupLogging| MISSING PortableGit Dir: 'C:\Users\ASUS\AppData\Local\GitHub\PortableGit_ed44d00daa128db527396557813e7b68709ed0e2'
+2014-11-04 15:50:17.0606|ERROR|thread: 8|PortableGitManager|git.exe doesn't exist at 'C:\Users\ASUS\AppData\Local\GitHub\PortableGit_ed44d00daa128db527396557813e7b68709ed0e2\bin\git.exe'
+2014-11-04 15:50:17.0606|ERROR|thread: 8|StartupLogging| MISSING Git Executable: 'C:\Users\ASUS\AppData\Local\GitHub\PortableGit_ed44d00daa128db527396557813e7b68709ed0e2\bin\git.exe'
+2014-11-04 15:50:17.0606|ERROR|thread: 8|StartupLogging| MISSING PATH!!: 'C:\Users\ASUS\AppData\Local\GitHub\PortableGit_ed44d00daa128db527396557813e7b68709ed0e2\cmd'
+2014-11-04 15:50:17.0606|ERROR|thread: 8|StartupLogging| MISSING PATH!!: 'C:\Users\ASUS\AppData\Local\GitHub\PortableGit_ed44d00daa128db527396557813e7b68709ed0e2\bin'
+2014-11-04 15:50:17.0606|ERROR|thread: 8|StartupLogging| MISSING PATH!!: 'C:\Users\ASUS\AppData\Local\GitHub\git-media-amd64_0.2.2'
+2014-11-04 15:50:17.0606|ERROR|thread: 8|StartupLogging| MISSING PATH!!: 'C:\Program Files\Java\jdk1.7.0_05\bin'
+2014-11-04 15:50:17.0606|ERROR|thread: 8|StartupLogging| MISSING PATH!!: 'C:\tibco\tpcl\5.7\jdbc\mysql-connector-java-5.1.16\mysql-connector-java-5.1.16-bin.jar'
+2014-11-04 15:50:17.0606|INFO|thread: 8|StartupLogging| ----------------------------------------------------
+2014-11-04 15:50:17.0606|INFO|thread: 8|StartupLogging| PATH: C:\ProgramData\Oracle\Java\javapath;C:\Tcl\bin;C:\Ruby187\bin;C:\tibco\tibrv\8.3\bin;C:\Program Files\Common Files\Microsoft Shared\Windows Live;C:\Program Files (x86)\Common Files\Microsoft Shared\Windows Live;C:\windows\system32;C:\windows;C:\windows\System32\Wbem;C:\windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Windows Live\Shared;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files\Java\jdk1.7.0_05\bin;C:\Program Files (x86)\Liquid Technologies\Liquid XML Studio 2012\XmlDataBinder10\Redist10\cpp\win32\bin;C:\tibco\tpcl\5.7\jdbc\mysql-connector-java-5.1.16\mysql-connector-java-5.1.16-bin.jar;C:\Program Files\Microsoft\Web Platform Installer\;C:\Program Files (x86)\Microsoft ASP.NET\ASP.NET Web Pages\v1.0\;C:\Program Files (x86)\Windows Kits\8.0\Windows Performance Toolkit\;C:\Program Files\Microsoft SQL Server\110\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\110\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\110\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\110\Tools\Binn\ManagementStudio\;C:\Program Files (x86)\MySQL\MySQL Utilities 1.4.3\;C:\Program Files (x86)\MySQL\MySQL Utilities 1.4.3\Doctrine extensions for PHP\;C:\mysqlc\bin;C:\Program Files\PostgreSQL\9.3\bin
+2014-11-04 15:50:17.0726|WARN|thread: 7|CoreUtility|Failed to delete directory C:\Users\ASUS\AppData\Local\GitHub\PortableGit_7eaa994416ae7b397b2628033ac45f8ff6ac2010
+System.IO.IOException: The process cannot access the file because it is being used by another process.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.DirectoryInfo.MoveTo(String destDirName)
+   at GitHub.CoreUtility.<>c__DisplayClass19.<FastDeleteDirectory>b__14()
+   at GitHub.Extensions.FuncExtensions.<>c__DisplayClass1.<Retry>b__0()
+   at GitHub.Extensions.FuncExtensions.Retry[T](Func`1 block, Int32 retries)
+   at GitHub.Extensions.FuncExtensions.Retry(Action block, Int32 retries)
+   at GitHub.CoreUtility.FastDeleteDirectory(String path)
+2014-11-04 15:50:17.1096|WARN|thread: 1|POCOObservableForProperty|ReactiveUI.ReactiveCommandSix`1[[System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]] is a POCO type and won't send change notifications, WhenAny will only return a single value!
+2014-11-04 15:50:17.2206|INFO|thread: 8|StartupLogger|Proxy information: (None)
+2014-11-04 15:50:17.4356|INFO|thread: 8|StartupLogger|Couldn't fetch creds for proxy
+2014-11-04 15:50:17.5286|INFO|thread: 8|UrlProtocolInstaller|Registered UrlAppLauncher protocol: "C:\Users\ASUS\AppData\Local\Apps\2.0\4YJRTP4Q.0NG\834OQ69Z.30E\gith..tion_317444273a93ac29_0002.0005_f2bbfed8cb3268d4\GitHub.exe" -u="%1"
+2014-11-04 15:50:17.8837|INFO|thread: 1|App|Checking whether application is network deployed.
+2014-11-04 15:50:17.9097|INFO|thread: 1|ClickOnceAppIconHelper|Updating registry with our application icon 'C:\Users\ASUS\AppData\Local\Apps\2.0\4YJRTP4Q.0NG\834OQ69Z.30E\gith..tion_317444273a93ac29_0002.0005_f2bbfed8cb3268d4\Images\App.ico'
+2014-11-04 15:50:18.0367|WARN|thread: 1|LogHost|SuppressChangeNotifications was called (perhaps via AddRange), yet you do not
+2014-11-04 15:50:18.0367|WARN|thread: 1|LogHost|have a subscription to ShouldReset. This probably isn't what you want, as ItemsAdded
+2014-11-04 15:50:18.0367|WARN|thread: 1|LogHost|and friends will appear to 'miss' items
+2014-11-04 15:50:18.9977|WARN|thread: 1|POCOObservableForProperty|GitHub.Views.DropRepositoryView is a POCO type and won't send change notifications, WhenAny will only return a single value!
+2014-11-04 15:50:19.0887|WARN|thread: 1|POCOObservableForProperty|GitHub.Views.DashboardView is a POCO type and won't send change notifications, WhenAny will only return a single value!
+2014-11-04 15:50:19.1507|WARN|thread: 1|POCOObservableForProperty|GitHub.Views.Controls.RepositoryCloneProgress is a POCO type and won't send change notifications, WhenAny will only return a single value!
+2014-11-04 15:50:19.2257|INFO|thread: 1|GitExtractionVisualHelper|Attempting to extract Portable Git.
+2014-11-04 15:50:19.2477|INFO|thread: 1|ProcessWrapper|Starting: Process - FileName: 'C:\Users\ASUS\AppData\Local\Apps\2.0\4YJRTP4Q.0NG\834OQ69Z.30E\gith..tion_317444273a93ac29_0002.0005_f2bbfed8cb3268d4\7za.exe', Args: 'x -y "-oC:\Users\ASUS\AppData\Local\GitHub\nqlitkk5.0qj" "C:\Users\ASUS\AppData\Local\Apps\2.0\4YJRTP4Q.0NG\834OQ69Z.30E\gith..tion_317444273a93ac29_0002.0005_f2bbfed8cb3268d4\PortableGit.7z"', Working Directory: 
+2014-11-04 15:50:19.4727|INFO|thread: 1|PortablePackageManager|Extracting PortableGit.7z is (so far) successful
+2014-11-04 15:50:19.4817|INFO|thread: 1|ProcessWrapper|Starting: Process - FileName: 'C:\Users\ASUS\AppData\Local\Apps\2.0\4YJRTP4Q.0NG\834OQ69Z.30E\gith..tion_317444273a93ac29_0002.0005_f2bbfed8cb3268d4\7za.exe', Args: 'x -y "-oC:\Users\ASUS\AppData\Local\GitHub\ietadi53.1ku" "C:\Users\ASUS\AppData\Local\Apps\2.0\4YJRTP4Q.0NG\834OQ69Z.30E\gith..tion_317444273a93ac29_0002.0005_f2bbfed8cb3268d4\git-media-amd64.7z"', Working Directory: 
+2014-11-04 15:50:19.4817|INFO|thread: 1|PortablePackageManager|Extracting git-media-amd64.7z is (so far) successful
+2014-11-04 15:50:19.5017|INFO|thread: 1|ReactiveScreen|Activating GitHub.ViewModels.ShellViewModel.
+2014-11-04 15:50:19.5017|INFO|thread: 1|ReactiveScreen|Activating GitHub.ViewModels.DashboardViewModel.
+2014-11-04 15:50:19.7908|INFO|thread:13|PortablePackageManager|GitHub.IO.ObservableProcess
+2014-11-04 15:50:19.9198|WARN|thread: 1|POCOObservableForProperty|GitHub.Views.Controls.SourceList is a POCO type and won't send change notifications, WhenAny will only return a single value!
+2014-11-04 15:50:19.9968|WARN|thread: 1|POCOObservableForProperty|GitHub.Views.Controls.SourceListRepositoryItem is a POCO type and won't send change notifications, WhenAny will only return a single value!
+2014-11-04 15:50:20.0688|WARN|thread: 1|POCOObservableForProperty|GitHub.Views.Controls.RepositoryNotFound is a POCO type and won't send change notifications, WhenAny will only return a single value!
+2014-11-04 15:50:20.0918|WARN|thread: 1|POCOObservableForProperty|GitHub.Views.Controls.PopupMenuView is a POCO type and won't send change notifications, WhenAny will only return a single value!
+2014-11-04 15:50:20.1528|WARN|thread: 1|POCOObservableForProperty|GitHub.Views.Controls.AddOrCreatePopup is a POCO type and won't send change notifications, WhenAny will only return a single value!
+2014-11-04 15:50:20.2158|INFO|thread: 1|PortablePackageManager|Already extracted gitignore.7z, returning 100%
+2014-11-04 15:50:20.2278|WARN|thread: 1|POCOObservableForProperty|GitHub.Views.Controls.CreateRepositoryTab is a POCO type and won't send change notifications, WhenAny will only return a single value!
+2014-11-04 15:50:20.3088|WARN|thread: 1|POCOObservableForProperty|GitHub.Views.Controls.BrowseRepositoriesTab is a POCO type and won't send change notifications, WhenAny will only return a single value!
+2014-11-04 15:50:20.3488|WARN|thread: 1|POCOObservableForProperty|GitHub.Views.Controls.BrowseRepositoriesList is a POCO type and won't send change notifications, WhenAny will only return a single value!
+2014-11-04 15:50:20.4378|WARN|thread: 1|POCOObservableForProperty|GitHub.Views.TwoFactorView is a POCO type and won't send change notifications, WhenAny will only return a single value!
+2014-11-04 15:50:20.4508|WARN|thread: 1|POCOObservableForProperty|GitHub.Views.UndoFlashView is a POCO type and won't send change notifications, WhenAny will only return a single value!
+2014-11-04 15:50:20.5518|WARN|thread: 1|LogHost|SuppressChangeNotifications was called (perhaps via AddRange), yet you do not
+2014-11-04 15:50:20.5518|WARN|thread: 1|LogHost|have a subscription to ShouldReset. This probably isn't what you want, as ItemsAdded
+2014-11-04 15:50:20.5518|WARN|thread: 1|LogHost|and friends will appear to 'miss' items
+2014-11-04 15:50:20.6848|WARN|thread: 1|POCOObservableForProperty|GitHub.Validation.ReactivePropertyValidationResult is a POCO type and won't send change notifications, WhenAny will only return a single value!
+2014-11-04 15:50:24.0280|INFO|thread: 1|RepositoryHost|Log in from cache for login 'JovinHoon91' to host 'https://api.github.com/' SUCCEEDED
+2014-11-04 15:50:24.3910|WARN|thread: 1|LogHost|SuppressChangeNotifications was called (perhaps via AddRange), yet you do not
+2014-11-04 15:50:24.3910|WARN|thread: 1|LogHost|have a subscription to ShouldReset. This probably isn't what you want, as ItemsAdded
+2014-11-04 15:50:24.3910|WARN|thread: 1|LogHost|and friends will appear to 'miss' items
+2014-11-04 15:50:27.9332|INFO|thread:15|SoftwareUpdateViewModel|Checking for new version
+2014-11-04 15:51:00.9461|INFO|thread: 8|PortablePackageManager|GitHub.IO.ObservableProcess
+2014-11-04 15:51:00.9751|INFO|thread: 1|GitHubShellSetupHelper|Wrote GitHubShell setup script here 'C:\Users\ASUS\AppData\Local\GitHub\shell.ps1'
+2014-11-04 15:51:01.0201|INFO|thread:27|ApplicationShellInitializer|Running post login tasks. ~/.gitconfig is set up with user.name = 'JovinHoon91' and user.email = 'jovin.hoon.2012@sis.smu.edu.sg'
+2014-11-04 15:51:01.0391|INFO|thread:24|SSHProcessManager|Starting ssh-agent.exe
+2014-11-04 15:51:01.5371|INFO|thread:27|GitEnvironment|Process set up with this SSH Agent info: 12100:/tmp/ssh-IkmeG3smAe8E/agent.8992
+2014-11-04 15:51:01.5371|INFO|thread:27|GitEnvironment|PATH is C:\Users\ASUS\AppData\Local\GitHub\PortableGit_ed44d00daa128db527396557813e7b68709ed0e2\cmd;C:\Users\ASUS\AppData\Local\GitHub\PortableGit_ed44d00daa128db527396557813e7b68709ed0e2\bin;C:\Users\ASUS\AppData\Local\Apps\2.0\4YJRTP4Q.0NG\834OQ69Z.30E\gith..tion_317444273a93ac29_0002.0005_f2bbfed8cb3268d4;C:\Users\ASUS\AppData\Local\GitHub\git-media-amd64_0.2.2;C:\windows\Microsoft.NET\Framework\v4.0.30319;C:\windows\System32
+2014-11-04 15:51:01.5491|INFO|thread:27|ProcessWrapper|Starting: Process - FileName: 'C:\Users\ASUS\AppData\Local\GitHub\PortableGit_ed44d00daa128db527396557813e7b68709ed0e2\bin\ssh-add.exe', Args: '"C:\Users\ASUS\.ssh\github_rsa"', Working Directory: C:\Users\ASUS\AppData\Local\Temp\
+2014-11-04 15:51:01.7602|INFO|thread:24|SSHKeyHelper|Found existing SSH key pair
+2014-11-04 15:51:49.5319|WARN|thread: 1|POCOObservableForProperty|ReactiveUI.ReactiveCommandSix`1[[System.Reactive.Unit, System.Reactive.Core, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35]] is a POCO type and won't send change notifications, WhenAny will only return a single value!
+2014-11-04 15:51:49.6389|WARN|thread: 1|LogHost|SuppressChangeNotifications was called (perhaps via AddRange), yet you do not
+2014-11-04 15:51:49.6389|WARN|thread: 1|LogHost|have a subscription to ShouldReset. This probably isn't what you want, as ItemsAdded
+2014-11-04 15:51:49.6389|WARN|thread: 1|LogHost|and friends will appear to 'miss' items
+2014-11-04 15:51:49.8329|WARN|thread: 1|POCOObservableForProperty|ReactiveUI.ReactiveCommandSix`1[[GitHub.Models.ICommitModel, GitHub, Version=2.5.2.2, Culture=neutral, PublicKeyToken=null]] is a POCO type and won't send change notifications, WhenAny will only return a single value!
+2014-11-04 15:51:49.8899|INFO|thread:26|GitClient|Loading commits for repo: C:\Users\ASUS\Desktop\REALIS
+2014-11-04 15:51:49.9289|INFO|thread:26|RepositoryConnection|Loaded '5' commits for repo: C:\Users\ASUS\Desktop\REALIS\.
+2014-11-04 15:51:50.0599|INFO|thread:32|RepositoryViewModel|Refreshing all information for repo
+2014-11-04 15:51:50.0729|INFO|thread:31|AsyncReaderWriterLock|Acquiring concurrent lock for operation 1: 'LoadHeadForRepo' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:51:50.0729|INFO|thread:30|AsyncReaderWriterLock|Acquired concurrent lock for operation 1: 'LoadHeadForRepo' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:51:50.1179|INFO|thread:30|AsyncReaderWriterLock|Released concurrent lock for operation 1: 'LoadHeadForRepo' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:51:50.1839|WARN|thread: 1|POCOObservableForProperty|GitHub.Views.RepositoryView is a POCO type and won't send change notifications, WhenAny will only return a single value!
+2014-11-04 15:51:50.2219|WARN|thread: 1|POCOObservableForProperty|GitHub.Views.Controls.PublishToHostButton is a POCO type and won't send change notifications, WhenAny will only return a single value!
+2014-11-04 15:51:50.2219|WARN|thread: 1|POCOObservableForProperty|GitHub.Views.Controls.AheadBehindIndicator is a POCO type and won't send change notifications, WhenAny will only return a single value!
+2014-11-04 15:51:50.2759|WARN|thread: 1|POCOObservableForProperty|GitHub.Views.Controls.CommitForm is a POCO type and won't send change notifications, WhenAny will only return a single value!
+2014-11-04 15:51:50.3049|WARN|thread: 1|POCOObservableForProperty|GitHub.Views.Controls.NewCommitView is a POCO type and won't send change notifications, WhenAny will only return a single value!
+2014-11-04 15:51:50.3399|WARN|thread: 1|POCOObservableForProperty|GitHub.Views.Controls.PublishToHostPopup is a POCO type and won't send change notifications, WhenAny will only return a single value!
+2014-11-04 15:51:50.3809|WARN|thread: 1|POCOObservableForProperty|GitHub.Views.Controls.PublishToHostTab is a POCO type and won't send change notifications, WhenAny will only return a single value!
+2014-11-04 15:51:50.4399|WARN|thread: 1|POCOObservableForProperty|GitHub.Views.Controls.GitHubLogin is a POCO type and won't send change notifications, WhenAny will only return a single value!
+2014-11-04 15:51:50.4669|WARN|thread: 1|POCOObservableForProperty|GitHub.Views.Controls.GitHubEnterpriseLogin is a POCO type and won't send change notifications, WhenAny will only return a single value!
+2014-11-04 15:51:50.5029|WARN|thread: 1|POCOObservableForProperty|GitHub.Views.Controls.BranchesPopup is a POCO type and won't send change notifications, WhenAny will only return a single value!
+2014-11-04 15:51:50.5400|INFO|thread:33|AsyncReaderWriterLock|Acquiring concurrent lock for operation 2: 'LoadFilesInWorkingDirectory' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:51:50.5400|INFO|thread:33|AsyncReaderWriterLock|Acquired concurrent lock for operation 2: 'LoadFilesInWorkingDirectory' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:51:50.5510|INFO|thread:33|GitEnvironment|Process set up with this SSH Agent info: 12100:/tmp/ssh-IkmeG3smAe8E/agent.8992
+2014-11-04 15:51:50.5510|INFO|thread:33|GitEnvironment|PATH is C:\Users\ASUS\AppData\Local\GitHub\PortableGit_ed44d00daa128db527396557813e7b68709ed0e2\cmd;C:\Users\ASUS\AppData\Local\GitHub\PortableGit_ed44d00daa128db527396557813e7b68709ed0e2\bin;C:\Users\ASUS\AppData\Local\Apps\2.0\4YJRTP4Q.0NG\834OQ69Z.30E\gith..tion_317444273a93ac29_0002.0005_f2bbfed8cb3268d4;C:\Users\ASUS\AppData\Local\GitHub\git-media-amd64_0.2.2;C:\windows\Microsoft.NET\Framework\v4.0.30319;C:\windows\System32
+2014-11-04 15:51:50.5510|INFO|thread:33|ProcessWrapper|Starting: Process - FileName: 'C:\Users\ASUS\AppData\Local\GitHub\PortableGit_ed44d00daa128db527396557813e7b68709ed0e2\bin\git.exe', Args: 'status --untracked-files=all --porcelain -z ', Working Directory: C:\Users\ASUS\Desktop\REALIS\
+2014-11-04 15:51:50.5510|INFO|thread:34|GitClient|Loading commits for repo: C:\Users\ASUS\Desktop\REALIS
+2014-11-04 15:51:50.5510|INFO|thread:34|RepositoryConnection|Loaded '1' commits for repo: C:\Users\ASUS\Desktop\REALIS\.
+2014-11-04 15:51:50.5670|INFO|thread:30|GitClient|Loading commits for repo: C:\Users\ASUS\Desktop\REALIS
+2014-11-04 15:51:50.5870|INFO|thread:30|RepositoryConnection|Loaded '13' commits for repo: C:\Users\ASUS\Desktop\REALIS\.
+2014-11-04 15:51:50.6220|WARN|thread: 1|POCOObservableForProperty|GitHub.Views.Controls.CommitListItem is a POCO type and won't send change notifications, WhenAny will only return a single value!
+2014-11-04 15:51:51.0790|INFO|thread:32|AsyncReaderWriterLock|Released concurrent lock for operation 2: 'LoadFilesInWorkingDirectory' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:51:51.1450|WARN|thread: 1|POCOObservableForProperty|GitHub.Views.WorkingDirectoryFileDiffView is a POCO type and won't send change notifications, WhenAny will only return a single value!
+2014-11-04 15:51:54.6472|INFO|thread: 1|RepositoryViewModel|Created Shadow Backup for Repo: C:\Users\ASUS\Desktop\REALIS => c2a43b7f7f2cc510ea4f8a93301dfd9b2748683b in 3,565ms
+2014-11-04 15:51:59.1664|INFO|thread: 1|GitEnvironment|Process set up with this SSH Agent info: 12100:/tmp/ssh-IkmeG3smAe8E/agent.8992
+2014-11-04 15:51:59.1664|INFO|thread: 1|GitEnvironment|PATH is C:\Users\ASUS\AppData\Local\GitHub\PortableGit_ed44d00daa128db527396557813e7b68709ed0e2\cmd;C:\Users\ASUS\AppData\Local\GitHub\PortableGit_ed44d00daa128db527396557813e7b68709ed0e2\bin;C:\Users\ASUS\AppData\Local\Apps\2.0\4YJRTP4Q.0NG\834OQ69Z.30E\gith..tion_317444273a93ac29_0002.0005_f2bbfed8cb3268d4;C:\Users\ASUS\AppData\Local\GitHub\git-media-amd64_0.2.2;C:\windows\Microsoft.NET\Framework\v4.0.30319;C:\windows\System32
+2014-11-04 15:51:59.1664|INFO|thread: 1|ProcessWrapper|Starting: Process - FileName: 'C:\Users\ASUS\AppData\Local\GitHub\PortableGit_ed44d00daa128db527396557813e7b68709ed0e2\bin\git.exe', Args: 'diff-tree --root -m -r -z --name-status 9c7e651879e63594cc089ff324511c845beba7ae ', Working Directory: C:\Users\ASUS\Desktop\REALIS
+2014-11-04 15:51:59.1664|INFO|thread: 1|GitEnvironment|Process set up with this SSH Agent info: 12100:/tmp/ssh-IkmeG3smAe8E/agent.8992
+2014-11-04 15:51:59.1664|INFO|thread: 1|GitEnvironment|PATH is C:\Users\ASUS\AppData\Local\GitHub\PortableGit_ed44d00daa128db527396557813e7b68709ed0e2\cmd;C:\Users\ASUS\AppData\Local\GitHub\PortableGit_ed44d00daa128db527396557813e7b68709ed0e2\bin;C:\Users\ASUS\AppData\Local\Apps\2.0\4YJRTP4Q.0NG\834OQ69Z.30E\gith..tion_317444273a93ac29_0002.0005_f2bbfed8cb3268d4;C:\Users\ASUS\AppData\Local\GitHub\git-media-amd64_0.2.2;C:\windows\Microsoft.NET\Framework\v4.0.30319;C:\windows\System32
+2014-11-04 15:51:59.1664|INFO|thread: 1|ProcessWrapper|Starting: Process - FileName: 'C:\Users\ASUS\AppData\Local\GitHub\PortableGit_ed44d00daa128db527396557813e7b68709ed0e2\bin\git.exe', Args: 'diff-tree --root -m -r -z --numstat 9c7e651879e63594cc089ff324511c845beba7ae ', Working Directory: C:\Users\ASUS\Desktop\REALIS
+2014-11-04 15:52:00.5445|WARN|thread: 1|POCOObservableForProperty|GitHub.Views.CommitFileDiffView is a POCO type and won't send change notifications, WhenAny will only return a single value!
+2014-11-04 15:52:03.6827|INFO|thread: 1|SyncButtonViewModel|Starting sync for C:\Users\ASUS\Desktop\REALIS - master
+2014-11-04 15:52:03.6827|INFO|thread: 1|GitClient|Sync has latest unpublished commit SHA: '9c7e651879e63594cc089ff324511c845beba7ae'
+2014-11-04 15:52:03.6827|INFO|thread:34|AsyncReaderWriterLock|Acquiring exclusive lock for operation 3: 'SyncBranch' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:03.6827|INFO|thread:34|AsyncReaderWriterLock|Acquired exclusive lock for operation 3: 'SyncBranch' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:03.7317|INFO|thread:34|GitEnvironment|Process set up with this SSH Agent info: 12100:/tmp/ssh-IkmeG3smAe8E/agent.8992
+2014-11-04 15:52:03.7317|INFO|thread:34|GitEnvironment|PATH is C:\Users\ASUS\AppData\Local\GitHub\PortableGit_ed44d00daa128db527396557813e7b68709ed0e2\cmd;C:\Users\ASUS\AppData\Local\GitHub\PortableGit_ed44d00daa128db527396557813e7b68709ed0e2\bin;C:\Users\ASUS\AppData\Local\Apps\2.0\4YJRTP4Q.0NG\834OQ69Z.30E\gith..tion_317444273a93ac29_0002.0005_f2bbfed8cb3268d4;C:\Users\ASUS\AppData\Local\GitHub\git-media-amd64_0.2.2;C:\windows\Microsoft.NET\Framework\v4.0.30319;C:\windows\System32
+2014-11-04 15:52:03.7317|INFO|thread:34|ProcessWrapper|Starting: Process - FileName: 'C:\Users\ASUS\AppData\Local\GitHub\PortableGit_ed44d00daa128db527396557813e7b68709ed0e2\bin\git.exe', Args: 'pull --progress --rebase --prune origin master ', Working Directory: C:\Users\ASUS\Desktop\REALIS\
+2014-11-04 15:52:04.7038|INFO|thread:24|GitEnvironment|Process set up with this SSH Agent info: 12100:/tmp/ssh-IkmeG3smAe8E/agent.8992
+2014-11-04 15:52:04.7038|INFO|thread:24|GitEnvironment|PATH is C:\Users\ASUS\AppData\Local\GitHub\PortableGit_ed44d00daa128db527396557813e7b68709ed0e2\cmd;C:\Users\ASUS\AppData\Local\GitHub\PortableGit_ed44d00daa128db527396557813e7b68709ed0e2\bin;C:\Users\ASUS\AppData\Local\Apps\2.0\4YJRTP4Q.0NG\834OQ69Z.30E\gith..tion_317444273a93ac29_0002.0005_f2bbfed8cb3268d4;C:\Users\ASUS\AppData\Local\GitHub\git-media-amd64_0.2.2;C:\windows\Microsoft.NET\Framework\v4.0.30319;C:\windows\System32
+2014-11-04 15:52:04.7038|INFO|thread:24|ProcessWrapper|Starting: Process - FileName: 'C:\Users\ASUS\AppData\Local\GitHub\PortableGit_ed44d00daa128db527396557813e7b68709ed0e2\bin\git.exe', Args: 'pull --progress --prune origin master ', Working Directory: C:\Users\ASUS\Desktop\REALIS\
+2014-11-04 15:52:08.2320|INFO|thread: 1|SyncButtonViewModel|Refresh ahead/behind counts skipped b/c sync is in progress
+2014-11-04 15:52:08.2320|INFO|thread: 1|SyncButtonViewModel|Refresh ahead/behind counts skipped b/c sync is in progress
+2014-11-04 15:52:08.3500|INFO|thread:25|AsyncReaderWriterLock|Released exclusive lock for operation 3: 'SyncBranch' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:08.5810|WARN|thread: 1|StandardUserErrors|Showing user error You might need to open a shell and debug the state of this repo.
+GitHub.IO.ProcessException: From https://github.com/JovinHoon91/REALIS
+ * branch            master     -> FETCH_HEAD
+warning: LF will be replaced by CRLF in Code/build/web/Css/LeafletStyleSheet.css.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in Code/build/web/Css/normalize.css.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in Code/build/web/InteractiveUI/priceslider.jsp.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in Code/build/web/InteractiveUI/sidebar.jsp.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in Code/build/web/Maps/leaflet-src.js.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in Code/build/web/Maps/leaflet.js.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in Code/build/web/Testing/index2.jsp.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in Code/build/web/UIlibraries/L.Control.Opencagesearch.js.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in Code/build/web/UIlibraries/L.Control.Sidebar.js.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in Code/build/web/UIlibraries/jQDateRangeSlider-min.js.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in Code/build/web/UIlibraries/jQEditRangeSlider-min.js.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in Code/build/web/UIlibraries/jquery.js.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in Code/web/Css/L.Control.Opencagesearch.css.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in Code/web/Css/L.Control.Sidebar.css.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in Code/web/Css/LeafletStyleSheet.css.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in Code/web/Css/foundation.css.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in Code/web/Css/foundation.min.css.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in Code/web/Css/iThing.css.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in Code/web/Css/leaflet-panel-layers.css.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in Code/web/Css/leaflet-search.css.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in Code/web/Css/normalize.css.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in Code/web/InteractiveUI/dateSlider.jsp.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in Code/web/InteractiveUI/priceslider.jsp.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in Code/web/InteractiveUI/sidebar.jsp.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in Code/web/Maps/Googlemap.js.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in Code/web/Maps/bing.js.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in Code/web/Maps/leaflet-src.js.
+The file will have its original line endings in your working directory.
+CONFLICT (modify/delete): Code/web/js-ours/boyang.js deleted in HEAD and modified in 9c2d6e590a5ad54d86b6a0e76f13c8a7a7283c46. Version 9c2d6e590a5ad54d86b6a0e76f13c8a7a7283c46 of Code/web/js-ours/boyang.js left in tree.
+CONFLICT (modify/delete): Code/web/js-ours/averagepriceline.js deleted in HEAD and modified in 9c2d6e590a5ad54d86b6a0e76f13c8a7a7283c46. Version 9c2d6e590a5ad54d86b6a0e76f13c8a7a7283c46 of Code/web/js-ours/averagepriceline.js left in tree.
+CONFLICT (modify/delete): Code/web/index.jsp deleted in HEAD and modified in 9c2d6e590a5ad54d86b6a0e76f13c8a7a7283c46. Version 9c2d6e590a5ad54d86b6a0e76f13c8a7a7283c46 of Code/web/index.jsp left in tree.
+CONFLICT (modify/delete): Code/build/web/js-ours/boyang.js deleted in HEAD and modified in 9c2d6e590a5ad54d86b6a0e76f13c8a7a7283c46. Version 9c2d6e590a5ad54d86b6a0e76f13c8a7a7283c46 of Code/build/web/js-ours/boyang.js left in tree.
+CONFLICT (modify/delete): Code/build/web/js-ours/averagepriceline.js deleted in HEAD and modified in 9c2d6e590a5ad54d86b6a0e76f13c8a7a7283c46. Version 9c2d6e590a5ad54d86b6a0e76f13c8a7a7283c46 of Code/build/web/js-ours/averagepriceline.js left in tree.
+Removing Code/build/web/js-imported/jquery-ui-1.9.2.custom/development-bundle/docs/transfer-effect.html
+Removing Code/build/web/js-imported/jquery-ui-1.9.2.custom/development-bundle/docs/tooltip.html
+Removing Code/build/web/js-imported/jquery-ui-1.9.2.custom/development-bundle/docs/tabs.html
+Removing Code/build/web/js-imported/jquery-ui-1.9.2.custom/development-bundle/docs/spinner.html
+Removing Code/build/web/js-imported/jquery-ui-1.9.2.custom/development-bundle/docs/sortable.html
+Removing Code/build/web/js-imported/jquery-ui-1.9.2.custom/development-bundle/docs/slider.html
+Removing Code/build/web/js-imported/jquery-ui-1.9.2.custom/development-bundle/docs/slide-effect.html
+Removing Code/build/web/js-imported/jquery-ui-1.9.2.custom/development-bundle/docs/size-effect.html
+Removing Code/build/web/js-imported/jquery-ui-1.9.2.custom/development-bundle/docs/shake-effect.html
+Removing Code/build/web/js-imported/jquery-ui-1.9.2.custom/development-bundle/docs/selectable.html
+Removing Code/build/web/js-imported/jquery-ui-1.9.2.custom/development-bundle/docs/scale-effect.html
+Removing Code/build/web/js-imported/jquery-ui-1.9.2.custom/development-bundle/docs/resizable.html
+Removing Code/build/web/js-imported/jquery-ui-1.9.2.custom/development-bundle/docs/pulsate-effect.html
+Removing Code/build/web/js-imported/jquery-ui-1.9.2.custom/development-bundle/docs/puff-effect.html
+Removing Code/build/web/js-imported/jquery-ui-1.9.2.custom/development-bundle/docs/progressbar.html
+Removing Code/build/web/js-imported/jquery-ui-1.9.2.custom/development-bundle/docs/position.html
+Removing Code/build/web/js-imported/jquery-ui-1.9.2.custom/development-bundle/docs/mouse.html
+Removing Code/build/web/js-imported/jquery-ui-1.9.2.custom/development-bundle/docs/menu.html
+Removing Code/build/web/js-imported/jquery-ui-1.9.2.custom/development-bundle/docs/jQuery.widget.html
+Removing Code/build/web/js-imported/jquery-ui-1.9.2.custom/development-bundle/docs/highlight-effect.html
+Removing Code/build/web/js-imported/jquery-ui-1.9.2.custom/development-bundle/docs/fold-effect.html
+Removing Code/build/web/js-imported/jquery-ui-1.9.2.custom/development-bundle/docs/fade-effect.html
+Removing Code/build/web/js-imported/jquery-ui-1.9.2.custom/development-bundle/docs/explode-effect.html
+Removing Code/build/web/js-imported/jquery-ui-1.9.2.custom/development-bundle/docs/droppable.html
+Removing Code/build/web/js-imported/jquery-ui-1.9.2.custom/development-bundle/docs/drop-effect.html
+Removing Code/build/web/js-imported/jquery-ui-1.9.2.custom/development-bundle/docs/draggable.html
+Removing Code/build/web/js-imported/jquery-ui-1.9.2.custom/development-bundle/docs/dialog.html
+Removing Code/build/web/js-imported/jquery-ui-1.9.2.custom/development-bundle/docs/datepicker.html
+Removing Code/build/web/js-imported/jquery-ui-1.9.2.custom/development-bundle/docs/clip-effect.html
+Removing Code/build/web/js-imported/jquery-ui-1.9.2.custom/development-bundle/docs/button.html
+Removing Code/build/web/js-imported/jquery-ui-1.9.2.custom/development-bundle/docs/bounce-effect.html
+Removing Code/build/web/js-imported/jquery-ui-1.9.2.custom/development-bundle/docs/blind-effect.html
+Removing Code/build/web/js-imported/jquery-ui-1.9.2.custom/development-bundle/docs/autocomplete.html
+Removing Code/build/web/js-imported/jquery-ui-1.9.2.custom/development-bundle/docs/accordion.html
+Removing Code/build/web/js-customised/boyang.js
+Removing Code/build/web/js-customised/averagepriceline.js
+CONFLICT (modify/delete): Code/build/web/index.jsp deleted in HEAD and modified in 9c2d6e590a5ad54d86b6a0e76f13c8a7a7283c46. Version 9c2d6e590a5ad54d86b6a0e76f13c8a7a7283c46 of Code/build/web/index.jsp left in tree.
+Automatic merge failed; fix conflicts and then commit the result.
+warning: LF will be replaced by CRLF in Code/web/Maps/leaflet.js.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in Code/web/Scss/L.Control.Sidebar1.scss.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in Code/web/Testing/final.jsp.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in Code/web/Testing/index.jsp.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in Code/web/Testing/index2.jsp.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in Code/web/UIlibraries/L.Control.Opencagesearch.js.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in Code/web/UIlibraries/L.Control.Sidebar.js.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in Code/web/UIlibraries/fastclick.js.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in Code/web/UIlibraries/foundation.min.js.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in Code/web/UIlibraries/jQDateRangeSlider-min.js.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in Code/web/UIlibraries/jQEditRangeSlider-min.js.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in Code/web/UIlibraries/jquery.js.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in Code/web/UIlibraries/leaflet-panel-layers.js.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in Code/web/UIlibraries/modernizr.js.
+The file will have its original line endings in your working directory.
+   at System.Reactive.PlatformServices.ExceptionServicesImpl.Rethrow(Exception exception)
+   at System.Reactive.ExceptionHelpers.ThrowIfNotNull(Exception exception)
+   at System.Reactive.Subjects.AsyncSubject`1.GetResult()
+   at GitHub.Helpers.GitClient.<>c__DisplayClass118.<<SyncBranch>b__113>d__11f.MoveNext()
+2014-11-04 15:52:13.0202|INFO|thread: 1|SyncButtonViewModel|Completing sync for C:\Users\ASUS\Desktop\REALIS - master
+2014-11-04 15:52:13.0202|INFO|thread:26|AsyncReaderWriterLock|Acquiring concurrent lock for operation 4: 'LoadHeadForRepo' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:13.0202|INFO|thread:23|AsyncReaderWriterLock|Acquired concurrent lock for operation 4: 'LoadHeadForRepo' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:13.0372|INFO|thread:23|AsyncReaderWriterLock|Released concurrent lock for operation 4: 'LoadHeadForRepo' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:13.6063|INFO|thread:34|AsyncReaderWriterLock|Acquiring concurrent lock for operation 5: 'LoadFilesInWorkingDirectory' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:13.6063|INFO|thread:25|AsyncReaderWriterLock|Acquired concurrent lock for operation 5: 'LoadFilesInWorkingDirectory' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:13.6063|INFO|thread:23|GitClient|Loading commits for repo: C:\Users\ASUS\Desktop\REALIS
+2014-11-04 15:52:13.6063|INFO|thread:23|RepositoryConnection|Loaded '1' commits for repo: C:\Users\ASUS\Desktop\REALIS\.
+2014-11-04 15:52:13.6213|INFO|thread:25|GitEnvironment|Process set up with this SSH Agent info: 12100:/tmp/ssh-IkmeG3smAe8E/agent.8992
+2014-11-04 15:52:13.6213|INFO|thread:25|GitEnvironment|PATH is C:\Users\ASUS\AppData\Local\GitHub\PortableGit_ed44d00daa128db527396557813e7b68709ed0e2\cmd;C:\Users\ASUS\AppData\Local\GitHub\PortableGit_ed44d00daa128db527396557813e7b68709ed0e2\bin;C:\Users\ASUS\AppData\Local\Apps\2.0\4YJRTP4Q.0NG\834OQ69Z.30E\gith..tion_317444273a93ac29_0002.0005_f2bbfed8cb3268d4;C:\Users\ASUS\AppData\Local\GitHub\git-media-amd64_0.2.2;C:\windows\Microsoft.NET\Framework\v4.0.30319;C:\windows\System32
+2014-11-04 15:52:13.6213|INFO|thread:25|ProcessWrapper|Starting: Process - FileName: 'C:\Users\ASUS\AppData\Local\GitHub\PortableGit_ed44d00daa128db527396557813e7b68709ed0e2\bin\git.exe', Args: 'status --untracked-files=all --porcelain -z ', Working Directory: C:\Users\ASUS\Desktop\REALIS\
+2014-11-04 15:52:13.7783|INFO|thread:35|GitClient|Loading commits for repo: C:\Users\ASUS\Desktop\REALIS
+2014-11-04 15:52:13.7783|INFO|thread:35|RepositoryConnection|Loaded '13' commits for repo: C:\Users\ASUS\Desktop\REALIS\.
+2014-11-04 15:52:14.0593|INFO|thread:30|AsyncReaderWriterLock|Released concurrent lock for operation 5: 'LoadFilesInWorkingDirectory' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:23.4928|INFO|thread: 1|SyncButtonViewModel|Starting sync for C:\Users\ASUS\Desktop\REALIS - master
+2014-11-04 15:52:23.4928|INFO|thread: 1|GitClient|Sync has latest unpublished commit SHA: '9c7e651879e63594cc089ff324511c845beba7ae'
+2014-11-04 15:52:23.4928|INFO|thread:31|AsyncReaderWriterLock|Acquiring exclusive lock for operation 6: 'SyncBranch' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:23.4928|INFO|thread:31|AsyncReaderWriterLock|Acquired exclusive lock for operation 6: 'SyncBranch' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:23.5038|INFO|thread:31|GitEnvironment|Process set up with this SSH Agent info: 12100:/tmp/ssh-IkmeG3smAe8E/agent.8992
+2014-11-04 15:52:23.5038|INFO|thread:31|GitEnvironment|PATH is C:\Users\ASUS\AppData\Local\GitHub\PortableGit_ed44d00daa128db527396557813e7b68709ed0e2\cmd;C:\Users\ASUS\AppData\Local\GitHub\PortableGit_ed44d00daa128db527396557813e7b68709ed0e2\bin;C:\Users\ASUS\AppData\Local\Apps\2.0\4YJRTP4Q.0NG\834OQ69Z.30E\gith..tion_317444273a93ac29_0002.0005_f2bbfed8cb3268d4;C:\Users\ASUS\AppData\Local\GitHub\git-media-amd64_0.2.2;C:\windows\Microsoft.NET\Framework\v4.0.30319;C:\windows\System32
+2014-11-04 15:52:23.5038|INFO|thread:31|ProcessWrapper|Starting: Process - FileName: 'C:\Users\ASUS\AppData\Local\GitHub\PortableGit_ed44d00daa128db527396557813e7b68709ed0e2\bin\git.exe', Args: 'pull --progress --rebase --prune origin master ', Working Directory: C:\Users\ASUS\Desktop\REALIS\
+2014-11-04 15:52:23.8209|INFO|thread:24|AsyncReaderWriterLock|Released exclusive lock for operation 6: 'SyncBranch' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:23.8639|WARN|thread: 1|StandardUserErrors|Showing user error It appears that you are in the middle of a merge conflict. Open the Git Shell and resolve the conflicts in your working directory before attempting to sync again.
+GitHub.IO.ProcessException: A	Code/build/generated/classes/org/apache/jsp/test_jsp.class
+A	Code/build/generated/src/org/apache/jsp/test_jsp.class.smap
+A	Code/build/generated/src/org/apache/jsp/test_jsp.java
+A	Code/build/web/highchart.html
+U	Code/build/web/index.jsp
+D	Code/build/web/js-customised/averagepriceline.js
+D	Code/build/web/js-customised/boyang.js
+D	Code/build/web/js-imported/jquery-ui-1.9.2.custom/development-bundle/docs/accordion.html
+D	Code/build/web/js-imported/jquery-ui-1.9.2.custom/development-bundle/docs/autocomplete.html
+D	Code/build/web/js-imported/jquery-ui-1.9.2.custom/development-bundle/docs/blind-effect.html
+D	Code/build/web/js-imported/jquery-ui-1.9.2.custom/development-bundle/docs/bounce-effect.html
+D	Code/build/web/js-imported/jquery-ui-1.9.2.custom/development-bundle/docs/button.html
+D	Code/build/web/js-imported/jquery-ui-1.9.2.custom/development-bundle/docs/clip-effect.html
+D	Code/build/web/js-imported/jquery-ui-1.9.2.custom/development-bundle/docs/datepicker.html
+D	Code/build/web/js-imported/jquery-ui-1.9.2.custom/development-bundle/docs/dialog.html
+D	Code/build/web/js-imported/jquery-ui-1.9.2.custom/development-bundle/docs/draggable.html
+D	Code/build/web/js-imported/jquery-ui-1.9.2.custom/development-bundle/docs/drop-effect.html
+D	Code/build/web/js-imported/jquery-ui-1.9.2.custom/development-bundle/docs/droppable.html
+D	Code/build/web/js-imported/jquery-ui-1.9.2.custom/development-bundle/docs/explode-effect.html
+D	Code/build/web/js-imported/jquery-ui-1.9.2.custom/development-bundle/docs/fade-effect.html
+D	Code/build/web/js-imported/jquery-ui-1.9.2.custom/development-bundle/docs/fold-effect.html
+D	Code/build/web/js-imported/jquery-ui-1.9.2.custom/development-bundle/docs/highlight-effect.html
+D	Code/build/web/js-imported/jquery-ui-1.9.2.custom/development-bundle/docs/jQuery.widget.html
+D	Code/build/web/js-imported/jquery-ui-1.9.2.custom/development-bundle/docs/menu.html
+D	Code/build/web/js-imported/jquery-ui-1.9.2.custom/development-bundle/docs/mouse.html
+D	Code/build/web/js-imported/jquery-ui-1.9.2.custom/development-bundle/docs/position.html
+D	Code/build/web/js-imported/jquery-ui-1.9.2.custom/development-bundle/docs/progressbar.html
+D	Code/build/web/js-imported/jquery-ui-1.9.2.custom/development-bundle/docs/puff-effect.html
+D	Code/build/web/js-imported/jquery-ui-1.9.2.custom/development-bundle/docs/pulsate-effect.html
+D	Code/build/web/js-imported/jquery-ui-1.9.2.custom/development-bundle/docs/resizable.html
+D	Code/build/web/js-imported/jquery-ui-1.9.2.custom/development-bundle/docs/scale-effect.html
+D	Code/build/web/js-imported/jquery-ui-1.9.2.custom/development-bundle/docs/selectable.html
+D	Code/build/web/js-imported/jquery-ui-1.9.2.custom/development-bundle/docs/shake-effect.html
+D	Code/build/web/js-imported/jquery-ui-1.9.2.custom/development-bundle/docs/size-effect.html
+D	Code/build/web/js-imported/jquery-ui-1.9.2.custom/development-bundle/docs/slide-effect.html
+D	Code/build/web/js-imported/jquery-ui-1.9.2.custom/development-bundle/docs/slider.html
+D	Code/build/web/js-imported/jquery-ui-1.9.2.custom/development-bundle/docs/sortable.html
+D	Code/build/web/js-imported/jquery-ui-1.9.2.custom/development-bundle/docs/spinner.html
+D	Code/build/web/js-imported/jquery-ui-1.9.2.custom/development-bundle/docs/tabs.html
+D	Code/build/web/js-imported/jquery-ui-1.9.2.custom/development-bundle/docs/tooltip.html
+D	Code/build/web/js-imported/jquery-ui-1.9.2.custom/development-bundle/docs/transfer-effect.html
+A	Code/build/web/js-imported/svy21.js
+U	Code/build/web/js-ours/averagepriceline.js
+U	Code/build/web/js-ours/boyang.js
+A	Code/build/web/js-ours/dateslider.js
+M	Code/nbproject/private/private.properties
+M	Code/nbproject/project.properties
+A	Code/web/highchart.html
+U	Code/web/index.jsp
+A	Code/web/js-imported/svy21.js
+U	Code/web/js-ours/averagepriceline.js
+U	Code/web/js-ours/boyang.js
+A	Code/web/js-ours/dateslider.js
+Pull is not possible because you have unmerged files.
+Please, fix them up in the work tree, and then use 'git add/rm <file>'
+as appropriate to mark resolution, or use 'git commit -a'.
+   at System.Reactive.PlatformServices.ExceptionServicesImpl.Rethrow(Exception exception)
+   at System.Reactive.ExceptionHelpers.ThrowIfNotNull(Exception exception)
+   at System.Reactive.Subjects.AsyncSubject`1.GetResult()
+   at GitHub.Helpers.GitClient.<>c__DisplayClass118.<<SyncBranch>b__113>d__11f.MoveNext()
+2014-11-04 15:52:29.5452|INFO|thread: 1|SyncButtonViewModel|Completing sync for C:\Users\ASUS\Desktop\REALIS - master
+2014-11-04 15:52:29.5452|INFO|thread:34|AsyncReaderWriterLock|Acquiring concurrent lock for operation 7: 'LoadHeadForRepo' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:29.5452|INFO|thread:34|AsyncReaderWriterLock|Acquired concurrent lock for operation 7: 'LoadHeadForRepo' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:29.5582|INFO|thread:34|AsyncReaderWriterLock|Released concurrent lock for operation 7: 'LoadHeadForRepo' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:30.3442|INFO|thread:34|GitClient|Loading commits for repo: C:\Users\ASUS\Desktop\REALIS
+2014-11-04 15:52:30.3442|INFO|thread:34|RepositoryConnection|Loaded '1' commits for repo: C:\Users\ASUS\Desktop\REALIS\.
+2014-11-04 15:52:30.3592|INFO|thread:23|GitClient|Loading commits for repo: C:\Users\ASUS\Desktop\REALIS
+2014-11-04 15:52:30.3592|INFO|thread:23|RepositoryConnection|Loaded '13' commits for repo: C:\Users\ASUS\Desktop\REALIS\.
+2014-11-04 15:52:39.7718|INFO|thread: 1|SyncButtonViewModel|Getting ahead/behind counts but skipping the fetch.
+2014-11-04 15:52:39.7718|INFO|thread:34|RepositoryConnection|Detecting ahead/behind info for branch: master.
+2014-11-04 15:52:39.7858|INFO|thread:34|RepositoryConnection|branch stats: ahead 1, behind 7
+2014-11-04 15:52:48.4453|INFO|thread:34|AsyncReaderWriterLock|Acquiring concurrent lock for operation 8: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:48.4453|INFO|thread:34|AsyncReaderWriterLock|Acquired concurrent lock for operation 8: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:48.4633|INFO|thread:27|AsyncReaderWriterLock|Acquiring concurrent lock for operation 9: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:48.4633|INFO|thread:27|AsyncReaderWriterLock|Acquired concurrent lock for operation 9: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:48.4633|INFO|thread:34|AsyncReaderWriterLock|Released concurrent lock for operation 8: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:48.4723|INFO|thread:33|AsyncReaderWriterLock|Acquiring concurrent lock for operation 10: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:48.4723|INFO|thread:33|AsyncReaderWriterLock|Acquired concurrent lock for operation 10: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:48.4723|INFO|thread:27|AsyncReaderWriterLock|Released concurrent lock for operation 9: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:48.4723|INFO|thread:21|AsyncReaderWriterLock|Acquiring concurrent lock for operation 11: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:48.4723|INFO|thread:21|AsyncReaderWriterLock|Acquired concurrent lock for operation 11: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:48.4893|INFO|thread:33|AsyncReaderWriterLock|Released concurrent lock for operation 10: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:48.5053|INFO|thread:21|AsyncReaderWriterLock|Released concurrent lock for operation 11: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:48.5213|INFO|thread:34|AsyncReaderWriterLock|Acquiring concurrent lock for operation 12: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:48.5213|INFO|thread:34|AsyncReaderWriterLock|Acquired concurrent lock for operation 12: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:48.5333|INFO|thread:34|AsyncReaderWriterLock|Released concurrent lock for operation 12: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:48.8133|INFO|thread:21|AsyncReaderWriterLock|Acquiring concurrent lock for operation 13: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:48.8133|INFO|thread:21|AsyncReaderWriterLock|Acquired concurrent lock for operation 13: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:48.8263|INFO|thread:21|AsyncReaderWriterLock|Released concurrent lock for operation 13: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:49.1343|INFO|thread:33|AsyncReaderWriterLock|Acquiring concurrent lock for operation 14: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:49.1343|INFO|thread:33|AsyncReaderWriterLock|Acquired concurrent lock for operation 14: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:49.1443|INFO|thread:33|AsyncReaderWriterLock|Released concurrent lock for operation 14: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:49.6243|INFO|thread:34|AsyncReaderWriterLock|Acquiring concurrent lock for operation 15: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:49.6243|INFO|thread:34|AsyncReaderWriterLock|Acquired concurrent lock for operation 15: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:49.6343|INFO|thread:21|AsyncReaderWriterLock|Acquiring concurrent lock for operation 16: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:49.6343|INFO|thread:21|AsyncReaderWriterLock|Acquired concurrent lock for operation 16: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:49.6423|INFO|thread:34|AsyncReaderWriterLock|Released concurrent lock for operation 15: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:49.6423|INFO|thread:21|AsyncReaderWriterLock|Released concurrent lock for operation 16: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:49.6423|INFO|thread:27|AsyncReaderWriterLock|Acquiring concurrent lock for operation 17: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:49.6423|INFO|thread:27|AsyncReaderWriterLock|Acquired concurrent lock for operation 17: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:49.6633|INFO|thread:27|AsyncReaderWriterLock|Released concurrent lock for operation 17: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:49.6633|INFO|thread:33|AsyncReaderWriterLock|Acquiring concurrent lock for operation 18: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:49.6633|INFO|thread:33|AsyncReaderWriterLock|Acquired concurrent lock for operation 18: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:49.6813|INFO|thread:33|AsyncReaderWriterLock|Released concurrent lock for operation 18: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:49.6813|INFO|thread:34|AsyncReaderWriterLock|Acquiring concurrent lock for operation 19: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:49.6813|INFO|thread:34|AsyncReaderWriterLock|Acquired concurrent lock for operation 19: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:49.6933|INFO|thread:21|AsyncReaderWriterLock|Acquiring concurrent lock for operation 20: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:49.6933|INFO|thread:21|AsyncReaderWriterLock|Acquired concurrent lock for operation 20: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:49.6933|INFO|thread:34|AsyncReaderWriterLock|Released concurrent lock for operation 19: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:49.7053|INFO|thread:21|AsyncReaderWriterLock|Released concurrent lock for operation 20: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:49.7053|INFO|thread:27|AsyncReaderWriterLock|Acquiring concurrent lock for operation 21: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:49.7053|INFO|thread:27|AsyncReaderWriterLock|Acquired concurrent lock for operation 21: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:49.7283|INFO|thread:27|AsyncReaderWriterLock|Released concurrent lock for operation 21: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:49.8433|INFO|thread:33|AsyncReaderWriterLock|Acquiring concurrent lock for operation 22: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:49.8433|INFO|thread:33|AsyncReaderWriterLock|Acquired concurrent lock for operation 22: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:49.8433|INFO|thread:33|AsyncReaderWriterLock|Released concurrent lock for operation 22: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:49.8623|INFO|thread:34|AsyncReaderWriterLock|Acquiring concurrent lock for operation 23: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:49.8623|INFO|thread:34|AsyncReaderWriterLock|Acquired concurrent lock for operation 23: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:49.8623|INFO|thread:27|AsyncReaderWriterLock|Acquiring concurrent lock for operation 24: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:49.8623|INFO|thread:27|AsyncReaderWriterLock|Acquired concurrent lock for operation 24: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:49.8623|INFO|thread:34|AsyncReaderWriterLock|Released concurrent lock for operation 23: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:49.8743|INFO|thread:21|AsyncReaderWriterLock|Acquiring concurrent lock for operation 25: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:49.8743|INFO|thread:21|AsyncReaderWriterLock|Acquired concurrent lock for operation 25: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:49.8743|INFO|thread:27|AsyncReaderWriterLock|Released concurrent lock for operation 24: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:49.8743|INFO|thread:21|AsyncReaderWriterLock|Released concurrent lock for operation 25: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:49.9053|INFO|thread:33|AsyncReaderWriterLock|Acquiring concurrent lock for operation 26: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:49.9063|INFO|thread:33|AsyncReaderWriterLock|Acquired concurrent lock for operation 26: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:49.9063|INFO|thread:34|AsyncReaderWriterLock|Acquiring concurrent lock for operation 27: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:49.9063|INFO|thread:34|AsyncReaderWriterLock|Acquired concurrent lock for operation 27: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:49.9063|INFO|thread:34|AsyncReaderWriterLock|Released concurrent lock for operation 27: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:49.9063|INFO|thread:33|AsyncReaderWriterLock|Released concurrent lock for operation 26: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:49.9323|INFO|thread:27|AsyncReaderWriterLock|Acquiring concurrent lock for operation 28: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:49.9323|INFO|thread:27|AsyncReaderWriterLock|Acquired concurrent lock for operation 28: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:49.9433|INFO|thread:27|AsyncReaderWriterLock|Released concurrent lock for operation 28: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:50.0784|INFO|thread:23|AsyncReaderWriterLock|Acquiring concurrent lock for operation 29: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:50.0784|INFO|thread:23|AsyncReaderWriterLock|Acquired concurrent lock for operation 29: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:50.0784|INFO|thread:27|AsyncReaderWriterLock|Acquiring concurrent lock for operation 30: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:50.0784|INFO|thread:27|AsyncReaderWriterLock|Acquired concurrent lock for operation 30: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:50.1034|INFO|thread:27|AsyncReaderWriterLock|Released concurrent lock for operation 30: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:50.1134|INFO|thread:23|AsyncReaderWriterLock|Released concurrent lock for operation 29: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:50.1954|INFO|thread:18|AsyncReaderWriterLock|Acquiring concurrent lock for operation 31: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:50.1954|INFO|thread:18|AsyncReaderWriterLock|Acquired concurrent lock for operation 31: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:50.2144|INFO|thread:33|AsyncReaderWriterLock|Acquiring concurrent lock for operation 32: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:50.2144|INFO|thread:33|AsyncReaderWriterLock|Acquired concurrent lock for operation 32: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:50.2224|INFO|thread:18|AsyncReaderWriterLock|Released concurrent lock for operation 31: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:50.2654|INFO|thread:33|AsyncReaderWriterLock|Released concurrent lock for operation 32: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:51.1774|INFO|thread:25|AsyncReaderWriterLock|Acquiring concurrent lock for operation 33: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:51.1774|INFO|thread:25|AsyncReaderWriterLock|Acquired concurrent lock for operation 33: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:51.1774|INFO|thread:24|AsyncReaderWriterLock|Acquiring concurrent lock for operation 34: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:51.1774|INFO|thread:24|AsyncReaderWriterLock|Acquired concurrent lock for operation 34: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:51.1934|INFO|thread:25|AsyncReaderWriterLock|Released concurrent lock for operation 33: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:51.6264|INFO|thread:24|AsyncReaderWriterLock|Released concurrent lock for operation 34: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:52.4695|INFO|thread:32|AsyncReaderWriterLock|Acquiring concurrent lock for operation 35: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:52.4695|INFO|thread:32|AsyncReaderWriterLock|Acquired concurrent lock for operation 35: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:52.4905|INFO|thread:34|AsyncReaderWriterLock|Acquiring concurrent lock for operation 36: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:52.4905|INFO|thread:34|AsyncReaderWriterLock|Acquired concurrent lock for operation 36: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:52.4905|INFO|thread:32|AsyncReaderWriterLock|Released concurrent lock for operation 35: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:52.4995|INFO|thread:34|AsyncReaderWriterLock|Released concurrent lock for operation 36: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:52.5245|INFO|thread:32|AsyncReaderWriterLock|Acquiring concurrent lock for operation 37: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:52.5245|INFO|thread:32|AsyncReaderWriterLock|Acquired concurrent lock for operation 37: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:52.5355|INFO|thread:32|AsyncReaderWriterLock|Released concurrent lock for operation 37: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:52.5355|INFO|thread:31|AsyncReaderWriterLock|Acquiring concurrent lock for operation 38: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:52.5355|INFO|thread:31|AsyncReaderWriterLock|Acquired concurrent lock for operation 38: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:52.5455|INFO|thread:31|AsyncReaderWriterLock|Released concurrent lock for operation 38: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:52.5715|INFO|thread:32|AsyncReaderWriterLock|Acquiring concurrent lock for operation 39: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:52.5715|INFO|thread:32|AsyncReaderWriterLock|Acquired concurrent lock for operation 39: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:52.5815|INFO|thread:32|AsyncReaderWriterLock|Released concurrent lock for operation 39: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:52.5815|INFO|thread:31|AsyncReaderWriterLock|Acquiring concurrent lock for operation 40: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:52.5815|INFO|thread:31|AsyncReaderWriterLock|Acquired concurrent lock for operation 40: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:52.5975|INFO|thread:31|AsyncReaderWriterLock|Released concurrent lock for operation 40: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:52.6205|INFO|thread:32|AsyncReaderWriterLock|Acquiring concurrent lock for operation 41: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:52.6205|INFO|thread:32|AsyncReaderWriterLock|Acquired concurrent lock for operation 41: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:52.6205|INFO|thread:34|AsyncReaderWriterLock|Acquiring concurrent lock for operation 42: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:52.6205|INFO|thread:34|AsyncReaderWriterLock|Acquired concurrent lock for operation 42: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:52.6365|INFO|thread:34|AsyncReaderWriterLock|Released concurrent lock for operation 42: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:52.6365|INFO|thread:31|AsyncReaderWriterLock|Acquiring concurrent lock for operation 43: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:52.6365|INFO|thread:31|AsyncReaderWriterLock|Acquired concurrent lock for operation 43: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:52.6365|INFO|thread:32|AsyncReaderWriterLock|Released concurrent lock for operation 41: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:52.6615|INFO|thread:31|AsyncReaderWriterLock|Released concurrent lock for operation 43: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:52.6695|INFO|thread:33|AsyncReaderWriterLock|Acquiring concurrent lock for operation 44: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:52.6695|INFO|thread:33|AsyncReaderWriterLock|Acquired concurrent lock for operation 44: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:52.6835|INFO|thread:33|AsyncReaderWriterLock|Released concurrent lock for operation 44: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:52.6835|INFO|thread:34|AsyncReaderWriterLock|Acquiring concurrent lock for operation 45: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:52.6835|INFO|thread:34|AsyncReaderWriterLock|Acquired concurrent lock for operation 45: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:52.7195|INFO|thread:34|AsyncReaderWriterLock|Released concurrent lock for operation 45: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:52.7195|INFO|thread:31|AsyncReaderWriterLock|Acquiring concurrent lock for operation 46: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:52.7195|INFO|thread:31|AsyncReaderWriterLock|Acquired concurrent lock for operation 46: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:52.7195|INFO|thread:32|AsyncReaderWriterLock|Acquiring concurrent lock for operation 47: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:52.7195|INFO|thread:32|AsyncReaderWriterLock|Acquired concurrent lock for operation 47: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:52.7335|INFO|thread:31|AsyncReaderWriterLock|Released concurrent lock for operation 46: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:52.7335|INFO|thread:32|AsyncReaderWriterLock|Released concurrent lock for operation 47: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:52.9525|INFO|thread:32|AsyncReaderWriterLock|Acquiring concurrent lock for operation 48: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:52.9525|INFO|thread:32|AsyncReaderWriterLock|Acquired concurrent lock for operation 48: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:52.9995|INFO|thread:34|AsyncReaderWriterLock|Acquiring concurrent lock for operation 49: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:52.9995|INFO|thread:34|AsyncReaderWriterLock|Acquired concurrent lock for operation 49: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:52.9995|INFO|thread:32|AsyncReaderWriterLock|Released concurrent lock for operation 48: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:52.9995|INFO|thread:34|AsyncReaderWriterLock|Released concurrent lock for operation 49: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:53.0305|INFO|thread:34|AsyncReaderWriterLock|Acquiring concurrent lock for operation 50: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:53.0305|INFO|thread:34|AsyncReaderWriterLock|Acquired concurrent lock for operation 50: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:53.0415|INFO|thread:33|AsyncReaderWriterLock|Acquiring concurrent lock for operation 51: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:53.0415|INFO|thread:33|AsyncReaderWriterLock|Acquired concurrent lock for operation 51: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:53.0675|INFO|thread:34|AsyncReaderWriterLock|Released concurrent lock for operation 50: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:53.0925|INFO|thread:34|AsyncReaderWriterLock|Acquiring concurrent lock for operation 52: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:53.0925|INFO|thread:34|AsyncReaderWriterLock|Acquired concurrent lock for operation 52: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:53.0925|INFO|thread:34|AsyncReaderWriterLock|Released concurrent lock for operation 52: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:53.1085|INFO|thread:32|AsyncReaderWriterLock|Acquiring concurrent lock for operation 53: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:53.1085|INFO|thread:32|AsyncReaderWriterLock|Acquired concurrent lock for operation 53: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:53.1085|INFO|thread:32|AsyncReaderWriterLock|Released concurrent lock for operation 53: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:53.1335|INFO|thread:34|AsyncReaderWriterLock|Acquiring concurrent lock for operation 54: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:53.1335|INFO|thread:34|AsyncReaderWriterLock|Acquired concurrent lock for operation 54: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:53.1445|INFO|thread:34|AsyncReaderWriterLock|Released concurrent lock for operation 54: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:53.1505|INFO|thread:32|AsyncReaderWriterLock|Acquiring concurrent lock for operation 55: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:53.1505|INFO|thread:32|AsyncReaderWriterLock|Acquired concurrent lock for operation 55: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:53.1505|INFO|thread:32|AsyncReaderWriterLock|Released concurrent lock for operation 55: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:53.1505|INFO|thread:33|AsyncReaderWriterLock|Released concurrent lock for operation 51: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:53.1755|INFO|thread:34|AsyncReaderWriterLock|Acquiring concurrent lock for operation 56: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:53.1755|INFO|thread:34|AsyncReaderWriterLock|Acquired concurrent lock for operation 56: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:53.1755|INFO|thread:31|AsyncReaderWriterLock|Acquiring concurrent lock for operation 57: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:53.1755|INFO|thread:31|AsyncReaderWriterLock|Acquired concurrent lock for operation 57: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:53.1855|INFO|thread:34|AsyncReaderWriterLock|Released concurrent lock for operation 56: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:53.1855|INFO|thread:31|AsyncReaderWriterLock|Released concurrent lock for operation 57: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:53.1855|INFO|thread:32|AsyncReaderWriterLock|Acquiring concurrent lock for operation 58: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:53.1855|INFO|thread:32|AsyncReaderWriterLock|Acquired concurrent lock for operation 58: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:53.1855|INFO|thread:33|AsyncReaderWriterLock|Acquiring concurrent lock for operation 59: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:53.1855|INFO|thread:33|AsyncReaderWriterLock|Acquired concurrent lock for operation 59: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:53.2055|INFO|thread:32|AsyncReaderWriterLock|Released concurrent lock for operation 58: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:53.2055|INFO|thread:33|AsyncReaderWriterLock|Released concurrent lock for operation 59: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:53.2285|INFO|thread:34|AsyncReaderWriterLock|Acquiring concurrent lock for operation 60: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:53.2285|INFO|thread:34|AsyncReaderWriterLock|Acquired concurrent lock for operation 60: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:52:53.2445|INFO|thread:34|AsyncReaderWriterLock|Released concurrent lock for operation 60: 'LoadContentForFile' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:53:03.3351|INFO|thread: 1|SyncButtonViewModel|Starting sync for C:\Users\ASUS\Desktop\REALIS - master
+2014-11-04 15:53:03.3351|INFO|thread: 1|GitClient|Sync has latest unpublished commit SHA: '9c7e651879e63594cc089ff324511c845beba7ae'
+2014-11-04 15:53:03.3351|INFO|thread:21|AsyncReaderWriterLock|Acquiring exclusive lock for operation 61: 'SyncBranch' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:53:03.3351|INFO|thread:21|AsyncReaderWriterLock|Acquired exclusive lock for operation 61: 'SyncBranch' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:53:03.3711|INFO|thread:21|GitEnvironment|Process set up with this SSH Agent info: 12100:/tmp/ssh-IkmeG3smAe8E/agent.8992
+2014-11-04 15:53:03.3711|INFO|thread:21|GitEnvironment|PATH is C:\Users\ASUS\AppData\Local\GitHub\PortableGit_ed44d00daa128db527396557813e7b68709ed0e2\cmd;C:\Users\ASUS\AppData\Local\GitHub\PortableGit_ed44d00daa128db527396557813e7b68709ed0e2\bin;C:\Users\ASUS\AppData\Local\Apps\2.0\4YJRTP4Q.0NG\834OQ69Z.30E\gith..tion_317444273a93ac29_0002.0005_f2bbfed8cb3268d4;C:\Users\ASUS\AppData\Local\GitHub\git-media-amd64_0.2.2;C:\windows\Microsoft.NET\Framework\v4.0.30319;C:\windows\System32
+2014-11-04 15:53:03.3711|INFO|thread:21|ProcessWrapper|Starting: Process - FileName: 'C:\Users\ASUS\AppData\Local\GitHub\PortableGit_ed44d00daa128db527396557813e7b68709ed0e2\bin\git.exe', Args: 'pull --progress --rebase --prune origin master ', Working Directory: C:\Users\ASUS\Desktop\REALIS\
+2014-11-04 15:53:03.8571|INFO|thread:23|AsyncReaderWriterLock|Released exclusive lock for operation 61: 'SyncBranch' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:53:04.0172|WARN|thread: 1|StandardUserErrors|Showing user error It appears that you are in the middle of a merge conflict. Open the Git Shell and resolve the conflicts in your working directory before attempting to sync again.
+GitHub.IO.ProcessException: A	Code/build/generated/classes/org/apache/jsp/test_jsp.class
+A	Code/build/generated/src/org/apache/jsp/test_jsp.class.smap
+A	Code/build/generated/src/org/apache/jsp/test_jsp.java
+A	Code/build/web/highchart.html
+U	Code/build/web/index.jsp
+D	Code/build/web/js-customised/averagepriceline.js
+D	Code/build/web/js-customised/boyang.js
+D	Code/build/web/js-imported/jquery-ui-1.9.2.custom/development-bundle/docs/accordion.html
+D	Code/build/web/js-imported/jquery-ui-1.9.2.custom/development-bundle/docs/autocomplete.html
+D	Code/build/web/js-imported/jquery-ui-1.9.2.custom/development-bundle/docs/blind-effect.html
+D	Code/build/web/js-imported/jquery-ui-1.9.2.custom/development-bundle/docs/bounce-effect.html
+D	Code/build/web/js-imported/jquery-ui-1.9.2.custom/development-bundle/docs/button.html
+D	Code/build/web/js-imported/jquery-ui-1.9.2.custom/development-bundle/docs/clip-effect.html
+D	Code/build/web/js-imported/jquery-ui-1.9.2.custom/development-bundle/docs/datepicker.html
+D	Code/build/web/js-imported/jquery-ui-1.9.2.custom/development-bundle/docs/dialog.html
+D	Code/build/web/js-imported/jquery-ui-1.9.2.custom/development-bundle/docs/draggable.html
+D	Code/build/web/js-imported/jquery-ui-1.9.2.custom/development-bundle/docs/drop-effect.html
+D	Code/build/web/js-imported/jquery-ui-1.9.2.custom/development-bundle/docs/droppable.html
+D	Code/build/web/js-imported/jquery-ui-1.9.2.custom/development-bundle/docs/explode-effect.html
+D	Code/build/web/js-imported/jquery-ui-1.9.2.custom/development-bundle/docs/fade-effect.html
+D	Code/build/web/js-imported/jquery-ui-1.9.2.custom/development-bundle/docs/fold-effect.html
+D	Code/build/web/js-imported/jquery-ui-1.9.2.custom/development-bundle/docs/highlight-effect.html
+D	Code/build/web/js-imported/jquery-ui-1.9.2.custom/development-bundle/docs/jQuery.widget.html
+D	Code/build/web/js-imported/jquery-ui-1.9.2.custom/development-bundle/docs/menu.html
+D	Code/build/web/js-imported/jquery-ui-1.9.2.custom/development-bundle/docs/mouse.html
+D	Code/build/web/js-imported/jquery-ui-1.9.2.custom/development-bundle/docs/position.html
+D	Code/build/web/js-imported/jquery-ui-1.9.2.custom/development-bundle/docs/progressbar.html
+D	Code/build/web/js-imported/jquery-ui-1.9.2.custom/development-bundle/docs/puff-effect.html
+D	Code/build/web/js-imported/jquery-ui-1.9.2.custom/development-bundle/docs/pulsate-effect.html
+D	Code/build/web/js-imported/jquery-ui-1.9.2.custom/development-bundle/docs/resizable.html
+D	Code/build/web/js-imported/jquery-ui-1.9.2.custom/development-bundle/docs/scale-effect.html
+D	Code/build/web/js-imported/jquery-ui-1.9.2.custom/development-bundle/docs/selectable.html
+D	Code/build/web/js-imported/jquery-ui-1.9.2.custom/development-bundle/docs/shake-effect.html
+D	Code/build/web/js-imported/jquery-ui-1.9.2.custom/development-bundle/docs/size-effect.html
+D	Code/build/web/js-imported/jquery-ui-1.9.2.custom/development-bundle/docs/slide-effect.html
+D	Code/build/web/js-imported/jquery-ui-1.9.2.custom/development-bundle/docs/slider.html
+D	Code/build/web/js-imported/jquery-ui-1.9.2.custom/development-bundle/docs/sortable.html
+D	Code/build/web/js-imported/jquery-ui-1.9.2.custom/development-bundle/docs/spinner.html
+D	Code/build/web/js-imported/jquery-ui-1.9.2.custom/development-bundle/docs/tabs.html
+D	Code/build/web/js-imported/jquery-ui-1.9.2.custom/development-bundle/docs/tooltip.html
+D	Code/build/web/js-imported/jquery-ui-1.9.2.custom/development-bundle/docs/transfer-effect.html
+A	Code/build/web/js-imported/svy21.js
+U	Code/build/web/js-ours/averagepriceline.js
+U	Code/build/web/js-ours/boyang.js
+A	Code/build/web/js-ours/dateslider.js
+M	Code/nbproject/private/private.properties
+M	Code/nbproject/project.properties
+A	Code/web/highchart.html
+U	Code/web/index.jsp
+A	Code/web/js-imported/svy21.js
+U	Code/web/js-ours/averagepriceline.js
+U	Code/web/js-ours/boyang.js
+A	Code/web/js-ours/dateslider.js
+Pull is not possible because you have unmerged files.
+Please, fix them up in the work tree, and then use 'git add/rm <file>'
+as appropriate to mark resolution, or use 'git commit -a'.
+   at System.Reactive.PlatformServices.ExceptionServicesImpl.Rethrow(Exception exception)
+   at System.Reactive.ExceptionHelpers.ThrowIfNotNull(Exception exception)
+   at System.Reactive.Subjects.AsyncSubject`1.GetResult()
+   at GitHub.Helpers.GitClient.<>c__DisplayClass118.<<SyncBranch>b__113>d__11f.MoveNext()
+2014-11-04 15:53:07.1513|INFO|thread: 1|SyncButtonViewModel|Completing sync for C:\Users\ASUS\Desktop\REALIS - master
+2014-11-04 15:53:07.1513|INFO|thread:21|AsyncReaderWriterLock|Acquiring concurrent lock for operation 62: 'LoadHeadForRepo' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:53:07.1513|INFO|thread:21|AsyncReaderWriterLock|Acquired concurrent lock for operation 62: 'LoadHeadForRepo' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:53:07.1833|INFO|thread:21|AsyncReaderWriterLock|Released concurrent lock for operation 62: 'LoadHeadForRepo' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:53:08.0164|INFO|thread:25|AsyncReaderWriterLock|Acquiring concurrent lock for operation 63: 'LoadFilesInWorkingDirectory' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:53:08.0164|INFO|thread:25|AsyncReaderWriterLock|Acquired concurrent lock for operation 63: 'LoadFilesInWorkingDirectory' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:53:08.0274|INFO|thread:25|GitEnvironment|Process set up with this SSH Agent info: 12100:/tmp/ssh-IkmeG3smAe8E/agent.8992
+2014-11-04 15:53:08.0274|INFO|thread:25|GitEnvironment|PATH is C:\Users\ASUS\AppData\Local\GitHub\PortableGit_ed44d00daa128db527396557813e7b68709ed0e2\cmd;C:\Users\ASUS\AppData\Local\GitHub\PortableGit_ed44d00daa128db527396557813e7b68709ed0e2\bin;C:\Users\ASUS\AppData\Local\Apps\2.0\4YJRTP4Q.0NG\834OQ69Z.30E\gith..tion_317444273a93ac29_0002.0005_f2bbfed8cb3268d4;C:\Users\ASUS\AppData\Local\GitHub\git-media-amd64_0.2.2;C:\windows\Microsoft.NET\Framework\v4.0.30319;C:\windows\System32
+2014-11-04 15:53:08.0274|INFO|thread:25|ProcessWrapper|Starting: Process - FileName: 'C:\Users\ASUS\AppData\Local\GitHub\PortableGit_ed44d00daa128db527396557813e7b68709ed0e2\bin\git.exe', Args: 'status --untracked-files=all --porcelain -z ', Working Directory: C:\Users\ASUS\Desktop\REALIS\
+2014-11-04 15:53:08.0274|INFO|thread:34|GitClient|Loading commits for repo: C:\Users\ASUS\Desktop\REALIS
+2014-11-04 15:53:08.0364|INFO|thread:34|RepositoryConnection|Loaded '1' commits for repo: C:\Users\ASUS\Desktop\REALIS\.
+2014-11-04 15:53:08.1604|INFO|thread:24|GitClient|Loading commits for repo: C:\Users\ASUS\Desktop\REALIS
+2014-11-04 15:53:08.1604|INFO|thread:24|RepositoryConnection|Loaded '13' commits for repo: C:\Users\ASUS\Desktop\REALIS\.
+2014-11-04 15:53:08.8474|INFO|thread:23|AsyncReaderWriterLock|Released concurrent lock for operation 63: 'LoadFilesInWorkingDirectory' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:53:18.5100|INFO|thread: 1|RepositoryViewModel|Refreshing all information for repo
+2014-11-04 15:53:18.5100|INFO|thread:18|AsyncReaderWriterLock|Acquiring concurrent lock for operation 64: 'LoadHeadForRepo' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:53:18.5100|INFO|thread:18|AsyncReaderWriterLock|Acquired concurrent lock for operation 64: 'LoadHeadForRepo' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:53:18.5700|INFO|thread:18|AsyncReaderWriterLock|Released concurrent lock for operation 64: 'LoadHeadForRepo' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:53:18.5700|INFO|thread:25|GitClient|Loading commits for repo: C:\Users\ASUS\Desktop\REALIS
+2014-11-04 15:53:18.5810|INFO|thread:25|RepositoryConnection|Loaded '1' commits for repo: C:\Users\ASUS\Desktop\REALIS\.
+2014-11-04 15:53:18.5810|INFO|thread:31|GitClient|Loading commits for repo: C:\Users\ASUS\Desktop\REALIS
+2014-11-04 15:53:18.5980|INFO|thread:31|RepositoryConnection|Loaded '13' commits for repo: C:\Users\ASUS\Desktop\REALIS\.
+2014-11-04 15:53:20.0981|INFO|thread: 1|SyncButtonViewModel|Getting ahead/behind counts but skipping the fetch.
+2014-11-04 15:53:20.0981|INFO|thread:34|RepositoryConnection|Detecting ahead/behind info for branch: master.
+2014-11-04 15:53:20.0981|INFO|thread:34|RepositoryConnection|branch stats: ahead 1, behind 7
+2014-11-04 15:53:20.0981|INFO|thread: 1|SyncButtonViewModel|Getting ahead/behind counts but skipping the fetch.
+2014-11-04 15:53:20.1261|INFO|thread:34|RepositoryConnection|Detecting ahead/behind info for branch: master.
+2014-11-04 15:53:20.1261|INFO|thread:34|RepositoryConnection|branch stats: ahead 1, behind 7
+2014-11-04 15:53:27.6055|INFO|thread: 1|RepositoryViewModel|Refreshing all information for repo
+2014-11-04 15:53:27.6055|INFO|thread:18|AsyncReaderWriterLock|Acquiring concurrent lock for operation 65: 'LoadHeadForRepo' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:53:27.6055|INFO|thread:18|AsyncReaderWriterLock|Acquired concurrent lock for operation 65: 'LoadHeadForRepo' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:53:27.6175|INFO|thread:18|AsyncReaderWriterLock|Released concurrent lock for operation 65: 'LoadHeadForRepo' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:53:27.6175|INFO|thread:25|AsyncReaderWriterLock|Acquiring concurrent lock for operation 66: 'LoadFilesInWorkingDirectory' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:53:27.6175|INFO|thread:25|AsyncReaderWriterLock|Acquired concurrent lock for operation 66: 'LoadFilesInWorkingDirectory' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:53:27.6295|INFO|thread:34|GitClient|Loading commits for repo: C:\Users\ASUS\Desktop\REALIS
+2014-11-04 15:53:27.6295|INFO|thread:25|GitEnvironment|Process set up with this SSH Agent info: 12100:/tmp/ssh-IkmeG3smAe8E/agent.8992
+2014-11-04 15:53:27.6295|INFO|thread:25|GitEnvironment|PATH is C:\Users\ASUS\AppData\Local\GitHub\PortableGit_ed44d00daa128db527396557813e7b68709ed0e2\cmd;C:\Users\ASUS\AppData\Local\GitHub\PortableGit_ed44d00daa128db527396557813e7b68709ed0e2\bin;C:\Users\ASUS\AppData\Local\Apps\2.0\4YJRTP4Q.0NG\834OQ69Z.30E\gith..tion_317444273a93ac29_0002.0005_f2bbfed8cb3268d4;C:\Users\ASUS\AppData\Local\GitHub\git-media-amd64_0.2.2;C:\windows\Microsoft.NET\Framework\v4.0.30319;C:\windows\System32
+2014-11-04 15:53:27.6295|INFO|thread:25|ProcessWrapper|Starting: Process - FileName: 'C:\Users\ASUS\AppData\Local\GitHub\PortableGit_ed44d00daa128db527396557813e7b68709ed0e2\bin\git.exe', Args: 'status --untracked-files=all --porcelain -z ', Working Directory: C:\Users\ASUS\Desktop\REALIS\
+2014-11-04 15:53:27.6425|INFO|thread:34|RepositoryConnection|Loaded '1' commits for repo: C:\Users\ASUS\Desktop\REALIS\.
+2014-11-04 15:53:27.7335|INFO|thread:27|GitClient|Loading commits for repo: C:\Users\ASUS\Desktop\REALIS
+2014-11-04 15:53:27.7445|INFO|thread:27|RepositoryConnection|Loaded '13' commits for repo: C:\Users\ASUS\Desktop\REALIS\.
+2014-11-04 15:53:28.0895|INFO|thread:34|AsyncReaderWriterLock|Released concurrent lock for operation 66: 'LoadFilesInWorkingDirectory' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:53:30.6547|INFO|thread:25|AsyncReaderWriterLock|Acquiring exclusive lock for operation 67: 'CreateCommit' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:53:30.6547|INFO|thread:24|AsyncReaderWriterLock|Acquired exclusive lock for operation 67: 'CreateCommit' on resource C:\Users\ASUS\Desktop\REALIS\.git
+2014-11-04 15:53:30.6547|INFO|thread:24|ExclusiveRepositoryConnection|Creating Commit
+2014-11-04 15:53:34.2819|INFO|thread:24|ExclusiveRepositoryConnection|Creating new commit with 612 file(s). Merge branch 'master' of https://github.com/JovinHoon91/REALIS
+
+Conflicts:
+	Code/build/web/index.jsp
+	Code/build/web/js-ours/averagepriceline.js
+	Code/build/web/js-ours/boyang.js
+	Code/web/index.jsp
+	Code/web/js-ours/averagepriceline.js
+	Code/web/js-ours/boyang.js
+
+2014-11-04 15:53:34.2959|INFO|thread:24|AsyncReaderWriterLock|Released exclusive lock for operation 67: 'CreateCommit' on resource C:\Users\ASUS\Desktop\REALIS\.git
