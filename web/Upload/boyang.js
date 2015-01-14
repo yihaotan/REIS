@@ -14,8 +14,10 @@ function init_dropzone() {
         reader.onload = function() {
             alert("The reading operation is successfully completed.");
             var geoJSON = csvJSON(reader.result);
+            
             alert(JSON.stringify(geoJSON));
-            init_function(geoJSON);
+            charting(geoJSON);
+            
             
         };
     }
@@ -70,20 +72,6 @@ function csvJSON(csv) {
             }
         };
 
-//        var search_query = "singapore " + postal_code;
-//
-//        var geocoder = new google.maps.Geocoder();
-//
-//        geocoder.geocode({'address': search_query}, function(results, status) {
-//            if (status === google.maps.GeocoderStatus.OK) {
-//                var location = results[0].geometry.location;
-//                console.log(postal_code + "," + location.lat + "," + location.lon);
-//            } else {
-//                alert('Geocode was not successful for the following reason: ' + status);
-//            }
-//        });
-
-        //GetSearchData();
 
         result.push(record);
         //alert(JSON.stringify(record));
