@@ -1,44 +1,57 @@
-/* 
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 function criteriastolayers(filteredData){
 
+    //Images for markers
+    var newsaleexeccondoIcon = L.icon({iconUrl: 'Icons/greenexeccondo.png', iconSize: [40, 40]});
+    var subsaleexeccondoIcon = L.icon({iconUrl: 'Icons/blueexeccondo.png', iconSize: [40, 40]});
+    var resaleexeccondoIcon = L.icon({iconUrl: 'Icons/redexeccondo.png', iconSize: [40, 40]});
+
+    var newsalecondoIcon = L.icon({iconUrl: 'Icons/greenCondo.png', iconSize: [40, 40]});
+    var subsalecondoIcon = L.icon({iconUrl: 'Icons/blueCondo.png', iconSize: [40, 40]});
+    var resalecondoIcon = L.icon({iconUrl: 'Icons/redCondo.png', iconSize: [40, 40]});
     
-    var newsaleexeccondoIcon = L.icon({iconUrl: '../Icons/greenexeccondo.png', iconSize: [40, 40]});
-    var subsaleexeccondoIcon = L.icon({iconUrl: '../Icons/blueexeccondo.png', iconSize: [40, 40]});
-    var resaleexeccondoIcon = L.icon({iconUrl: '../Icons/redexeccondo.png', iconSize: [40, 40]});
+    var newsaledetachedIcon = L.icon({iconUrl: 'Icons/greenDetached.png', iconSize: [40, 40]});
+    var subsaledetachedIcon = L.icon({iconUrl: 'Icons/blueDetached.png', iconSize: [40, 40]});
+    var resaledetachedIcon = L.icon({iconUrl: 'Icons/redDetached.png', iconSize: [40, 40]});
 
-    var newsalecondoIcon = L.icon({iconUrl: '../Icons/greenCondo.png', iconSize: [40, 40]});
-    var subsalecondoIcon = L.icon({iconUrl: '../Icons/blueCondo.png', iconSize: [40, 40]});
-    var resalecondoIcon = L.icon({iconUrl: '../Icons/redCondo.png', iconSize: [40, 40]});
+    var newsaleapartmentIcon = L.icon({iconUrl: 'Icons/greenApartment.png', iconSize: [40, 40]});
+    var subsaleapartmentIcon = L.icon({iconUrl: 'Icons/blueApartment.png', iconSize: [40, 40]});
+    var resaleapartmentIcon = L.icon({iconUrl: 'Icons/redApartment.png', iconSize: [40, 40]});
 
-    var newsaledetachedIcon = L.icon({iconUrl: '../Icons/greenDetached.png', iconSize: [40, 40]});
-    var subsaledetachedIcon = L.icon({iconUrl: '../Icons/blueDetached.png', iconSize: [40, 40]});
-    var resaledetachedIcon = L.icon({iconUrl: '../Icons/redDetached.png', iconSize: [40, 40]});
+    var newsalesemidIcon = L.icon({iconUrl: 'Icons/greensemid.png', iconSize: [40, 40]});
+    var subsalesemidIcon = L.icon({iconUrl: 'Icons/bluesemid.png', iconSize: [40, 40]});
+    var resalesemidIcon = L.icon({iconUrl: 'Icons/redsemid.png', iconSize: [40, 40]});
 
-    var newsaleapartmentIcon = L.icon({iconUrl: '../Icons/greenApartment.png', iconSize: [40, 40]});
-    var subsaleapartmentIcon = L.icon({iconUrl: '../Icons/blueApartment.png', iconSize: [40, 40]});
-    var resaleapartmentIcon = L.icon({iconUrl: '../Icons/redApartment.png', iconSize: [40, 40]});
-
-    var newsalesemidIcon = L.icon({iconUrl: '../Icons/greensemid.png', iconSize: [40, 40]});
-    var subsalesemidIcon = L.icon({iconUrl: '../Icons/bluesemid.png', iconSize: [40, 40]});
-    var resalesemidIcon = L.icon({iconUrl: '../Icons/redsemid.png', iconSize: [40, 40]});
-
-    var newsaleterraceIcon = L.icon({iconUrl: '../Icons/greenTerrace.png', iconSize: [40, 40]});
-    var subsaleterraceIcon = L.icon({iconUrl: '../Icons/blueTerrace.png', iconSize: [40, 40]});
-    var resaleterraceIcon = L.icon({iconUrl: '../Icons/redTerrace.png', iconSize: [40, 40]});
+    var newsaleterraceIcon = L.icon({iconUrl: 'Icons/greenTerrace.png', iconSize: [40, 40]});
+    var subsaleterraceIcon = L.icon({iconUrl: 'Icons/blueTerrace.png', iconSize: [40, 40]});
+    var resaleterraceIcon = L.icon({iconUrl: 'Icons/redTerrace.png', iconSize: [40, 40]});
+    
     //initialise cluster for markers
-    
     var criteriaCluster = new PruneClusterForLeaflet();
     
     // Config for Heatmap
-    var cfg = {
+    var cfgVolume = {
         // radius should be small ONLY if scaleRadius is true (or small radius is intended)
         // if scaleRadius is false it will be the constant radius used in pixels
         "radius": 0.01,
-        "maxOpacity": 0.8, 
+        "maxOpacity": 0.9, 
+        // scales the radius based on map zoom
+        "scaleRadius": true, 
+        // if set to false the heatmap uses the global maximum for colorization
+        // if activated: uses the data maximum within the current map boundaries 
+        //   (there will always be a red spot with useLocalExtremas true)
+        "useLocalExtrema": true,
+        // which field name in your data represents the latitude - default "lat"
+        latField: 'lat',
+        // which field name in your data represents the longitude - default "lng"
+        lngField: 'lng',
+        // which field name in your data represents the data value - default "value"
+        valueField: 'count'
+      };
+      var cfgPrice = {
+        // radius should be small ONLY if scaleRadius is true (or small radius is intended)
+        // if scaleRadius is false it will be the constant radius used in pixels
+        "radius": 0.01,
+        "maxOpacity": 0.9, 
         // scales the radius based on map zoom
         "scaleRadius": true, 
         // if set to false the heatmap uses the global maximum for colorization
@@ -53,26 +66,48 @@ function criteriastolayers(filteredData){
         valueField: 'count'
       };
     //creation of new heatmap layer
-    var heatmapLayer = new HeatmapOverlay(cfg);
-    
+    var heatmapVolumeLayer = new HeatmapOverlay(cfgVolume);
+    var heatmapPriceLayer = new HeatmapOverlay(cfgPrice);
     //Initialise testdata to input data 
-    var testData = {
+    var testDataVolume = {
+        max: 1000,
+        data: []        
+        };
+    
+    var testDataPrice = {
         max: 1000,
         data: []        
         };
         
     
-    map.addLayer(heatmapLayer);
-    map.removeLayer(heatmapLayer);
+    map.addLayer(heatmapVolumeLayer);
+    map.removeLayer(heatmapVolumeLayer);
     
+    map.addLayer(heatmapPriceLayer);
+    map.removeLayer(heatmapPriceLayer);
+    var pricehash={};
     
     for(var i=0;i<filteredData.length;i++){
             var geojson=filteredData[i];
+            var geojsonlat=geojson.lat;
+            var geojsonlon=geojson.lon;
             
+            var pricekey=geojsonlat.toString()+","+geojsonlon.toString();
+            
+            if(!pricehash[pricekey]){
+                var pricearray=[];
+                pricearray.push(geojson.psf);
+                pricehash[pricekey]=pricearray;      
+            }
+            else{
+               pricehash[pricekey].push(geojson.psf);
+                
+            }
             //Enters heatmap data into testdata 
-            testData["data"].push({lat:geojson.lat,
-                                    lng:geojson.lon,
+            testDataVolume["data"].push({lat:geojsonlat,
+                                    lng:geojsonlon,
                                     count:1});
+            
             //Create objects markers
             var criteriamarker = new PruneCluster.Marker(geojson.lat, geojson.lon);
             
@@ -144,10 +179,39 @@ function criteriastolayers(filteredData){
             criteriaCluster.RegisterMarker(criteriamarker);
 
      }
-    heatmapLayer.setData(testData);
+     
+    var pricehashkeys=Object.keys(pricehash);
+    for(var i=0;i<pricehashkeys.length;i++){
+        var sortedarray=[];
+        var medianvalue=0;
+        var pricehashkey=pricehashkeys[i]
+        
+        sortedarray=mergeSort(pricehash[pricehashkey]);//got bug  
+        
+        if(sortedarray.length%2==0){
+           var value1=pricehash[pricehashkey][(sortedarray.length/2)];
+           var value2=pricehash[pricehashkey][(sortedarray.length/2-1)];   
+           medianvalue=(value1+value2)/2;
+
+        }
+        if(sortedarray.length%2!=0){
+            var middlevalue=Math.round(sortedarray.length/2);
+            medianvalue=pricehash[pricehashkey][middlevalue-1];
+            
+        }
+        var coordinates=pricehashkey.split(",");
+        testDataPrice["data"].push({lat:coordinates[0],
+                lng:coordinates[1],
+                count:medianvalue});
+        
+
+    }
+    heatmapVolumeLayer.setData(testDataVolume);
+    heatmapPriceLayer.setData(testDataPrice);
    
     markers.addLayer(criteriaCluster);
-    heatmap.addLayer(heatmapLayer);
+    heatmapVolume.addLayer(heatmapVolumeLayer);
+    heatmapPrice.addLayer(heatmapPriceLayer);
     
     
     
@@ -155,4 +219,3 @@ function criteriastolayers(filteredData){
 
     
 }
-

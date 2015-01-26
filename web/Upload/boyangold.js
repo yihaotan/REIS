@@ -14,7 +14,6 @@ function init_dropzone() {
         reader.onload = function() {
             alert("The reading operation is successfully completed.");
             var geoJSON = csvJSON(reader.result);
-            
             alert(JSON.stringify(geoJSON));
             charting(geoJSON);
             
@@ -33,7 +32,7 @@ function csvJSON(csv) {
 
     // var headers = lines[0].split(",");
     // The headers are modified to conform to naming convention for JSON
-    var headers = ["REC_NO", "PROJECT_NAME", "ADDRESS", "NO_OF_UNITS", "AREA_SQM",
+    var headers = ["PROJECT_NAME", "ADDRESS", "NO_OF_UNITS", "AREA_SQM",
         "TYPE_OF_AREA", "TRANSACTED_PRICE", "UNIT_PRICE_PSM",
         "UNIT_PRICE_PSF", "CONTRACT_DATE", "PROPERTY_TYPE", "TENURE",
         "COMPLETION_DATE", "TYPE_OF_SALE", "PURCHASE_ADDRESS_INDICATOR",
@@ -71,7 +70,6 @@ function csvJSON(csv) {
                 "coordinates": [lat, lon]
             }
         };
-
 
         result.push(record);
         //alert(JSON.stringify(record));
