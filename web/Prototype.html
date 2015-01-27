@@ -57,13 +57,14 @@
   <style type="text/css"></style>
 
   <style>
-    .leaflet-control-layers-toggle {
+
+.leaflet-control-layers-toggle {
 	background-image: url(Icons/LayerMap.jpg)!important;
-	width: 100px;
-	height: 100px;
+	width: 95px;
+	height: 95px;
         position:absolute;
         top:25px;
-        right:25px;
+        right:-10px;
 	}
 
      .leaflet-control-layers-expanded {
@@ -80,6 +81,7 @@
     
     #map { 
    height:600px;
+   width:100%;
   }
     h4 span {
       font-size: 14px;
@@ -98,64 +100,67 @@
         position:absolute;
         top:60px;
         left: 0px;
-        
+        background-color: #FFFFFF;
+        background-color:rgba(255,255,255,0.7) ;
     }
     
     #dc-propertyTenureVolume-chart{
 
         float:left;
         position:absolute;
-        top:280px;
+        top:270px;
         left: 0px;
-        
+        background-color: #FFFFFF;
+        background-color:rgba(255,255,255,0.7) ;
     }
     #dc-dateVolume-chart{
-        width:300px;
-        height:300px;
+
         float:left;
         position:absolute;
         top:480px;
         left: 0px;
-        
+        background-color: #FFFFFF;
+        background-color:rgba(255,255,255,0.7) ;
     }
     
     #dc-line-chart{
-        width:300px;
-        height:300px;
+
         float:left;
         position:absolute;
         top:440px;
-        right: 170px;
-        
+        right: 2px;
+        background-color: #FFFFFF;
+        background-color:rgba(255,255,255,0.7) ;
     }
     
     #dc-propertyRegionVolume-chart{
-        width:300px;
-        height:300px;
+
         float:left;
         position:absolute;
         top:48px;
-        right: 120px;
-        
+        right: 90px;
+        background-color: #FFFFFF;
+        background-color:rgba(255,255,255,0.7) ;
     }
     #dc-psfBoxPlot-chart{
-        width:300px;
-        height:300px;
+
         float:left;
         position:absolute;
         top:110px;
-        left: 230px;
-        
+        left: 236px;
+        background-color: #FFFFFF;
+        background-color:rgba(255,255,255,0.7) ;
     }
     #dc-histogram{
-        width:300px;
-        height:300px;
+
         float:left;
         position:absolute;
         top:230px;
-        right: 55px;
-        
+        right: 10px;
+        background-color: #FFFFFF;
+        background-color:rgba(255,255,255,0.7) ;
     }
+
     #buttonpanel{
         float:left;
         position:absolute;
@@ -259,7 +264,7 @@
   <div id="buttonpanel">
   <input type="checkbox" id="check1" checked><label for="check1">Property Type</label>
   <input type="checkbox" id="check2" checked><label for="check2">Sale Type</label>
-  <input type="checkbox" id="check3" checked><label for="check3">Transaction Date</label>
+  <input type="checkbox" id="check3" checked><label for="check3">Transaction Volume</label>
   <input type="checkbox" id="check4" checked><label for="check4">Transaction Price</label>
   <input type="checkbox" id="check5" checked><label for="check5">Box Plot Price</label>
   <input type="checkbox" id="check6" checked><label for="check6">Histogram Price</label>
@@ -324,7 +329,7 @@
  </div>
   <div class='row'>
     <div class='span4' id='dc-propertyVolume-chart'>
-        <h4>PropertyType Volume
+        <h4>Property Volume
                <button class="btn btn-info btn-mini" id="bar1">Bar</button>
                <button class="btn btn-danger btn-mini" id="pie1">Pie</button>
         <span>
@@ -337,7 +342,7 @@
       </h4>
     </div>
     <div class='4' id='dc-propertyTenureVolume-chart'>
-        <h4>Sales Volume
+        <h4>Sale Volume
            
                 <button class="btn btn-info btn-mini " id="bar2">Bar</button>
                 <button class="btn btn-danger btn-mini" id="pie2">Pie</button>

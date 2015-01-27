@@ -212,17 +212,17 @@ function parseDate(dateStr){
     function plotPropertyVolumePie(){
         propertyVolumeRowChart = dc.rowChart("#dc-propertyVolume1-chart");
         propertyVolumePieChart = dc.pieChart("#dc-propertyVolume-chart");
-        propertyVolumePieChart.width(300)
-                .height(200)    
+        propertyVolumePieChart.width(200)
+                .height(150)    
                 .transitionDuration(10)
-                .radius(80)
+                .radius(60)
                 .innerRadius(20)
                 .dimension(propertyVolumeDimension)
                 .title(function (d) { return d.key +" "+d.value; })
                 .group(propertyVolumeGroup)
                 .colors(d3.scale.category10())
                 .renderLabel(true); 
-        propertyVolumeRowChart.width(300)
+        propertyVolumeRowChart.width(200)
                 .height(200)
                 .transitionDuration(10)
                 .ordering(function(p){
@@ -245,7 +245,7 @@ function parseDate(dateStr){
     function plotPropertyVolumeRow(){
             propertyVolumeRowChart = dc.rowChart("#dc-propertyVolume-chart");
             propertyVolumePieChart = dc.pieChart("#dc-propertyVolume1-chart");
-            propertyVolumeRowChart.width(270)
+            propertyVolumeRowChart.width(200)
                 .height(150)
                 .transitionDuration(10)
                 .ordering(function(p){
@@ -275,10 +275,10 @@ function parseDate(dateStr){
     function plotSaleVolumePie(){
         propertyTenureVolumePieChart = dc.pieChart("#dc-propertyTenureVolume-chart");
         propertyTenureVolumeRowChart =dc.rowChart("#dc-propertyTenureVolume1-chart");
-        propertyTenureVolumePieChart.width(300)
-                    .height(180)    
+        propertyTenureVolumePieChart.width(220)
+                    .height(150)    
                     .transitionDuration(10)
-                    .radius(80)
+                    .radius(60)
                     .innerRadius(20)
                     .dimension(tenureDimension)
                     .title(function (d) { return d.key +" "+d.value; })
@@ -305,7 +305,7 @@ function parseDate(dateStr){
     function plotSaleVolumeRow(){
         propertyTenureVolumePieChart = dc.pieChart("#dc-propertyTenureVolume1-chart");
         propertyTenureVolumeRowChart =dc.rowChart("#dc-propertyTenureVolume-chart");
-        propertyTenureVolumeRowChart.width(270)
+        propertyTenureVolumeRowChart.width(220)
                 .height(150)
                 .transitionDuration(10)
                 .ordering(function(p){
@@ -335,10 +335,10 @@ function parseDate(dateStr){
     function plotRegionVolumePie(){
         propertyRegionVolumePieChart = dc.pieChart("#dc-propertyRegionVolume-chart");
         propertyRegionVolumeRowChart = dc.rowChart("#dc-propertyRegionVolume1-chart");
-        propertyRegionVolumePieChart.width(300)
-                .height(200)    
+        propertyRegionVolumePieChart.width(240)
+                .height(120)    
                 .transitionDuration(10)
-                .radius(80)
+                .radius(60)
                 .innerRadius(20)
                 .dimension(regionDimension)
                 .title(function (d) { return d.key +" "+d.value; })
@@ -380,8 +380,8 @@ function parseDate(dateStr){
     function plotRegionVolumeRow(){
         propertyRegionVolumePieChart = dc.pieChart("#dc-propertyRegionVolume1-chart");
         propertyRegionVolumeRowChart = dc.rowChart("#dc-propertyRegionVolume-chart");  
-        propertyRegionVolumeRowChart.width(300)
-                .height(140)
+        propertyRegionVolumeRowChart.width(240)
+                .height(120)
                 .transitionDuration(10)
                 .ordering(function(p){
                     return -p.value;
@@ -394,10 +394,10 @@ function parseDate(dateStr){
                 .gap(3)
                 .title(function (p) { return p.value; })
                 .xAxis().ticks(5).tickFormat(d3.format("s"));
-        propertyRegionVolumePieChart.width(300)
-                .height(200)    
+        propertyRegionVolumePieChart.width(240)//300
+                .height(120)//200
                 .transitionDuration(10)
-                .radius(80)
+                .radius(50)//80
                 .innerRadius(20)
                 .dimension(regionDimension)
                 .title(function (d) { return d.key +" "+d.value; })
@@ -425,7 +425,7 @@ function parseDate(dateStr){
     function plotPsfBoxPlot(){
         boxPlotChart
            .width(780)//920
-           .height(270)
+           .height(220)
            .margins({top: 10, right: 0, bottom: 20, left: 75})
            .yAxisLabel("Psf $")
            .dimension(propertyDimension)
@@ -437,8 +437,8 @@ function parseDate(dateStr){
     //Psm boxplot
     function plotPsmBoxPlot(){
         boxPlotChart
-           .width(920)
-           .height(300)
+           .width(780)//920
+           .height(220)
            .margins({top: 10, right: 0, bottom: 20, left: 75})
            .yAxisLabel("Psm $")
            .dimension(propertyDimension)
@@ -450,8 +450,8 @@ function parseDate(dateStr){
     //Price boxplot
     function plotPriceBoxPlot(){
         boxPlotChart
-           .width(920)
-           .height(300)
+           .width(780)//920
+           .height(220)
            .margins({top: 10, right: 0, bottom: 20, left: 75})
            .yAxisLabel("Price $")
            .dimension(propertyDimension)
@@ -462,8 +462,8 @@ function parseDate(dateStr){
     
     //Psf histogram
     function plotPsfHistogram(){
-        histogram.width(400)
-            .height(200)
+        histogram.width(320)
+            .height(160)
             .dimension(psfDimension)
             .group(psfGroup)
             .x(d3.scale.linear().domain([psfRange[0],psfRange[1]+200]).range([0,10]))
@@ -479,8 +479,8 @@ function parseDate(dateStr){
     
     //Price Histogram
     function plotPriceHistogram(){
-        histogram.width(450)
-            .height(330)
+        histogram.width(320)
+            .height(160)
             .dimension(priceDimension)
             .group(priceGroup)
             .x(d3.scale.linear().domain([priceRange[0],priceRange[1]+200]).range([0,10]))
@@ -496,8 +496,8 @@ function parseDate(dateStr){
     
     //Psm Histogram
     function plotPsmHistogram(){
-        histogram.width(450)
-            .height(200)//330
+        histogram.width(320)
+            .height(160)//330
             .dimension(psmDimension)
             .group(psmGroup)
             .x(d3.scale.linear().domain([psmRange[0],psmRange[1]+500]).range([0,10]))
@@ -536,8 +536,8 @@ function parseDate(dateStr){
     //Psm Line Chart
     function plotPsmLineChart(){
          lineChart
-            .width(450)
-            .height(320)
+            .width(430)
+            .height(130)
             .margins({top: 10, right: 0, bottom: 20, left: 60})
             .yAxisLabel("Psm $")
             .x(d3.time.scale().domain([getMinDate(data),getMaxDate(data)]))
@@ -558,8 +558,8 @@ function parseDate(dateStr){
     //Price Line Chart
     function plotPriceLineChart(){
          lineChart
-            .width(450)
-            .height(320)
+            .width(430)
+            .height(130)
             .margins({top: 10, right: 0, bottom: 20, left: 60})
             .yAxisLabel("Price $")
             .x(d3.time.scale().domain([getMinDate(data),getMaxDate(data)]))
