@@ -41,6 +41,7 @@ function parseDate(dateStr){
     data.forEach(function (d) {
         d.projectName = d.properties.PROJECT_NAME;
         d.address = d.properties.ADDRESS;
+        d.areasqm=d.properties.AREA_SQM;
         d.price = d.properties.TRANSACTED_PRICE;
         d.psm = +d.properties.UNIT_PRICE_PSM;
         d.psf = +d.properties.UNIT_PRICE_PSF;
@@ -184,8 +185,8 @@ function parseDate(dateStr){
     
     //Intialise the charts
     // Transacted Volume vs Date (For Date Slider)
-    dateVolumeBarChart.width(920)
-            .height(100)
+    dateVolumeBarChart.width(650)
+            .height(140)
             .dimension(dateDimension)
             .group(datePsfGroup)
             .valueAccessor(function (p){
@@ -807,7 +808,8 @@ function parseDate(dateStr){
         heatmapPrice.clearLayers();
         criteriastolayers(properties);
     });
-    
+
+
     //Create map layer using googlemap terrain
     var gterrain = new L.Google('TERRAIN');
 
@@ -832,6 +834,7 @@ function parseDate(dateStr){
     };
     map.addLayer(markers);
     L.control.layers(basemaps, overlayMaps).addTo(map);
+
     //Run 
     dc.renderAll();
 

@@ -166,15 +166,12 @@ function criteriastolayers(filteredData){
                 criteriamarker.data.icon = resaledetachedIcon;
             }
            
-            criteriamarker.data.popup = ("Project Name: " + geojson.projectName
-                                        + "<br> Property Type: " + geojson.propertyType 
-                                        + "<br> SaleType:" + geojson.sale
-                                        + "<br> Tenure:"+geojson.tenure
-                                        + "<br> Transacted Price:"+geojson.price
-                                        + "<br> Unit Price PSF:"+geojson.psf
-                                        + "<br> Postal Code:"+geojson.postalCode
-                                        + "<br> Type Of Area:"+geojson.planningArea
-                                        + "<br> Address:"+geojson.address);
+            criteriamarker.data.popup = ("<b>Project Name:</b> " + geojson.projectName
+                                        + "<br> <b>Transacted Price</b>: $"+geojson.price
+                                        +"<br> <b>Area(sqm)</b>: "+geojson.areasqm 
+                                        + "<br> <b>Unit Price PSF</b>: $"+geojson.psf
+                                        + "<br> <b>Description</b>: "+geojson.sale+" "+geojson.propertyType+" at "
+                                        +geojson.address+" S"+geojson.postalCode+", District:"+geojson.postalDistrict);
             //put these markers on to the layer criteriaCluster
             criteriaCluster.RegisterMarker(criteriamarker);
 

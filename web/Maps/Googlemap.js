@@ -106,7 +106,7 @@ L.Google = L.Class.extend({
 			draggable: false,
 			disableDoubleClickZoom: true,
 			scrollwheel: false,
-			streetViewControl: false,
+			streetViewControl:false,
 			styles: this.options.mapOptions.styles,
 			backgroundColor: this.options.mapOptions.backgroundColor
 		});
