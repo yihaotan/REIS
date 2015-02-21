@@ -138,7 +138,7 @@ d3.json("2013.json",function(data){
         p.avg = p.sum / p.count;
          return p;
     };
-    var  reduceInitial = function() {
+    var reduceInitial = function() {
         return {count: 0, sum: 0, avg:0};
     };*/
     //propertyVolumeDimension and propertyVolumeGroup for the propertyType row chart and pie chart
@@ -193,7 +193,7 @@ d3.json("2013.json",function(data){
                  return [];
             }    
     );
-    // dimesion and group for tenure volue 
+    // dimesion and group for tenure volume
     var tenureDimension = facts.dimension(function(d){
         var tenure = d.tenure;
         if (tenure === 'Freehold'){
@@ -242,6 +242,7 @@ d3.json("2013.json",function(data){
         return d.psf;
     });
     var psfRange = d3.extent(data,function(d){return d.psf;});
+    console.log("max psf:"+psfRange[1]);
     var psfGroup = psfDimension.group(function(d){return Math.ceil(d / 100) * 100;});
     //dimension and group for price
     var priceDimension = facts.dimension(function(d){
@@ -264,44 +265,40 @@ d3.json("2013.json",function(data){
     }); 
     //Intialise the charts
     //Transacted Volume vs Date (For Date Slider)
+    var minDate = getMinDate(data);
+    var maxDate = getMaxDate(data);
+   
     dateVolumeBarChart.width(920)
             .height(100)
             .dimension(dateDimension)
             .group(dateGroup)
-            //.valueAccessor(function (p){
-                //return p.value.count;
-            //})
             .elasticY(true)
             .transitionDuration(0)
             .centerBar(true)
             .elasticY(true)
             .gap(1)
-            //.colors("#2ca02c")
-            .x(d3.time.scale().domain([getMinDate(data),getMaxDate(data)]))
+            .x(d3.time.scale().domain([minDate,maxDate]))
             .round(d3.time.month.round)
             .xUnits(d3.time.months)
             .clipPadding(10)
             .xAxis().tickFormat(d3.time.format("%b %y"));
-        
     //remove the y axis ticks
     dateVolumeBarChart.yAxis().ticks(0);   
-    // plot the propertyVolume Pie Chart
-    function plotPropertyVolumePie(){
-        propertyVolumeRowChart = dc.rowChart("#dc-propertyVolume1-chart");
-        propertyVolumePieChart = dc.pieChart("#dc-propertyVolume-chart");
-        propertyVolumePieChart.width(300)
+    // propertyVolumePie properties 
+    function propertyVolumePie(){
+         propertyVolumePieChart.width(300)
             .height(200)    
             .transitionDuration(0)
             .radius(80)
             .innerRadius(20)
             .dimension(propertyVolumeDimension)
-            .title(function (d) { return d.key +" "+d.value; })
+            .title(function (d) { return d.key +": "+d.value; })
             .group(propertyVolumeGroup)
             .colors(["#1f77b4","#ff7f0e","#2ca02c"," #d62728","#9467bd","#8c564b"])
             .colorDomain([0,6])
             .colorAccessor(function(d,i){
             if(d.key === "Apartment"){
-                    return 0;
+                        return 0;
             }else if (d.key === "Condominium"){
                         return 1;
                     }else if(d.key === "Detached House"){
@@ -314,7 +311,12 @@ d3.json("2013.json",function(data){
                          return 5;
                      }
                 })
-                .renderLabel(true); 
+                .renderLabel(true);
+                
+               
+    }           
+    //propertyVolumeRow properties
+    function propertyVolumeRow(){
         propertyVolumeRowChart.width(300)
                 .height(200)
                 .transitionDuration(0)
@@ -347,230 +349,157 @@ d3.json("2013.json",function(data){
                 .title(function (p) { return p.value; })
                 .xAxis().ticks(5).tickFormat(d3.format("s"));
     }
+    
+    
+
+    // plot the propertyVolume Pie Chart
+    function plotPropertyVolumePie(){
+        propertyVolumeRowChart = dc.rowChart("#dc-propertyVolume1-chart");
+        propertyVolumePieChart = dc.pieChart("#dc-propertyVolume-chart");
+        propertyVolumePie();
+        propertyVolumeRow();
+    }
     // plot the propertyVolume Row Chart
     function plotPropertyVolumeRow(){
             propertyVolumeRowChart = dc.rowChart("#dc-propertyVolume-chart");
             propertyVolumePieChart = dc.pieChart("#dc-propertyVolume1-chart");
-            propertyVolumeRowChart.width(300)
+            propertyVolumeRow();
+            propertyVolumePie();
+            
+    }
+    // saleVolumePie properties
+     function saleVolumePie(){
+         propertySaleVolumePieChart.width(300)
+                .height(200)    
+                .transitionDuration(0)
+                .radius(80)
+                .innerRadius(20)
+                .dimension(salesDimension)
+                .title(function (d) { return d.key +": "+d.value; })
+                .group(salesGroup)
+                //.colors(d3.scale.category10())
+                .colors(['#2ca02c','#d62728','#1f77b4'])
+                .colorDomain([0,3])
+                .colorAccessor(function(d,i){
+                if(d.key === "New Sale"){
+                       return 0;
+                    }else if (d.key === "Resale"){
+                        return 1;
+                    }else{
+                        return 2;
+                    }
+                })
+                .renderLabel(true);
+     }
+     //saleVolumeRow properties 
+     function saleVolumeRow(){
+          propertySaleVolumeRowChart.width(300)
                 .height(200)
                 .transitionDuration(0)
                 .ordering(function(p){
                     return -p.value;
                 })
-                .dimension(propertyVolumeDimension)
-                .group(propertyVolumeGroup)
-                //.colors(d3.scale.category10())
-                .colors(["#1f77b4","#ff7f0e","#2ca02c"," #d62728","#9467bd","#8c564b"])
-                .colorDomain([0,6])
-                .colorAccessor(function(d,i){
-                if(d.key === "Apartment"){
-                       return 0;
-                    }else if (d.key === "Condominium"){
-                        return 1;
-                    }else if(d.key === "Detached House"){
-                        return 2;
-                    }else if(d.key === "Executive Condominium"){
-                        return 3;
-                    }else if(d.key === "Semi-Detached House"){
-                        return 4;
-                     }else if(d.key === "Terrace House"){
-                         return 5;
-                     }
-                })
+                .dimension(salesDimension)
+                .group(salesGroup)
+                .colors(d3.scale.category10())
                 .renderLabel(true)
                 .elasticX(true)
                 .gap(3)
                 .title(function (p) { return p.value; })
-                .xAxis().ticks(5).tickFormat(d3.format("s"));
-            propertyVolumePieChart.width(300)
-                .height(200)    
-                .transitionDuration(0)
-                .radius(80)
-                .innerRadius(20)
-                .dimension(propertyVolumeDimension)
-                .title(function (d) { return d.key +" "+d.value; })
-                .group(propertyVolumeGroup)
-                .colors(["#1f77b4","#ff7f0e","#2ca02c"," #d62728","#9467bd","#8c564b"])
-                .colorDomain([0,6])
-                .colorAccessor(function(d,i){
-                if(d.key === "Apartment"){
-                       return 0;
-                    }else if (d.key === "Condominium"){
-                        return 1;
-                    }else if(d.key === "Detached House"){
-                        return 2;
-                    }else if(d.key === "Executive Condominium"){
-                        return 3;
-                    }else if(d.key === "Semi-Detached House"){
-                        return 4;
-                     }else if(d.key === "Terrace House"){
-                         return 5;
-                     }
+                .renderTitle(true)
+                .renderlet(function(chart){
+                    chart.selectAll("g.row rect").attr("fill", function(d){
+                        if(d.key === "New Sale"){
+                            return '#2ca02c';
+                        }else if(d.key === 'Resale'){
+                            return '#d62728';
+                        }else{
+                            return '#1f77b4';
+                        }
+                    })
                 })
-                .renderLabel(true); 
-    }
-    //Plot Sale Volume Pie Chart
+                .xAxis().ticks(5).tickFormat(d3.format("s"));
+     }
+     //Plot Sale Volume Pie Chart
      function plotSaleVolumePie(){
         propertySaleVolumePieChart = dc.pieChart("#dc-propertySaleVolume-chart");
         propertySaleVolumeRowChart =dc.rowChart("#dc-propertySaleVolume1-chart");
-        propertySaleVolumePieChart.width(300)
-                .height(200)    
-                .transitionDuration(0)
-                .radius(80)
-                .innerRadius(20)
-                .dimension(salesDimension)
-                .title(function (d) { return d.key +" "+d.value; })
-                .group(salesGroup)
-                .colors(d3.scale.category10())
-                .renderLabel(true);
-        propertySaleVolumeRowChart.width(300)
-                .height(200)
-                .transitionDuration(0)
-                .ordering(function(p){
-                    return -p.value;
-                })
-                .dimension(salesDimension)
-                .group(salesGroup)
-                .colors(d3.scale.category10())
-                .renderLabel(true)
-                .elasticX(true)
-                .gap(3)
-                .title(function (p) { return p.value; })
-                .xAxis().ticks(5).tickFormat(d3.format("s"));
+        saleVolumePie();
+        saleVolumeRow();
     }
-    //Plot Tenure Volume Row Chart
+    //Plot Sale Volume Row Chart
     function plotSaleVolumeRow(){
         propertySaleVolumePieChart = dc.pieChart("#dc-propertySaleVolume1-chart");
         propertySaleVolumeRowChart =dc.rowChart("#dc-propertySaleVolume-chart");
-        propertySaleVolumeRowChart.width(300)
+        saleVolumeRow();
+        saleVolumePie();
+    }
+    //tenure volume pie properties
+    function tenureVolumePie(){
+         propertyTenureVolumePieChart.width(300)
+                .height(200)    
+                .transitionDuration(0)
+                .radius(80)
+                .innerRadius(20)
+                .dimension(tenureDimension)
+                .title(function (d) { return d.key +": "+d.value;})
+                .group(tenureGroup)
+                .colors(['#2ca02c','#d62728','#1f77b4'])
+                .colorDomain([0,3])
+                .colorAccessor(function(d,i){
+                 if(d.key === "Freehold"){
+                       return 0;
+                    }else if (d.key === "99 Yrs"){
+                        return 1;
+                    }else{
+                        return 2;
+                    }
+                })
+                .renderLabel(true);
+            
+    }
+    //tenure volume row properties
+    function tenureVolumeRow(){
+         propertyTenureVolumeRowChart.width(300)
                 .height(200)
                 .transitionDuration(0)
                 .ordering(function(p){
                     return -p.value;
                 })
-                .dimension(salesDimension)
-                .group(salesGroup)
+                .dimension(tenureDimension)
+                .group(tenureGroup)
                 .colors(d3.scale.category10())
                 .renderLabel(true)
                 .elasticX(true)
                 .gap(3)
                 .title(function (p) { return p.value; })
+                .renderTitle(true)
+                .renderlet(function(chart){
+                     chart.selectAll("g.row rect").attr("fill", function(d){
+                        if(d.key === "Freehold"){
+                            return '#2ca02c';
+                        }else if(d.key === '99 Yrs'){
+                            return '#d62728';
+                        }else{
+                            return '#1f77b4';
+                        }
+                    });
+                })
                 .xAxis().ticks(5).tickFormat(d3.format("s"));
-        propertySaleVolumePieChart.width(300)
-                .height(200)    
-                .transitionDuration(0)
-                .radius(80)
-                .innerRadius(20)
-                .dimension(salesDimension)
-                .title(function (d) { return d.key +" "+d.value; })
-                .group(salesGroup)
-                .colors(d3.scale.category10())
-                .renderLabel(true);
     }
-    // Plot Tenure Volume Pie Chart
     function plotTenureVolumePie(){
         propertyTenureVolumePieChart = dc.pieChart("#dc-propertyTenureVolume-chart");
         propertyTenureVolumeRowChart =dc.rowChart("#dc-propertyTenureVolume1-chart");
-        propertyTenureVolumePieChart.width(300)
-                .height(200)    
-                .transitionDuration(0)
-                .radius(80)
-                .innerRadius(20)
-                .dimension(tenureDimension)
-                .title(function (d) { return d.key +" "+d.value; })
-                .group(tenureGroup)
-                .colors(d3.scale.category10())
-                .renderLabel(true);
-        propertyTenureVolumeRowChart.width(300)
-                .height(200)
-                .transitionDuration(0)
-                .ordering(function(p){
-                    return -p.value;
-                })
-                .dimension(tenureDimension)
-                .group(tenureGroup)
-                .colors(d3.scale.category10())
-                .renderLabel(true)
-                .elasticX(true)
-                .gap(3)
-                .title(function (p) { return p.value; })
-                .xAxis().ticks(5).tickFormat(d3.format("s"));
+        tenureVolumePie();
+        tenureVolumeRow();
     }
     //Plot Tenure Volume Row Chart
     function plotTenureVolumeRow(){
         propertyTenureVolumePieChart = dc.pieChart("#dc-propertyTenureVolume1-chart");
         propertyTenureVolumeRowChart =dc.rowChart("#dc-propertyTenureVolume-chart");
-        propertyTenureVolumeRowChart.width(300)
-                .height(200)
-                .transitionDuration(0)
-                .ordering(function(p){
-                    return -p.value;
-                })
-                .dimension(tenureDimension)
-                .group(tenureGroup)
-                .colors(d3.scale.category10())
-                .renderLabel(true)
-                .elasticX(true)
-                .gap(3)
-                .title(function (p) { return p.value; })
-                .xAxis().ticks(5).tickFormat(d3.format("s"));
-        propertyTenureVolumePieChart.width(300)
-                .height(200)    
-                .transitionDuration(0)
-                .radius(80)
-                .innerRadius(20)
-                .dimension(tenureDimension)
-                .title(function (d) { return d.key +" "+d.value; })
-                .group(tenureGroup)
-                .colors(d3.scale.category10())
-                .renderLabel(true);
+        tenureVolumePie();
+        tenureVolumeRow();
     }
-    //Plot Region Volume Pie Chart
-    function plotRegionVolumePie(){
-        propertyRegionVolumePieChart = dc.pieChart("#dc-propertyRegionVolume-chart");
-        propertyRegionVolumeRowChart = dc.rowChart("#dc-propertyRegionVolume1-chart");
-        propertyRegionVolumePieChart.width(300)
-                .height(200)    
-                .transitionDuration(0)
-                .radius(80)
-                .innerRadius(20)
-                .dimension(regionDimension)
-                .title(function (d) { return d.key +" "+d.value; })
-                .group(regionGroup)
-                .colors(["#9467bd", "#2ca02c", "#ff7f0e","#1f77b4","#d62728"])
-                .colorDomain([0,5])
-                .colorAccessor(function(d,i){
-                    if(d.key === "North East Region"){
-                       return 0;
-                    }else if (d.key === "East Region"){
-                        return 1;
-                    }else if(d.key === "West Region"){
-                        return 2;
-                    }else if(d.key === "Central Region"){
-                        return 3;
-                    }else if(d.key === "North Region"){
-                        return 4;
-                     }
-                })
-                .renderLabel(true)
-                .title(function (d) { return d.key +" "+d.value; });
-         propertyRegionVolumeRowChart.width(300)
-                .height(200)
-                .transitionDuration(0)
-                .ordering(function(p){
-                    return -p.value;
-                })
-                .dimension(regionDimension)
-                .group(regionGroup)
-                .colors(d3.scale.category10())
-                .renderLabel(true)
-                .elasticX(true)
-                .gap(3)
-                .title(function (p) { return p.value; })
-                .xAxis().ticks(5).tickFormat(d3.format("s"));
-    }
-    //Plot Region Volume Row Chart
-    
     //Psf boxplot
     function plotPsfBoxPlot(){
         boxPlotChart
@@ -581,7 +510,6 @@ d3.json("2013.json",function(data){
            .dimension(propertyDimension)
            .group(boxPlotPsfGroup)
            .elasticY(true);
-           //.elasticX(true);
     }
     //Psm boxplot
     function plotPsmBoxPlot(){
@@ -612,16 +540,16 @@ d3.json("2013.json",function(data){
         histogram.width(450)
             .height(330)
             .dimension(psfDimension)
+            .margins({top: 0, right: 0, bottom: 40, left: 40})
             .transitionDuration(0)
             .group(psfGroup)
-            .x(d3.scale.linear().domain([psfRange[0],psfRange[1]+200]).range([0,10]))
+            .x(d3.scale.linear().domain([psfRange[0],psfRange[1]+500]).range([0,10]))
             .xAxisLabel("Psf $") 
             .round(Math.ceil)
             .centerBar(true)
             .clipPadding(10)
-            .xUnits(function(){return 31;})
+            .xUnits(function(){return 50;})
             .elasticY(true)
-            //.brushOn(false)
             .xAxis();
     }
     //Price Histogram
@@ -629,91 +557,104 @@ d3.json("2013.json",function(data){
         histogram.width(450)
             .height(330)
             .dimension(priceDimension)
+             .margins({top: 0, right: 0, bottom: 40, left: 40})
             .transitionDuration(0)
             .group(priceGroup)
-            .x(d3.scale.linear().domain([priceRange[0],priceRange[1]+200]).range([0,10]))
-             .xAxisLabel("Price $")
+            .x(d3.scale.linear().domain([priceRange[0],priceRange[1]+1000]).range([0,10]))
+            .xAxisLabel("Price $")
             .round(Math.ceil)
             .centerBar(true)
             .clipPadding(10)
-            .xUnits(function(){return 1000;})
             .elasticY(true)
-            //.brushOn(false)
-            .xAxis();
+            .xAxis()
+            .ticks(10);
     }
     //Psm Histogram
     function plotPsmHistogram(){
         histogram.width(450)
             .height(330)
             .dimension(psmDimension)
+            .margins({top: 0, right: 0, bottom: 40, left: 40})
             .transitionDuration(0)
             .group(psmGroup)
             .x(d3.scale.linear().domain([psmRange[0],psmRange[1]+500]).range([0,10]))
-             .xAxisLabel("Psm $")
+            .xAxisLabel("Psm $")
             .round(Math.ceil)
             .centerBar(true)
             .clipPadding(10)
-            .xUnits(function(){return 33;})
+            .xUnits(function(){return 50;})
             .elasticY(true)
-            //.brushOn(false)
             .xAxis();
     }
     // composite chart
     function plotPsfLineChart(){
-    
         compositeControlChart
             .width(450)
             .height(320)
             .transitionDuration(0)
             .margins({top: 10, right: 0, bottom: 20, left: 60})
             .yAxisLabel("Psf $")
-            .x(d3.time.scale().domain([getMinDate(data),getMaxDate(data)]))
-            .y(d3.scale.linear().domain([0,getMinMaxValue(dateDimension,datePsfGroup)[1]+200]))
-            //.elasticY(true)
+            .x(d3.time.scale().domain([minDate,maxDate]))
+            .elasticY(true)
             .round(d3.time.month.round)
             .xUnits(d3.time.months)
             .dimension(dateDimension)
             .brushOn(false)
-            .legend(dc.legend().x(80).y(280).itemWidth(100).legendWidth(600).horizontal(true))
-            //.legend(dc.legend().x(80).y(10).itemHeight(13).gap(5))
+            //.legend(dc.legend().x(80).y(280).itemWidth(100).legendWidth(600).horizontal(true))
             .rangeChart(dateVolumeBarChart)
             .shareTitle(false)
-            //.renderTitle(false)
             .compose([
                 dc.lineChart(compositeControlChart)
                 .interpolate('linear')
                 .group(datePsfGroup,"Median Psf")
                 .renderDataPoints({radius:5})
-                .title(function (d) { return dateFormat(d.key) +" :$"+(d.value.median); })
+                .title(function (d) { return dateFormat(d.key) +": $"+(d.value.median); })
                 .renderTitle(true)
                 .valueAccessor(function(d){
                     return d.value.median;
                 }
-              
+            
             ),
             dc.lineChart(compositeControlChart)
-                .interpolate('linear')
-                .group(dummyGroupFor10Percentile,"10 Percentile")
-                .colors('#2ca02c')
-                .dashStyle([5,5])
+                //.interpolate('linear')
+                //.group(dummyGroupFor10Percentile,"10 Percentile")
+                //.colors('#2ca02c')
+                //.dashStyle([5,5])
                 // not working
-                .renderTitle(false)
-                .valueAccessor(function(){
-                     return getPercentileValue(0.1, dateDimension, datePsfGroup);  
+                //.renderTitle(false)
+                //.valueAccessor(function(){
+                   //  return getPercentileValue(0.1, dateDimension, datePsfGroup);  
+                //}
+                .interpolate('linear')
+                .group(datePsfGroup,"Min Psf")
+                .renderDataPoints({radius:5})
+                .colors("#2ca02c")
+                .title(function (d) { return dateFormat(d.key) +": $"+(d.value.min); })
+                .renderTitle(true)
+                .valueAccessor(function(d){
+                    return d.value.min;
                 }
             ),
             dc.lineChart(compositeControlChart)
-                .interpolate('linear')
-                .group(dummyGroupFor90Percentile,"90 Percentile")
-                .colors('red')
-                .dashStyle([5,5])
+                //.interpolate('linear')
+                //.group(dummyGroupFor90Percentile,"90 Percentile")
+                //.colors('red')
+                //.dashStyle([5,5])
                 // not working
-                .renderTitle(false)
-                .valueAccessor(function(){
-                    return getPercentileValue(0.9, dateDimension, datePsfGroup);
+                //.renderTitle(false)
+                //.valueAccessor(function(){
+                   // return getPercentileValue(0.9, dateDimension, datePsfGroup);
+                //})
+                .interpolate('linear')
+                .group(datePsfGroup,"Max Psf")
+                .colors("#d62728")
+                .renderDataPoints({radius:5})
+                .title(function (d) { return dateFormat(d.key) +": $"+(d.value.max); })
+                .renderTitle(true)
+                .valueAccessor(function(d){
+                    return d.value.max;
                 })
-               
-            ])        
+            ])     
             .xAxis().tickFormat(d3.time.format("%b %y"))
             .ticks(5);
     }
@@ -726,49 +667,46 @@ d3.json("2013.json",function(data){
             .transitionDuration(0)
             .margins({top: 10, right: 0, bottom: 20, left: 60})
             .yAxisLabel("Psm $")
-            .x(d3.time.scale().domain([getMinDate(data),getMaxDate(data)]))
-            .y(d3.scale.linear().domain([0,getMinMaxValue(dateDimension,datePsmGroup)[1]+200]))
-            //.elasticY(true)
+            .x(d3.time.scale().domain([minDate,maxDate]))
+            .elasticY(true)
             .round(d3.time.month.round)
             .xUnits(d3.time.months)
             .dimension(dateDimension)
             .brushOn(false)
-            .legend(dc.legend().x(80).y(280).itemWidth(100).legendWidth(600).horizontal(true))
-            //.legend(dc.legend().x(80).y(10).itemHeight(13).gap(5))
+            //.legend(dc.legend().x(80).y(280).itemWidth(100).legendWidth(600).horizontal(true))
             .rangeChart(dateVolumeBarChart)
             .shareTitle(false)
             .compose([
                 dc.lineChart(compositeControlChart)
                 .interpolate('linear')
-                .group(datePsmGroup,"Median Psf")
+                .group(datePsmGroup,"Median Psm")
                 .renderDataPoints({radius:5})
-                .title(function (d) { return dateFormat(d.key) +" :$"+(d.value.median); })
+                .title(function (d) { return dateFormat(d.key) +": $"+(d.value.median); })
                 .renderTitle(true)
                 .valueAccessor(function(d){
                     return d.value.median;
                 }
-              
             ),
             dc.lineChart(compositeControlChart)
                 .interpolate('linear')
-                .group(dummyGroupFor10Percentile,"10 Percentile")
-                .colors('#2ca02c')
-                .dashStyle([5,5])
-                //.title(function(){return "The 10 Percentile is: $"+getPercentileValue(0.1, dateDimension, datePsfGroup)})
-                .renderTitle(false)
-                .valueAccessor(function(){
-                     return getPercentileValue(0.1, dateDimension, datePsmGroup);  
+                .group(datePsmGroup,"Min Psm")
+                .renderDataPoints({radius:5})
+                .colors("#2ca02c")
+                .title(function (d) { return dateFormat(d.key) +": $"+(d.value.min); })
+                .renderTitle(true)
+                .valueAccessor(function(d){
+                    return d.value.min;
                 }
             ),
             dc.lineChart(compositeControlChart)
-                .interpolate('linear')
-                .group(dummyGroupFor90Percentile,"90 Percentile")
-                .colors('red')
-                .dashStyle([5,5])
-                //.title(function(){return "The 90 Percentile is: $"+getPercentileValue(0.9, dateDimension, datePsfGroup)})
-                .renderTitle(false)
-                .valueAccessor(function(){
-                    return getPercentileValue(0.9, dateDimension, datePsmGroup);
+              .interpolate('linear')
+                .group(datePsmGroup,"Max Psm")
+                .colors("#d62728")
+                .renderDataPoints({radius:5})
+                .title(function (d) { return dateFormat(d.key) +": $"+(d.value.max); })
+                .renderTitle(true)
+                .valueAccessor(function(d){
+                    return d.value.max;
                 })
                
             ])        
@@ -783,49 +721,46 @@ d3.json("2013.json",function(data){
             .transitionDuration(0)
             .margins({top: 10, right: 0, bottom: 20, left: 60})
             .yAxisLabel("Price $")
-            .x(d3.time.scale().domain([getMinDate(data),getMaxDate(data)]))
-            .y(d3.scale.linear().domain([0,getMinMaxValue(dateDimension,datePriceGroup)[1]+200]))
-            //.elasticY(true)
+            .x(d3.time.scale().domain([minDate,maxDate]))
+            .elasticY(true)
             .round(d3.time.month.round)
             .xUnits(d3.time.months)
             .dimension(dateDimension)
             .brushOn(false)
-             .legend(dc.legend().x(80).y(280).itemWidth(100).legendWidth(600).horizontal(true))
-            //.legend(dc.legend().x(80).y(10).itemHeight(13).gap(5))
+            //.legend(dc.legend().x(80).y(280).itemWidth(100).legendWidth(600).horizontal(true))
             .rangeChart(dateVolumeBarChart)
             .shareTitle(false)
             .compose([
                 dc.lineChart(compositeControlChart)
                 .interpolate('linear')
-                .group(datePriceGroup,"Median Psf")
+                .group(datePriceGroup,"Median Price")
                 .renderDataPoints({radius:5})
-                .title(function (d) { return dateFormat(d.key) +" :$"+(d.value.median); })
+                .title(function (d) { return dateFormat(d.key) +": $"+(d.value.median); })
                 .renderTitle(true)
                 .valueAccessor(function(d){
                     return d.value.median;
                 }
-              
             ),
             dc.lineChart(compositeControlChart)
                 .interpolate('linear')
-                .group(dummyGroupFor10Percentile,"10 Percentile")
-                .colors('#2ca02c')
-                .dashStyle([5,5])
-                //.title(function(){return "The 10 Percentile is: $"+getPercentileValue(0.1, dateDimension, datePsfGroup)})
-                .renderTitle(false)
-                .valueAccessor(function(){
-                     return getPercentileValue(0.1, dateDimension, datePriceGroup);  
+                .group(datePriceGroup,"Min Price")
+                .renderDataPoints({radius:5})
+                .colors("#2ca02c")
+                .title(function (d) { return dateFormat(d.key) +": $"+(d.value.min); })
+                .renderTitle(true)
+                .valueAccessor(function(d){
+                    return d.value.min;
                 }
             ),
             dc.lineChart(compositeControlChart)
                 .interpolate('linear')
-                .group(dummyGroupFor90Percentile,"90 Percentile")
-                .colors('red')
-                .dashStyle([5,5])
-                //.title(function(){return "The 90 Percentile is: $"+getPercentileValue(0.9, dateDimension, datePsfGroup)})
-                .renderTitle(false)
-                .valueAccessor(function(){
-                    return getPercentileValue(0.9, dateDimension, datePriceGroup);
+                .group(datePriceGroup,"Max Price")
+                .colors("#d62728")
+                .renderDataPoints({radius:5})
+                .title(function (d) { return dateFormat(d.key) +": $"+(d.value.max); })
+                .renderTitle(true)
+                .valueAccessor(function(d){
+                    return d.value.max;
                 })
             ])        
             .xAxis().tickFormat(d3.time.format("%b %y"))
@@ -837,7 +772,7 @@ d3.json("2013.json",function(data){
                 var text = $('#dc-psfBoxPlot-chart .selectpicker option:selected').text(); 
                 if (text === "Psf"){
                    dc.filterAll();
-                    plotPsfHistogram();
+                   plotPsfHistogram();
                    plotPsfBoxPlot();
                    plotPsfLineChart();
                 }else if(text === "Price"){
@@ -866,7 +801,9 @@ d3.json("2013.json",function(data){
            $("#pie1").on("click",function(){
                $(this).prop('disabled', true);
                $("#bar1").prop('disabled',false);
+               alert("Hello!")
                plotPropertyVolumePie();
+               alert("After Hello!")
                dc.renderAll();
            });
            $("#bar2").on("click",function(){
@@ -893,8 +830,9 @@ d3.json("2013.json",function(data){
                plotSaleVolumePie();
               dc.renderAll();
            });
-       
-    });
+           
+          
+    }); 
     //Tabular Module sort by price desc
     dataTable
        .width(920)
@@ -1077,6 +1015,49 @@ d3.json("2013.json",function(data){
                 .renderLabel(true)
                 .title(function (d) { return d.key +" "+d.value; });
     }*/
+    /* function plotRegionVolumePie(){
+        propertyRegionVolumePieChart = dc.pieChart("#dc-propertyRegionVolume-chart");
+        propertyRegionVolumeRowChart = dc.rowChart("#dc-propertyRegionVolume1-chart");
+        propertyRegionVolumePieChart.width(300)
+                .height(200)    
+                .transitionDuration(0)
+                .radius(80)
+                .innerRadius(20)
+                .dimension(regionDimension)
+                .title(function (d) { return d.key +" "+d.value; })
+                .group(regionGroup)
+                .colors(["#9467bd", "#2ca02c", "#ff7f0e","#1f77b4","#d62728"])
+                .colorDomain([0,5])
+                .colorAccessor(function(d,i){
+                    if(d.key === "North East Region"){
+                       return 0;
+                    }else if (d.key === "East Region"){
+                        return 1;
+                    }else if(d.key === "West Region"){
+                        return 2;
+                    }else if(d.key === "Central Region"){
+                        return 3;
+                    }else if(d.key === "North Region"){
+                        return 4;
+                     }
+                })
+                .renderLabel(true)
+                .title(function (d) { return d.key +" "+d.value; });
+         propertyRegionVolumeRowChart.width(300)
+                .height(200)
+                .transitionDuration(0)
+                .ordering(function(p){
+                    return -p.value;
+                })
+                .dimension(regionDimension)
+                .group(regionGroup)
+                .colors(d3.scale.category10())
+                .renderLabel(true)
+                .elasticX(true)
+                .gap(3)
+                .title(function (p) { return p.value; })
+                .xAxis().ticks(5).tickFormat(d3.format("s"));
+    }*/
     //Count the number of records 
     dc.dataCount(".dc-data-count")
     .dimension(facts)
@@ -1086,11 +1067,9 @@ d3.json("2013.json",function(data){
     plotPropertyVolumeRow();
     plotTenureVolumeRow();
     plotSaleVolumeRow();
-    //plotRegionVolumeRow();  
     plotPsfBoxPlot();
     plotPsfLineChart();
     //Run 
-    //document.write((newData));
     dc.renderAll();
   
 });
