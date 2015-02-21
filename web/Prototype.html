@@ -16,7 +16,8 @@
 <link href='Css/bootstrap-select.css' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="Css/LeafletStyleSheet.css" type="text/css"  />
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
-
+<link rel="stylesheet" href="Css/L.Control.Opencagesearch.css" />
+<link rel="stylesheet" href="Css/leaflet.fusesearch.css" />
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
@@ -40,6 +41,7 @@
 <script src="Maps/Googlemap.js"></script>
 <script src="Maps/map.js"></script>
 
+
  
 <script src="Upload/boyangold.js"></script>
 <script src="GraphGeneration/functionA.js"></script>
@@ -51,6 +53,13 @@
 <script src="UIlibraries/heatmap.js"></script> 
 <script src="UIlibraries/leaflet-heatmap.js"></script>
 <script src='UIlibraries/dc.js' type='text/javascript'></script>  
+<script src="UIlibraries/L.Control.Opencagesearch.js"></script>
+
+<script src="UIlibraries/fuse.js"></script>
+<script src="UIlibraries/fuse.min.js"></script>
+
+<script src="UIlibraries/leaflet.fusesearch.js"></script>
+
  
 <script src="UIlibraries/modernizr.js"></script> 
 <script src="UIlibraries/reductio.js"></script> 
@@ -58,6 +67,43 @@
 
  <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
 <script src="Mergesort/Mergesort.js"></script>
+<script src="Maps/pointinpolygon.js"></script>
+
+<!--for drawing-->
+	<script src="src/Leaflet.draw.js"></script>
+	<link rel="stylesheet" href="dist/leaflet.draw.css" />
+
+	<script src="src/Toolbar.js"></script>
+	<script src="src/Tooltip.js"></script>
+
+	<script src="src/ext/GeometryUtil.js"></script>
+	<script src="src/ext/LatLngUtil.js"></script>
+	<script src="src/ext/LineUtil.Intersect.js"></script>
+	<script src="src/ext/Polygon.Intersect.js"></script>
+	<script src="src/ext/Polyline.Intersect.js"></script>
+
+
+	<script src="src/draw/DrawToolbar.js"></script>
+	<script src="src/draw/handler/Draw.Feature.js"></script>
+	<script src="src/draw/handler/Draw.SimpleShape.js"></script>
+	<script src="src/draw/handler/Draw.Polyline.js"></script>
+	<script src="src/draw/handler/Draw.Circle.js"></script>
+	<script src="src/draw/handler/Draw.Marker.js"></script>
+	<script src="src/draw/handler/Draw.Polygon.js"></script>
+	<script src="src/draw/handler/Draw.Rectangle.js"></script>
+
+
+	<script src="src/edit/EditToolbar.js"></script>
+	<script src="src/edit/handler/EditToolbar.Edit.js"></script>
+	<script src="src/edit/handler/EditToolbar.Delete.js"></script>
+
+	<script src="src/Control.Draw.js"></script>
+
+	<script src="src/edit/handler/Edit.Poly.js"></script>
+	<script src="src/edit/handler/Edit.SimpleShape.js"></script>
+	<script src="src/edit/handler/Edit.Circle.js"></script>
+	<script src="src/edit/handler/Edit.Rectangle.js"></script>
+	<script src="src/edit/handler/Edit.Marker.js"></script>
 
   <!-- Google API -->
 
@@ -93,8 +139,9 @@
     #map { 
         top:50.5px;
         height:400px;
-        width:80%;
-        float: right;
+        width:40%;
+        left: 260px;
+        float: left;
        }    
 
     h4 span {
@@ -244,7 +291,10 @@
 </nav>
     
     <script>
+       // var polygon = [ [ 1, 1 ], [ 1, 2 ], [ 2, 2 ], [ 2, 1 ] ];
 
+        //alert(pointinpolygon([ 1.5, 1.5 ], polygon));
+   
    
    
     $(function() {

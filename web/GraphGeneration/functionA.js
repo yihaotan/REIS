@@ -833,8 +833,22 @@ function parseDate(dateStr){
     "Google Satellite":gsatellite
     };
     map.addLayer(markers);
-    L.control.layers(basemaps, overlayMaps).addTo(map);
+    var drawnItems = L.featureGroup().addTo(map);
+		map.addControl(new L.Control.Draw({
+			edit: { featureGroup: drawnItems }
+		}));
+		map.on('draw:created', function(event) {
+			var layer = event.layer;
+			drawnItems.addLayer(layer);
+		});
+   //searchCtrl.indexFeatures(geoJsonData.features, ['POSTAL_DISTRICT', 'POSTAL_CODE', 'ADDRESS']);
+    //var geoObject = JSON.parse(geoJsonData);
+   // var features = [];
 
+    //features = geoJsonData.features;
+    
+    L.control.layers(basemaps, overlayMaps).addTo(map);
+    
     //Run 
     dc.renderAll();
 
