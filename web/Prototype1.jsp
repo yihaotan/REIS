@@ -57,7 +57,7 @@
 <script src="UIlibraries/leaflet-heatmap.js"></script>
 <script src='UIlibraries/dc.js' type='text/javascript'></script>  
 <script src="UIlibraries/L.Control.Opencagesearch.js"></script>
-
+<script src="GraphGeneration/2013.json"></script>
 
 <script type="text/javascript" src="UIlibraries/jquery.slidepanel.js"></script>
 <script src="UIlibraries/jquery.sidr.min.js"></script>
@@ -171,7 +171,7 @@
         
 
     }
-    #dc-propertyTenureVolume-chart{
+    #dc-propertySaleVolume-chart{
 
         float:left;
         position:fixed;
@@ -188,7 +188,7 @@
 
     }
     
-    #dc-line-chart{
+    #dc-control-chart{
 
         float:left;
         position:fixed;
@@ -197,7 +197,7 @@
 
     }
     
-    #dc-propertyRegionVolume-chart{
+    #dc-propertyTenureVolume-chart{
 
         float:left;
         position:absolute;
@@ -400,7 +400,7 @@
         
          </h4>
     </div>
-    <div class='span6' id='dc-line-chart'>
+    <div class='span6' id='dc-control-chart'>
         <h4> Line Chart</h4>
     </div>
    
@@ -419,27 +419,27 @@
         </span>
       </h4>
     </div>
-    <div class='4' id='dc-propertyTenureVolume-chart'>
+    <div class='4' id='dc-propertySaleVolume-chart'>
         <h4>Sale Volume
            
                 <button class="btn btn-info btn-mini " id="bar2">Bar</button>
                 <button class="btn btn-danger btn-mini" id="pie2">Pie</button>
         <span>
           <a class="reset"
-            href="javascript:propertyTenureVolumePieChart.filterAll();dc.redrawAll();"
+            href="javascript:propertySaleVolumePieChart.filterAll();dc.redrawAll();"
             style="display: none;">
             reset
           </a>
         </span>
       </h4>
     </div>
-    <div class='4' id='dc-propertyRegionVolume-chart'>
-        <h4> Region Volume
+    <div class='4' id='dc-propertyTenureVolume-chart'>
+        <h4> Tenure Volume
                <button class="btn btn-info btn-mini" id="bar3">Bar</button>
                <button class="btn btn-danger btn-mini" id="pie3">Pie</button>
         <span>
           <a class="reset"
-            href="javascript:propertyRegionVolumePieChart.filterAll();dc.redrawAll();"
+            href="javascript:propertyTenureVolumePieChart.filterAll();dc.redrawAll();"
             style="display: none;">
             reset
           </a>

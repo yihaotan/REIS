@@ -86,8 +86,9 @@ function criteriastolayers(filteredData){
     map.addLayer(heatmapPriceLayer);
     map.removeLayer(heatmapPriceLayer);
     var pricehash={};
-    
+            alert("joke1");
     for(var i=0;i<filteredData.length;i++){
+        
             var geojson=filteredData[i];
             var geojsonlat=geojson.lat;
             var geojsonlon=geojson.lon;
@@ -103,12 +104,14 @@ function criteriastolayers(filteredData){
                pricehash[pricekey].push(geojson.psf);
                 
             }
+           
             //Enters heatmap data into testdata 
             testDataVolume["data"].push({lat:geojsonlat,
                                     lng:geojsonlon,
                                     count:1});
             
             //Create objects markers
+            
             var criteriamarker = new PruneCluster.Marker(geojson.lat, geojson.lon);
             
             if (geojson.propertyType == "Executive Condominium" && geojson.sale == "New Sale"){
@@ -176,7 +179,8 @@ function criteriastolayers(filteredData){
             criteriaCluster.RegisterMarker(criteriamarker);
 
      }
-     
+
+    
     var pricehashkeys=Object.keys(pricehash);
     for(var i=0;i<pricehashkeys.length;i++){
         var sortedarray=[];
@@ -210,8 +214,7 @@ function criteriastolayers(filteredData){
     heatmapVolume.addLayer(heatmapVolumeLayer);
     heatmapPrice.addLayer(heatmapPriceLayer);
     
-    
-    
+ 
     
 
     
