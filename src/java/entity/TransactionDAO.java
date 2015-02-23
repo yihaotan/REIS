@@ -9,6 +9,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonPrimitive;
 import java.io.IOException;
 import java.sql.Connection;
@@ -176,32 +177,54 @@ public class TransactionDAO {
         
         for (int i = 0; i < result.size(); i++) {
             
-            JsonObject obj = new JsonObject();
+            // add properties
+            JsonObject properties = new JsonObject();
+            properties.addProperty("REC_NO", result.get(i).get_rec_no());
+            properties.addProperty("PROJECT_NAME", result.get(i).get_project_name());
+            properties.addProperty("ADDRESS", result.get(i).get_address());
+            properties.addProperty("NO_OF_UNITS", result.get(i).get_no_of_units());
+            properties.addProperty("AREA_SQM", result.get(i).get_area_sqm());
+            properties.addProperty("TYPE_OF_AREA", result.get(i).get_type_of_area());
+            properties.addProperty("TRANSACTED_PRICE", result.get(i).get_transacted_price());
+            properties.addProperty("UNIT_PRICE_PSM", result.get(i).get_unit_price_psm());
+            properties.addProperty("UNIT_PRICE_PSF", result.get(i).get_unit_price_psf());
+            properties.addProperty("CONTRACT_DATE", result.get(i).get_contract_date());
+            properties.addProperty("PROPERTY_TYPE", result.get(i).get_property_type());
+            properties.addProperty("TENURE", result.get(i).get_tenure());
+            properties.addProperty("COMPLETION_DATE", result.get(i).get_completion_date());
+            properties.addProperty("TYPE_OF_SALE", result.get(i).get_type_of_sale());
+            properties.addProperty("PURCHASER_ADDRESS_INDICATOR", result.get(i).get_purchaser_address_indicator());
+            properties.addProperty("POSTAL_DISTRICT", result.get(i).get_postal_district());
+            properties.addProperty("POSTAL_SECTOR", result.get(i).get_postal_sector());
+            properties.addProperty("POSTAL_CODE", result.get(i).get_postal_code());
+            properties.addProperty("PLANNING_REGION", result.get(i).get_planning_region());
+            properties.addProperty("PLANNING_AREA", result.get(i).get_planning_area());
+            properties.addProperty("X", result.get(i).get_x());
+            properties.addProperty("Y", result.get(i).get_y());
             
-            obj.addProperty("rec_no", result.get(i).get_rec_no());
-            obj.addProperty("project_name", result.get(i).get_project_name());
-            obj.addProperty("address", result.get(i).get_address());
-            obj.addProperty("no_of_units", result.get(i).get_no_of_units());
-            obj.addProperty("area_sqm", result.get(i).get_area_sqm());
-            obj.addProperty("type_of_area", result.get(i).get_type_of_area());
-            obj.addProperty("transacted_price", result.get(i).get_transacted_price());
-            obj.addProperty("unit_price_psm", result.get(i).get_unit_price_psm());
-            obj.addProperty("unit_price_psf", result.get(i).get_unit_price_psf());
-            obj.addProperty("contract_date", result.get(i).get_contract_date());
-            obj.addProperty("property_type", result.get(i).get_property_type());
-            obj.addProperty("tenure", result.get(i).get_tenure());
-            obj.addProperty("completion_date", result.get(i).get_completion_date());
-            obj.addProperty("type_of_sale", result.get(i).get_type_of_sale());
-            obj.addProperty("purchaser_address_indicator", result.get(i).get_purchaser_address_indicator());
-            obj.addProperty("postal_district", result.get(i).get_postal_district());
-            obj.addProperty("postal_sector", result.get(i).get_postal_sector());
-            obj.addProperty("postal_code", result.get(i).get_postal_code());
-            obj.addProperty("planning_region", result.get(i).get_planning_region());
-            obj.addProperty("planning_area", result.get(i).get_planning_area());
-            obj.addProperty("x", result.get(i).get_x());
-            obj.addProperty("y", result.get(i).get_y());
+            // add coordinates
+            JsonArray coordinates = new JsonArray();
+            JsonObject lat = new JsonObject();
+            JsonObject lon = new JsonObject();
+            lat.addProperty("lat", result.get(i).get_x());
+            lon.addProperty("lon", result.get(i).get_y());
+            coordinates.add(lat);
+            coordinates.add(lon);
             
-            resultArray.add(obj);
+            // add geometry
+            JsonObject geometry = new JsonObject();
+            geometry.addProperty("type", "Point");
+            geometry.add("coordinates", coordinates);
+            
+            // add everything into one record
+            JsonObject record = new JsonObject();
+            record.addProperty("type", "Feature");
+            record.addProperty("popupContent", "Hello!");
+            record.add("properties", properties);
+            record.add("geometry", geometry);
+            
+            // append to resultArray
+            resultArray.add(record);
         }
         
         return resultArray;
