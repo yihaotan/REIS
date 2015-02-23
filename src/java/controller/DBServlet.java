@@ -9,8 +9,10 @@ import entity.TransactionDAO;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
+import entity.Transaction;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -44,17 +46,17 @@ public class DBServlet extends HttpServlet {
             String planning_area = request.getParameter("planning_area");
             
             // Access DAO to retrieve data
-            TransactionDAO tdao = new TransactionDAO();
-            JsonArray transactionList = tdao.retrieveJSON(planning_area);
-            Gson gson = new GsonBuilder().setPrettyPrinting().create();
-            String json = gson.toJson(transactionList);
-            
-            // Testing
-            System.out.println(transactionList.size());
+//            TransactionDAO tdao = new TransactionDAO();
+//            JsonArray transactionList = tdao.retrieveJSON(planning_area);
+//            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+//            String json = gson.toJson(transactionList);
+//            
+//            // Testing
+//            System.out.println(transactionList.size());
             
             // Send json (string) back to homepage
-            request.setAttribute("result", transactionList.size());
-            RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+            request.setAttribute("planning_area", planning_area);
+            RequestDispatcher rd = request.getRequestDispatcher("Prototype1.jsp");
             rd.forward(request, response);
             
         } catch (Exception e) {
@@ -62,7 +64,7 @@ public class DBServlet extends HttpServlet {
             // Send error (if any) back to homepage
             String error = "Error!";
             request.setAttribute("error", error);
-            RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("Prototype1.jsp");
             rd.forward(request, response);
             
         } finally {
