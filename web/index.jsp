@@ -579,7 +579,6 @@
                 // Call DAO and retrieve result in a json array
                 TransactionDAO tdao = new TransactionDAO();
                 JsonArray transactionList = tdao.retrieveJSON(planning_area);
-
                 Gson gson = new GsonBuilder().setPrettyPrinting().create();
                 String jsonString = gson.toJson(transactionList);
 
