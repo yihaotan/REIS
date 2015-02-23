@@ -18,12 +18,7 @@ function init_function() {
         maxZoom: 18
     }).addTo(map);
         var control = L.Control.openCageSearch(options).addTo(map);
-        var sidebar = L.control.sidebar('sidebar', {
-                    position: 'left'
-                });
 
-    map.addControl(sidebar);
-            map.on('click', function () {
-            sidebar.show();
-        })
+            
+
 }

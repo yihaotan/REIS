@@ -856,10 +856,10 @@ function parseDate(dateStr){
                     layer.on('click',function(){
                         if(opened==false)
                         {
-                            $.sidr('open', 'sidr-left');
+                            $.sidr('open','sidr-left');
                         }
                         else{
-                            $.sidr('close', 'sidr-left');
+                            $.sidr('close','sidr-left');
                         }
                     chartingforpolygon(getmapmarkers(layer.getLatLngs(),filtereddata));
                     });
