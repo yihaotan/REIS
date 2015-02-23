@@ -282,7 +282,18 @@ d3.json("2013.json",function(data){
                  .attr('class', 'd3-tip')
                  .offset([-10, 0])
                  .html(function (d) { return "<span style='color: #f0027f'>" +  d.data.key + "</span> : "  + (d.value); });
-   
+    var minTip =  d3.tip()
+                 .attr('class', 'd3-tip')
+                 .offset([-10, 0])
+                 .html(function (d) { return "<span style='color: #f0027f'>" +  d.key + "</span> : "  + (d.value.min); });
+    var medianTip = d3.tip()
+                 .attr('class', 'd3-tip')
+                 .offset([-10, 0])
+                 .html(function (d) { return "<span style='color: #f0027f'>" +  d.key + "</span> : "  + (d.value.median); });
+    var maxTip = d3.tip()
+                 .attr('class', 'd3-tip')
+                 .offset([-10, 0])
+                 .html(function (d) { return "<span style='color: #f0027f'>" +  d.key + "</span> : "  + (d.value.max); });
     //Intialise the charts
     //Transacted Volume vs Date (For Date Slider)          
     dateVolumeBarChart.width(920)
@@ -494,8 +505,8 @@ d3.json("2013.json",function(data){
                 })
                 .renderLabel(true);
                 //.renderlet(function(chart){
-                     //chart.selectAll(".pie-slice").call(tip)
-                            //.on("mouseover",tip.show).on("mouseleave",tip.hide).on("click",alert("Test"));
+                     //chart.selectAll(".pie-slice").call(pieTip)
+                            //.on("mouseover",tip.show).on("mouseleave",pieTip.hide);
                 //})
             
     }
@@ -527,7 +538,7 @@ d3.json("2013.json",function(data){
                         
                     });
                     //chart.selectAll("g.row").call(tip)
-                            //.on("mouseover",tip.show).on("mouseleave",tip.hide).on("click",alert("In Bar Chart"));
+                            //.on("mouseover",tip.show).on("mouseleave",tip.hide);
                 })
                 .xAxis().ticks(5).tickFormat(d3.format("s"));
     }
@@ -593,6 +604,7 @@ d3.json("2013.json",function(data){
             .transitionDuration(0)
             .group(psfGroup)
             .x(d3.scale.linear().domain([psfRange[0],psfRange[1]]).range([0,10]))
+            //.linearColors(["#4575b4", "#ffffbf", "#a50026"])
             .xAxisLabel("Psf $") 
             .round(Math.ceil)
             .centerBar(true)
@@ -641,7 +653,7 @@ d3.json("2013.json",function(data){
             .width(450)
             .height(320)
             .transitionDuration(0)
-            .margins({top: 10, right: 0, bottom: 20, left: 60})
+            .margins({top: 10, right: 0, bottom: 40, left: 60})
             .yAxisLabel("Psf $")
             .x(d3.time.scale().domain([minDate,maxDate]))
             .elasticY(true)
@@ -649,7 +661,7 @@ d3.json("2013.json",function(data){
             .xUnits(d3.time.months)
             .dimension(dateDimension)
             .brushOn(false)
-            .legend(dc.legend().x(80).y(280).itemWidth(100).legendWidth(600).horizontal(true))
+            .legend(dc.legend().x(130).y(300).itemWidth(100).legendWidth(600).horizontal(true))
             .rangeChart(dateVolumeBarChart)
             .shareTitle(false)
             .compose([
@@ -666,15 +678,6 @@ d3.json("2013.json",function(data){
 
             ),
             dc.lineChart(compositeControlChart)
-                //.interpolate('linear')
-                //.group(dummyGroupFor10Percentile,"10 Percentile")
-                //.colors('#2ca02c')
-                //.dashStyle([5,5])
-                // not working
-                //.renderTitle(false)
-                //.valueAccessor(function(){
-                   //  return getPercentileValue(0.1, dateDimension, datePsfGroup);  
-                //}
                 .interpolate('linear')
                 .group(datePsfGroup,"Min Psf")
                 .renderDataPoints({radius:5})
@@ -686,15 +689,6 @@ d3.json("2013.json",function(data){
                 }
             ),
             dc.lineChart(compositeControlChart)
-                //.interpolate('linear')
-                //.group(dummyGroupFor90Percentile,"90 Percentile")
-                //.colors('red')
-                //.dashStyle([5,5])
-                // not working
-                //.renderTitle(false)
-                //.valueAccessor(function(){
-                   // return getPercentileValue(0.9, dateDimension, datePsfGroup);
-                //})
                 .interpolate('linear')
                 .group(datePsfGroup,"Max Psf")
                 .colors("#d62728")
@@ -715,7 +709,7 @@ d3.json("2013.json",function(data){
             .width(450)
             .height(320)
             .transitionDuration(0)
-            .margins({top: 10, right: 0, bottom: 20, left: 60})
+            .margins({top: 10, right: 0, bottom: 40, left: 60})
             .yAxisLabel("Psm $")
             .x(d3.time.scale().domain([minDate,maxDate]))
             .elasticY(true)
@@ -723,7 +717,7 @@ d3.json("2013.json",function(data){
             .xUnits(d3.time.months)
             .dimension(dateDimension)
             .brushOn(false)
-            //.legend(dc.legend().x(80).y(280).itemWidth(100).legendWidth(600).horizontal(true))
+             .legend(dc.legend().x(130).y(300).itemWidth(100).legendWidth(600).horizontal(true))
             .rangeChart(dateVolumeBarChart)
             .shareTitle(false)
             .compose([
@@ -736,6 +730,7 @@ d3.json("2013.json",function(data){
                 .valueAccessor(function(d){
                     return d.value.median;
                 }
+                
             ),
             dc.lineChart(compositeControlChart)
                 .interpolate('linear')
@@ -769,7 +764,7 @@ d3.json("2013.json",function(data){
             .width(450)
             .height(320)
             .transitionDuration(0)
-            .margins({top: 10, right: 0, bottom: 20, left: 60})
+            .margins({top: 10, right: 0, bottom: 40, left: 60})
             .yAxisLabel("Price $")
             .x(d3.time.scale().domain([minDate,maxDate]))
             .elasticY(true)
@@ -777,7 +772,7 @@ d3.json("2013.json",function(data){
             .xUnits(d3.time.months)
             .dimension(dateDimension)
             .brushOn(false)
-            //.legend(dc.legend().x(80).y(280).itemWidth(100).legendWidth(600).horizontal(true))
+            .legend(dc.legend().x(130).y(300).itemWidth(100).legendWidth(600).horizontal(true))
             .rangeChart(dateVolumeBarChart)
             .shareTitle(false)
             .compose([
@@ -878,8 +873,7 @@ d3.json("2013.json",function(data){
                plotSaleVolumePie();
               dc.renderAll();
            });
-           
-          
+            //(d3.selectAll(".bar")).call(tip);
     }); 
     //Tabular Module sort by price desc
     dataTable
@@ -1106,6 +1100,7 @@ d3.json("2013.json",function(data){
                 .title(function (p) { return p.value; })
                 .xAxis().ticks(5).tickFormat(d3.format("s"));
     }*/
+   
     //Count the number of records 
     dc.dataCount(".dc-data-count")
     .dimension(facts)
