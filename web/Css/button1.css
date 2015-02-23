@@ -1,0 +1,77 @@
+
+    /* This first block of code sets the common style for all example 1 buttons. */
+    .button1 {
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        -ms-border-radius: 3px;
+        -o-border-radius: 3px;
+        border-radius: 3px;   
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none;
+        -webkit-transition-property: background;
+        -moz-transition-property: background;
+        -o-transition-property: background;
+        transition-property: background;
+        -webkit-transition-duration: 0.3s;
+        -moz-transition-duration: 0.3s;
+        -o-transition-duration: 0.3s;
+        transition-duration: 0.3s;
+        color: #ffffff;
+        text-shadow: none;
+        border: none;
+        height: 32px;
+        line-height: 32px;
+        padding: 0px 25.6px;
+        font-weight: 300;
+        font-size: 18px;
+        font-family: "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+        margin: 0;
+        text-decoration: none;
+        text-align: center;
+        display: inline-block      
+    }
+    
+    /* The next blocks of code are for user actions on the buttons. */
+    .button1:hover {
+        text-decoration: none;
+        color: #ffffff
+    }
+    .button1:active {
+        -webkit-box-shadow: inset 0px 1px 0px rgba(255, 255, 255, 0.03), inset 0px -1px 1px rgba(255, 255, 255, 0.05), 0px 1px 0px #777777, 0px 3px 3px rgba(0, 0, 0, 0.03);
+        -moz-box-shadow: inset 0px 1px 0px rgba(255, 255, 255, 0.3), inset 0px -1px 1px rgba(255, 255, 255, 0.05), 0px 1px 0px #777777, 0px 3px 3px rgba(0, 0, 0, 0.03);
+        box-shadow: inset 0px 1px 0px rgba(255, 255, 255, 0.03), inset 0px -1px 1px rgba(255, 255, 255, 0.05), 0px 1px 0px #777777, 0px 3px 3px rgba(0, 0, 0, 0.03)
+    }
+        
+    /* The next blocks of code are specific to the color. Copy the color you want. */
+    .button-example-red {
+        background: #e54028;
+    }
+    .button-example-red:hover {
+        background: #FF530D;
+    }
+    .button-example-blue {
+        background: #0971B2;
+    }
+    .button-example-blue:hover {
+        background: #0B88D6;
+    }
+    .button-example-green {
+        background: #00B233;
+    }
+    .button-example-green:hover {
+        background: #00BD36;
+    }
+    .button-example-pink {
+        background: #FF0090;
+    }
+    .button-example-pink:hover {
+        background: #FF2F90;
+    }
+    .button-example-dark-green {
+        background: #007F25;
+    }
+    .button-example-dark-green:hover {
+        background: #008F29;
+    }
+

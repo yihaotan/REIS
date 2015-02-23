@@ -1,0 +1,45 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="Css/jquery.slidepanel.css">
+        <script type="text/javascript" src="UIlibraries/jquery.slidepanel.js"></script>
+        <link rel="stylesheet" type="text/css" href="Css/button1.css">
+          <link rel="stylesheet" href="//code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.css">
+            <script src="//code.jquery.com/ui/1.11.3/jquery-ui.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="Css/flat-ui.min.css">
+
+<style>
+        .button1{
+        float:right;
+        position:relative;
+        top:100px;
+    }
+</style>
+
+
+ 
+    </head>
+    <body>
+        <a href="external.html" data-slidepanel="panel" class="button1 button-example-blue">Show Panel</a>
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $('[data-slidepanel]').slidepanel({
+                    orientation: 'right',
+                    mode: 'push'
+                });
+            });
+        </script>
+
+
+
+
+</html>

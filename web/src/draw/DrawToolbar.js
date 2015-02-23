@@ -7,9 +7,7 @@ L.DrawToolbar = L.Toolbar.extend({
 	options: {
 		polyline: {},
 		polygon: {},
-		rectangle: {},
-		circle: {},
-		marker: {}
+		circle: {}
 	},
 
 	initialize: function (options) {

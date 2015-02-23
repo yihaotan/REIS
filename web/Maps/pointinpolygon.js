@@ -1,3 +1,18 @@
+function getpointsofpolygon(tempmarkers){
+     var storemarkers=[];
+     for(i=0;i<tempmarkers.length;i++){  
+        var storemarker=[];
+        var marker=tempmarkers[i];
+        var lat=marker.lat;
+        var lng=marker.lng;
+        storemarker=[lat,lng];
+        storemarkers.push(storemarker);
+     }
+     return storemarkers;
+}
+
+
+
 function pointinpolygon(point, vs) {
     // ray-casting algorithm based on
     // http://www.ecse.rpi.edu/Homepages/wrf/Research/Short_Notes/pnpoly.html
@@ -16,3 +31,4 @@ function pointinpolygon(point, vs) {
     
     return inside;
 };
+

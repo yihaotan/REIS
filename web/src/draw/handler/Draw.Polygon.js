@@ -1,3 +1,4 @@
+
 L.Draw.Polygon = L.Draw.Polyline.extend({
 	statics: {
 		TYPE: 'polygon'
@@ -21,9 +22,10 @@ L.Draw.Polygon = L.Draw.Polyline.extend({
 
 	initialize: function (map, options) {
 		L.Draw.Polyline.prototype.initialize.call(this, map, options);
-
+              
 		// Save the type so super can fire, need to do this as cannot do this.TYPE :(
 		this.type = L.Draw.Polygon.TYPE;
+                //this.type.on('click',function(){alert("joke")});
 	},
 
 	_updateFinishHandler: function () {
@@ -72,7 +74,8 @@ L.Draw.Polygon = L.Draw.Polyline.extend({
 		return L.GeometryUtil.readableArea(area, this.options.metric);
 	},
 
-	_shapeIsValid: function () {
+	_shapeIsValid: function () {//indicates that the drawing has stopped
+               
 		return this._markers.length >= 3;
 	},
 

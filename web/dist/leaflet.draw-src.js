@@ -26,9 +26,9 @@ L.drawLocal = {
 			buttons: {
 				polyline: 'Draw a polyline',
 				polygon: 'Draw a polygon',
-				//rectangle: 'Draw a rectangle',
-				circle: 'Draw a circle'
-				//marker: 'Draw a marker'
+				rectangle: 'Draw a rectangle',
+				circle: 'Draw a circle',
+				marker: 'Draw a marker'
 			}
 		},
 		handlers: {
@@ -694,7 +694,7 @@ L.Draw.Polygon = L.Draw.Polyline.extend({
 		return L.GeometryUtil.readableArea(area, this.options.metric);
 	},
 
-	_shapeIsValid: function () {
+	_shapeIsValid: function () {         
 		return this._markers.length >= 3;
 	},
 

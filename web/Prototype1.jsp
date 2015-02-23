@@ -1,3 +1,11 @@
+<%-- 
+    Document   : Prototype1
+    Created on : Feb 23, 2015, 2:29:00 PM
+    Author     : ASUS
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <!DOCTYPE html>
 <html lang='en'>
 
@@ -43,7 +51,8 @@
 <script src="Maps/leaflet-src.js"></script>
 <script src="Maps/Googlemap.js"></script>
 <script src="Maps/map.js"></script>
-
+<script src='UIlibraries/jquery.stickytableheaders.js' type='text/javascript'></script>
+<script src='UIlibraries/jquery.stickytableheaders.min.js' type='text/javascript'></script>
 
  
 <script src="Upload/boyangold.js"></script>
@@ -549,3 +558,4 @@
 
 
 </html>
+

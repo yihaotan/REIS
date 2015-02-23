@@ -31,14 +31,18 @@ L.Draw.Circle = L.Draw.SimpleShape.extend({
 		if (!this._shape) {
 			this._shape = new L.Circle(this._startLatLng, this._startLatLng.distanceTo(latlng), this.options.shapeOptions);
 			this._map.addLayer(this._shape);
+                        
 		} else {
 			this._shape.setRadius(this._startLatLng.distanceTo(latlng));
+  
 		}
 	},
 
 	_fireCreatedEvent: function () {
 		var circle = new L.Circle(this._startLatLng, this._shape.getRadius(), this.options.shapeOptions);
 		L.Draw.SimpleShape.prototype._fireCreatedEvent.call(this, circle);
+                
+                
 	},
 
 	_onMouseMove: function (e) {
@@ -53,6 +57,7 @@ L.Draw.Circle = L.Draw.SimpleShape.extend({
 
 			// Get the new radius (rounded to 1 dp)
 			radius = this._shape.getRadius().toFixed(1);
+                        
 
 			this._tooltip.updateContent({
 				text: this._endLabelText,

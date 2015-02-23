@@ -1,0 +1,110 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script src="Upload/svy21.js"></script>
+<link rel="stylesheet" type="text/css" href="Css/flat-ui.min.css">
+<link rel="stylesheet" href="Css/iThing.css" type="text/css" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<link href='Css/dc.css' rel='stylesheet' type='text/css'>
+<link href='Css/bootstrap-select.css' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="Css/LeafletStyleSheet.css" type="text/css"  />
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+<link rel="stylesheet" href="Css/L.Control.Opencagesearch.css" />
+<link rel="stylesheet" href="Css/button1.css" />
+<link rel="stylesheet" type="text/css" href="Css/jquery.slidepanel.css">
+<link rel="stylesheet" href="Css/jquery.sidr.light.css">
+	<script src="src/Leaflet.draw.js"></script>
+	<link rel="stylesheet" href="dist/leaflet.draw.css" />
+
+	<script src="src/Toolbar.js"></script>
+	<script src="src/Tooltip.js"></script>
+
+	<script src="src/ext/GeometryUtil.js"></script>
+	<script src="src/ext/LatLngUtil.js"></script>
+	<script src="src/ext/LineUtil.Intersect.js"></script>
+	<script src="src/ext/Polygon.Intersect.js"></script>
+	<script src="src/ext/Polyline.Intersect.js"></script>
+
+
+	<script src="src/draw/DrawToolbar.js"></script>
+	<script src="src/draw/handler/Draw.Feature.js"></script>
+	<script src="src/draw/handler/Draw.SimpleShape.js"></script>
+	<script src="src/draw/handler/Draw.Polyline.js"></script>
+	<script src="src/draw/handler/Draw.Circle.js"></script>
+	<script src="src/draw/handler/Draw.Marker.js"></script>
+	<script src="src/draw/handler/Draw.Polygon.js"></script>
+	<script src="src/draw/handler/Draw.Rectangle.js"></script>
+
+
+	<script src="src/edit/EditToolbar.js"></script>
+	<script src="src/edit/handler/EditToolbar.Edit.js"></script>
+	<script src="src/edit/handler/EditToolbar.Delete.js"></script>
+
+	<script src="src/Control.Draw.js"></script>
+
+	<script src="src/edit/handler/Edit.Poly.js"></script>
+	<script src="src/edit/handler/Edit.SimpleShape.js"></script>
+	<script src="src/edit/handler/Edit.Circle.js"></script>
+	<script src="src/edit/handler/Edit.Rectangle.js"></script>
+	<script src="src/edit/handler/Edit.Marker.js"></script>
+
+
+<script src="GraphGeneration/functionA.js"></script>
+<style>
+    h4 span {
+      font-size: 18px;
+      font-weight: normal;
+    }
+    h2 {
+      float: right;
+    }
+    h2 span {
+      font-size: 14px;
+      font-weight: normal;
+    }
+</style>
+    </head>
+    <body>
+<div class='container' style='font: 12px sans-serif;'>
+
+  <div class='row'>
+    <div class='span4' id='propertyvolume'>
+        <h4>Property Volume
+               <button class="btn btn-info btn-mini" id="bar5">Bar</button>
+               <button class="btn btn-danger btn-mini" id="pie5">Pie</button>
+        <span>
+          <a class="reset"
+            href="javascript:propertyVolumeRowChart.filterAll();dc.redrawAll();"
+            style="display: none;">
+            reset
+          </a>
+        </span>
+      </h4>
+    </div>
+    
+  </div>
+ <div class='4' id='salevol'>
+        <h4>Sale Volume
+           
+                <button class="btn btn-info btn-mini " id="bar6" >Bar</button>
+                <button class="btn btn-danger btn-mini" id="pie6">Pie</button>
+        <span>
+          <a class="reset"
+            href="javascript:propertyTenureVolumePieChart.filterAll();dc.redrawAll();"
+            style="display: none;">
+            reset
+          </a>
+        </span>
+      </h4>
+    </div>
+
+</div>             
+    </body>
+</html>

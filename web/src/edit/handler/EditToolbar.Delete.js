@@ -34,6 +34,7 @@ L.EditToolbar.Delete = L.Handler.extend({
 		this._deletableLayers
 			.on('layeradd', this._enableLayerDelete, this)
 			.on('layerremove', this._disableLayerDelete, this);
+                      
 	},
 
 	disable: function () {
@@ -92,7 +93,7 @@ L.EditToolbar.Delete = L.Handler.extend({
 
 	_enableLayerDelete: function (e) {
 		var layer = e.layer || e.target || e;
-
+                layer.off();// to turn off the click when editing the polygon
 		layer.on('click', this._removeLayer, this);
 	},
 
@@ -100,6 +101,9 @@ L.EditToolbar.Delete = L.Handler.extend({
 		var layer = e.layer || e.target || e;
 
 		layer.off('click', this._removeLayer, this);
+                layer.on('click',function(){if(opened==false)// turn the click back on upon deciding not to delete anymore
+                                                {$.sidr('open', 'sidr-left');}
+                                                else{$.sidr('close', 'sidr-left');}});
 
 		// Remove from the deleted layers so we can't accidently revert if the user presses cancel
 		this._deletedLayers.removeLayer(layer);

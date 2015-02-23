@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Your stuff -->
+ 
+    <!-- Include Sidr bundled CSS theme -->
+    <link rel="stylesheet" href="Css/jquery.sidr.light.css">
+
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+                    <script src="UIlibraries/jquery.sidr.min.js"></script>
+
+  </head>
+  <body>
+    <!-- Your stuff -->
+    <a id="right-menu" href="#right-menu">Right Menu</a>
+    <script>
+$(document).ready(function() {
+
+    $('#right-menu').sidr({
+      name: 'sidr-right',
+      side: 'right'
+    });
+});
+</script>
+  </body>
+</html>

@@ -40,6 +40,7 @@ L.Edit.Poly = L.Handler.extend({
 		poly.setStyle(poly.options.original);
 
 		if (poly._map) {
+                        
 			poly._map.removeLayer(this._markerGroup);
 			delete this._markerGroup;
 			delete this._markers;
@@ -56,6 +57,7 @@ L.Edit.Poly = L.Handler.extend({
 			this._markerGroup = new L.LayerGroup();
 		}
 		this._markers = [];
+                
 
 		var latlngs = this._poly._latlngs,
 			i, j, len, marker;
@@ -279,6 +281,7 @@ L.Polyline.addInitHook(function () {
 	this.on('remove', function () {
 		if (this.editing && this.editing.enabled()) {
 			this.editing.removeHooks();
+                    
 		}
 	});
 });
