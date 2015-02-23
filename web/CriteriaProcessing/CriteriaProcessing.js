@@ -86,7 +86,7 @@ function criteriastolayers(filteredData){
     map.addLayer(heatmapPriceLayer);
     map.removeLayer(heatmapPriceLayer);
     var pricehash={};
-            alert("joke1");
+    
     for(var i=0;i<filteredData.length;i++){
         
             var geojson=filteredData[i];

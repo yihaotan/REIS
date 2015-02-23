@@ -56,7 +56,7 @@ public class DBServlet extends HttpServlet {
             
             // Send json (string) back to homepage
             request.setAttribute("planning_area", planning_area);
-            RequestDispatcher rd = request.getRequestDispatcher("Prototype1.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
             rd.forward(request, response);
             
         } catch (Exception e) {
@@ -64,7 +64,7 @@ public class DBServlet extends HttpServlet {
             // Send error (if any) back to homepage
             String error = "Error!";
             request.setAttribute("error", error);
-            RequestDispatcher rd = request.getRequestDispatcher("Prototype1.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
             rd.forward(request, response);
             
         } finally {
