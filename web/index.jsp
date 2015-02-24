@@ -573,20 +573,14 @@
         <%
 
             // Get the planning area name in string
-            String planning_area = String.valueOf(request.getAttribute("planning_area"));
+            String result = String.valueOf(request.getAttribute("result"));
 
-            if (!planning_area.equals("null")) {
-                // Call DAO and retrieve result in a json array
-                TransactionDAO tdao = new TransactionDAO();
-                JsonArray transactionList = tdao.retrieveJSON(planning_area);
-                Gson gson = new GsonBuilder().setPrettyPrinting().create();
-                String jsonString = gson.toJson(transactionList);
-
+            if (!result.equals("null")) {
         %>
         <script type="text/javascript">
-            var data = <%=jsonString%>;
+            var data = <%=result%>;
             charting(data);
-        </script> 
+        </script>
         <%
             }
         %>

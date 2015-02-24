@@ -46,16 +46,13 @@ public class DBServlet extends HttpServlet {
             String planning_area = request.getParameter("planning_area");
             
             // Access DAO to retrieve data
-//            TransactionDAO tdao = new TransactionDAO();
-//            JsonArray transactionList = tdao.retrieveJSON(planning_area);
-//            Gson gson = new GsonBuilder().setPrettyPrinting().create();
-//            String json = gson.toJson(transactionList);
-//            
-//            // Testing
-//            System.out.println(transactionList.size());
+            TransactionDAO tdao = new TransactionDAO();
+            JsonArray transactionList = tdao.retrieveJSON(planning_area);
+            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+            String json = gson.toJson(transactionList);
             
             // Send json (string) back to homepage
-            request.setAttribute("planning_area", planning_area);
+            request.setAttribute("result", json);
             RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
             rd.forward(request, response);
             
