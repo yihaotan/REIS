@@ -487,7 +487,7 @@ function parseDate(dateStr){
     //remove the y axis ticks
     dateVolumeBarChart.yAxis().ticks(0);
     function propertyVolumePie() {
-        propertyVolumePieChart.width(200)
+        propertyVolumePieChart.width(220)
                 .height(150)
                 .transitionDuration(0)
                 .radius(80)
@@ -525,8 +525,8 @@ function parseDate(dateStr){
 
     //propertyVolumeRow properties
     function propertyVolumeRow() {
-        propertyVolumeRowChart.width(200)
-                .height(200)
+        propertyVolumeRowChart.width(220)
+                .height(150)
                 .transitionDuration(0)
                 .ordering(function (p) {
                     return -p.value;
@@ -669,8 +669,8 @@ function parseDate(dateStr){
 
     //tenure volume pie properties
     function tenureVolumePie() {
-        propertyTenureVolumePieChart.width(300)
-                .height(200)
+        propertyTenureVolumePieChart.width(220)
+                .height(150)
                 .transitionDuration(0)
                 .radius(80)
                 .innerRadius(20)
@@ -699,8 +699,8 @@ function parseDate(dateStr){
     }
     //tenure volume row properties
     function tenureVolumeRow() {
-        propertyTenureVolumeRowChart.width(300)
-                .height(200)
+        propertyTenureVolumeRowChart.width(220)
+                .height(150)
                 .transitionDuration(0)
                 .ordering(function (p) {
                     return -p.value;

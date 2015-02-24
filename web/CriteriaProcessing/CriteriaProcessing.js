@@ -1,5 +1,5 @@
 function criteriastolayers(filteredData){
-
+    
     //Images for markers
     var newsaleexeccondoIcon = L.icon({iconUrl: 'Icons/greenexeccondo.png', iconSize: [40, 40]});
     var subsaleexeccondoIcon = L.icon({iconUrl: 'Icons/blueexeccondo.png', iconSize: [40, 40]});

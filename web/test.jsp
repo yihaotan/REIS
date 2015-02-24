@@ -3,8 +3,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-        <title>TEAM REALIS</title>
+        <title>JSP TEST</title>
 
         <script src="Upload/dropzone.js"></script>
         <script src="Upload/svy21.js"></script>
@@ -49,6 +48,7 @@
         <script src="UIlibraries/leaflet-heatmap.js"></script>
         <script src='UIlibraries/dc.js' type='text/javascript'></script>  
         <script src="UIlibraries/L.Control.Opencagesearch.js"></script>
+        <script src="GraphGeneration/2013.json"></script>
 
         <script type="text/javascript" src="UIlibraries/jquery.slidepanel.js"></script>
         <script src="UIlibraries/jquery.sidr.min.js"></script>
@@ -97,15 +97,35 @@
         <script src="src/edit/handler/Edit.Marker.js"></script>
         <script src="GraphGeneration/functionA.js"></script>
 
-        <script src="UIlibraries/jQEditRangeSlider-min.js"></script>
+        <script src="../UIlibraries/jQEditRangeSlider-min.js"></script>
 
         <style type="text/css"></style>
+
+
         <style>
             .header {
                 padding-top: 20px;
                 padding-bottom: 0px;
             }
 
+            .footer {
+                border-top: 1px solid #444;
+                padding-top: 20px;
+                margin-top: 20px;
+                color: #999
+            }
+
+/*            .p {
+                text-align: center;
+                padding-top: 120px;
+            }
+
+            .p a {
+                text-decoration: underline;
+                color: blue;
+            }*/
+
+            // FROM INDEX
             .leaflet-control-layers-toggle {
                 background-image: url(Icons/LayerMap.jpg)!important;
                 width: 95px;
@@ -124,7 +144,12 @@
             }
             .bs-example{
                 margin: 20px;
-            } 
+            }
+            #map { 
+                position: fixed;
+                float: left;
+                z-index: 0;
+            }    
             h4 span {
                 font-size: 14px;
                 font-weight: normal;
@@ -136,17 +161,6 @@
                 font-size: 14px;
                 font-weight: normal;
             }
-
-
-
-
-            #map { 
-                position: relative;
-                height: 400px;
-                width: 800px;
-                float: left;
-                z-index: 0;
-            }  
             #dc-propertyVolume-chart{
                 float: left;
                 position: relative;
@@ -155,32 +169,31 @@
             }
             #dc-propertySaleVolume-chart{
                 float: left;
-                position: relative;
-                top: 15px;
+                position: fixed;
+                top: 230px;
                 left: 15px;
             }
             #dc-propertyTenureVolume-chart{
                 float: left;
-                position: relative;
-                top: 15px;
+                position: absolute;
+                top: 230px;
                 left: 15px;
             }
-
-
-
-
-
+            
+            
+            
+            
             #dc-dateVolume-chart{
                 float:left;
-                position: relative;
-                top: 15px;
+                position:fixed;
+                top: 440px;
                 left: 15px;
             }
             #dc-control-chart{
                 float:left;
-                position: relative;
-                top: 15px;
-                left: 15px;
+                position:fixed;
+                top:440px;
+                right: 9px;
             }
 
             #dc-psfBoxPlot-chart{
@@ -195,11 +208,12 @@
                 top:230px;
                 right: 80px;
             }
-
-
-
-
-
+/*            #table{
+                float:left;
+                position:absolute;
+                top:700px;
+                left:80px;
+            }*/
             #dc-table-graph{
                 float:left;
                 position:absolute;
@@ -212,27 +226,23 @@
                 top:50px;
             }
         </style>
-    </head>
 
+    </head>
     <body>
 
-        <%@ page import="java.util.*" %>
-        <%@ page import="entity.*" %>
-        <%@ page import="com.google.gson.*" %>
-
-        <script>
-
+        <!-- JS for polygon-drawing and table-coming -->
+        <script type="text/javascript">
             $(document).ready(function () {
                 $('#right-menu').sidr({
                     name: 'sidr-right',
                     side: 'right',
                     source: 'external.html',
                     onOpen: function () {
-                        document.getElementById('map').style.width = 600 + 'px'
+                        document.getElementById('map').style.width = 600 + 'px';
                     },
                     onClose: function () {
                         document.getElementById('map').style.width = 1100 + 'px';
-                        map.setView([1.3667, 103.8], 11)
+                        map.setView([1.3667, 103.8], 11);
                     }
                 });
             });
@@ -246,29 +256,28 @@
                     onOpen: function () {
                         opened = true;
                         document.getElementById('map').style.width = 800 + 'px';
-                        document.getElementById('map').style.cssFloat = "left"
+                        document.getElementById('map').style.cssFloat = "left";
                     },
                     onClose: function () {
                         opened = false;
                         document.getElementById('map').style.width = 1100 + 'px';
                         document.getElementById('map').style.cssFloat = "right";
-                        map.setView([1.3667, 103.8], 11)
+                        map.setView([1.3667, 103.8], 11);
                     }
-
                 });
             });
         </script>
 
-        <script>
+        <!-- JS for disabling some charts from showing -->
+        <script type="text/javascript">
             $(function () {
-                $("#dc-propertyRegionVolume-chart").hide();
-                $("#dc-psfBoxPlot-chart").hide();
-                $("#dc-histogram").hide();
-            })
+//                $("#dc-propertyRegionVolume-chart").hide();
+//                $("#dc-psfBoxPlot-chart").hide();
+//                $("#dc-histogram").hide();
+            });
         </script>
 
         <!-- =================== BODY START =================== -->
-
         <div class="container-fluid">
 
             <!--  Header Section-->
@@ -315,23 +324,24 @@
                 </div>
             </div>
 
-
             <!--  Content Area-->
-            <div class="row upper-content">
+            <div class="row content">
 
                 <!-- LEFT: charts -->
-                <div class="col-md-3 col-sm-6" style="background: red;">
+                <div class="col-md-3 col-sm-6">
 
                     <!-- DATA COUNT -->
                     <div class="row">
                         <div class="dc-data-count" id='table' >
-                            <span>
-                                <span class="filter-count"></span>
-                                selected out of 
-                                <span class="total-count"></span>
-                                records | 
-                                <a href="javascript:dc.filterAll(); dc.renderAll();">Reset All</a>
-                            </span>
+                            <h2>
+                                <span>
+                                    <span class="filter-count"></span>
+                                    selected out of 
+                                    <span class="total-count"></span>
+                                    records | 
+                                    <a href="javascript:dc.filterAll(); dc.renderAll();">Reset All</a>
+                                </span>
+                            </h2>
                         </div>
                     </div>
                     <!-- Property Volume Chart -->
@@ -395,25 +405,20 @@
                         </div> 
                     </div>
 
-
                 </div>
 
                 <!-- RIGHT: map & date -->
-                <div class="col-md-9 col-sm-12">
+                <div class="col-md-9 col-sm-12" style="background: red;">
 
+                    <!-- map -->
                     <div class="row">
-                        <div id="map"></div>
+                        <script src="map.js"></script> 
+                        <div id="map" style="width: 70%; height: 50%;"></div>
                     </div>
 
-                </div>
-
-            </div>
-
-            <div class="row lower-content">
-                <!-- LEFT: time series -->
-                <div class="col-md-6 col-sm-6" style="background: blue;">
+                    <!-- date -->
                     <div class="row">
-                        <div class='span12' id='dc-dateVolume-chart'>
+                        <div class='span9' id='dc-dateVolume-chart'>
                             <h4>
                                 Transaction Volume vs Date
                                 <span>
@@ -426,73 +431,25 @@
                             </h4>
                         </div>
                     </div>
-                </div>
 
-                <!-- RIGHT: price line -->
-                <div class="col-md-6 col-sm-6" style="background: yellow;">
-                    <div class="row">
-                        <div class='span6' id='dc-control-chart'>
-                            <h4> Line Chart</h4>
-                        </div>
-                    </div>
-                </div>
 
+                </div>
             </div>
 
-
-            
-            <script>
-                init_function();
-            </script>
-
-            <div class='container' style='font: 12px sans-serif;'  >
-
-                <div class ="row" id='placeholder'></div>
-                <div class='row'>
-                    <div class='span12' id='dc-psfBoxPlot-chart'>
-
-                        <select class="selectpicker" data-style="btn-inverse" data-width="150px">
-                            <option>Psf</option>
-                            <option>Psm</option>
-                            <option>Price</option>
-                        </select>
-
-                        <h4>
-                            BoxPlot
-                            <span>
-                                <a class="reset"
-                                   href="javascript:boxPlotChart.filterAll();dc.redrawAll();"
-                                   style="display: none;">
-                                    reset
-                                </a>
-                            </span>
-                        </h4>
-                    </div>
+            <!--  Footer Area-->
+            <div class="row footer">
+                <div class="col-xs-12 text-center">
+                    
                 </div>
-                <div class='row'>
-                    <div class='span6' id='dc-histogram'>
-                        <h4>Histogram
-
-                        </h4>
-                    </div>
-
-
-                </div>
-                <div class='row'>
-
-
-
-                </div>
-
-                <div class='row'>
-
-
-                </div>
-
-            </div>    
+            </div>
 
         </div>
 
+        <script type="text/javascript">
+            init_function();
+        </script>
+
+        <!-- map view -> table -->
         <script>
             map.on('zoomend',
                     function () {
@@ -500,7 +457,7 @@
                         mapboundarray.push(map.getBounds().getSouthWest());
                         mapboundarray.push(map.getBounds().getNorthWest());
                         mapboundarray.push(map.getBounds().getNorthEast());
-                        mapboundarray.push(map.getBounds().getSouthEast())
+                        mapboundarray.push(map.getBounds().getSouthEast());
                         $(".table > tbody").html("");
                         var datatable = getmapmarkers(mapboundarray, filtereddata);
                         for (i = 0; i < datatable.length; i++) {
@@ -519,15 +476,14 @@
                                     '</td></tr></tbody>'
                                     );
                         }
-
-                    })
+                    });
             map.on('dragend',
                     function () {
                         var mapboundarray = [];
                         mapboundarray.push(map.getBounds().getSouthWest());
                         mapboundarray.push(map.getBounds().getNorthWest());
                         mapboundarray.push(map.getBounds().getNorthEast());
-                        mapboundarray.push(map.getBounds().getSouthEast())
+                        mapboundarray.push(map.getBounds().getSouthEast());
                         var datatable = getmapmarkers(mapboundarray, filtereddata);
                         $(".table > tbody").html("");
                         for (i = 0; i < datatable.length; i++) {
@@ -546,12 +502,12 @@
                                     '</td></tr></tbody>'
                                     );
                         }
-                    })
+                    });
         </script>
 
-        <%
 
-            // Get the planning area name in string
+        <%
+            // Database connection
             String result = String.valueOf(request.getAttribute("result"));
 
             if (!result.equals("null")) {
@@ -564,7 +520,6 @@
             }
         %>
 
+
     </body>
-
-
 </html>
