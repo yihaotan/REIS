@@ -104,7 +104,11 @@ public class TransactionDAO {
      *
      * @return an ArrayList of Transaction
      */
-    public ArrayList<Transaction> retrieveByPlanningArea(String planning_area) {
+    public ArrayList<Transaction> retrieveByCriteria(
+            String planning_area, 
+            int start_price, int end_price, 
+            int start_size, int end_size
+    ) {
         Connection conn = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -112,7 +116,11 @@ public class TransactionDAO {
 
         try {
             conn = ConnectionManager.getConnection();
-            sql = "SELECT * FROM " + TABLE + " WHERE PLANNING_A = '" + planning_area +"';";
+            sql = "SELECT * FROM " + TABLE + " WHERE " + 
+                    "(PLANNING_A = '"+planning_area+"') AND "
+                    + "(TRANSACTED BETWEEN "+start_price+" AND "+end_price+") AND "
+                    + "(AREA_SQM BETWEEN "+start_size+" AND "+end_size+")"
+                    +";";
             ps = conn.prepareStatement(sql);
             rs = ps.executeQuery();
 
@@ -163,15 +171,7 @@ public class TransactionDAO {
      *
      * @return Json of all Transaction
      */
-    public JsonArray retrieveJSON(String planning_area) {
-        
-        // decide which planning area to retrieve
-        ArrayList<Transaction> result = null;
-        if (planning_area.equals("All")) {
-            result = retrieveAll();
-        } else {
-            result = retrieveByPlanningArea(planning_area);
-        }
+    public JsonArray toJSON(ArrayList<Transaction> result) {
 
         JsonArray resultArray = new JsonArray();
         

@@ -44,10 +44,21 @@ public class DBServlet extends HttpServlet {
             
             // Retrieve parameters first
             String planning_area = request.getParameter("planning_area");
+            int start_price = Integer.parseInt(request.getParameter("start_price"));
+            int end_price = Integer.parseInt(request.getParameter("end_price"));
+            int start_size = Integer.parseInt(request.getParameter("start_size"));
+            int end_size = Integer.parseInt(request.getParameter("end_size"));
             
             // Access DAO to retrieve data
             TransactionDAO tdao = new TransactionDAO();
-            JsonArray transactionList = tdao.retrieveJSON(planning_area);
+            
+            ArrayList<Transaction> result = tdao.retrieveByCriteria(
+                    planning_area, 
+                    start_price, end_price, 
+                    start_size, end_size);
+            
+            // Convert to JSON
+            JsonArray transactionList = tdao.toJSON(result);
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
             String json = gson.toJson(transactionList);
             
