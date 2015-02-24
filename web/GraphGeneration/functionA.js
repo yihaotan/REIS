@@ -740,9 +740,9 @@ function charting(geoJsonData) {
                     dc.lineChart(compositeControlChart)
                             .interpolate('linear')
                             .group(datePsfGroup, "Median Psf")
-                            .renderDataPoints({
-                                radius: 5
-                            })
+                            //.renderDataPoints({
+                                //radius: 5
+                            //})
                             .title(function (d) {
                                 return dateFormat(d.key) + ": $" + (d.value.median);
                             })
@@ -756,9 +756,9 @@ function charting(geoJsonData) {
                     dc.lineChart(compositeControlChart)
                             .interpolate('linear')
                             .group(datePsfGroup, "Min Psf")
-                            .renderDataPoints({
-                                radius: 5
-                            })
+                            //.renderDataPoints({
+                                //radius: 5
+                            //})
                             .colors("#2ca02c")
                             .title(function (d) {
                                 return dateFormat(d.key) + ": $" + (d.value.min);
@@ -772,9 +772,9 @@ function charting(geoJsonData) {
                             .interpolate('linear')
                             .group(datePsfGroup, "Max Psf")
                             .colors("#d62728")
-                            .renderDataPoints({
-                                radius: 5
-                            })
+                            //.renderDataPoints({
+                                //radius: 5
+                            //})
                             .title(function (d) {
                                 return dateFormat(d.key) + ": $" + (d.value.max);
                             })
@@ -813,9 +813,9 @@ function charting(geoJsonData) {
                     dc.lineChart(compositeControlChart)
                             .interpolate('linear')
                             .group(datePsmGroup, "Median Psm")
-                            .renderDataPoints({
-                                radius: 5
-                            })
+                            //.renderDataPoints({
+                                //radius: 5
+                            //})
                             .title(function (d) {
                                 return dateFormat(d.key) + ": $" + (d.value.median);
                             })
@@ -828,9 +828,9 @@ function charting(geoJsonData) {
                     dc.lineChart(compositeControlChart)
                             .interpolate('linear')
                             .group(datePsmGroup, "Min Psm")
-                            .renderDataPoints({
-                                radius: 5
-                            })
+                            //.renderDataPoints({
+                                //radius: 5
+                            //})
                             .colors("#2ca02c")
                             .title(function (d) {
                                 return dateFormat(d.key) + ": $" + (d.value.min);
@@ -885,9 +885,9 @@ function charting(geoJsonData) {
                     dc.lineChart(compositeControlChart)
                             .interpolate('linear')
                             .group(datePriceGroup, "Median Price")
-                            .renderDataPoints({
-                                radius: 5
-                            })
+                            //.renderDataPoints({
+                                //radius: 5
+                            //})
                             .title(function (d) {
                                 return dateFormat(d.key) + ": $" + (d.value.median);
                             })
@@ -899,9 +899,9 @@ function charting(geoJsonData) {
                     dc.lineChart(compositeControlChart)
                             .interpolate('linear')
                             .group(datePriceGroup, "Min Price")
-                            .renderDataPoints({
-                                radius: 5
-                            })
+                            //.renderDataPoints({
+                                //radius: 5
+                            //})
                             .colors("#2ca02c")
                             .title(function (d) {
                                 return dateFormat(d.key) + ": $" + (d.value.min);
@@ -915,9 +915,9 @@ function charting(geoJsonData) {
                             .interpolate('linear')
                             .group(datePriceGroup, "Max Price")
                             .colors("#d62728")
-                            .renderDataPoints({
-                                radius: 5
-                            })
+                            //.renderDataPoints({
+                                //radius: 5
+                            //})
                             .title(function (d) {
                                 return dateFormat(d.key) + ": $" + (d.value.max);
                             })
