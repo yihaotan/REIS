@@ -50,7 +50,6 @@
         <script src="UIlibraries/leaflet-heatmap.js"></script>
         <script src='UIlibraries/dc.js' type='text/javascript'></script>  
         <script src="UIlibraries/L.Control.Opencagesearch.js"></script>
-        <script src="GraphGeneration/2013.json"></script>
 
         <script type="text/javascript" src="UIlibraries/jquery.slidepanel.js"></script>
         <script src="UIlibraries/jquery.sidr.min.js"></script>
@@ -99,7 +98,7 @@
         <script src="src/edit/handler/Edit.Marker.js"></script>
         <script src="GraphGeneration/functionA.js"></script>
 
-        <script src="../UIlibraries/jQEditRangeSlider-min.js"></script>
+        <script src="UIlibraries/jQEditRangeSlider-min.js"></script>
 
         <style type="text/css"></style>
         <style>
