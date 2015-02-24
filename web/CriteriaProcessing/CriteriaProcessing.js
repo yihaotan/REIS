@@ -86,9 +86,10 @@ function criteriastolayers(filteredData){
     map.addLayer(heatmapPriceLayer);
     map.removeLayer(heatmapPriceLayer);
     var pricehash={};
-    
+    var j=0;
+    var count=1;
     for(var i=0;i<filteredData.length;i++){
-        
+            
             var geojson=filteredData[i];
             var geojsonlat=geojson.lat;
             var geojsonlon=geojson.lon;
@@ -175,12 +176,13 @@ function criteriastolayers(filteredData){
                                         + "<br> <b>Unit Price PSF</b>: $"+geojson.psf
                                         + "<br> <b>Description</b>: "+geojson.sale+" "+geojson.propertyType+" at "
                                         +geojson.address+" S"+geojson.postalCode+", District:"+geojson.postalDistrict);
+            count=j++;
             //put these markers on to the layer criteriaCluster
             criteriaCluster.RegisterMarker(criteriamarker);
 
      }
 
-    
+
     var pricehashkeys=Object.keys(pricehash);
     for(var i=0;i<pricehashkeys.length;i++){
         var sortedarray=[];
@@ -209,7 +211,6 @@ function criteriastolayers(filteredData){
     }
     heatmapVolumeLayer.setData(testDataVolume);
     heatmapPriceLayer.setData(testDataPrice);
-   
     markers.addLayer(criteriaCluster);
     heatmapVolume.addLayer(heatmapVolumeLayer);
     heatmapPrice.addLayer(heatmapPriceLayer);

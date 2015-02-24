@@ -62,12 +62,21 @@ and open the template in the editor.
       font-size: 18px;
       font-weight: normal;
     }
-    h2 {
+    h3 {
       float: right;
     }
     h2 span {
       font-size: 14px;
       font-weight: normal;
+    }
+    #propertyvolume{
+        position:absolute;
+        
+    }
+    #salevol{
+        position:absolute;
+        top:200px;
+        
     }
 </style>
     </head>
@@ -76,7 +85,7 @@ and open the template in the editor.
 
   <div class='row'>
     <div class='span4' id='propertyvolume'>
-        <h4>Property Volume
+        <h3>Property Volume
                <button class="btn btn-info btn-mini" id="bar5">Bar</button>
                <button class="btn btn-danger btn-mini" id="pie5">Pie</button>
         <span>
@@ -86,11 +95,9 @@ and open the template in the editor.
             reset
           </a>
         </span>
-      </h4>
+      </h3>
     </div>
-    
-  </div>
- <div class='4' id='salevol'>
+    <div class='4' id='salevol'>
         <h4>Sale Volume
            
                 <button class="btn btn-info btn-mini " id="bar6" >Bar</button>
@@ -104,6 +111,8 @@ and open the template in the editor.
         </span>
       </h4>
     </div>
+  </div>
+ 
 
 </div>             
     </body>

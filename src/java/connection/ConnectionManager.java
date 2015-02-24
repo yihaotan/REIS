@@ -22,16 +22,17 @@ public class ConnectionManager {
 
   static {
     // grab environment variable
-    String host = System.getenv("OPENSHIFT_MYSQL_DB_HOST");
+    String host = System.getenv("$OPENSHIFT_POSTGRESQL_DB_HOST");
+    //System.out.println(host);
     if (host != null) {
       // this is production environment
       // obtain database connection properties from environment variables
-      String port = System.getenv("OPENSHIFT_MYSQL_DB_PORT");
-      String dbName = System.getenv("OPENSHIFT_APP_NAME");
-      dbUser = System.getenv("OPENSHIFT_MYSQL_DB_USERNAME");
-      dbPassword = System.getenv("OPENSHIFT_MYSQL_DB_PASSWORD");
+      String port = System.getenv("$OPENSHIFT_POSTGRESQL_DB_PORT");
+      String dbName = "fyp";//System.getenv("OPENSHIFT_APP_NAME");
+      dbUser = "adminkqrhzlt";//System.getenv("OPENSHIFT_MYSQL_DB_USERNAME");
+      dbPassword = "AdnWddkvFrNp";//System.getenv("OPENSHIFT_MYSQL_DB_PASSWORD");
 
-      dbURL = "jdbc:mysql://" + host + ":" + port + "/" + dbName;
+      dbURL = "postgresql://" + host + ":" + port + "/" + dbName;
 
     } else {
       // this is development environment
