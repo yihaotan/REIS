@@ -488,6 +488,7 @@
    // charting();
 </script>
 <script>
+    
     map.on('zoomend',
     function(){  
                var mapboundarray=[];
@@ -542,7 +543,6 @@
                                   );
                }
         })
-    
     
 </script>
 </body>

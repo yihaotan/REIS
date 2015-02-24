@@ -109,7 +109,6 @@ function applyFilter(chart,filterA){
             chart.filter(filterA[i]);
         }
 } 
-
 //New data 
 d3.json("2013.json",function(data){
     data.forEach(function (d) {
@@ -564,8 +563,8 @@ d3.json("2013.json",function(data){
     //Psf boxplot
     function plotPsfBoxPlot(){
         boxPlotChart
-           .width(780)
-           .height(220)
+           .width(920)
+           .height(300)
            .margins({top: 10, right: 0, bottom: 20, left: 75})
            .yAxisLabel("Psf $")
            .dimension(propertyDimension)
@@ -575,8 +574,8 @@ d3.json("2013.json",function(data){
     //Psm boxplot
     function plotPsmBoxPlot(){
         boxPlotChart
-           .width(780)
-           .height(220)
+           .width(920)
+           .height(300)
            .margins({top: 10, right: 0, bottom: 20, left: 75})
            .yAxisLabel("Psm $")
            .dimension(propertyDimension)
@@ -587,8 +586,8 @@ d3.json("2013.json",function(data){
     //Price boxplot
     function plotPriceBoxPlot(){
         boxPlotChart
-           .width(780)
-           .height(220)
+           .width(920)
+           .height(300)
            .margins({top: 10, right: 0, bottom: 20, left: 75})
            .yAxisLabel("Price $")
            .dimension(propertyDimension)
@@ -598,8 +597,8 @@ d3.json("2013.json",function(data){
     }
     //Psf histogram
     function plotPsfHistogram(){
-        histogram.width(320)
-            .height(160)
+        histogram.width(450)
+            .height(330)
             .dimension(psfDimension)
             .margins({top: 0, right: 0, bottom: 40, left: 40})
             .transitionDuration(0)
@@ -616,8 +615,8 @@ d3.json("2013.json",function(data){
     }
     //Price Histogram
     function plotPriceHistogram(){
-        histogram.width(320)
-            .height(160)
+        histogram.width(450)
+            .height(330)
             .dimension(priceDimension)
              .margins({top: 0, right: 0, bottom: 40, left: 40})
             .transitionDuration(0)
@@ -633,8 +632,8 @@ d3.json("2013.json",function(data){
     }
     //Psm Histogram
     function plotPsmHistogram(){
-        histogram.width(320)
-            .height(160)
+        histogram.width(450)
+            .height(330)
             .dimension(psmDimension)
             .margins({top: 0, right: 0, bottom: 40, left: 40})
             .transitionDuration(0)
@@ -651,8 +650,8 @@ d3.json("2013.json",function(data){
     // composite chart
     function plotPsfLineChart(){
         compositeControlChart
-            .width(430)
-            .height(130)
+            .width(450)
+            .height(320)
             .transitionDuration(0)
             .margins({top: 10, right: 0, bottom: 40, left: 60})
             .yAxisLabel("Psf $")
@@ -707,8 +706,8 @@ d3.json("2013.json",function(data){
     function plotPsmLineChart(){
         //Logic
          compositeControlChart
-            .width(430)
-            .height(130)
+            .width(450)
+            .height(320)
             .transitionDuration(0)
             .margins({top: 10, right: 0, bottom: 40, left: 60})
             .yAxisLabel("Psm $")
@@ -762,8 +761,8 @@ d3.json("2013.json",function(data){
     //Price Line Chart
     function plotPriceLineChart(){
           compositeControlChart
-            .width(430)
-            .height(130)
+            .width(450)
+            .height(320)
             .transitionDuration(0)
             .margins({top: 10, right: 0, bottom: 40, left: 60})
             .yAxisLabel("Price $")
