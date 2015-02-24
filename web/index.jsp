@@ -1,9 +1,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-
     <head>
-        <meta charset='utf-8'>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
         <title>TEAM REALIS</title>
 
@@ -102,6 +101,11 @@
 
         <style type="text/css"></style>
         <style>
+            .header {
+                padding-top: 20px;
+                padding-bottom: 0px;
+            }
+
             .leaflet-control-layers-toggle {
                 background-image: url(Icons/LayerMap.jpg)!important;
                 width: 95px;
@@ -120,19 +124,7 @@
             }
             .bs-example{
                 margin: 20px;
-            }
-            .container-fluid{
-                background-color:black;
-            }
-            #map { 
-                position:relative;
-                top:50.5px;
-                height:400px;
-                width:1100px;
-                right: -5px;
-                float: right;
-                z-index: 0;
-            }    
+            } 
             h4 span {
                 font-size: 14px;
                 font-weight: normal;
@@ -144,36 +136,53 @@
                 font-size: 14px;
                 font-weight: normal;
             }
+
+
+
+
+            #map { 
+                position: relative;
+                height: 400px;
+                width: 800px;
+                float: left;
+                z-index: 0;
+            }  
             #dc-propertyVolume-chart{
-                float:left;
-                position:fixed;
-                top:40px;
+                float: left;
+                position: relative;
+                top: 15px;
                 left: 15px;
             }
             #dc-propertySaleVolume-chart{
-                float:left;
-                position:fixed;
-                top:230px;
+                float: left;
+                position: relative;
+                top: 15px;
                 left: 15px;
             }
+            #dc-propertyTenureVolume-chart{
+                float: left;
+                position: relative;
+                top: 15px;
+                left: 15px;
+            }
+
+
+
+
+
             #dc-dateVolume-chart{
                 float:left;
-                position:fixed;
-                top:440px;
-                left: 268px;
+                position: relative;
+                top: 15px;
+                left: 15px;
             }
             #dc-control-chart{
                 float:left;
-                position:fixed;
-                top:440px;
-                right: 9px;
+                position: relative;
+                top: 15px;
+                left: 15px;
             }
-            #dc-propertyTenureVolume-chart{
-                float:left;
-                position:absolute;
-                top:48px;
-                right: 90px;
-            }
+
             #dc-psfBoxPlot-chart{
                 float:left;
                 position:absolute;
@@ -186,12 +195,11 @@
                 top:230px;
                 right: 80px;
             }
-            #table{
-                float:left;
-                position:absolute;
-                top:700px;
-                left:80px;
-            }
+
+
+
+
+
             #dc-table-graph{
                 float:left;
                 position:absolute;
@@ -207,7 +215,7 @@
     </head>
 
     <body>
-        
+
         <%@ page import="java.util.*" %>
         <%@ page import="entity.*" %>
         <%@ page import="com.google.gson.*" %>
@@ -251,256 +259,312 @@
             });
         </script>
 
-        <nav class="navbar navbar navbar-fixed-top">
+        <script>
+            $(function () {
+                $("#dc-propertyRegionVolume-chart").hide();
+                $("#dc-psfBoxPlot-chart").hide();
+                $("#dc-histogram").hide();
+            })
+        </script>
 
-            <div class="container-fluid">
+        <!-- =================== BODY START =================== -->
 
-                <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="navbar-header">
-                    <a class="navbar-brand" style="color:white" href="#">R</a>
+        <div class="container-fluid">
+
+            <!--  Header Section-->
+            <div class="row header">
+                <div class="col-xs-12 text-center">
+                    <!-- navigation bar -->
+                    <div class="row navigation-bar">
+                        <nav class="navbar navbar-default" role="navigation" style="background: black;">
+                            <div class="container-fluid">
+                                <div class="navbar-header">
+                                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#demo-navbar-collapse">
+                                        <span class="sr-only">Toggle navigation</span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                    </button>
+                                    <a class="navbar-brand" style="color:white" href="#">R</a>
+                                </div>
+                                <div class="collapse navbar-collapse" id="demo-navbar-collapse">
+                                    <ul class="nav navbar-nav">
+                                        <!--
+                                        <li class="active"><a href="#">Home</a></li>
+                                        <li><a href="#">About</a></li>
+                                        <li><a href="#">Contact</a></li>
+                                        -->
+                                    </ul>
+                                    <form class="navbar-form navbar-left pull-right" action="DBServlet">     
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" name="planning_area" placeholder="Planning Area">
+                                            <input type="text" class="form-control" name="start_price" placeholder="Start Price">
+                                            <input type="text" class="form-control" name="end_price" placeholder="End Price">
+                                            <input type="text" class="form-control" name="start_size" placeholder="Start Size">
+                                            <input type="text" class="form-control" name="end_size" placeholder="End Size">
+                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                            <button type="button" id="right-menu" class="btn btn-danger" aria-label="Left Align">
+                                                <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </nav>
+                    </div>
                 </div>
+            </div>
 
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse">
 
-                    <ul class="nav navbar-nav">
-                        <!-- nothing here -->
-                    </ul>
+            <!--  Content Area-->
+            <div class="row upper-content">
 
-                    <form class="navbar-form navbar-right" role="form" action="DBServlet">     
-                        <div class="form-group">
-                            <input type="text" class="form-control" name="planning_area" placeholder="Planning Area">
-                            <input type="text" class="form-control" name="start_price" placeholder="Start Price">
-                            <input type="text" class="form-control" name="end_price" placeholder="End Price">
-                            <input type="text" class="form-control" name="start_size" placeholder="Start Size">
-                            <input type="text" class="form-control" name="end_size" placeholder="End Size">
+                <!-- LEFT: charts -->
+                <div class="col-md-3 col-sm-6" style="background: red;">
+
+                    <!-- DATA COUNT -->
+                    <div class="row">
+                        <div class="dc-data-count" id='table' >
+                            <span>
+                                <span class="filter-count"></span>
+                                selected out of 
+                                <span class="total-count"></span>
+                                records | 
+                                <a href="javascript:dc.filterAll(); dc.renderAll();">Reset All</a>
+                            </span>
                         </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                    <!-- Property Volume Chart -->
+                    <div class="row">
+                        <div class='span4' id='dc-propertyVolume-chart'>
+                            <h4>Property Volume
+                                <button type="button" class="btn btn-primary btn-mini" id="bar1" aria-label="Left Align">
+                                    <span class="glyphicon glyphicon-signal" aria-hidden="true"></span>
+                                </button>
+                                <button type="button" class="btn btn-danger btn-mini" id="pie1" aria-label="Left Align">
+                                    <span class="glyphicon glyphicon-adjust" aria-hidden="true"></span>
+                                </button>
+                                <span>
+                                    <a class="reset"
+                                       href="javascript:propertyVolumeRowChart.filterAll();dc.redrawAll();"
+                                       style="display: none;">
+                                        reset
+                                    </a>
+                                </span>
+                            </h4>
+                        </div>
+                    </div>
+                    <!-- Sale Volume Chart -->
+                    <div class="row">
+                        <div class='span4' id='dc-propertySaleVolume-chart'>
+                            <h4>Sale Volume
+                                <button type="button" class="btn btn-primary btn-mini" id="bar2" aria-label="Left Align">
+                                    <span class="glyphicon glyphicon-signal" aria-hidden="true"></span>
+                                </button>
+                                <button type="button" class="btn btn-danger btn-mini" id="pie2" aria-label="Left Align">
+                                    <span class="glyphicon glyphicon-adjust" aria-hidden="true"></span>
+                                </button>
+                                <span>
+                                    <a class="reset"
+                                       href="javascript:propertySaleVolumePieChart.filterAll();dc.redrawAll();"
+                                       style="display: none;">
+                                        reset
+                                    </a>
+                                </span>
+                            </h4>
+                        </div>
+                    </div>
+                    <!-- Tenure Volume Chart -->
+                    <div class="row">
+                        <div class='span4' id='dc-propertyTenureVolume-chart'>
+                            <h4> Tenure Volume
+                                <button type="button" class="btn btn-primary btn-mini" id="bar3" aria-label="Left Align">
+                                    <span class="glyphicon glyphicon-signal" aria-hidden="true"></span>
+                                </button>
+                                <button type="button" class="btn btn-danger btn-mini" id="pie3" aria-label="Left Align">
+                                    <span class="glyphicon glyphicon-adjust" aria-hidden="true"></span>
+                                </button>
+                                <span>
+                                    <a class="reset"
+                                       href="javascript:propertyTenureVolumePieChart.filterAll();dc.redrawAll();"
+                                       style="display: none;">
+                                        reset
+                                    </a>
+                                </span>
+                            </h4>
+                        </div> 
+                    </div>
 
-                        <button type="button" id="right-menu" class="btn btn-danger" aria-label="Left Align">
-                            <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
-                        </button>
 
-                    </form>
+                </div>
+
+                <!-- RIGHT: map & date -->
+                <div class="col-md-9 col-sm-12">
+
+                    <div class="row">
+                        <div id="map"></div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="row lower-content">
+                <!-- LEFT: time series -->
+                <div class="col-md-6 col-sm-6" style="background: blue;">
+                    <div class="row">
+                        <div class='span12' id='dc-dateVolume-chart'>
+                            <h4>
+                                Transaction Volume vs Date
+                                <span>
+                                    <a class="reset"
+                                       href="javascript:dateVolumeBarChart.filterAll();dc.redrawAll();"
+                                       style="display: none;">
+                                        reset
+                                    </a>
+                                </span>
+                            </h4>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RIGHT: price line -->
+                <div class="col-md-6 col-sm-6" style="background: yellow;">
+                    <div class="row">
+                        <div class='span6' id='dc-control-chart'>
+                            <h4> Line Chart</h4>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            
+            <script>
+                init_function();
+            </script>
+
+            <div class='container' style='font: 12px sans-serif;'  >
+
+                <div class ="row" id='placeholder'></div>
+                <div class='row'>
+                    <div class='span12' id='dc-psfBoxPlot-chart'>
+
+                        <select class="selectpicker" data-style="btn-inverse" data-width="150px">
+                            <option>Psf</option>
+                            <option>Psm</option>
+                            <option>Price</option>
+                        </select>
+
+                        <h4>
+                            BoxPlot
+                            <span>
+                                <a class="reset"
+                                   href="javascript:boxPlotChart.filterAll();dc.redrawAll();"
+                                   style="display: none;">
+                                    reset
+                                </a>
+                            </span>
+                        </h4>
+                    </div>
+                </div>
+                <div class='row'>
+                    <div class='span6' id='dc-histogram'>
+                        <h4>Histogram
+
+                        </h4>
+                    </div>
+
+
+                </div>
+                <div class='row'>
 
 
 
                 </div>
 
+                <div class='row'>
 
 
-            </div><!-- /.navbar-collapse -->
-        </div><!-- /.container-fluid -->
-    </nav>
+                </div>
 
-    <script>
-        $(function () {
-            $("#dc-propertyRegionVolume-chart").hide();
-            $("#dc-psfBoxPlot-chart").hide();
-            $("#dc-histogram").hide();
-        })
-    </script>
-
-    <script src="map.js"></script> 
-    <div id="map"></div>
-    <script>
-        init_function();
-    </script>
-
-    <div class='container' style='font: 12px sans-serif;'  >
-        <div class="dc-data-count" style="float: left;" id='table' >
-            <h2>Property
-                <span>
-                    <span class="filter-count"></span>
-                    selected out of 
-                    <span class="total-count"></span>
-                    records | 
-                    <a href="javascript:dc.filterAll(); dc.renderAll();">Reset All</a>
-                </span>
-            </h2>
-        </div>
-        <div class ="row" id='placeholder'></div>
-        <div class='row'>
-            <div class='span12' id='dc-psfBoxPlot-chart'>
-
-                <select class="selectpicker" data-style="btn-inverse" data-width="150px">
-                    <option>Psf</option>
-                    <option>Psm</option>
-                    <option>Price</option>
-                </select>
-
-                <h4>
-                    BoxPlot
-                    <span>
-                        <a class="reset"
-                           href="javascript:boxPlotChart.filterAll();dc.redrawAll();"
-                           style="display: none;">
-                            reset
-                        </a>
-                    </span>
-                </h4>
-            </div>
-        </div>
-        <div class='row'>
-            <div class='span6' id='dc-histogram'>
-                <h4>Histogram
-
-                </h4>
-            </div>
-            <div class='span6' id='dc-control-chart'>
-                <h4> Line Chart</h4>
-            </div>
+            </div>    
 
         </div>
-        <div class='row'>
-            <div class='span4' id='dc-propertyVolume-chart'>
-                <h4>Property Volume
-                    <button class="btn btn-info btn-mini" id="bar1">Bar</button>
-                    <button class="btn btn-danger btn-mini" id="pie1">Pie</button>
-                    <span>
-                        <a class="reset"
-                           href="javascript:propertyVolumeRowChart.filterAll();dc.redrawAll();"
-                           style="display: none;">
-                            reset
-                        </a>
-                    </span>
-                </h4>
-            </div>
-            <div class='4' id='dc-propertySaleVolume-chart'>
-                <h4>Sale Volume
 
-                    <button class="btn btn-info btn-mini " id="bar2">Bar</button>
-                    <button class="btn btn-danger btn-mini" id="pie2">Pie</button>
-                    <span>
-                        <a class="reset"
-                           href="javascript:propertySaleVolumePieChart.filterAll();dc.redrawAll();"
-                           style="display: none;">
-                            reset
-                        </a>
-                    </span>
-                </h4>
-            </div>
-            <div class='4' id='dc-propertyTenureVolume-chart'>
-                <h4> Tenure Volume
-                    <button class="btn btn-info btn-mini" id="bar3">Bar</button>
-                    <button class="btn btn-danger btn-mini" id="pie3">Pie</button>
-                    <span>
-                        <a class="reset"
-                           href="javascript:propertyTenureVolumePieChart.filterAll();dc.redrawAll();"
-                           style="display: none;">
-                            reset
-                        </a>
-                    </span>
-                </h4>
-            </div>   
-        </div>
+        <script>
+            map.on('zoomend',
+                    function () {
+                        var mapboundarray = [];
+                        mapboundarray.push(map.getBounds().getSouthWest());
+                        mapboundarray.push(map.getBounds().getNorthWest());
+                        mapboundarray.push(map.getBounds().getNorthEast());
+                        mapboundarray.push(map.getBounds().getSouthEast())
+                        $(".table > tbody").html("");
+                        var datatable = getmapmarkers(mapboundarray, filtereddata);
+                        for (i = 0; i < datatable.length; i++) {
+                            var projectName = datatable[i].properties.PROJECT_NAME;
+                            var propertyType = datatable[i].properties.PROPERTY_TYPE;
+                            var tenure = datatable[i].properties.TENURE;
+                            var price = datatable[i].properties.TRANSACTED_PRICE;
+                            var planningArea = datatable[i].properties.PLANNING_AREA;
+                            var postalDistrict = datatable[i].properties.POSTAL_DISTRICT;
+                            $('.table').append('<tbody><tr><td>' + projectName +
+                                    '</td><td>' + propertyType +
+                                    '</td><td>' + tenure +
+                                    '</td><td>' + price +
+                                    '</td><td>' + planningArea +
+                                    '</td><td>' + postalDistrict +
+                                    '</td></tr></tbody>'
+                                    );
+                        }
 
-        <div class='row'>
-            <div class='span12' id='dc-dateVolume-chart'>
-                <h4>
-                    Transaction Volume vs Date
-                    <span>
-                        <a class="reset"
-                           href="javascript:dateVolumeBarChart.filterAll();dc.redrawAll();"
-                           style="display: none;">
-                            reset
-                        </a>
-                    </span>
-                </h4>
-            </div>
+                    })
+            map.on('dragend',
+                    function () {
+                        var mapboundarray = [];
+                        mapboundarray.push(map.getBounds().getSouthWest());
+                        mapboundarray.push(map.getBounds().getNorthWest());
+                        mapboundarray.push(map.getBounds().getNorthEast());
+                        mapboundarray.push(map.getBounds().getSouthEast())
+                        var datatable = getmapmarkers(mapboundarray, filtereddata);
+                        $(".table > tbody").html("");
+                        for (i = 0; i < datatable.length; i++) {
+                            var projectName = datatable[i].properties.PROJECT_NAME;
+                            var propertyType = datatable[i].properties.PROPERTY_TYPE;
+                            var tenure = datatable[i].properties.TENURE;
+                            var price = datatable[i].properties.TRANSACTED_PRICE;
+                            var planningArea = datatable[i].properties.PLANNING_AREA;
+                            var postalDistrict = datatable[i].properties.POSTAL_DISTRICT;
+                            $('.table').append('<tbody><tr><td>' + projectName +
+                                    '</td><td>' + propertyType +
+                                    '</td><td>' + tenure +
+                                    '</td><td>' + price +
+                                    '</td><td>' + planningArea +
+                                    '</td><td>' + postalDistrict +
+                                    '</td></tr></tbody>'
+                                    );
+                        }
+                    })
+        </script>
 
-        </div>
-        <div class='row' >
-            <div class='span12'>
-                <table class='dc-data-table table table-hover table-condensed table-striped' id='dc-table-graph'>
-                    <thead>
-                        <tr class='header'>
-                            <th>Project Name</th>
-                            <th>Property Type</th>
-                            <th>Address</th>
-                            <th>Price</th>
-                            <th>Area</th>
-                            <th>Postal District</th>
-                            <th>Postal Sector</th>
-                        </tr>
-                    </thead>
-                </table>
-            </div>
-        </div>
-    </div>             
+        <%
 
-    <script>
-        map.on('zoomend',
-                function () {
-                    var mapboundarray = [];
-                    mapboundarray.push(map.getBounds().getSouthWest());
-                    mapboundarray.push(map.getBounds().getNorthWest());
-                    mapboundarray.push(map.getBounds().getNorthEast());
-                    mapboundarray.push(map.getBounds().getSouthEast())
-                    $(".table > tbody").html("");
-                    var datatable = getmapmarkers(mapboundarray, filtereddata);
-                    for (i = 0; i < datatable.length; i++) {
-                        var projectName = datatable[i].properties.PROJECT_NAME;
-                        var propertyType = datatable[i].properties.PROPERTY_TYPE;
-                        var tenure = datatable[i].properties.TENURE;
-                        var price = datatable[i].properties.TRANSACTED_PRICE;
-                        var planningArea = datatable[i].properties.PLANNING_AREA;
-                        var postalDistrict = datatable[i].properties.POSTAL_DISTRICT;
-                        $('.table').append('<tbody><tr><td>' + projectName +
-                                '</td><td>' + propertyType +
-                                '</td><td>' + tenure +
-                                '</td><td>' + price +
-                                '</td><td>' + planningArea +
-                                '</td><td>' + postalDistrict +
-                                '</td></tr></tbody>'
-                                );
-                    }
+            // Get the planning area name in string
+            String result = String.valueOf(request.getAttribute("result"));
 
-                })
-        map.on('dragend',
-                function () {
-                    var mapboundarray = [];
-                    mapboundarray.push(map.getBounds().getSouthWest());
-                    mapboundarray.push(map.getBounds().getNorthWest());
-                    mapboundarray.push(map.getBounds().getNorthEast());
-                    mapboundarray.push(map.getBounds().getSouthEast())
-                    var datatable = getmapmarkers(mapboundarray, filtereddata);
-                    $(".table > tbody").html("");
-                    for (i = 0; i < datatable.length; i++) {
-                        var projectName = datatable[i].properties.PROJECT_NAME;
-                        var propertyType = datatable[i].properties.PROPERTY_TYPE;
-                        var tenure = datatable[i].properties.TENURE;
-                        var price = datatable[i].properties.TRANSACTED_PRICE;
-                        var planningArea = datatable[i].properties.PLANNING_AREA;
-                        var postalDistrict = datatable[i].properties.POSTAL_DISTRICT;
-                        $('.table').append('<tbody><tr><td>' + projectName +
-                                '</td><td>' + propertyType +
-                                '</td><td>' + tenure +
-                                '</td><td>' + price +
-                                '</td><td>' + planningArea +
-                                '</td><td>' + postalDistrict +
-                                '</td></tr></tbody>'
-                                );
-                    }
-                })
-    </script>
+            if (!result.equals("null")) {
+        %>
+        <script type="text/javascript">
+            var data = <%=result%>;
+            charting(data);
+        </script>
+        <%
+            }
+        %>
 
-    <%
-
-        // Get the planning area name in string
-        String result = String.valueOf(request.getAttribute("result"));
-
-        if (!result.equals("null")) {
-    %>
-    <script type="text/javascript">
-        var data = <%=result%>;
-        charting(data);
-    </script>
-    <%
-        }
-    %>
-
-</body>
+    </body>
 
 
 </html>
