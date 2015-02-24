@@ -102,8 +102,9 @@
         <style type="text/css"></style>
         <style>
             .header {
-                padding-top: 20px;
+                padding-top: 0px;
                 padding-bottom: 0px;
+                height: 55px;
             }
 
             .leaflet-control-layers-toggle {
@@ -139,62 +140,71 @@
 
 
 
-
+            
             #map { 
                 position: relative;
-                height: 400px;
-                width: 800px;
+                height: 461px;
+                width: 1012px;
                 float: left;
                 z-index: 0;
             }  
             #dc-propertyVolume-chart{
-                float: left;
+                float: right;
                 position: relative;
-                top: 15px;
-                left: 15px;
+                top: 0px;
+                right: 15px;
             }
             #dc-propertySaleVolume-chart{
-                float: left;
+                float: right;
                 position: relative;
-                top: 15px;
-                left: 15px;
+                top: 0px;
+                right: 15px;
             }
             #dc-propertyTenureVolume-chart{
+                float: right;
+                position: relative;
+                top: 0px;
+                right: 15px;
+            }
+            #count-table {
+                float: right;
+                position: relative;
+                top: 0px;
+                right: 15px;
+            }
+            
+            #dc-dateVolume-chart{
                 float: left;
                 position: relative;
-                top: 15px;
-                left: 15px;
-            }
-
-
-
-
-
-            #dc-dateVolume-chart{
-                float:left;
-                position: relative;
-                top: 15px;
+                top: 0px;
                 left: 15px;
             }
             #dc-control-chart{
-                float:left;
+                float: left;
                 position: relative;
-                top: 15px;
+                top: 0px;
                 left: 15px;
             }
+            #dc-histogram{
+                float: left;
+                position: relative;
+                top: 0px;
+                left: 15px;
+            }
+            
+            
+            
+            
+            
+            
 
             #dc-psfBoxPlot-chart{
-                float:left;
+                float: left;
                 position:absolute;
                 top:110px;
                 left: 236px;
             }
-            #dc-histogram{
-                float:left;
-                position:absolute;
-                top:230px;
-                right: 80px;
-            }
+            
 
 
 
@@ -227,12 +237,13 @@
                     name: 'sidr-right',
                     side: 'right',
                     source: 'external.html',
+                    displace: false,
                     onOpen: function () {
-                        document.getElementById('map').style.width = 600 + 'px'
+                        document.getElementById('map').style.width = 600 + 'px';
                     },
                     onClose: function () {
                         document.getElementById('map').style.width = 1100 + 'px';
-                        map.setView([1.3667, 103.8], 11)
+                        map.setView([1.3667, 103.8], 11);
                     }
                 });
             });
@@ -243,16 +254,17 @@
                     side: 'left',
                     speed: 550,
                     source: 'graphsforpolygon.html',
+                    displace: false,
                     onOpen: function () {
                         opened = true;
                         document.getElementById('map').style.width = 800 + 'px';
-                        document.getElementById('map').style.cssFloat = "left"
+                        document.getElementById('map').style.cssFloat = "left";
                     },
                     onClose: function () {
                         opened = false;
                         document.getElementById('map').style.width = 1100 + 'px';
                         document.getElementById('map').style.cssFloat = "right";
-                        map.setView([1.3667, 103.8], 11)
+                        map.setView([1.3667, 103.8], 11);
                     }
 
                 });
@@ -261,10 +273,9 @@
 
         <script>
             $(function () {
-                $("#dc-propertyRegionVolume-chart").hide();
+//                $("#dc-propertyRegionVolume-chart").hide();
                 $("#dc-psfBoxPlot-chart").hide();
-                $("#dc-histogram").hide();
-            })
+            });
         </script>
 
         <!-- =================== BODY START =================== -->
@@ -273,7 +284,7 @@
 
             <!--  Header Section-->
             <div class="row header">
-                <div class="col-xs-12 text-center">
+                <div class="col-md-12" style="height: 55px">
                     <!-- navigation bar -->
                     <div class="row navigation-bar">
                         <nav class="navbar navbar-default" role="navigation" style="background: black;">
@@ -320,11 +331,11 @@
             <div class="row upper-content">
 
                 <!-- LEFT: charts -->
-                <div class="col-md-3 col-sm-6" style="background: red;">
+                <div class="col-md-3 col-sm-6" style="background:">
 
                     <!-- DATA COUNT -->
                     <div class="row">
-                        <div class="dc-data-count" id='table' >
+                        <div class="dc-data-count" id='count-table' >
                             <span>
                                 <span class="filter-count"></span>
                                 selected out of 
@@ -337,11 +348,11 @@
                     <!-- Property Volume Chart -->
                     <div class="row">
                         <div class='span4' id='dc-propertyVolume-chart'>
-                            <h4>Property Volume
-                                <button type="button" class="btn btn-primary btn-mini" id="bar1" aria-label="Left Align">
+                            <h6>Property Volume
+                                <button type="button" class="btn btn-primary btn-xs" id="bar1" aria-label="Left Align">
                                     <span class="glyphicon glyphicon-signal" aria-hidden="true"></span>
                                 </button>
-                                <button type="button" class="btn btn-danger btn-mini" id="pie1" aria-label="Left Align">
+                                <button type="button" class="btn btn-danger btn-xs" id="pie1" aria-label="Left Align">
                                     <span class="glyphicon glyphicon-adjust" aria-hidden="true"></span>
                                 </button>
                                 <span>
@@ -351,17 +362,17 @@
                                         reset
                                     </a>
                                 </span>
-                            </h4>
+                            </h6>
                         </div>
                     </div>
                     <!-- Sale Volume Chart -->
                     <div class="row">
                         <div class='span4' id='dc-propertySaleVolume-chart'>
-                            <h4>Sale Volume
-                                <button type="button" class="btn btn-primary btn-mini" id="bar2" aria-label="Left Align">
+                            <h6>Sale Volume
+                                <button type="button" class="btn btn-primary btn-xs" id="bar2" aria-label="Left Align">
                                     <span class="glyphicon glyphicon-signal" aria-hidden="true"></span>
                                 </button>
-                                <button type="button" class="btn btn-danger btn-mini" id="pie2" aria-label="Left Align">
+                                <button type="button" class="btn btn-danger btn-xs" id="pie2" aria-label="Left Align">
                                     <span class="glyphicon glyphicon-adjust" aria-hidden="true"></span>
                                 </button>
                                 <span>
@@ -371,17 +382,17 @@
                                         reset
                                     </a>
                                 </span>
-                            </h4>
+                            </h6>
                         </div>
                     </div>
                     <!-- Tenure Volume Chart -->
                     <div class="row">
                         <div class='span4' id='dc-propertyTenureVolume-chart'>
-                            <h4> Tenure Volume
-                                <button type="button" class="btn btn-primary btn-mini" id="bar3" aria-label="Left Align">
+                            <h6> Tenure Volume
+                                <button type="button" class="btn btn-primary btn-xs" id="bar3" aria-label="Left Align">
                                     <span class="glyphicon glyphicon-signal" aria-hidden="true"></span>
                                 </button>
-                                <button type="button" class="btn btn-danger btn-mini" id="pie3" aria-label="Left Align">
+                                <button type="button" class="btn btn-danger btn-xs" id="pie3" aria-label="Left Align">
                                     <span class="glyphicon glyphicon-adjust" aria-hidden="true"></span>
                                 </button>
                                 <span>
@@ -391,7 +402,7 @@
                                         reset
                                     </a>
                                 </span>
-                            </h4>
+                            </h6>
                         </div> 
                     </div>
 
@@ -411,10 +422,10 @@
 
             <div class="row lower-content">
                 <!-- LEFT: time series -->
-                <div class="col-md-6 col-sm-6" style="background: blue;">
+                <div class="col-md-5 col-sm-6" style="background: blue;">
                     <div class="row">
                         <div class='span12' id='dc-dateVolume-chart'>
-                            <h4>
+                            <h6>
                                 Transaction Volume vs Date
                                 <span>
                                     <a class="reset"
@@ -423,17 +434,26 @@
                                         reset
                                     </a>
                                 </span>
-                            </h4>
+                            </h6>
                         </div>
                     </div>
                 </div>
 
-                <!-- RIGHT: price line -->
-                <div class="col-md-6 col-sm-6" style="background: yellow;">
+                <!-- MIDDLE: price line -->
+                <div class="col-md-4 col-sm-6" style="background: yellow;">
                     <div class="row">
                         <div class='span6' id='dc-control-chart'>
-                            <h4> Line Chart</h4>
+                            <h6> Line Chart</h6>
                         </div>
+                    </div>
+                </div>
+                
+                <!-- RIGHT: histogram -->
+                <div class="col-md-3 col-sm-6" style="background: pink;">
+                    <div class="row">
+                        <div class='span6' id='dc-histogram'>
+                        <h6>Histogram</h6>
+                    </div>
                     </div>
                 </div>
 
@@ -470,11 +490,7 @@
                     </div>
                 </div>
                 <div class='row'>
-                    <div class='span6' id='dc-histogram'>
-                        <h4>Histogram
-
-                        </h4>
-                    </div>
+                    
 
 
                 </div>
@@ -500,7 +516,7 @@
                         mapboundarray.push(map.getBounds().getSouthWest());
                         mapboundarray.push(map.getBounds().getNorthWest());
                         mapboundarray.push(map.getBounds().getNorthEast());
-                        mapboundarray.push(map.getBounds().getSouthEast())
+                        mapboundarray.push(map.getBounds().getSouthEast());
                         $(".table > tbody").html("");
                         var datatable = getmapmarkers(mapboundarray, filtereddata);
                         for (i = 0; i < datatable.length; i++) {
@@ -520,14 +536,14 @@
                                     );
                         }
 
-                    })
+                    });
             map.on('dragend',
                     function () {
                         var mapboundarray = [];
                         mapboundarray.push(map.getBounds().getSouthWest());
                         mapboundarray.push(map.getBounds().getNorthWest());
                         mapboundarray.push(map.getBounds().getNorthEast());
-                        mapboundarray.push(map.getBounds().getSouthEast())
+                        mapboundarray.push(map.getBounds().getSouthEast());
                         var datatable = getmapmarkers(mapboundarray, filtereddata);
                         $(".table > tbody").html("");
                         for (i = 0; i < datatable.length; i++) {
@@ -546,7 +562,7 @@
                                     '</td></tr></tbody>'
                                     );
                         }
-                    })
+                    });
         </script>
 
         <%

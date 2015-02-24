@@ -308,8 +308,8 @@ function charting(geoJsonData) {
     //customised tooltips
     //Intialise the charts
     // Transacted Volume vs Date (For Date Slider)
-    dateVolumeBarChart.width(650)
-            .height(140)
+    dateVolumeBarChart.width(550)
+            .height(80)
             .dimension(dateDimension)
             .group(dateGroup)
             .elasticY(true)
@@ -326,8 +326,8 @@ function charting(geoJsonData) {
     //remove the y axis ticks
     dateVolumeBarChart.yAxis().ticks(0);
     function propertyVolumePie() {
-        propertyVolumePieChart.width(200)
-                .height(150)
+        propertyVolumePieChart.width(300)
+                .height(100)
                 .transitionDuration(0)
                 .radius(80)
                 .innerRadius(20)
@@ -364,8 +364,8 @@ function charting(geoJsonData) {
 
     //propertyVolumeRow properties
     function propertyVolumeRow() {
-        propertyVolumeRowChart.width(200)
-                .height(200)
+        propertyVolumeRowChart.width(300)
+                .height(100)
                 .transitionDuration(0)
                 .ordering(function (p) {
                     return -p.value;
@@ -427,8 +427,8 @@ function charting(geoJsonData) {
 
     // saleVolumePie properties
     function saleVolumePie() {
-        propertySaleVolumePieChart.width(220)
-                .height(150)
+        propertySaleVolumePieChart.width(300)
+                .height(100)
                 .transitionDuration(0)
                 .radius(80)
                 .innerRadius(20)
@@ -453,8 +453,8 @@ function charting(geoJsonData) {
     }
     //saleVolumeRow properties 
     function saleVolumeRow() {
-        propertySaleVolumeRowChart.width(220)
-                .height(150)
+        propertySaleVolumeRowChart.width(300)
+                .height(100)
                 .transitionDuration(0)
                 .ordering(function (p) {
                     return -p.value;
@@ -509,7 +509,7 @@ function charting(geoJsonData) {
     //tenure volume pie properties
     function tenureVolumePie() {
         propertyTenureVolumePieChart.width(300)
-                .height(200)
+                .height(100)
                 .transitionDuration(0)
                 .radius(80)
                 .innerRadius(20)
@@ -539,7 +539,7 @@ function charting(geoJsonData) {
     //tenure volume row properties
     function tenureVolumeRow() {
         propertyTenureVolumeRowChart.width(300)
-                .height(200)
+                .height(100)
                 .transitionDuration(0)
                 .ordering(function (p) {
                     return -p.value;
@@ -644,8 +644,8 @@ function charting(geoJsonData) {
 
     //Psf histogram
     function plotPsfHistogram() {
-        histogram.width(320)
-                .height(160)
+        histogram.width(300)
+                .height(80)
                 .dimension(psfDimension)
                 .margins({
                     top: 0,
@@ -669,8 +669,8 @@ function charting(geoJsonData) {
     }
     //Price Histogram
     function plotPriceHistogram() {
-        histogram.width(320)
-                .height(160)
+        histogram.width(300)
+                .height(80)
                 .dimension(priceDimension)
                 .margins({
                     top: 0,
@@ -717,8 +717,8 @@ function charting(geoJsonData) {
     // composite chart
     function plotPsfLineChart() {
         compositeControlChart
-                .width(430)
-                .height(130)
+                .width(400)
+                .height(80)
                 .transitionDuration(0)
                 .margins({
                     top: 10,
