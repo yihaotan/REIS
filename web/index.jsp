@@ -140,7 +140,7 @@
 
 
 
-            
+
             #map { 
                 position: relative;
                 height: 420px;
@@ -172,7 +172,7 @@
                 top: 0px;
                 right: 15px;
             }
-            
+
             #dc-dateVolume-chart{
                 float: left;
                 position: relative;
@@ -191,12 +191,12 @@
                 top: 0px;
                 left: 15px;
             }
-            
-            
-            
-            
-            
-            
+
+
+
+
+
+
 
             #dc-psfBoxPlot-chart{
                 float: left;
@@ -204,7 +204,7 @@
                 top:110px;
                 left: 236px;
             }
-            
+
 
 
 
@@ -231,7 +231,6 @@
         <%@ page import="com.google.gson.*" %>
 
         <script>
-
             $(document).ready(function () {
                 $('#right-menu').sidr({
                     name: 'sidr-right',
@@ -307,20 +306,18 @@
                                     </ul>
                                     <form class="navbar-form navbar-left pull-left" action="DBServlet">     
                                         <div class="form-group">
-                                            <input type="text" class="form-control" name="planning_area" placeholder="Planning Area" size="8">
+                                            <input type="text" class="form-control" name="planning_area" placeholder="Planning Area" size="8" >
                                             <input type="text" class="form-control" name="start_price" placeholder="Start Price" size="5">
                                             <input type="text" class="form-control" name="end_price" placeholder="End Price" size="5">
                                             <input type="text" class="form-control" name="start_size" placeholder="Start Size" size="5">
                                             <input type="text" class="form-control" name="end_size" placeholder="End Size" size="5">
                                             <button type="submit" class="btn btn-primary">Submit</button>
-                                            
                                         </div>
-                                        
                                     </form>
                                     <div class="navbar-form navbar-left pull-right"> 
-                                    <button type="button" id="right-menu" class="btn btn-danger" aria-label="Right Align">
-                                        <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
-                                    </button
+                                        <button type="button" id="right-menu" class="btn btn-danger" aria-label="Right Align">
+                                            <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
+                                        </button
                                     </div>
                                 </div>
                             </div>
@@ -389,7 +386,7 @@
                         </div>
                     </div>
                     <!-- Tenure Volume Chart -->
-                    
+
 
 
                 </div>
@@ -432,20 +429,20 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- RIGHT: histogram -->
                 <div class="col-md-3 col-sm-6" style="background: pink;">
                     <div class="row">
                         <div class='span6' id='dc-histogram'>
-                        <h6>Histogram</h6>
-                    </div>
+                            <h6>Histogram</h6>
+                        </div>
                     </div>
                 </div>
 
             </div>
 
 
-            
+
             <script>
                 init_function();
             </script>
@@ -475,7 +472,7 @@
                     </div>
                 </div>
                 <div class='row'>
-                    
+
 
 
                 </div>
@@ -552,8 +549,12 @@
 
         <%
 
-            // Get the planning area name in string
             String result = String.valueOf(request.getAttribute("result"));
+            String planning_area = String.valueOf(request.getAttribute("planning_area"));
+            String start_price = String.valueOf(request.getAttribute("start_price"));
+            String end_price = String.valueOf(request.getAttribute("end_price"));
+            String start_size = String.valueOf(request.getAttribute("start_size"));
+            String end_size = String.valueOf(request.getAttribute("end_size"));
 
             if (!result.equals("null")) {
         %>
@@ -564,6 +565,8 @@
         <%
             }
         %>
+
+
 
     </body>
 
