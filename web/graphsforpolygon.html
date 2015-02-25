@@ -7,56 +7,7 @@ and open the template in the editor.
     <head>
         <title></title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <script src="Upload/svy21.js"></script>
-<link rel="stylesheet" type="text/css" href="Css/flat-ui.min.css">
-<link rel="stylesheet" href="Css/iThing.css" type="text/css" />
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<link href='Css/dc.css' rel='stylesheet' type='text/css'>
-<link href='Css/bootstrap-select.css' rel='stylesheet' type='text/css'>
-<link rel="stylesheet" href="Css/LeafletStyleSheet.css" type="text/css"  />
-<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
-<link rel="stylesheet" href="Css/L.Control.Opencagesearch.css" />
-<link rel="stylesheet" href="Css/button1.css" />
-<link rel="stylesheet" type="text/css" href="Css/jquery.slidepanel.css">
-<link rel="stylesheet" href="Css/jquery.sidr.light.css">
-	<script src="src/Leaflet.draw.js"></script>
-	<link rel="stylesheet" href="dist/leaflet.draw.css" />
-
-	<script src="src/Toolbar.js"></script>
-	<script src="src/Tooltip.js"></script>
-
-	<script src="src/ext/GeometryUtil.js"></script>
-	<script src="src/ext/LatLngUtil.js"></script>
-	<script src="src/ext/LineUtil.Intersect.js"></script>
-	<script src="src/ext/Polygon.Intersect.js"></script>
-	<script src="src/ext/Polyline.Intersect.js"></script>
-
-
-	<script src="src/draw/DrawToolbar.js"></script>
-	<script src="src/draw/handler/Draw.Feature.js"></script>
-	<script src="src/draw/handler/Draw.SimpleShape.js"></script>
-	<script src="src/draw/handler/Draw.Polyline.js"></script>
-	<script src="src/draw/handler/Draw.Circle.js"></script>
-	<script src="src/draw/handler/Draw.Marker.js"></script>
-	<script src="src/draw/handler/Draw.Polygon.js"></script>
-	<script src="src/draw/handler/Draw.Rectangle.js"></script>
-
-
-	<script src="src/edit/EditToolbar.js"></script>
-	<script src="src/edit/handler/EditToolbar.Edit.js"></script>
-	<script src="src/edit/handler/EditToolbar.Delete.js"></script>
-
-	<script src="src/Control.Draw.js"></script>
-
-	<script src="src/edit/handler/Edit.Poly.js"></script>
-	<script src="src/edit/handler/Edit.SimpleShape.js"></script>
-	<script src="src/edit/handler/Edit.Circle.js"></script>
-	<script src="src/edit/handler/Edit.Rectangle.js"></script>
-	<script src="src/edit/handler/Edit.Marker.js"></script>
-
-
-<script src="GraphGeneration/functionA.js"></script>
+        <script src="GraphGeneration/functionA.js"></script>
 <style>
     h4 span {
       font-size: 18px;
@@ -70,50 +21,82 @@ and open the template in the editor.
       font-weight: normal;
     }
     #propertyvolume{
-        position:absolute;
-        
-    }
-    #salevol{
-        position:absolute;
-        top:200px;
-        
+       float: left;
+       position: relative;
+       top: 0px;
+
+ 
+   }
+    #salevolume{
+        float: left;
+        position: relative;
+        top: 0px;
+
+
     }
 </style>
     </head>
     <body>
-<div class='container' style='font: 12px sans-serif;'>
+                    <!-- Property Volume Chart -->
+                    <div class="row">
+                        <div class='span4' id='propertyvolume'>
+                            <h6>Property Volume
+                                <button type="button" class="btn btn-primary btn-xs" id="bar5" aria-label="Left Align">
+                                    <span class="glyphicon glyphicon-signal" aria-hidden="true"></span>
+                                </button>
+                                <button type="button" class="btn btn-danger btn-xs" id="pie5" aria-label="Left Align">
+                                    <span class="glyphicon glyphicon-adjust" aria-hidden="true"></span>
+                                </button>
+                                <span>
+                                    <a class="reset"
+                                       href="javascript:propertyVolumeRowChart.filterAll();dc.redrawAll();"
+                                       style="display: none;">
+                                        reset
+                                    </a>
+                                </span>
+                            </h6>
+                        </div>
+                    </div>
+                    <!-- Sale Volume Chart -->
+                    <div class="row">
+                        <div class='span4' id='salevolume'>
+                            <h6>Sale Volume
+                                <button type="button" class="btn btn-primary btn-xs" id="bar6" aria-label="Left Align">
+                                    <span class="glyphicon glyphicon-signal" aria-hidden="true"></span>
+                                </button>
+                                <button type="button" class="btn btn-danger btn-xs" id="pie6" aria-label="Left Align">
+                                    <span class="glyphicon glyphicon-adjust" aria-hidden="true"></span>
+                                </button>
+                                <span>
+                                    <a class="reset"
+                                       href="javascript:propertySaleVolumePieChart.filterAll();dc.redrawAll();"
+                                       style="display: none;">
+                                        reset
+                                    </a>
+                                </span>
+                            </h6>
+                        </div>
+                    </div>
+                       <!-- Tenure Volume Chart -->
+                    <div class="row">
+                        <div class='span4' id='tenurevolume'>
+                            <h6> Tenure Volume
+                                <button type="button" class="btn btn-primary btn-xs" id="bar7" aria-label="Left Align">
+                                    <span class="glyphicon glyphicon-signal" aria-hidden="true"></span>
+                                </button>
+                                <button type="button" class="btn btn-danger btn-xs" id="pie7" aria-label="Left Align">
+                                    <span class="glyphicon glyphicon-adjust" aria-hidden="true"></span>
+                                </button>
+                                <span>
+                                    <a class="reset"
+                                       href="javascript:propertyTenureVolumePieChart.filterAll();dc.redrawAll();"
+                                       style="display: none;">
+                                        reset
+                                    </a>
+                                </span>
+                            </h6>
+                        </div> 
+                    </div>
 
-  <div class='row'>
-    <div class='span4' id='propertyvolume'>
-        <h3>Property Volume
-               <button class="btn btn-info btn-mini" id="bar5">Bar</button>
-               <button class="btn btn-danger btn-mini" id="pie5">Pie</button>
-        <span>
-          <a class="reset"
-            href="javascript:propertyVolumeRowChart.filterAll();dc.redrawAll();"
-            style="display: none;">
-            reset
-          </a>
-        </span>
-      </h3>
-    </div>
-    <div class='4' id='salevol'>
-        <h4>Sale Volume
-           
-                <button class="btn btn-info btn-mini " id="bar6" >Bar</button>
-                <button class="btn btn-danger btn-mini" id="pie6">Pie</button>
-        <span>
-          <a class="reset"
-            href="javascript:propertyTenureVolumePieChart.filterAll();dc.redrawAll();"
-            style="display: none;">
-            reset
-          </a>
-        </span>
-      </h4>
-    </div>
-  </div>
- 
-
-</div>             
     </body>
 </html>

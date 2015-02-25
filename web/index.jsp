@@ -239,10 +239,11 @@
                     source: 'external.html',
                     displace: false,
                     onOpen: function () {
-                        document.getElementById('map').style.width = 600 + 'px';
+                        document.getElementById('map').style.width = 900 + 'px';
+                        document.getElementById('map').style.cssFloat = "left";
                     },
                     onClose: function () {
-                        document.getElementById('map').style.width = 1100 + 'px';
+                        document.getElementById('map').style.width = 1012 + 'px';
                         map.setView([1.3667, 103.8], 11);
                     }
                 });
@@ -252,18 +253,16 @@
                 $('#left-menu').sidr({
                     name: 'sidr-left',
                     side: 'left',
-                    speed: 550,
                     source: 'graphsforpolygon.html',
                     displace: false,
                     onOpen: function () {
                         opened = true;
-                        document.getElementById('map').style.width = 800 + 'px';
-                        document.getElementById('map').style.cssFloat = "left";
+                        document.getElementById('map').style.width = 900 + 'px';
+                        document.getElementById('map').style.cssFloat = "right";
                     },
                     onClose: function () {
                         opened = false;
-                        document.getElementById('map').style.width = 1100 + 'px';
-                        document.getElementById('map').style.cssFloat = "right";
+                        document.getElementById('map').style.width = 1012 + 'px';
                         map.setView([1.3667, 103.8], 11);
                     }
 
@@ -287,7 +286,7 @@
                 <div class="col-md-12" style="height: 55px">
                     <!-- navigation bar -->
                     <div class="row navigation-bar">
-                        <nav class="navbar navbar-default" role="navigation" style="background: black;">
+                        <nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="background: black;">
                             <div class="container-fluid">
                                 <div class="navbar-header">
                                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#demo-navbar-collapse">
@@ -386,25 +385,7 @@
                         </div>
                     </div>
                     <!-- Tenure Volume Chart -->
-                    <div class="row">
-                        <div class='span4' id='dc-propertyTenureVolume-chart'>
-                            <h6> Tenure Volume
-                                <button type="button" class="btn btn-primary btn-xs" id="bar3" aria-label="Left Align">
-                                    <span class="glyphicon glyphicon-signal" aria-hidden="true"></span>
-                                </button>
-                                <button type="button" class="btn btn-danger btn-xs" id="pie3" aria-label="Left Align">
-                                    <span class="glyphicon glyphicon-adjust" aria-hidden="true"></span>
-                                </button>
-                                <span>
-                                    <a class="reset"
-                                       href="javascript:propertyTenureVolumePieChart.filterAll();dc.redrawAll();"
-                                       style="display: none;">
-                                        reset
-                                    </a>
-                                </span>
-                            </h6>
-                        </div> 
-                    </div>
+                    
 
 
                 </div>

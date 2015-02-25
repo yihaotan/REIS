@@ -1,5 +1,9 @@
+var markers = new L.LayerGroup();
+var heatmapVolume = new L.LayerGroup();
+var heatmapPrice = new L.LayerGroup();
+
 function criteriastolayers(filteredData){
-    
+
     //Images for markers
     var newsaleexeccondoIcon = L.icon({iconUrl: 'Icons/greenexeccondo.png', iconSize: [40, 40]});
     var subsaleexeccondoIcon = L.icon({iconUrl: 'Icons/blueexeccondo.png', iconSize: [40, 40]});
@@ -211,6 +215,8 @@ function criteriastolayers(filteredData){
     heatmapPriceLayer.setData(testDataPrice);
    
     markers.addLayer(criteriaCluster);
+    map.addLayer(markers);
+
     heatmapVolume.addLayer(heatmapVolumeLayer);
     heatmapPrice.addLayer(heatmapPriceLayer);
     

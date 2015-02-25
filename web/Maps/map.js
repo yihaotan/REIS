@@ -3,6 +3,7 @@ var mainLayer;
 var searchCtrl;
 function init_function() {
         
+
     map = L.map('map').setView([1.3667,103.8], 11);//create map
 
     //create options for opencagemaps:Max 1500 hits per day
