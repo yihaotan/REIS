@@ -295,7 +295,7 @@
                                         <span class="icon-bar"></span>
                                         <span class="icon-bar"></span>
                                     </button>
-                                    <a class="navbar-brand" style="color:white" href="#">R</a>
+                                    <a class="navbar-brand" style="color:white" href="#">TEAM REALIS</a>
                                 </div>
                                 <div class="collapse navbar-collapse" id="demo-navbar-collapse">
                                     <ul class="nav navbar-nav">
@@ -305,19 +305,23 @@
                                         <li><a href="#">Contact</a></li>
                                         -->
                                     </ul>
-                                    <form class="navbar-form navbar-left pull-right" action="DBServlet">     
+                                    <form class="navbar-form navbar-left pull-left" action="DBServlet">     
                                         <div class="form-group">
-                                            <input type="text" class="form-control" name="planning_area" placeholder="Planning Area">
-                                            <input type="text" class="form-control" name="start_price" placeholder="Start Price">
-                                            <input type="text" class="form-control" name="end_price" placeholder="End Price">
-                                            <input type="text" class="form-control" name="start_size" placeholder="Start Size">
-                                            <input type="text" class="form-control" name="end_size" placeholder="End Size">
+                                            <input type="text" class="form-control" name="planning_area" placeholder="Planning Area" size="8">
+                                            <input type="text" class="form-control" name="start_price" placeholder="Start Price" size="5">
+                                            <input type="text" class="form-control" name="end_price" placeholder="End Price" size="5">
+                                            <input type="text" class="form-control" name="start_size" placeholder="Start Size" size="5">
+                                            <input type="text" class="form-control" name="end_size" placeholder="End Size" size="5">
                                             <button type="submit" class="btn btn-primary">Submit</button>
-                                            <button type="button" id="right-menu" class="btn btn-danger" aria-label="Left Align">
-                                                <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
-                                            </button>
+                                            
                                         </div>
+                                        
                                     </form>
+                                    <div class="navbar-form navbar-left pull-right"> 
+                                    <button type="button" id="right-menu" class="btn btn-danger" aria-label="Right Align">
+                                        <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
+                                    </button
+                                    </div>
                                 </div>
                             </div>
                         </nav>

@@ -305,7 +305,7 @@ function charting(geoJsonData) {
     //Intialise the charts
     // Transacted Volume vs Date (For Date Slider)
     dateVolumeBarChart.width(550)
-            .height(110)
+            .height(122)
             .dimension(dateDimension)
             .group(dateGroup)
             .elasticY(true)
@@ -641,7 +641,7 @@ function charting(geoJsonData) {
     //Psf histogram
     function plotPsfHistogram() {
         histogram.width(300)
-                .height(110)
+                .height(122)
                 .dimension(psfDimension)
                 .margins({
                     top: 0,
@@ -714,7 +714,7 @@ function charting(geoJsonData) {
     function plotPsfLineChart() {
         compositeControlChart
                 .width(400)
-                .height(110)
+                .height(122)
                 .transitionDuration(0)
                 .margins({
                     top: 10,
