@@ -108,12 +108,11 @@
             }
 
             .leaflet-control-layers-toggle {
-                background-image: url(Icons/LayerMap.jpg)!important;
-                width: 95px;
-                height: 95px;
+                width: 100px;
+                height: 100px;
                 position:absolute;
-                top:-10px;
-                right:-10px;
+                top:-40px;
+                right:-40px;
             }
             .leaflet-control-layers-expanded {
                 padding: 15px 15px 30px 15px;
@@ -304,13 +303,40 @@
                                         <li><a href="#">Contact</a></li>
                                         -->
                                     </ul>
+
+                                    <%
+                                        String planning_area = String.valueOf(request.getAttribute("planning_area"));
+                                        String start_price = String.valueOf(request.getAttribute("start_price"));
+                                        String end_price = String.valueOf(request.getAttribute("end_price"));
+                                        String start_size = String.valueOf(request.getAttribute("start_size"));
+                                        String end_size = String.valueOf(request.getAttribute("end_size"));
+
+                                        if (planning_area.equals("null")) {
+                                            planning_area = "";
+                                            start_price = "";
+                                            end_price = "";
+                                            start_size = "";
+                                            end_size = "";
+                                        }
+
+                                    %>
+
+
                                     <form class="navbar-form navbar-left pull-left" action="DBServlet">     
                                         <div class="form-group">
-                                            <input type="text" class="form-control" name="planning_area" placeholder="Planning Area" size="8" >
-                                            <input type="text" class="form-control" name="start_price" placeholder="Start Price" size="5">
-                                            <input type="text" class="form-control" name="end_price" placeholder="End Price" size="5">
-                                            <input type="text" class="form-control" name="start_size" placeholder="Start Size" size="5">
-                                            <input type="text" class="form-control" name="end_size" placeholder="End Size" size="5">
+                                            
+                                                <input type="text" class="form-control" name="planning_area" placeholder="Planning Area" size="8" value='<%=planning_area%>' >
+                                            
+                                            <div class="input-group">
+                                                <span class="input-group-addon">$</span>
+                                            <input type="text" class="form-control" name="start_price" placeholder="Start Price" size="3" value='<%=start_price%>' >
+                                            </div>
+                                            <div class="input-group">
+                                                <span class="input-group-addon">$</span>
+                                            <input type="text" class="form-control" name="end_price" placeholder="End Price" size="3" value='<%=end_price%>' >
+                                            </div>
+                                            <input type="text" class="form-control" name="start_size" placeholder="Start Size" size="5" value='<%=start_size%>' >
+                                            <input type="text" class="form-control" name="end_size" placeholder="End Size" size="5" value='<%=end_size%>' >
                                             <button type="submit" class="btn btn-primary">Submit</button>
                                         </div>
                                     </form>
@@ -547,14 +573,7 @@
                     });
         </script>
 
-        <%
-
-            String result = String.valueOf(request.getAttribute("result"));
-            String planning_area = String.valueOf(request.getAttribute("planning_area"));
-            String start_price = String.valueOf(request.getAttribute("start_price"));
-            String end_price = String.valueOf(request.getAttribute("end_price"));
-            String start_size = String.valueOf(request.getAttribute("start_size"));
-            String end_size = String.valueOf(request.getAttribute("end_size"));
+        <%            String result = String.valueOf(request.getAttribute("result"));
 
             if (!result.equals("null")) {
         %>
