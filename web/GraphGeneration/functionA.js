@@ -305,7 +305,7 @@ function charting(geoJsonData) {
     //Intialise the charts
     // Transacted Volume vs Date (For Date Slider)
     dateVolumeBarChart.width(550)
-            .height(80)
+            .height(110)
             .dimension(dateDimension)
             .group(dateGroup)
             .elasticY(true)
@@ -322,11 +322,11 @@ function charting(geoJsonData) {
     //remove the y axis ticks
     dateVolumeBarChart.yAxis().ticks(0);
     function propertyVolumePie() {
-        propertyVolumePieChart.width(130)
-                .height(80)
+        propertyVolumePieChart.width(300)
+                .height(160)
                 .transitionDuration(0)
-                .radius(40)
-                .innerRadius(10)
+                .radius(80)
+                .innerRadius(20)
                 .dimension(propertyVolumeDimension)
                 .title(function (d) {
                     return d.key + ": " + d.value;
@@ -361,7 +361,7 @@ function charting(geoJsonData) {
     //propertyVolumeRow properties
     function propertyVolumeRow() {
         propertyVolumeRowChart.width(300)
-                .height(100)
+                .height(160)
                 .transitionDuration(0)
                 .ordering(function (p) {
                     return -p.value;
@@ -424,7 +424,7 @@ function charting(geoJsonData) {
     // saleVolumePie properties
     function saleVolumePie() {
         propertySaleVolumePieChart.width(300)
-                .height(100)
+                .height(160)
                 .transitionDuration(0)
                 .radius(80)
                 .innerRadius(20)
@@ -450,7 +450,7 @@ function charting(geoJsonData) {
     //saleVolumeRow properties 
     function saleVolumeRow() {
         propertySaleVolumeRowChart.width(300)
-                .height(100)
+                .height(160)
                 .transitionDuration(0)
                 .ordering(function (p) {
                     return -p.value;
@@ -641,7 +641,7 @@ function charting(geoJsonData) {
     //Psf histogram
     function plotPsfHistogram() {
         histogram.width(300)
-                .height(80)
+                .height(110)
                 .dimension(psfDimension)
                 .margins({
                     top: 0,
@@ -714,7 +714,7 @@ function charting(geoJsonData) {
     function plotPsfLineChart() {
         compositeControlChart
                 .width(400)
-                .height(80)
+                .height(110)
                 .transitionDuration(0)
                 .margins({
                     top: 10,

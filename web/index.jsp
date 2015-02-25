@@ -143,7 +143,7 @@
             
             #map { 
                 position: relative;
-                height: 461px;
+                height: 420px;
                 width: 1012px;
                 float: left;
                 z-index: 0;
@@ -407,7 +407,7 @@
                     <div class="row">
                         <div class='span12' id='dc-dateVolume-chart'>
                             <h6>
-                                Transaction Volume vs Date
+                                <font color="white">Transaction Volume vs Date</font>
                                 <span>
                                     <a class="reset"
                                        href="javascript:dateVolumeBarChart.filterAll();dc.redrawAll();"
