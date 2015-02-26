@@ -324,16 +324,16 @@
 
                                     <form class="navbar-form navbar-left pull-left" action="DBServlet">     
                                         <div class="form-group">
-                                            
-                                                <input type="text" class="form-control" name="planning_area" placeholder="Planning Area" size="8" value='<%=planning_area%>' >
-                                            
+
+                                            <input type="text" class="form-control" name="planning_area" placeholder="Planning Area" size="8" value='<%=planning_area%>' >
+
                                             <div class="input-group">
                                                 <span class="input-group-addon">$</span>
-                                            <input type="text" class="form-control" name="start_price" placeholder="Start Price" size="3" value='<%=start_price%>' >
+                                                <input type="text" class="form-control" name="start_price" placeholder="Start Price" size="3" value='<%=start_price%>' >
                                             </div>
                                             <div class="input-group">
                                                 <span class="input-group-addon">$</span>
-                                            <input type="text" class="form-control" name="end_price" placeholder="End Price" size="3" value='<%=end_price%>' >
+                                                <input type="text" class="form-control" name="end_price" placeholder="End Price" size="3" value='<%=end_price%>' >
                                             </div>
                                             <input type="text" class="form-control" name="start_size" placeholder="Start Size" size="5" value='<%=start_size%>' >
                                             <input type="text" class="form-control" name="end_size" placeholder="End Size" size="5" value='<%=end_size%>' >
@@ -357,7 +357,8 @@
             <div class="row upper-content">
 
                 <!-- LEFT: charts -->
-                <div class="col-md-3 col-sm-6" style="background:">
+                <div class="col-md-3 col-sm-6">
+
 
                     <!-- DATA COUNT -->
                     <div class="row">
@@ -371,6 +372,7 @@
                             </span>
                         </div>
                     </div>
+
                     <!-- Property Volume Chart -->
                     <div class="row">
                         <div class='span4' id='dc-propertyVolume-chart'>
@@ -411,11 +413,16 @@
                             </h6>
                         </div>
                     </div>
+                    
                     <!-- Tenure Volume Chart -->
-
-
-
+                    
                 </div>
+
+                
+
+
+
+
 
                 <!-- RIGHT: map & date -->
                 <div class="col-md-9 col-sm-12">
@@ -430,7 +437,7 @@
 
             <div class="row lower-content">
                 <!-- LEFT: time series -->
-                <div class="col-md-5 col-sm-6" style="background: blue;">
+                <div class="col-md-5 col-sm-6">
                     <div class="row">
                         <div class='span12' id='dc-dateVolume-chart'>
                             <h6>
@@ -448,7 +455,7 @@
                 </div>
 
                 <!-- MIDDLE: price line -->
-                <div class="col-md-4 col-sm-6" style="background: yellow;">
+                <div class="col-md-4 col-sm-6">
                     <div class="row">
                         <div class='span6' id='dc-control-chart'>
                             <h6> Line Chart</h6>
@@ -457,7 +464,7 @@
                 </div>
 
                 <!-- RIGHT: histogram -->
-                <div class="col-md-3 col-sm-6" style="background: pink;">
+                <div class="col-md-3 col-sm-6">
                     <div class="row">
                         <div class='span6' id='dc-histogram'>
                             <h6>Histogram</h6>
