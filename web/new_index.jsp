@@ -1,14 +1,105 @@
+<%-- 
+    Document   : new_index
+    Created on : Mar 4, 2015, 12:28:56 AM
+    Author     : Zheng Boyang
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!doctype html>
 <html class="no-js">
     <head>
         <meta charset="UTF-8">
-        <title>Table</title>
+        <title>Test</title>
 
         <!--IE Compatibility modes-->
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
         <!--Mobile first-->
         <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="Css/flat-ui.min.css" type="text/css">
+        <link rel="stylesheet" href="Css/iThing.css" type="text/css">
+        <!--        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" type="text/css">
+                <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css" type="text/css">-->
+        <link rel='stylesheet' href='Css/dc.css' type='text/css'>
+        <link rel='stylesheet' href='Css/bootstrap-select.css' type='text/css'>
+        <link rel="stylesheet" href="Css/LeafletStyleSheet.css" type="text/css">
+        <!--        <link rel="stylesheet" href="Css/jquery-ui.css" type="text/css">-->
+        <link rel="stylesheet" href="Css/L.Control.Opencagesearch.css" type="text/css">
+        <link rel="stylesheet" href="Css/button1.css" type="text/css">
+        <link rel="stylesheet" href="Css/jquery.slidepanel.css" type="text/css">
+        <link rel="stylesheet" href="Css/jquery.sidr.light.css" type="text/css">
+        <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css"  type="text/css">
+        <link rel="stylesheet" href="Css/leaflet.draw.css" type="text/css">
+        <!--Unknown-->
+        <script src="http://maps.google.com/maps/api/js?v=3&sensor=false"></script>  
+        <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
+        <!--Unknown-->
+        <script src="Libraries/d3.v3.min.js" type="text/javascript"></script>
+        <script src="Libraries/crossfilter.js" type='text/javascript'></script>
+        <!--        <script src='Libraries/jquery.js' type='text/javascript'></script>
+                <script src="Libraries/bootstrap.min.js" type='text/javascript' ></script>-->
+        <script src="Libraries/leaflet.js" type='text/javascript'></script>
+        <script src="Libraries/leaflet-src.js" type='text/javascript'></script>
+        <script src="Libraries/Googlemap.js" type='text/javascript'></script>
+        <script src="Libraries/bootstrap-select.js" type='text/javascript'></script> 
+        <script src="Libraries/PruneCluster.js" type='text/javascript'></script>
+        <script src="Libraries/heatmap.js" type='text/javascript'></script> 
+        <script src="Libraries/leaflet-heatmap.js" type='text/javascript'></script>
+        <script src='Libraries/dc.js' type='text/javascript'></script>  
+        <script src="Libraries/L.Control.Opencagesearch.js" type='text/javascript'></script>
+        <script src="Libraries/jquery.slidepanel.js" type="text/javascript"></script>
+        <script src="Libraries/jquery.sidr.min.js" type="text/javascript"></script>
+        <!--        <script src="Libraries/modernizr.js" type="text/javascript"></script> -->
+        <script src="Libraries/reductio.js" type="text/javascript"></script> 
+        <script src="Libraries/Mergesort.js" type="text/javascript"></script>
+        <script src="Libraries/jQEditRangeSlider-min.js" type="text/javascript"></script>
+        <!--for drawing-->
+        <script src="Libraries/Leaflet.draw1.js"></script>
+        <script src="Libraries/Toolbar.js"></script>
+        <script src="Libraries/Tooltip.js"></script>
+        <script src="Libraries/ext/GeometryUtil.js"></script>
+        <script src="Libraries/ext/LatLngUtil.js"></script>
+        <script src="Libraries/ext/LineUtil.Intersect.js"></script>
+        <script src="Libraries/ext/Polygon.Intersect.js"></script>
+        <script src="Libraries/ext/Polyline.Intersect.js"></script>
+        <script src="Libraries/draw/DrawToolbar.js"></script>
+        <script src="Libraries/draw/handler/Draw.Feature.js"></script>
+        <script src="Libraries/draw/handler/Draw.SimpleShape.js"></script>
+        <script src="Libraries/draw/handler/Draw.Polyline.js"></script>
+        <script src="Libraries/draw/handler/Draw.Circle.js"></script>
+        <script src="Libraries/draw/handler/Draw.Marker.js"></script>
+        <script src="Libraries/draw/handler/Draw.Polygon.js"></script>
+        <script src="Libraries/draw/handler/Draw.Rectangle.js"></script>
+        <script src="Libraries/edit/EditToolbar.js"></script>
+        <script src="Libraries/edit/handler/EditToolbar.Edit.js"></script>
+        <script src="Libraries/edit/handler/EditToolbar.Delete.js"></script>
+        <script src="Libraries/Control.Draw.js"></script>
+        <script src="Libraries/edit/handler/Edit.Poly.js"></script>
+        <script src="Libraries/edit/handler/Edit.SimpleShape.js"></script>
+        <script src="Libraries/edit/handler/Edit.Circle.js"></script>
+        <script src="Libraries/edit/handler/Edit.Rectangle.js"></script>
+        <script src="Libraries/edit/handler/Edit.Marker.js"></script>
+        <!--for drawing-->
+
+        <!--Custom Function-->
+        <script src="Scripts/Upload/svy21.js"></script>
+        <script src="Scripts/Maps/mapGeneration.js"></script>
+        <script src='Scripts/Maps/mapCriteriaProcessing.js' type='text/javascript'></script>
+        <script src="Scripts/Maps/mapPolygon.js"></script>
+        <script src="Scripts/InteractiveUI/generatemapmarkersinbounds.js"></script> 
+        <script src="Scripts/Charts/chartUtilities.js"></script>
+        <script src="Scripts/Charts/chartGeneration.js"></script>
+        <script src="Scripts/Maps/mapUtilities.js"></script>
+        <script src="Scripts/Run/main.js"></script> 
+        <script src="Scripts/Run/run.js"></script>
+        <!--Custom function-->
+
+
+
+
+
+        
 
         <!-- Bootstrap -->
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/css/bootstrap.min.css">
@@ -46,6 +137,66 @@
 
         <!--Modernizr-->
         <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+        
+        <style>
+            #map { 
+                position: relative;
+                height: 420px;
+                width: 1012px;
+                float: left;
+                z-index: 0;
+            }  
+            #dc-propertyVolume-chart{
+                float: right;
+                position: relative;
+                top: 0px;
+                right: 15px;
+            }
+            #dc-propertySaleVolume-chart{
+                float: right;
+                position: relative;
+                top: 0px;
+                right: 15px;
+            }
+            #dc-propertyTenureVolume-chart{
+                float: right;
+                position: relative;
+                top: 0px;
+                right: 15px;
+            }
+            #count-table {
+                float: right;
+                position: relative;
+                top: 0px;
+                right: 15px;
+            }
+
+            #dc-dateVolume-chart{
+                float: left;
+                position: relative;
+                top: 0px;
+                left: 15px;
+            }
+            #dc-control-chart{
+                float: left;
+                position: relative;
+                top: 0px;
+                left: 15px;
+            }
+            #dc-histogram{
+                float: left;
+                position: relative;
+                top: 0px;
+                left: 15px;
+            }
+            #dc-psfBoxPlot-chart{
+                float: left;
+                position:absolute;
+                top:110px;
+                left: 236px;
+            }
+        </style>
+        
     </head>
 
 
@@ -110,7 +261,7 @@
                             <ul class="nav navbar-nav">
 
                                 <li class="active">
-                                    <a href="index.html">Data Visualisation</a> 
+                                    <a href="new_index.jsp">Data Visualisation</a> 
                                 </li>
 
                                 <!-- placeholder for accessibility module, if possible -->
@@ -118,6 +269,7 @@
                                     <a href="#">Accessibility</a>  
                                 </li>
 
+                                <!--Drop down is not working due to library conflict-->
                                 <li class='dropdown '>
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                         Dropdown
@@ -138,11 +290,55 @@
                 <!-- Second Row Control for Search/Retrieval -->
                 <header class="head">
 
-                    <!-- Deleted search bar here -->
+                    <!--Not really a search bar-->
+                    <div class="search-bar">
+                        <h3 style="float: right;">
+                            <i class="fa fa-filter"></i> &nbsp;Filtering By
+                        </h3>
+                    </div><!-- /.search-bar -->
 
                     <div class="main-bar">
-                        <h3>
-                            <i class="fa fa-filter"></i>&nbsp; Filtering Criteria | </h3>
+
+                        <!--The Legendary Data Retrieval Bar-->
+                        <%
+                            String planning_area = String.valueOf(request.getAttribute("planning_area"));
+                            String start_price = String.valueOf(request.getAttribute("start_price"));
+                            String end_price = String.valueOf(request.getAttribute("end_price"));
+                            String start_size = String.valueOf(request.getAttribute("start_size"));
+                            String end_size = String.valueOf(request.getAttribute("end_size"));
+
+                            if (planning_area.equals("null")) {
+                                planning_area = "";
+                                start_price = "";
+                                end_price = "";
+                                start_size = "";
+                                end_size = "";
+                            }
+
+                        %>
+
+
+                        <form class="navbar-form" action="DBServlet"> 
+
+                            <div class="form-group">
+
+                                <input type="text" class="form-control" name="planning_area" placeholder="Planning Area" size="8" value='<%=planning_area%>' >
+
+                                <div class="input-group">
+                                    <span class="input-group-addon">$</span>
+                                    <input type="text" class="form-control" name="start_price" placeholder="Start Price" size="3" value='<%=start_price%>' >
+                                </div>
+                                <div class="input-group">
+                                    <span class="input-group-addon">$</span>
+                                    <input type="text" class="form-control" name="end_price" placeholder="End Price" size="3" value='<%=end_price%>' >
+                                </div>
+                                <input type="text" class="form-control" name="start_size" placeholder="Start Size" size="5" value='<%=start_size%>' >
+                                <input type="text" class="form-control" name="end_size" placeholder="End Size" size="5" value='<%=end_size%>' >
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </form>
+
+
                     </div><!-- /.main-bar -->
 
                 </header><!-- /.head -->
@@ -202,47 +398,6 @@
                         </a> 
                     </li>
 
-                    <!-- Other Possible Functions Here -->
-                    <!--
-                    <li>
-                        <a href="chart.html">
-                            <i class="fa fa fa-bar-chart-o"></i>
-                            <span class="link-title">
-                                &nbsp;Charts
-                            </span> 
-                        </a> 
-                    </li>
-                    
-                    <li>
-                        <a href="calendar.html">
-                            <i class="fa fa-calendar"></i>
-                            <span class="link-title">
-                                &nbsp;Calendar
-                            </span> 
-                        </a> 
-                    </li>
-                    
-                    
-                    
-                    <li>
-                        <a href="grid.html">
-                            <i class="fa fa-columns"></i>
-                            <span class="link-title">
-                                &nbsp;Grid
-                            </span> 
-                        </a> 
-                    </li>
-                    
-                    <li>
-                        <a href="blank.html">
-                            <i class="fa fa-square-o"></i>
-                            <span class="link-title">
-                                &nbsp;Blank Page
-                            </span> 
-                        </a> 
-                    </li>
-                    -->
-
 
                     <!-- Lower Part of Menu-->
                     <li class="nav-divider"></li>
@@ -286,14 +441,39 @@
                                         <table id="dataTable" class="table table-bordered table-condensed table-hover table-striped">
                                         </table>
                                         -->
+
+                                        <!--TIME SERIES-->
+                                        <!-- Property Volume Chart -->
+                    <div class="row">
+                        <div class='span4' id='dc-propertyVolume-chart'>
+                            <h6>Property Volume
+                                <button type="button" class="btn btn-primary btn-xs" id="bar1" aria-label="Left Align">
+                                    <span class="glyphicon glyphicon-signal" aria-hidden="true"></span>
+                                </button>
+                                <button type="button" class="btn btn-danger btn-xs" id="pie1" aria-label="Left Align">
+                                    <span class="glyphicon glyphicon-adjust" aria-hidden="true"></span>
+                                </button>
+                                <span>
+                                    <a class="reset"
+                                       href="javascript:propertyVolumeRowChart.filterAll();dc.redrawAll();"
+                                       style="display: none;">
+                                        reset
+                                    </a>
+                                </span>
+                            </h6>
+                        </div>
+                    </div>
+
+
+
                                     </div>
                                 </div>
                             </div>
                         </div><!-- /.row -->
                         <!--End Time Series-->
-                        
-                        
-                        
+
+
+
                         <div class="row">
 
                             <!-- .col-lg-6 -->
@@ -765,4 +945,20 @@
             });
         </script>
         <script src="assets/js/style-switcher.min.js"></script>
+
+
+        <%
+            String result = String.valueOf(request.getAttribute("result"));
+            if (!result.equals("null")) {
+        %>
+        <script type="text/javascript">
+            var data = <%=result%>;
+            
+            generateAll(data);
+        </script>
+        <%
+            }
+        %>
+
+
     </body>

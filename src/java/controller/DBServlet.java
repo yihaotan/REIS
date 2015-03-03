@@ -71,7 +71,7 @@ public class DBServlet extends HttpServlet {
             request.setAttribute("end_size", end_size);
                     
             
-            RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("new_index.jsp");
             rd.forward(request, response);
             
         } catch (Exception e) {
@@ -79,7 +79,7 @@ public class DBServlet extends HttpServlet {
             // Send error (if any) back to homepage
             String error = "Error!";
             request.setAttribute("error", error);
-            RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("new_index.jsp");
             rd.forward(request, response);
             
         } finally {
