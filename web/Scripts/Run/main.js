@@ -128,7 +128,7 @@ function generateMapAndCharts(geoJsonData){
         return Math.ceil(d / 1000) * 1000;
     });
     function plotTimeChart(){
-        plotTimeBarChart(dateVolumeBarChart,dateDimension,dateGroup,550,122,1,10,getMinDate(geoJsonData),getMaxDate(geoJsonData),"%b %y");
+        plotTimeBarChart(dateVolumeBarChart,dateDimension,dateGroup,550,122,5,5,getMinDate(geoJsonData),getMaxDate(geoJsonData),"%b %y");
         filterMap(dateVolumeBarChart,propertyDimension);
     }
     function plotPropertyVolumePie() {
@@ -219,15 +219,15 @@ function generateMapAndCharts(geoJsonData){
         plotBoxPlotChart(boxPlotChart,780,220,10,0,20,75,"Psf $",propertyDimension,boxPlotPriceGroup);
     }
     function plotPsfHistogram(){
-        plotHistogramChart(histogram,300,122,psfDimension,psfGroup,0,0,40,40,getMinPsf(geoJsonData),getMaxPsf(geoJsonData),10,50,"Psf $");
+        plotHistogramChart(histogram,300,122,psfDimension,psfGroup,0,0,40,40,getMinPsf(geoJsonData),getMaxPsf(geoJsonData),10,50,5,"Psf $");
         filterMap(histogram,propertyDimension);
     }
     function plotPsmHistogram(){
-        plotHistogramChart(histogram,320,160,psmDimension,psmGroup,0,0,40,40,getMinPsm(geoJsonData),getMaxPsm(geoJsonData),10,50,"Psm $");
+        plotHistogramChart(histogram,320,160,psmDimension,psmGroup,0,0,40,40,getMinPsm(geoJsonData),getMaxPsm(geoJsonData),10,50,5,"Psm $");
         filterMap(histogram,propertyDimension);
     }
     function plotPriceHistogram(){
-        plotHistogramChart(histogram,300,80,priceDimension,priceGroup,0,0,40,40,getMinPrice(geoJsonData),getMaxPrice(geoJsonData),10,1000,"Price $");
+        plotHistogramChart(histogram,300,80,priceDimension,priceGroup,0,0,40,40,getMinPrice(geoJsonData),getMaxPrice(geoJsonData),10,1000,5,"Price $");
         filterMap(histogram,propertyDimension);
     }
     function plotPsfLineChart(){
@@ -283,7 +283,7 @@ function generateMapAndCharts(geoJsonData){
             }
             dc.renderAll();
         });
-        console.log("Are you here?")
+        console.log("Are you here?");
         $("#bar1").prop("disabled", true);
         $("#bar2").prop("disabled", true);
         $("#bar3").prop("disabled", true);

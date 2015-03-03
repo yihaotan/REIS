@@ -36,7 +36,7 @@ div.dc-chart {
 }
 
 .dc-chart .pie-slice {
-    fill: black;
+    fill: white;
     font-size: 12px;
     cursor: pointer;
 }
@@ -215,7 +215,7 @@ div.dc-chart {
 }
 
 .dc-chart g.row text {
-    fill: black;
+    fill: white;
     font-size: 12px;
     cursor: pointer;
 }
