@@ -1,4 +1,4 @@
-function plotTimeBarChart(chartName,dimensionName,groupName,widthSize,heightSize,gapSize,clipPaddingSize,minDate,maxDate,timeFormat){
+function plotTimeBarChart(chartName,dimensionName,groupName,widthSize,heightSize,gapSize,tickNumber,minDate,maxDate,timeFormat){
     chartName.width(widthSize)
              .height(heightSize)
              .dimension(dimensionName)
@@ -9,8 +9,9 @@ function plotTimeBarChart(chartName,dimensionName,groupName,widthSize,heightSize
              .x(d3.time.scale().domain([minDate, maxDate]))
              .round(d3.time.month.round)
              .xUnits(d3.time.months)
-             .clipPadding(clipPaddingSize)
-             .xAxis().tickFormat(d3.time.format(timeFormat));        
+             .xAxis().tickFormat(d3.time.format(timeFormat));   
+     
+     chartName.yAxis().ticks(tickNumber);
 }
 function plotPieChart(chartName,dimensionName,groupName,widthSize,heightSize,radiusSize,innerRadiusSize){
     chartName.width(widthSize)
@@ -96,9 +97,10 @@ function plotCompositeChart(compositeChartName,dimensionName,widthSize,heightSiz
             .compose([compose1,compose2,compose3])
             .xAxis().tickFormat(d3.time.format(timeFormat))
             .ticks(tickNumber);
-      
+            
+         compositeChartName.yAxis().ticks(tickNumber);
 }
-function plotHistogramChart(histogramName,widthSize,heightSize,dimensionName,groupName,marginsTop,marginsRight,marginsBottom,marginsLeft,minRange,maxRange,clipPaddingSize,xUnitsSize,xAxisLabelName){
+function plotHistogramChart(histogramName,widthSize,heightSize,dimensionName,groupName,marginsTop,marginsRight,marginsBottom,marginsLeft,minRange,maxRange,clipPaddingSize,xUnitsSize,tickNumber,xAxisLabelName){
          histogramName.width(widthSize)
             .height(heightSize)
             .dimension(dimensionName)
@@ -111,7 +113,10 @@ function plotHistogramChart(histogramName,widthSize,heightSize,dimensionName,gro
             .clipPadding(clipPaddingSize)
             .xUnits(function(){return xUnitsSize;})
             .elasticY(true)
-            .xAxis();
+            .xAxis()
+            .ticks(tickNumber);
+        
+        histogramName.yAxis().ticks(tickNumber);
 }
 //To be done
 function plotScatterPlotChart(){
