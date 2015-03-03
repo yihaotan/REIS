@@ -1,6 +1,5 @@
 var filtereddata;
-var globalDimension;
-function generateCharts(geoJsonData){
+function generateMapAndCharts(geoJsonData){
     dateVolumeBarChart = dc.barChart("#dc-dateVolume-chart");
     boxPlotChart = dc.boxPlot("#dc-psfBoxPlot-chart");
     compositeControlChart = dc.compositeChart("#dc-control-chart"); //change html
@@ -38,7 +37,7 @@ function generateCharts(geoJsonData){
     var propertyDimension = facts.dimension(function (d) {
         return d.propertyType;
     });
-    globalDimension = propertyDimension;
+    //globalDimension = propertyDimension;
     var boxPlotPsfGroup = propertyDimension.group().reduce(
             function (p, v) {
                 p.push(v.psf);
@@ -133,11 +132,17 @@ function generateCharts(geoJsonData){
         filterMap(dateVolumeBarChart,propertyDimension);
     }
     function plotPropertyVolumePie() {
-        var f1 = getFilters(propertyVolumeRowChart);
-        propertyVolumePieChart = dc.pieChart("#dc-propertyVolume-chart");
-        plotPieChart(propertyVolumePieChart,propertyVolumeDimension,propertyVolumeGroup,300,160,80,20);
-        applyFilter(propertyVolumePieChart, f1);
-        filterMap(propertyVolumePieChart,propertyDimension);
+       if (typeof propertyVolumeRowChart !== 'undefined'){
+            var f1 = getFilters(propertyVolumeRowChart);
+            propertyVolumePieChart = dc.pieChart("#dc-propertyVolume-chart");
+            plotPieChart(propertyVolumePieChart,propertyVolumeDimension,propertyVolumeGroup,300,160,80,20);
+            applyFilter(propertyVolumePieChart, f1);
+            filterMap(propertyVolumePieChart,propertyDimension);
+        }else{
+            propertyVolumePieChart = dc.pieChart("#dc-propertyVolume-chart");
+            plotPieChart(propertyVolumePieChart,propertyVolumeDimension,propertyVolumeGroup,300,160,80,20);
+            filterMap(propertyVolumePieChart,propertyDimension);
+        }   
     }
     function plotPropertyVolumeRow() {
         if (typeof propertyVolumePieChart !== 'undefined') {
@@ -153,11 +158,17 @@ function generateCharts(geoJsonData){
         }
     }
     function plotSaleVolumePie() {
-        var f1 = getFilters(propertySaleVolumeRowChart);
-        propertySaleVolumePieChart = dc.pieChart("#dc-propertySaleVolume-chart");
-        plotPieChart(propertySaleVolumePieChart,salesDimension,salesGroup,300,160,80,20);
-        applyFilter(propertySaleVolumePieChart, f1);
-        filterMap(propertySaleVolumePieChart,propertyDimension);
+      if (typeof propertySaleVolumeRowChart !== 'undefined' ){
+            var f1 = getFilters(propertySaleVolumeRowChart);
+            propertySaleVolumePieChart = dc.pieChart("#dc-propertySaleVolume-chart");
+            plotPieChart(propertySaleVolumePieChart,salesDimension,salesGroup,300,160,80,20);
+            applyFilter(propertySaleVolumePieChart, f1);
+            filterMap(propertySaleVolumePieChart,propertyDimension);
+        }else{
+            propertySaleVolumePieChart = dc.pieChart("#dc-propertySaleVolume-chart");
+            plotPieChart(propertySaleVolumePieChart,salesDimension,salesGroup,300,160,80,20);
+            filterMap(propertySaleVolumePieChart,propertyDimension);
+        }
     }
     function plotSaleVolumeRow() {
         if (typeof propertySaleVolumePieChart !== 'undefined') {
@@ -173,11 +184,17 @@ function generateCharts(geoJsonData){
         }
     }
     function plotTenureVolumePie() {
-        var f1 = getFilters(propertyTenureVolumeRowChart);
-        propertyTenureVolumePieChart = dc.pieChart("#dc-propertyTenureVolume-chart");
-        plotPieChart(propertyTenureVolumePieChart,tenureDimension,tenureGroup,300,160,80,20);
-        applyFilter(propertyTenureVolumePieChart, f1);
-        filterMap(propertyTenureVolumePieChart,propertyDimension);
+        if (typeof propertyTenureVolumeRowChart !== 'undefined'){
+            var f1 = getFilters(propertyTenureVolumeRowChart);
+            propertyTenureVolumePieChart = dc.pieChart("#dc-propertyTenureVolume-chart");
+            plotPieChart(propertyTenureVolumePieChart,tenureDimension,tenureGroup,300,160,80,20);
+            applyFilter(propertyTenureVolumePieChart, f1);
+            filterMap(propertyTenureVolumePieChart,propertyDimension);
+        }else{
+            propertyTenureVolumePieChart = dc.pieChart("#dc-propertyTenureVolume-chart");
+            plotPieChart(propertyTenureVolumePieChart,tenureDimension,tenureGroup,300,160,80,20);
+            filterMap(propertyTenureVolumePieChart,propertyDimension);
+        }
     }
     function plotTenureVolumeRow() {
         if (typeof propertyTenureVolumePieChart !== 'undefined') {
@@ -225,7 +242,7 @@ function generateCharts(geoJsonData){
         compose2 = plotLineChart(compositeControlChart,dateDimension,datePs,Group,"Median Psm",5,"blue","median",dateFormat);
         compose3 = plotLineChart(compositeControlChart,dateDimension,datePsmGroup,"Max Psm",5,"red","max",dateFormat);
         plotCompositeChart(compositeControlChart,dateDimension,400,122,10,0,40,60,"Psm $",getMinDate(geoJsonData),getMaxDate(geoJsonData),dateVolumeBarChart,compose1,compose2,compose3,"%b %y",5);
-       filterMap(compositeControlChart,propertyDimension);
+        filterMap(compositeControlChart,propertyDimension);
     }
     function plotPriceLineChart(){
         compose1 = plotLineChart(compositeControlChart,dateDimension,datePriceGroup,"Min Psf",5,"green","min",dateFormat);
@@ -245,13 +262,7 @@ function generateCharts(geoJsonData){
     plotTenureVolumeRow();
     plotPsfBoxPlot();
     plotPsfLineChart();
-}
-function generateMap(){
-    plotMapLayers(globalDimension);
-}
-function generateAll1(geoJsonData){
-    generateCharts(geoJsonData);
-    generateMap();
+    plotMapLayers(propertyDimension);
     
     $(document).ready(function () {
         $("#dc-psfBoxPlot-chart").on('change', function () {
@@ -272,6 +283,7 @@ function generateAll1(geoJsonData){
             }
             dc.renderAll();
         });
+        console.log("Are you here?")
         $("#bar1").prop("disabled", true);
         $("#bar2").prop("disabled", true);
         $("#bar3").prop("disabled", true);
@@ -311,8 +323,10 @@ function generateAll1(geoJsonData){
             plotTenureVolumePie();
             dc.renderAll();
         });
+        
     });  
     
-    dc.renderAll();
 }
+
+
 

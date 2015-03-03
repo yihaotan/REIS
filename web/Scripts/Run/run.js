@@ -1,6 +1,4 @@
 function generateAll(geoJsonData){
-    generateCharts(geoJsonData);
-    generateMap();
-    //generateInteractivity();
+    generateMapAndCharts(geoJsonData);
     dc.renderAll();
 }

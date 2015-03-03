@@ -70,7 +70,7 @@
         <script src="Libraries/edit/handler/Edit.Rectangle.js"></script>
         <script src="Libraries/edit/handler/Edit.Marker.js"></script>
         <!--for drawing-->
-
+  
         <!--Custom Function-->
         <script src="Scripts/Upload/dropzone.js"></script>
         <script src="Scripts/Upload/svy21.js"></script>
@@ -81,11 +81,10 @@
         <script src="Scripts/Charts/chartUtilities.js"></script>
         <script src="Scripts/Charts/chartGeneration.js"></script>
         <script src="Scripts/Maps/mapUtilities.js"></script>
-
-        <script src="Scripts/Run/test.js"></script>
-
-        <!--Custom Function-->
-
+        <script src="Scripts/Run/main.js"></script> 
+        <script src="Scripts/Run/run.js"></script>
+        <!--Custom function-->
+        
         <style type="text/css"></style>
         <style>
             .header {
@@ -293,11 +292,8 @@
                                         }
 
                                     %>
-                                            
-                                            
-                                            
-                                            
-                                            
+
+
                                     <form class="navbar-form navbar-left pull-left" action="DBServlet">     
                                         <div class="form-group">
 
@@ -389,12 +385,12 @@
                             </h6>
                         </div>
                     </div>
-
+                    
                     <!-- Tenure Volume Chart -->
-
+                    
                 </div>
 
-
+                
 
 
 
@@ -453,7 +449,7 @@
 
 
             <script>
-            init_function();
+                init_function();
             </script>
 
             <div class='container' style='font: 12px sans-serif;'  >
@@ -561,9 +557,8 @@
             if (!result.equals("null")) {
         %>
         <script type="text/javascript">
-            var globalDimension;
             var data = <%=result%>;
-            generateCharts(data);
+            generateAll(data);
         </script>
         <%
             }
