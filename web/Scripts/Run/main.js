@@ -4,7 +4,7 @@ function generateMapAndCharts(geoJsonData){
     //boxPlotChart = dc.boxPlot("#dc-psfBoxPlot-chart");
     //compositeControlChart = dc.compositeChart("#dc-control-chart"); //change html
     //histogram = dc.barChart("#dc-histogram");
-    dataTable = dc.dataTable("#dataTable");
+    dataTable = dc.dataTable("#dc-table-graph");
     
     var cv = new SVY21();
     //Charts
@@ -261,7 +261,7 @@ function generateMapAndCharts(geoJsonData){
         filterMap(compositeControlChart,propertyDimension);
     }
     function plotTable(){
-         plotDataTable(dataTable,500,600,dateDimension,20);
+         plotDataTable(dataTable,500,600,dateDimension,300000);
     }
     dc.dataCount(".dc-data-count")
             .dimension(facts)

@@ -52,11 +52,17 @@ public class DBServlet extends HttpServlet {
             // Access DAO to retrieve data
             TransactionDAO tdao = new TransactionDAO();
             
-            ArrayList<Transaction> result = tdao.retrieveByCriteria(
+            ArrayList<Transaction> result = new ArrayList<Transaction>();
+            
+            if (planning_area.equals("All")) {
+                result = tdao.retrieveAll();
+            } else {
+                result = tdao.retrieveByCriteria(
                     planning_area, 
                     start_price, end_price, 
                     start_size, end_size);
-            
+            }
+             
             // Convert to JSON
             JsonArray transactionList = tdao.toJSON(result);
             Gson gson = new GsonBuilder().setPrettyPrinting().create();

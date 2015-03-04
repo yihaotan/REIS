@@ -200,6 +200,7 @@
             }
             #dc-table-graph{
                 position: relative;
+                max-width: 100%;
             }
         </style>
 
@@ -482,7 +483,7 @@
 
                                         <div class="toolbar">
                                             <div class="btn-group">
-                                                <a href="#defaultTable" data-toggle="collapse" class="btn btn-sm btn-default minimize-box">
+                                                <a href="#dateVolume" data-toggle="collapse" class="btn btn-sm btn-default minimize-box">
                                                     <i class="fa fa-angle-up"></i>
                                                 </a> 
                                                 <a class="btn btn-danger btn-sm close-box">
@@ -493,12 +494,7 @@
                                     </header>
 
 
-                                    <div id="defaultTable" class="body collapse in">
-                                        <!--
-                                        <pre class="prettyprint linenums">
-                                            Time Series Chart Here
-                                        </pre>
-                                        -->
+                                    <div id="dateVolume" class="body collapse in">
 
                                         <!-- TIME SERIES -->
                                         <div class="row">
@@ -531,25 +527,28 @@
                             <div class="col-lg-4 ">
                                 <div class="box">
                                     <header>
-                                        <h5>LEFT</h5>
+                                        <div class="icons">
+                                            <i class="fa fa-bar-chart-o"></i>
+                                        </div>
+                                        <h5>Basic Charts</h5>
+
                                         <div class="toolbar">
-                                            <span class="label label-success">label</span> 
+                                            <div class="btn-group">
+                                                <a href="#basicCharts" data-toggle="collapse" class="btn btn-sm btn-default minimize-box">
+                                                    <i class="fa fa-angle-up"></i>
+                                                </a> 
+                                                <a class="btn btn-danger btn-sm close-box">
+                                                    <i class="fa fa-times"></i>
+                                                </a> 
+                                            </div>
                                         </div>
                                     </header>
 
-
-
-
-
-                                    <div class="body">
-                                        <pre class="prettyprint linenums">
-                                            By Property Type
-                                        </pre>
-
+                                    <div id="basicCharts" class="body collapse in">
                                         <!-- Property Volume Chart -->
                                         <div class="row">
                                             <div id='dc-propertyVolume-chart'>
-                                                <h6>Property Volume
+                                                <h6><strong>Property Volume</strong>
                                                     <button type="button" class="btn btn-primary btn-xs" id="bar1" aria-label="Left Align">
                                                         <span class="glyphicon glyphicon-signal" aria-hidden="true"></span>
                                                     </button>
@@ -566,20 +565,10 @@
                                                 </h6>
                                             </div>
                                         </div>
-
-                                    </div>
-
-
-
-                                    <div class="body">
-                                        <pre class="prettyprint linenums">
-                                            By Sale Type
-                                        </pre>
-
-                                        <!--                                         Sale Volume Chart -->
+                                        <!-- Sale Volume Chart -->
                                         <div class="row">
                                             <div id='dc-propertySaleVolume-chart'>
-                                                <h6>Sale Volume
+                                                <h6><strong>Sale Volume</strong>
                                                     <button type="button" class="btn btn-primary btn-xs" id="bar2" aria-label="Left Align">
                                                         <span class="glyphicon glyphicon-signal" aria-hidden="true"></span>
                                                     </button>
@@ -596,26 +585,14 @@
                                                 </h6>
                                             </div>
                                         </div>
-
-                                    </div>
-
-
-
-
-
-                                    <div class="body">
-                                        <pre class="prettyprint linenums">
-                                            By Tenure Type
-                                        </pre>
-
                                         <!-- Tenure Volume Chart -->
                                         <div class="row">
                                             <div id='dc-propertyTenureVolume-chart'>
-                                                <h4> Tenure Volume
-                                                    <button type="button" class="btn btn-primary btn-mini" id="bar3" aria-label="Left Align">
+                                                <h6><strong>Tenure Volume</strong>
+                                                    <button type="button" class="btn btn-primary btn-xs" id="bar3" aria-label="Left Align">
                                                         <span class="glyphicon glyphicon-signal" aria-hidden="true"></span>
                                                     </button>
-                                                    <button type="button" class="btn btn-danger btn-mini" id="pie3" aria-label="Left Align">
+                                                    <button type="button" class="btn btn-danger btn-xs" id="pie3" aria-label="Left Align">
                                                         <span class="glyphicon glyphicon-adjust" aria-hidden="true"></span>
                                                     </button>
                                                     <span>
@@ -625,74 +602,49 @@
                                                             reset
                                                         </a>
                                                     </span>
-                                                </h4>
+                                                </h6>
                                             </div> 
                                         </div>
-
                                     </div>
-
-
-
-
                                 </div>
-                            </div>
+                            </div><!--End of col-lg-4 aka LEFT-->
 
                             <!-- Right Pane for Map and Table-->
                             <div class="col-lg-8 ">
                                 <div class="box">
                                     <header>
-                                        <h5>RIGHT</h5>
+                                        <div class="icons">
+                                            <i class="fa fa-bar-chart-o"></i>
+                                        </div>
+                                        <h5>Geospatial View</h5>
+
                                         <div class="toolbar">
-                                            <span class="label label-success">label</span> 
+                                            <div class="btn-group">
+                                                <a href="#mapView" data-toggle="collapse" class="btn btn-sm btn-default minimize-box">
+                                                    <i class="fa fa-angle-up"></i>
+                                                </a> 
+                                                <a class="btn btn-danger btn-sm close-box">
+                                                    <i class="fa fa-times"></i>
+                                                </a> 
+                                            </div>
                                         </div>
                                     </header>
-
-
-
-                                    <div class="body">
-                                        <!--                                        <pre class="prettyprint linenums">
-                                                                                    Map
-                                                                                </pre>-->
+                                    <div id="mapView" class="body collapse in">
+                                        <!--MAP-->
                                         <div id="map"></div>
-                                    </div>
 
+                                        <!--Something else-->
 
-
-
-                                    <div class="body">
                                         <pre class="prettyprint linenums">
-                                            Table
+                                                Something else
                                         </pre>
 
-<!--                                        <div class="row"> 
-                                            <table id="dc-table-graph" class="table table-bordered table-condensed table-hover table-striped">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Project Name</th>
-                                                        <th>Property Type</th>
-                                                        <th>Address</th>
-                                                        <th>Date</th>
-                                                        <th>Size</th>
-                                                        <th>Price</th>
-                                                        <th>Area</th>
-                                                        <th>Postal District</th>
-                                                        <th>Postal Sector</th>
-                                                    </tr>
-                                                </thead>
-                                            </table>
-                                        </div>-->
 
                                     </div>
-
-
-
-
                                 </div>
-                            </div>
+                            </div><!-- RIGHT -->
+
                         </div><!-- /.row -->
-
-
-
 
                         <!--Begin Datatables-->
                         <div class="row">
@@ -702,10 +654,21 @@
                                         <div class="icons">
                                             <i class="fa fa-table"></i>
                                         </div>
-                                        <h5>Dynamic Table</h5>
+                                        <h5>Dynamic Table View</h5>
+
+                                        <div class="toolbar">
+                                            <div class="btn-group">
+                                                <a href="#dynamicTable" data-toggle="collapse" class="btn btn-sm btn-default minimize-box">
+                                                    <i class="fa fa-angle-up"></i>
+                                                </a> 
+                                                <a class="btn btn-danger btn-sm close-box">
+                                                    <i class="fa fa-times"></i>
+                                                </a> 
+                                            </div>
+                                        </div>
                                     </header>
-                                    <div id="collapse4" class="body">
-                                        <table id="dataTable" class="table table-bordered table-condensed table-hover table-striped">
+                                    <div id="dynamicTable" class="body collapse in">
+                                        <table id="dc-table-graph" class="table table-bordered table-condensed table-hover table-striped">
                                             <thead>
                                                 <tr>
                                                     <th>Project Name</th>
@@ -719,20 +682,7 @@
                                                     <th>Postal Sector</th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <th>Sample Project</th>
-                                                    <th>Condominium</th>
-                                                    <th>Singapore Address</th>
-                                                    <th>Today</th>
-                                                    <th>100</th>
-                                                    <th>500000</th>
-                                                    <th>200</th>
-                                                    <th>0</th>
-                                                    <th>0</th>
-                                                </tr>
-                                       
-                                            </tbody>
+                                            
                                         </table>
                                     </div>
                                 </div>
