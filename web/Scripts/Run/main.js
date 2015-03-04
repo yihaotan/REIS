@@ -4,15 +4,15 @@ function generateMapAndCharts(geoJsonData){
     //boxPlotChart = dc.boxPlot("#dc-psfBoxPlot-chart");
     //compositeControlChart = dc.compositeChart("#dc-control-chart"); //change html
     //histogram = dc.barChart("#dc-histogram");
-     //propertyVolumeRowChart = dc.rowChart("#dc-propertyVolume-chart");
+    dataTable = dc.dataTable("#dc-table-graph");
     
     var cv = new SVY21();
     //Charts
     geoJsonData.forEach(function (d) {
         d.projectName = d.properties.PROJECT_NAME;
         d.address = d.properties.ADDRESS;
-        d.areasqm = d.properties.AREA_SQM;
-        d.price = d.properties.TRANSACTED_PRICE;
+        d.areasqm = +d.properties.AREA_SQM;
+        d.price = +d.properties.TRANSACTED_PRICE;
         d.psm = +d.properties.UNIT_PRICE_PSM;
         d.psf = +d.properties.UNIT_PRICE_PSF;
         d.date = parseDate(d.properties.CONTRACT_DATE);
@@ -260,6 +260,9 @@ function generateMapAndCharts(geoJsonData){
         plotCompositeChart(compositeControlChart,dateDimension,400,122,10,0,40,60,"Psf $",getMinDate(geoJsonData),getMaxDate(geoJsonData),dateVolumeBarChart,compose1,compose2,compose3,"%b %y",5);
         filterMap(compositeControlChart,propertyDimension);
     }
+    function plotTable(){
+         plotDataTable(dataTable,500,600,dateDimension,20);
+    }
     dc.dataCount(".dc-data-count")
             .dimension(facts)
             .group(all);
@@ -268,6 +271,7 @@ function generateMapAndCharts(geoJsonData){
     plotPropertyVolumeRow();
     plotSaleVolumeRow();
     plotTenureVolumeRow();
+    plotTable();
     //plotPsfLineChart();
    
     plotMapLayers(propertyDimension);

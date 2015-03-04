@@ -87,6 +87,11 @@
         <script src="Scripts/InteractiveUI/generatemapmarkersinbounds.js"></script> 
         <script src="Scripts/Charts/chartUtilities.js"></script>
         <script src="Scripts/Charts/chartGeneration.js"></script>
+
+        <script src="Scripts/Charts/tableGeneration.js"></script>
+
+
+
         <script src="Scripts/Maps/mapUtilities.js"></script>
         <script src="Scripts/Run/main.js"></script> 
         <script src="Scripts/Run/run.js"></script>
@@ -250,7 +255,10 @@
                             <div class="btn-group">
                                 <a href="login.html" data-toggle="tooltip" data-original-title="Logout" data-placement="bottom" class="btn btn-metis-1 btn-sm">
                                     <i class="fa fa-power-off"></i>
-                                </a> 
+                                </a>
+                                <a data-toggle="modal" data-original-title="Help" data-placement="bottom" class="btn btn-default btn-sm" href="#helpModal">
+                                    <i class="fa fa-question"></i>
+                                </a>
                             </div>
 
                             <div class="btn-group">
@@ -276,7 +284,7 @@
                                     <a href="#">Accessibility</a>  
                                 </li>
 
-                                <!--Drop down is not working due to library conflict-->
+                                <!--Drop down might not work due to library conflict-->
                                 <li class='dropdown '>
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                         Dropdown
@@ -324,6 +332,7 @@
 
                         %>
                         <form class="navbar-form" action="DBServlet"> 
+
 
                             <div class="form-group">
 
@@ -439,9 +448,9 @@
                                                     <strong>
                                                         <i class="glyphicon glyphicon-zoom-in"></i> 
                                                         You have selected
-                                                        <span class="filter-count"></span>
+                                                        <span class="filter-count">0</span>
                                                         out of 
-                                                        <span class="total-count"></span>
+                                                        <span class="total-count">0</span>
                                                         records   
                                                     </strong>
                                                 </span>
@@ -459,14 +468,6 @@
 
 
                             </div>
-                        </div>
-
-
-
-
-                        <!-- DATA COUNT -->
-                        <div class="row">
-
                         </div>
 
 
@@ -510,6 +511,11 @@
 
                                                 </h6>
                                             </div>
+                                            
+                                            
+                                            <!--PUT ANOTHER CHART HERE @YIHAO-->
+                                            
+                                            
                                         </div>
                                     </div>         
 
@@ -660,6 +666,25 @@
                                         <pre class="prettyprint linenums">
                                             Table
                                         </pre>
+                                        
+                                        <div class="row"> 
+                                        <table id="dc-table-graph" class="table table-bordered table-condensed table-hover table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>Project Name</th>
+                                                    <th>Property Type</th>
+                                                    <th>Address</th>
+                                                    <th>Date</th>
+                                                    <th>Size</th>
+                                                    <th>Price</th>
+                                                    <th>Area</th>
+                                                    <th>Postal District</th>
+                                                    <th>Postal Sector</th>
+                                                </tr>
+                                            </thead>
+                                        </table>
+                                            </div>
+
                                     </div>
 
 
@@ -668,6 +693,131 @@
                                 </div>
                             </div>
                         </div><!-- /.row -->
+
+
+
+
+                        <!--Begin Datatables-->
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="box">
+                                    <header>
+                                        <div class="icons">
+                                            <i class="fa fa-table"></i>
+                                        </div>
+                                        <h5>Dynamic Table</h5>
+                                    </header>
+                                    <div id="collapse4" class="body">
+                                        <table id="dataTable" class="table table-bordered table-condensed table-hover table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>Rendering engine</th>
+                                                    <th>Browser</th>
+                                                    <th>Platform(s)</th>
+                                                    <th>Engine version</th>
+                                                    <th>CSS grade</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>KHTML</td>
+                                                    <td>Konqureror 3.3</td>
+                                                    <td>KDE 3.3</td>
+                                                    <td>3.3</td>
+                                                    <td>A</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>KHTML</td>
+                                                    <td>Konqureror 3.5</td>
+                                                    <td>KDE 3.5</td>
+                                                    <td>3.5</td>
+                                                    <td>A</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Tasman</td>
+                                                    <td>Internet Explorer 4.5</td>
+                                                    <td>Mac OS 8-9</td>
+                                                    <td>-</td>
+                                                    <td>X</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Tasman</td>
+                                                    <td>Internet Explorer 5.1</td>
+                                                    <td>Mac OS 7.6-9</td>
+                                                    <td>1</td>
+                                                    <td>C</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Tasman</td>
+                                                    <td>Internet Explorer 5.2</td>
+                                                    <td>Mac OS 8-X</td>
+                                                    <td>1</td>
+                                                    <td>C</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Misc</td>
+                                                    <td>NetFront 3.1</td>
+                                                    <td>Embedded devices</td>
+                                                    <td>-</td>
+                                                    <td>C</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Misc</td>
+                                                    <td>NetFront 3.4</td>
+                                                    <td>Embedded devices</td>
+                                                    <td>-</td>
+                                                    <td>A</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Misc</td>
+                                                    <td>Dillo 0.8</td>
+                                                    <td>Embedded devices</td>
+                                                    <td>-</td>
+                                                    <td>X</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Misc</td>
+                                                    <td>Links</td>
+                                                    <td>Text only</td>
+                                                    <td>-</td>
+                                                    <td>X</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Misc</td>
+                                                    <td>Lynx</td>
+                                                    <td>Text only</td>
+                                                    <td>-</td>
+                                                    <td>X</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Misc</td>
+                                                    <td>IE Mobile</td>
+                                                    <td>Windows Mobile 6</td>
+                                                    <td>-</td>
+                                                    <td>C</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Misc</td>
+                                                    <td>PSP browser</td>
+                                                    <td>PSP</td>
+                                                    <td>-</td>
+                                                    <td>C</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Other browsers</td>
+                                                    <td>All others</td>
+                                                    <td>-</td>
+                                                    <td>-</td>
+                                                    <td>U</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- /.row -->
+
+                        <!--End Datatables-->
 
 
 
@@ -756,8 +906,7 @@
                     </div>
                     <div class="modal-body">
                         <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                            in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                            This is it!
                         </p>
                     </div>
                     <div class="modal-footer">
@@ -792,6 +941,7 @@
         <script>
             $(function () {
                 Metis.MetisTable();
+                Metis.formGeneral();
                 //Metis.metisSortable();
             });
         </script>
