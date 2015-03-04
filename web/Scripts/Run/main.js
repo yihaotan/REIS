@@ -1,9 +1,11 @@
 var filtereddata;
 function generateMapAndCharts(geoJsonData){
     dateVolumeBarChart = dc.barChart("#dc-dateVolume-chart");
-    boxPlotChart = dc.boxPlot("#dc-psfBoxPlot-chart");
-    compositeControlChart = dc.compositeChart("#dc-control-chart"); //change html
-    histogram = dc.barChart("#dc-histogram");
+    //boxPlotChart = dc.boxPlot("#dc-psfBoxPlot-chart");
+    //compositeControlChart = dc.compositeChart("#dc-control-chart"); //change html
+    //histogram = dc.barChart("#dc-histogram");
+     //propertyVolumeRowChart = dc.rowChart("#dc-propertyVolume-chart");
+    
     var cv = new SVY21();
     //Charts
     geoJsonData.forEach(function (d) {
@@ -144,6 +146,11 @@ function generateMapAndCharts(geoJsonData){
             filterMap(propertyVolumePieChart,propertyDimension);
         }   
     }
+    /*function plotPropertyVolumeRow1(){
+        plotRowChart(propertyVolumeRowChart,propertyVolumeDimension,propertyVolumeGroup,300,160,3,5);
+        filterMap(propertyVolumeRowChart,propertyDimension);
+        console.log("reach the end of new method");
+    }*/
     function plotPropertyVolumeRow() {
         if (typeof propertyVolumePieChart !== 'undefined') {
             var f2 = getFilters(propertyVolumePieChart);
@@ -151,10 +158,12 @@ function generateMapAndCharts(geoJsonData){
             plotRowChart(propertyVolumeRowChart,propertyVolumeDimension,propertyVolumeGroup,300,160,3,5);
             applyFilter(propertyVolumeRowChart, f2);
             filterMap(propertyVolumeRowChart,propertyDimension);
+            propertyVolumeRowChart;
         } else {
             propertyVolumeRowChart = dc.rowChart("#dc-propertyVolume-chart");
             plotRowChart(propertyVolumeRowChart,propertyVolumeDimension,propertyVolumeGroup,300,160,3,5);
             filterMap(propertyVolumeRowChart,propertyDimension);
+            propertyVolumeRowChart;
         }
     }
     function plotSaleVolumePie() {
@@ -256,12 +265,11 @@ function generateMapAndCharts(geoJsonData){
             .group(all);
     
     plotTimeChart();
-    plotPsfHistogram();
     plotPropertyVolumeRow();
     plotSaleVolumeRow();
     plotTenureVolumeRow();
-    plotPsfBoxPlot();
-    plotPsfLineChart();
+    //plotPsfLineChart();
+   
     plotMapLayers(propertyDimension);
     
     $(document).ready(function () {
@@ -283,7 +291,7 @@ function generateMapAndCharts(geoJsonData){
             }
             dc.renderAll();
         });
-        console.log("Are you here?");
+        
         $("#bar1").prop("disabled", true);
         $("#bar2").prop("disabled", true);
         $("#bar3").prop("disabled", true);

@@ -1,15 +1,8 @@
-<%-- 
-    Document   : new_index
-    Created on : Mar 4, 2015, 12:28:56 AM
-    Author     : Zheng Boyang
---%>
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!doctype html>
 <html class="no-js">
     <head>
         <meta charset="UTF-8">
-        <title>Test</title>
+        <title>New</title>
 
         <!--IE Compatibility modes-->
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,7 +10,11 @@
         <!--Mobile first-->
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <link rel="stylesheet" href="Css/flat-ui.min.css" type="text/css">
+
+
+
+
+        <!--        <link rel="stylesheet" href="Css/flat-ui.min.css" type="text/css">-->
         <link rel="stylesheet" href="Css/iThing.css" type="text/css">
         <!--        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" type="text/css">
                 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css" type="text/css">-->
@@ -37,8 +34,8 @@
         <!--Unknown-->
         <script src="Libraries/d3.v3.min.js" type="text/javascript"></script>
         <script src="Libraries/crossfilter.js" type='text/javascript'></script>
-        <!--        <script src='Libraries/jquery.js' type='text/javascript'></script>
-                <script src="Libraries/bootstrap.min.js" type='text/javascript' ></script>-->
+        <script src='Libraries/jquery.js' type='text/javascript'></script>
+        <script src="Libraries/bootstrap.min.js" type='text/javascript' ></script>
         <script src="Libraries/leaflet.js" type='text/javascript'></script>
         <script src="Libraries/leaflet-src.js" type='text/javascript'></script>
         <script src="Libraries/Googlemap.js" type='text/javascript'></script>
@@ -99,7 +96,12 @@
 
 
 
-        
+
+
+
+
+
+
 
         <!-- Bootstrap -->
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/css/bootstrap.min.css">
@@ -112,7 +114,9 @@
 
         <!-- metisMenu stylesheet -->
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/metisMenu/1.1.3/metisMenu.min.css">
-        <link rel="stylesheet" href="//cdn.datatables.net/plug-ins/3cfcc339e89/integration/bootstrap/3/dataTables.bootstrap.css">
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.css">
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.structure.min.css">
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.theme.min.css">
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 
@@ -137,13 +141,22 @@
 
         <!--Modernizr-->
         <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
-        
+
+
+
+
+
+
+
+
+
+
+
         <style>
             #map { 
                 position: relative;
                 height: 420px;
-                width: 1012px;
-                float: left;
+                max-width: 100%;
                 z-index: 0;
             }  
             #dc-propertyVolume-chart{
@@ -172,7 +185,7 @@
             }
 
             #dc-dateVolume-chart{
-                float: left;
+                max-width: 100%;
                 position: relative;
                 top: 0px;
                 left: 15px;
@@ -195,15 +208,20 @@
                 top:110px;
                 left: 236px;
             }
+            #dc-table-graph{
+                float:left;
+                position:absolute;
+                top:800px; 
+                left:20px;
+            }
         </style>
-        
+
+
+
+
     </head>
 
 
-
-
-
-    <!-- START OF BODY -->
     <body class="  ">
 
 
@@ -322,15 +340,15 @@
 
                             <div class="form-group">
 
-                                <input type="text" class="form-control" name="planning_area" placeholder="Planning Area" size="8" value='<%=planning_area%>' >
+                                <input type="text" class="form-control" name="planning_area" placeholder="Planning Area" size="10" value='<%=planning_area%>' >
 
                                 <div class="input-group">
                                     <span class="input-group-addon">$</span>
-                                    <input type="text" class="form-control" name="start_price" placeholder="Start Price" size="3" value='<%=start_price%>' >
+                                    <input type="text" class="form-control" name="start_price" placeholder="Start Price" size="5" value='<%=start_price%>' >
                                 </div>
                                 <div class="input-group">
                                     <span class="input-group-addon">$</span>
-                                    <input type="text" class="form-control" name="end_price" placeholder="End Price" size="3" value='<%=end_price%>' >
+                                    <input type="text" class="form-control" name="end_price" placeholder="End Price" size="5" value='<%=end_price%>' >
                                 </div>
                                 <input type="text" class="form-control" name="start_size" placeholder="Start Size" size="5" value='<%=start_size%>' >
                                 <input type="text" class="form-control" name="end_size" placeholder="End Size" size="5" value='<%=end_size%>' >
@@ -417,422 +435,435 @@
             </div><!-- /#left -->
 
 
-
-
-
-
-            <!-- REAL THING: RIGHT CONTENT PANE -->
+            <!-- The Real Stuff Here -->
             <div id="content">
                 <div class="outer">
                     <div class="inner bg-light lter">
 
-                        <!--Begin Series-->
+
+
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="box">
                                     <header>
-                                        <div class="icons">
-                                            <i class="fa fa-bar-chart-o"></i>
+                                        <h5>Time Series</h5>
+                                        <div class="toolbar">
+                                            <span class="label">label</span> 
                                         </div>
-                                        <h5>Time Series Graph</h5>
                                     </header>
-                                    <div id="collapse4" class="body">
-                                        <!-- hide table
-                                        <table id="dataTable" class="table table-bordered table-condensed table-hover table-striped">
-                                        </table>
-                                        -->
+                                    <div class="body">
+                                        <pre class="prettyprint linenums">
+                                            Time Series Chart Here
+                                        </pre>
+                                        <div class="row">
+                                            <div id='dc-dateVolume-chart'>
+                                                <h6>
+                                                    <font>Daily Transaction Volume</font>
 
-                                        <!--TIME SERIES-->
-                                        <!-- Property Volume Chart -->
-                    <div class="row">
-                        <div class='span4' id='dc-propertyVolume-chart'>
-                            <h6>Property Volume
-                                <button type="button" class="btn btn-primary btn-xs" id="bar1" aria-label="Left Align">
-                                    <span class="glyphicon glyphicon-signal" aria-hidden="true"></span>
-                                </button>
-                                <button type="button" class="btn btn-danger btn-xs" id="pie1" aria-label="Left Align">
-                                    <span class="glyphicon glyphicon-adjust" aria-hidden="true"></span>
-                                </button>
-                                <span>
-                                    <a class="reset"
-                                       href="javascript:propertyVolumeRowChart.filterAll();dc.redrawAll();"
-                                       style="display: none;">
-                                        reset
-                                    </a>
-                                </span>
-                            </h6>
-                        </div>
-                    </div>
-
-
-
+                                                </h6>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div><!-- /.row -->
-                        <!--End Time Series-->
+
+                        <div class="row">
+                            <!-- Left Pane for Basic Charts-->
+                            <div class="col-lg-4 ">
+                                <div class="box">
+                                    <header>
+                                        <h5>LEFT</h5>
+                                        <div class="toolbar">
+                                            <span class="label label-success">label</span> 
+                                        </div>
+                                    </header>
+
+
+                                    <div class="body">
+
+                                        <pre class="prettyprint linenums">
+                                            Data Count
+                                        </pre>
+
+                                        <!--                                         DATA COUNT -->
+                                        <div class="row">
+                                            <div class="dc-data-count" id='count-table' >
+                                                <span>
+                                                    <span class="filter-count"></span>
+                                                    selected out of 
+                                                    <span class="total-count"></span>
+                                                    records | 
+                                                    <a href="javascript:dc.filterAll(); dc.renderAll();">Reset All</a>
+                                                </span>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="body">
+                                        <pre class="prettyprint linenums">
+                                            By Property Type
+                                        </pre>
+
+                                        <!-- Property Volume Chart -->
+                                        <div class="row">
+                                            <div id='dc-propertyVolume-chart'>
+                                                <h6>Property Volume
+                                                    <button type="button" class="btn btn-primary btn-xs" id="bar1" aria-label="Left Align">
+                                                        <span class="glyphicon glyphicon-signal" aria-hidden="true"></span>
+                                                    </button>
+                                                    <button type="button" class="btn btn-danger btn-xs" id="pie1" aria-label="Left Align">
+                                                        <span class="glyphicon glyphicon-adjust" aria-hidden="true"></span>
+                                                    </button>
+                                                    <span>
+                                                        <a class="reset"
+                                                           href="javascript:propertyVolumeRowChart.filterAll();dc.redrawAll();"
+                                                           style="display: none;">
+                                                            reset
+                                                        </a>
+                                                    </span>
+                                                </h6>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+
+
+                                    <div class="body">
+                                        <pre class="prettyprint linenums">
+                                            By Sale Type
+                                        </pre>
+
+                                        <!--                                         Sale Volume Chart -->
+                                        <div class="row">
+                                            <div id='dc-propertySaleVolume-chart'>
+                                                <h6>Sale Volume
+                                                    <button type="button" class="btn btn-primary btn-xs" id="bar2" aria-label="Left Align">
+                                                        <span class="glyphicon glyphicon-signal" aria-hidden="true"></span>
+                                                    </button>
+                                                    <button type="button" class="btn btn-danger btn-xs" id="pie2" aria-label="Left Align">
+                                                        <span class="glyphicon glyphicon-adjust" aria-hidden="true"></span>
+                                                    </button>
+                                                    <span>
+                                                        <a class="reset"
+                                                           href="javascript:propertySaleVolumePieChart.filterAll();dc.redrawAll();"
+                                                           style="display: none;">
+                                                            reset
+                                                        </a>
+                                                    </span>
+                                                </h6>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+
+
+
+
+                                    <div class="body">
+                                        <pre class="prettyprint linenums">
+                                            By Tenure Type
+                                        </pre>
+
+                                        <!-- Tenure Volume Chart -->
+                                        <div class="row">
+                                            <div id='dc-propertyTenureVolume-chart'>
+                                                <h4> Tenure Volume
+                                                    <button type="button" class="btn btn-primary btn-mini" id="bar3" aria-label="Left Align">
+                                                        <span class="glyphicon glyphicon-signal" aria-hidden="true"></span>
+                                                    </button>
+                                                    <button type="button" class="btn btn-danger btn-mini" id="pie3" aria-label="Left Align">
+                                                        <span class="glyphicon glyphicon-adjust" aria-hidden="true"></span>
+                                                    </button>
+                                                    <span>
+                                                        <a class="reset"
+                                                           href="javascript:propertyTenureVolumePieChart.filterAll();dc.redrawAll();"
+                                                           style="display: none;">
+                                                            reset
+                                                        </a>
+                                                    </span>
+                                                </h4>
+                                            </div> 
+                                        </div>
+
+                                    </div>
+
+
+
+
+                                </div>
+                            </div>
+
+                            <!-- Right Pane for Map and Table-->
+                            <div class="col-lg-8 ">
+                                <div class="box">
+                                    <header>
+                                        <h5>RIGHT</h5>
+                                        <div class="toolbar">
+                                            <span class="label label-success">label</span> 
+                                        </div>
+                                    </header>
+
+
+
+                                    <div class="body">
+                                        <!--                                        <pre class="prettyprint linenums">
+                                                                                    Map
+                                                                                </pre>-->
+                                        <div id="map"></div>
+                                    </div>
+
+
+
+
+                                    <div class="body">
+                                        <pre class="prettyprint linenums">
+                                            Table
+                                        </pre>
+                                    </div>
+
+
+
+
+                                </div>
+                            </div>
+                        </div><!-- /.row -->
+
+                        <div class="row"><p>EMPTY</p></div>
+                        <div class="row"><p>EMPTY</p></div>
+                        <div class="row"><p>EMPTY</p></div>
+                        <div class="row"><p>EMPTY</p></div>
+                        <div class="row"><p>EMPTY</p></div>
+                        <div class="row"><p>EMPTY</p></div>
+
+                        <div class="row">
+                            <div class="col-lg-6 ">
+                                <div class="box">
+                                    <header>
+                                        <h5>.col-lg-6</h5>
+                                        <div class="toolbar">
+                                            <span class="label label-success">label</span> 
+                                        </div>
+                                    </header>
+                                    <div class="body">
+                                        <pre class="prettyprint linenums">
+                                            More Chart
+                                        </pre>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="box">
+                                    <header>
+                                        <h5>.col-lg-6</h5>
+                                        <div class="toolbar">
+                                            <div class="progress
+                                                 progress-danger middle">
+                                                <div class="progress-bar" style="width: 57%"></div>
+                                            </div>
+                                        </div>
+                                    </header>
+                                    <div class="body">
+                                        <pre class="prettyprint linenums">
+More Chart
+                                        </pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- /.row -->
+
 
 
 
                         <div class="row">
-
-                            <!-- .col-lg-6 -->
-                            <div class="col-lg-6">
+                            <div class="col-lg-4">
                                 <div class="box">
                                     <header>
-                                        <h5>Default styles</h5>
+                                        <h5>.col-lg-4</h5>
                                         <div class="toolbar">
-                                            <div class="btn-group">
-                                                <a href="#defaultTable" data-toggle="collapse" class="btn btn-sm btn-default minimize-box">
-                                                    <i class="fa fa-angle-up"></i>
-                                                </a> 
-                                                <a class="btn btn-danger btn-sm close-box">
-                                                    <i class="fa fa-times"></i>
-                                                </a> 
+                                            <a href="#" rel="tooltip" data-placement="bottom" data-original-title="Link Tooltip">link</a> 
+                                        </div>
+                                    </header>
+                                    <div class="body">
+                                        <pre class="prettyprint linenums">
+More Chart
+                                        </pre>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="box">
+                                    <header>
+                                        <h5>.col-lg-4</h5>
+                                        <div class="toolbar">
+                                            <div class="progress mini">
+                                                <div class="progress-bar" style="width: 43%;"></div>
                                             </div>
                                         </div>
                                     </header>
-                                    <div id="defaultTable" class="body collapse in">
-                                        <table class="table responsive-table">
-                                            <thead>
-                                                <tr>
-                                                    <th>#</th>
-                                                    <th>First Name</th>
-                                                    <th>Last Name</th>
-                                                    <th>Score</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td>Jill</td>
-                                                    <td>Smith</td>
-                                                    <td>50</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>2</td>
-                                                    <td>Eve</td>
-                                                    <td>Jackson</td>
-                                                    <td>94</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>3</td>
-                                                    <td>John</td>
-                                                    <td>Doe</td>
-                                                    <td>80</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>4</td>
-                                                    <td>Adam</td>
-                                                    <td>Johnson</td>
-                                                    <td>67</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
+                                    <div class="body">
+                                        <pre class="prettyprint linenums">
+More Chart
+                                        </pre>
                                     </div>
                                 </div>
-                            </div><!-- /.col-lg-6 -->
-
-                            <!-- .col-lg-6 -->
-                            <div class="col-lg-6">
+                            </div>
+                            <div class="col-lg-4">
                                 <div class="box">
                                     <header>
-                                        <h5>Table Striped</h5>
+                                        <h5>.col-lg-4</h5>
                                         <div class="toolbar">
-                                            <div class="btn-group">
-                                                <a href="#stripedTable" data-toggle="collapse" class="btn btn-default btn-sm minimize-box">
-                                                    <i class="fa fa-angle-up"></i>
-                                                </a> 
-                                                <a class="btn btn-danger btn-sm close-box">
-                                                    <i class="fa fa-times"></i>
-                                                </a> 
-                                            </div>
+                                            <button class="btn btn-xs btn-primary">mini button</button>
                                         </div>
                                     </header>
-                                    <div id="stripedTable" class="body collapse in">
-                                        <table class="table table-striped responsive-table">
-                                            <thead>
-                                                <tr>
-                                                    <th>#</th>
-                                                    <th>First Name</th>
-                                                    <th>Last Name</th>
-                                                    <th>Score</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td>Jill</td>
-                                                    <td>Smith</td>
-                                                    <td>50</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>2</td>
-                                                    <td>Eve</td>
-                                                    <td>Jackson</td>
-                                                    <td>94</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>3</td>
-                                                    <td>John</td>
-                                                    <td>Doe</td>
-                                                    <td>80</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>4</td>
-                                                    <td>Adam</td>
-                                                    <td>Johnson</td>
-                                                    <td>67</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
+                                    <div class="body">
+                                        <pre class="prettyprint linenums">
+More Chart
+                                        </pre>
                                     </div>
                                 </div>
-                            </div><!-- /.col-lg-6 -->
-                        </div>
+                            </div>
+                        </div><!-- /.row -->
+
+
+
+
+
+
                         <div class="row">
-
-                            <!-- .col-lg-6 -->
-                            <div class="col-lg-6">
+                            <div class="col-lg-3">
                                 <div class="box">
                                     <header>
-                                        <h5>Table Bordered</h5>
+                                        <h5>.col-lg-3</h5>
                                         <div class="toolbar">
-                                            <div class="btn-group">
-                                                <a href="#borderedTable" data-toggle="collapse" class="btn btn-default btn-sm minimize-box">
-                                                    <i class="fa fa-angle-up"></i>
-                                                </a> 
-                                                <a class="btn btn-danger btn-sm close-box">
-                                                    <i class="fa fa-times"></i>
-                                                </a> 
-                                            </div>
+                                            <ul class="nav">
+                                                <li class="dropdown">
+                                                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                                                        Dropdown
+                                                        <b class="caret"></b>
+                                                    </a> 
+                                                    <ul class="dropdown-menu">
+                                                        <li> <a href="">Menu Link 1</a>  </li>
+                                                        <li> <a href="#">Menu Link 2</a>  </li>
+                                                        <li>
+                                                            <a href="#">
+                                                                <i class="icon-external-link"></i> Menu Link with icon</a> 
+                                                        </li>
+                                                        <li class="divider"></li>
+                                                        <li> <a href="#">Menu Linkk 4</a>  </li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
                                         </div>
                                     </header>
-                                    <div id="borderedTable" class="body collapse in">
-                                        <table class="table table-bordered responsive-table">
-                                            <thead>
-                                                <tr>
-                                                    <th>#</th>
-                                                    <th>First Name</th>
-                                                    <th>Last Name</th>
-                                                    <th>Score</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td>Jill</td>
-                                                    <td>Smith</td>
-                                                    <td>50</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>2</td>
-                                                    <td>Eve</td>
-                                                    <td>Jackson</td>
-                                                    <td>94</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>3</td>
-                                                    <td>John</td>
-                                                    <td>Doe</td>
-                                                    <td>80</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>4</td>
-                                                    <td>Adam</td>
-                                                    <td>Johnson</td>
-                                                    <td>67</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
+                                    <div class="body">
+                                        <pre class="prettyprint linenums">
+More Chart
+                                        </pre>
                                     </div>
                                 </div>
-                            </div><!-- /.col-lg-6 -->
-
-                            <!-- .col-lg-6 -->
-                            <div class="col-lg-6">
+                            </div>
+                            <div class="col-lg-3">
                                 <div class="box">
                                     <header>
-                                        <h5>Table Condensed</h5>
+                                        <h5>.col-lg-3</h5>
                                         <div class="toolbar">
-                                            <div class="btn-group">
-                                                <a href="#condensedTable" data-toggle="collapse" class="btn btn-default btn-sm minimize-box">
-                                                    <i class="fa fa-angle-up"></i>
-                                                </a> 
-                                                <a class="btn btn-danger btn-sm close-box">
-                                                    <i class="fa fa-times"></i>
-                                                </a> 
-                                            </div>
+                                            <button class="btn btn-danger btn-xs">button</button>
                                         </div>
                                     </header>
-                                    <div id="condensedTable" class="body collapse in">
-                                        <table class="table table-condensed responsive-table">
-                                            <thead>
-                                                <tr>
-                                                    <th>#</th>
-                                                    <th>First Name</th>
-                                                    <th>Last Name</th>
-                                                    <th>Score</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td>Jill</td>
-                                                    <td>Smith</td>
-                                                    <td>50</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>2</td>
-                                                    <td>Eve</td>
-                                                    <td>Jackson</td>
-                                                    <td>94</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>3</td>
-                                                    <td>John</td>
-                                                    <td>Doe</td>
-                                                    <td>80</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>4</td>
-                                                    <td>Adam</td>
-                                                    <td>Johnson</td>
-                                                    <td>67</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
+                                    <div class="body">
+                                        <pre class="prettyprint linenums">
+More Chart
+                                        </pre>
                                     </div>
                                 </div>
-                            </div><!-- /.col-lg-6 -->
-                        </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="box">
+                                    <header>
+                                        <h5>.col-lg-3</h5>
+                                        <div class="toolbar">
+                                            <input class="form-control input-sm" type="text" />
+                                        </div>
+                                    </header>
+                                    <div class="body">
+                                        <pre class="prettyprint linenums">
+More Chart
+                                        </pre>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="box">
+                                    <header>
+                                        <h5>.col-lg-3</h5>
+                                        <div class="toolbar">
+                                            <i class="icon-envelope"></i>
+                                        </div>
+                                    </header>
+                                    <div class="body">
+                                        <pre class="prettyprint linenums">
+More Chart
+                                        </pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- /.row -->
+
+
+
+
+
+
                         <div class="row">
-
-                            <!-- .col-lg-6 -->
-                            <div class="col-lg-6">
-                                <div class="box">
-                                    <header>
-                                        <h5>Optional row classes</h5>
-                                        <div class="toolbar">
-                                            <div class="btn-group">
-                                                <a href="#optionalTable" data-toggle="collapse" class="btn btn-default btn-sm minimize-box">
-                                                    <i class="fa fa-angle-up"></i>
-                                                </a> 
-                                                <a class="btn btn-danger btn-sm close-box">
-                                                    <i class="fa fa-times"></i>
-                                                </a> 
-                                            </div>
-                                        </div>
-                                    </header>
-                                    <div id="optionalTable" class="body collapse in">
-                                        <table class="table responsive-table">
-                                            <thead>
-                                                <tr>
-                                                    <th>#</th>
-                                                    <th>First Name</th>
-                                                    <th>Last Name</th>
-                                                    <th>Score</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td>Jill</td>
-                                                    <td>Smith</td>
-                                                    <td>50</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>2</td>
-                                                    <td>Eve</td>
-                                                    <td>Jackson</td>
-                                                    <td>94</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>3</td>
-                                                    <td>John</td>
-                                                    <td>Doe</td>
-                                                    <td>80</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>4</td>
-                                                    <td>Adam</td>
-                                                    <td>Johnson</td>
-                                                    <td>67</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
+                            <div class="col-lg-5">
+                                <div class="row">
+                                    <div class="col-lg-7">
+                                        <pre class="prettyprint linenums">
+More Chart
+                                        </pre>
+                                    </div>
+                                    <div class="col-lg-5">
+                                        <pre class="prettyprint linenums">
+More Chart
+                                        </pre>
                                     </div>
                                 </div>
-                            </div><!-- /.col-lg-6 -->
-
-                            <!-- .col-lg-6 -->
-                            <div class="col-lg-6">
-                                <div class="box">
-                                    <header>
-                                        <h5>Sortable Table</h5>
-                                        <div class="toolbar">
-                                            <div class="btn-group">
-                                                <a href="#sortableTable" data-toggle="collapse" class="btn btn-default btn-sm minimize-box">
-                                                    <i class="fa fa-angle-up"></i>
-                                                </a> 
-                                                <a class="btn btn-danger btn-sm close-box">
-                                                    <i class="fa fa-times"></i>
-                                                </a> 
-                                            </div>
-                                        </div>
-                                    </header>
-                                    <div id="sortableTable" class="body collapse in">
-                                        <table class="table table-bordered sortableTable responsive-table">
-                                            <thead>
-                                                <tr>
-                                                    <th>#
-                                                        <i class="fa sort"></i>
-                                                    </th>
-                                                    <th>First Name
-                                                        <i class="fa sort"></i>
-                                                    </th>
-                                                    <th>Last Name
-                                                        <i class="fa sort"></i>
-                                                    </th>
-                                                    <th>Score
-                                                        <i class="fa sort"></i>
-                                                    </th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td>Jill</td>
-                                                    <td>Smith</td>
-                                                    <td>50</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>2</td>
-                                                    <td>Eve</td>
-                                                    <td>Jackson</td>
-                                                    <td>94</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>3</td>
-                                                    <td>John</td>
-                                                    <td>Doe</td>
-                                                    <td>80</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>4</td>
-                                                    <td>Adam</td>
-                                                    <td>Johnson</td>
-                                                    <td>67</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
+                            </div>
+                            <div class="col-lg-7">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <pre class="prettyprint linenums">
+                                            More Chart
+                                        </pre>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <pre class="prettyprint linenums">
+More Chart
+                                        </pre>
                                     </div>
                                 </div>
-                            </div><!-- /.col-lg-6 -->
-                        </div>
+                            </div>
+                        </div><!-- /.row -->
+
+
+
+
+
+
                     </div><!-- /.inner -->
                 </div><!-- /.outer -->
             </div><!-- /#content -->
+
+
+
+
+
+            <!-- Some Random Content At Right -->
             <div id="right" class="bg-light lter">
                 <div class="alert alert-danger">
                     <button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -892,7 +923,7 @@
             </div><!-- /#right -->
         </div><!-- /#wrap -->
         <footer class="Footer bg-dark dker">
-            <p>2015 &copy; Real Estate Information System</p>
+            <p>2014 &copy; Metis Bootstrap Admin Template</p>
         </footer><!-- /#footer -->
 
         <!-- #helpModal -->
@@ -919,9 +950,6 @@
         <!--jQuery -->
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/datatables/1.10.4/js/jquery.dataTables.min.js"></script>
-        <script src="//cdn.datatables.net/plug-ins/3cfcc339e89/integration/bootstrap/3/dataTables.bootstrap.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.18.4/js/jquery.tablesorter.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
 
         <!--Bootstrap -->
@@ -940,20 +968,21 @@
         <script src="assets/js/app.js"></script>
         <script>
             $(function () {
-                Metis.MetisTable();
-                Metis.metisSortable();
+                //Metis.metisSortable();
             });
         </script>
         <script src="assets/js/style-switcher.min.js"></script>
 
-
+        <!--LINK MODULE-->
+        <script>
+            init_function();
+        </script>
         <%
             String result = String.valueOf(request.getAttribute("result"));
             if (!result.equals("null")) {
         %>
         <script type="text/javascript">
             var data = <%=result%>;
-            
             generateAll(data);
         </script>
         <%
@@ -961,4 +990,8 @@
         %>
 
 
+
+
+
     </body>
+</html>
