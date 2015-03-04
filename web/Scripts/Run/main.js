@@ -4,7 +4,7 @@ function generateMapAndCharts(geoJsonData){
     //boxPlotChart = dc.boxPlot("#dc-psfBoxPlot-chart");
     //compositeControlChart = dc.compositeChart("#dc-control-chart"); //change html
     //histogram = dc.barChart("#dc-histogram");
-    dataTable = dc.dataTable("#dc-table-graph");
+    dataTable = dc.dataTable("#dataTable");
     
     var cv = new SVY21();
     //Charts
