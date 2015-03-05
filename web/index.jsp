@@ -88,7 +88,7 @@
         <script src="Scripts/Charts/chartUtilities.js"></script>
         <script src="Scripts/Charts/chartGeneration.js"></script>
 
-        <script src="Scripts/Charts/tableGeneration.js"></script>
+        <script src="Scripts/Tables/tableGeneration.js"></script>
 
 
 
@@ -151,35 +151,37 @@
                 height: 420px;
                 max-width: 100%;
                 z-index: 0;
-            }  
+            } 
+
+
+
+
             #dc-propertyVolume-chart{
-                float: right;
                 position: relative;
                 top: 0px;
-                right: 15px;
+                left: 15px;
+                float: left;
             }
             #dc-propertySaleVolume-chart{
-                float: right;
                 position: relative;
                 top: 0px;
-                right: 15px;
+                left: 15px;
+                float: left;
             }
             #dc-propertyTenureVolume-chart{
-                float: right;
                 position: relative;
                 top: 0px;
-                right: 15px;
+                left: 15px;
+                float: left;
             }
+
+
+
             #count-table {
                 position: relative;
             }
 
-            #dc-dateVolume-chart{
-                max-width: 100%;
-                position: relative;
-                top: 0px;
-                left: 15px;
-            }
+
             #dc-control-chart{
                 float: left;
                 position: relative;
@@ -201,6 +203,20 @@
             #dc-table-graph{
                 position: relative;
                 max-width: 100%;
+            }
+
+
+            #dc-dateVolume-chart{
+                max-width: 100%;
+                position: relative;
+                top: 0px;
+                left: 15px;
+            }
+            #dc-stackDateVolume-chart{
+                max-width: 100%;
+                position: relative;
+                top: 0px;
+                left: 15px;
             }
         </style>
 
@@ -434,10 +450,9 @@
                 <div class="outer">
                     <div class="inner bg-light lter">
 
+                        <!-- Row for Data Count -->
                         <div class="row">
-
                             <div class="text-center">
-
                                 <ul class="stats_box">
                                     <li>
                                         <div class="dc-data-count" id='count-table' >
@@ -453,34 +468,27 @@
                                                     </strong>
                                                 </span>
                                             </div>
-
                                         </div>
                                     </li>
-
                                     <a href="javascript:dc.filterAll(); dc.renderAll();" class="btn btn-warning btn-line">
                                         <i class="glyphicon glyphicon-zoom-in"></i> Reset
                                     </a> 
                                 </ul>
-
-
-
-
                             </div>
                         </div>
 
 
-
+                        <!-- Row for Time Series -->
                         <div class="row">
-
-                            <!-- .col-lg-6 -->
                             <div class="col-lg-12">
                                 <div class="box">
+
+                                    <!-- Header for Time Series -->
                                     <header>
                                         <div class="icons">
                                             <i class="fa fa-calendar-o"></i>
                                         </div>
                                         <h5>Time Series</h5>
-
                                         <div class="toolbar">
                                             <div class="btn-group">
                                                 <a href="#dateVolume" data-toggle="collapse" class="btn btn-sm btn-default minimize-box">
@@ -493,10 +501,9 @@
                                         </div>
                                     </header>
 
-
+                                    <!-- Content for Time Series -->
                                     <div id="dateVolume" class="body collapse in">
-
-                                        <!-- TIME SERIES -->
+                                        <!-- Daily Volume Chart -->
                                         <div class="row">
                                             <div id='dc-dateVolume-chart'>
                                                 <h6>
@@ -504,34 +511,34 @@
 
                                                 </h6>
                                             </div>
-
-
-                                            <!--PUT ANOTHER CHART HERE @YIHAO-->
-
-
+                                        </div>
+                                        <!-- Zoom In Stacked Chart -->
+                                        <div class="row">
+                                            <div id='dc-stackDateVolume-chart'>
+                                                <h6>
+                                                    <font>Zoom In Chart</font>
+                                                </h6>
+                                            </div>
                                         </div>
                                     </div>         
 
                                 </div>
-
-
-                            </div><!-- /.col-lg-12 -->
-
+                            </div>
                         </div>
 
 
 
-
+                        <!-- Left Pane for Basic Charts-->
                         <div class="row">
-                            <!-- Left Pane for Basic Charts-->
                             <div class="col-lg-4 ">
                                 <div class="box">
+
+                                    <!-- Header -->
                                     <header>
                                         <div class="icons">
                                             <i class="fa fa-bar-chart-o"></i>
                                         </div>
-                                        <h5>Basic Charts</h5>
-
+                                        <h5>Filter Charts</h5>
                                         <div class="toolbar">
                                             <div class="btn-group">
                                                 <a href="#basicCharts" data-toggle="collapse" class="btn btn-sm btn-default minimize-box">
@@ -544,9 +551,11 @@
                                         </div>
                                     </header>
 
+                                    <!-- Content -->
                                     <div id="basicCharts" class="body collapse in">
-                                        <!-- Property Volume Chart -->
                                         <div class="row">
+                                            <!-- Property Volume Chart -->
+
                                             <div id='dc-propertyVolume-chart'>
                                                 <h6><strong>Property Volume</strong>
                                                     <button type="button" class="btn btn-primary btn-xs" id="bar1" aria-label="Left Align">
@@ -565,6 +574,7 @@
                                                 </h6>
                                             </div>
                                         </div>
+
                                         <!-- Sale Volume Chart -->
                                         <div class="row">
                                             <div id='dc-propertySaleVolume-chart'>
@@ -607,17 +617,18 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div><!--End of col-lg-4 aka LEFT-->
+                            </div>
 
-                            <!-- Right Pane for Map and Table-->
+
+                            <!-- Lower Pane for Map -->
                             <div class="col-lg-8 ">
                                 <div class="box">
+                                    <!-- Header -->
                                     <header>
                                         <div class="icons">
-                                            <i class="fa fa-bar-chart-o"></i>
+                                            <i class="fa fa-globe"></i>
                                         </div>
                                         <h5>Geospatial View</h5>
-
                                         <div class="toolbar">
                                             <div class="btn-group">
                                                 <a href="#mapView" data-toggle="collapse" class="btn btn-sm btn-default minimize-box">
@@ -629,22 +640,13 @@
                                             </div>
                                         </div>
                                     </header>
+                                    <!-- Content -->
                                     <div id="mapView" class="body collapse in">
-                                        <!--MAP-->
                                         <div id="map"></div>
-
-                                        <!--Something else-->
-
-                                        <pre class="prettyprint linenums">
-                                                Something else
-                                        </pre>
-
-
                                     </div>
                                 </div>
-                            </div><!-- RIGHT -->
-
-                        </div><!-- /.row -->
+                            </div>
+                        </div>
 
                         <!--Begin Datatables-->
                         <div class="row">
@@ -682,7 +684,7 @@
                                                     <th>Postal Sector</th>
                                                 </tr>
                                             </thead>
-                                            
+
                                         </table>
                                     </div>
                                 </div>
