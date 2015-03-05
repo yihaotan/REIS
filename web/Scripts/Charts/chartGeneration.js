@@ -13,6 +13,30 @@ function plotTimeBarChart(chartName,dimensionName,groupName,widthSize,heightSize
      
      chartName.yAxis().ticks(tickNumber);
 }
+function plotStackedTimeBarChart(chartName,rangeChartName,dimensionName,groupName,stackGroupName1,stackGroupName2,stackGroupName3,stackGroupName4,stackGroupName5,widthSize,heightSize,gapSize,tickNumber,minDate,maxDate,timeFormat){
+        chartName.width(widthSize)
+            .height(heightSize)
+            .dimension(dimensionName)
+            .centerBar(true)
+            .elasticY(true)
+            .elasticX(false)
+            .gap(gapSize)
+            .brushOn(false)
+            .group(groupName)
+            .stack(stackGroupName1)
+            .stack(stackGroupName2)
+            .stack(stackGroupName3)
+            .stack(stackGroupName4)
+            .stack(stackGroupName5)
+            .x(d3.time.scale().domain([minDate, maxDate]))
+            .rangeChart(rangeChartName)
+            .round(d3.time.month.round)
+            .xUnits(d3.time.months)
+            .xAxis().tickFormat(d3.time.format(timeFormat))
+            .ticks(tickNumber);
+    
+        chartName.yAxis().ticks(tickNumber);
+}
 function plotPieChart(chartName,dimensionName,groupName,widthSize,heightSize,radiusSize,innerRadiusSize){
     chartName.width(widthSize)
                 .height(heightSize)

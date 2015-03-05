@@ -3,8 +3,8 @@ function plotDataTable(tableName,widthSize,heightSize,dimensionName,tableSize){
     tableName.width(widthSize)
              .height(heightSize)
              .dimension(dimensionName)
-             .group(function(d){
-                return ""; 
+             .group(function(){
+                return "";
              })
              .size(tableSize)
              .columns([
