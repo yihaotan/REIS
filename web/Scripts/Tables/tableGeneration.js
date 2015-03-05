@@ -15,25 +15,19 @@ function plotDataTable(tableName,widthSize,heightSize,dimensionName,tableSize){
                     return  d.propertyType;
                 },
                 function(d) {
-                    return d.address;
+                    return d.sale;
+                },
+                function(d) {
+                    return d.tenure;
                 },
                 function(d){
                     return dateFormat(d.date);
-                },
-                function(d){
-                    return d.areasqm;
                 },
                 function(d) {
                     return "$"+d.price;
                 },
                 function(d) {
-                   return d.planningArea;
-                },
-                function(d) {
-                   return d.postalDistrict;
-                },
-                function(d) {
-                   return d.postalSector;
+                   return d.postalCode;
                 }
                 ])
                 .sortBy(function(d) {
