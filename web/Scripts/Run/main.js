@@ -1,11 +1,27 @@
 var filtereddata;
 function generateMapAndCharts(geoJsonData){
+
     dateVolumeBarChart = dc.barChart("#dc-dateVolume-chart");
     //boxPlotChart = dc.boxPlot("#dc-psfBoxPlot-chart");
     //compositeControlChart = dc.compositeChart("#dc-control-chart"); //change html
     //histogram = dc.barChart("#dc-histogram");
     stackedDateVolumeBarChart = dc.barChart("#dc-stackDateVolume-chart");
+    
     dataTable = dc.dataTable("#dc-table-graph");
+    
+    dataTable.on("postRender", function(chart){reinit(chart)}).on("postRedraw", function(chart){reinit(chart)});
+    function reinit(chart)
+    {
+        // Get the div id of the chart requesting to be DataTable'd
+        var chart_anchor_id = '#' + chart.anchorName()
+        // Destroy the current DataTable (if any)
+        t = new $.fn.dataTable.Api($(chart_anchor_id))
+        t.destroy()
+        // Remove the 'group' as this won't work with DataTables
+        $(chart_anchor_id + ' .dc-table-group').remove()
+        // Reinit the jQuery dataTable
+        $(chart_anchor_id).dataTable({});
+    };
     
     var cv = new SVY21();
     //Charts
@@ -281,9 +297,12 @@ function generateMapAndCharts(geoJsonData){
         plotCompositeChart(compositeControlChart,dateDimension,400,122,10,0,40,60,"Psf $",getMinDate(geoJsonData),getMaxDate(geoJsonData),dateVolumeBarChart,compose1,compose2,compose3,"%b %y",5);
         filterMap(compositeControlChart,propertyDimension);
     }
-    function plotTable(){
-         plotDataTable(dataTable,500,600,dateDimension,300000);
-    }
+  function plotTable(){
+        plotDataTable(dataTable,500,600,dateDimension,300000);
+        
+  }
+    //$('#dc-table-graph').DataTable();
+
     dc.dataCount(".dc-data-count")
             .dimension(facts)
             .group(all);

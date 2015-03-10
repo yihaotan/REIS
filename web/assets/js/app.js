@@ -1045,7 +1045,7 @@ return Metis;
     /*----------- END TABLESORTER CODE -------------------------*/
        
     /*----------- BEGIN datatable CODE -------------------------*/
-    $('#dc-table-graph').dataTable({
+    $('#dc-table-graph1').dataTable({
 //         "sDom": "<'pull-right'l>t<'row'<'col-lg-6'f><'col-lg-6'p>>",
 //         "sPaginationType": "bootstrap",
 //         "oLanguage": {

@@ -77,6 +77,7 @@
         <script src="Libraries/edit/handler/Edit.Circle.js"></script>
         <script src="Libraries/edit/handler/Edit.Rectangle.js"></script>
         <script src="Libraries/edit/handler/Edit.Marker.js"></script>
+        
         <!--for drawing-->
 
         <!--Custom Function-->
@@ -117,7 +118,7 @@
         <!-- metisMenu stylesheet -->
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/metisMenu/1.1.3/metisMenu.min.css">
         <link rel="stylesheet" href="//cdn.datatables.net/plug-ins/3cfcc339e89/integration/bootstrap/3/dataTables.bootstrap.css">
-
+        
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -138,7 +139,7 @@
         <link rel="stylesheet" href="assets/css/style-switcher.css">
         <link rel="stylesheet/less" type="text/css" href="assets/less/theme.less">
         <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.2.0/less.min.js"></script>
-
+        
         <!--Modernizr-->
         <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
 
@@ -812,12 +813,17 @@
 
         <!-- Metis demo scripts -->
         <script src="assets/js/app.js"></script>
+        <script type="text/javascript" language="javascript" src="//cdn.datatables.net/1.10.5/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" language="javascript" src="//cdn.datatables.net/plug-ins/f2c75b7247b/integration/bootstrap/3/dataTables.bootstrap.js"></script>
         <script>
             $(function () {
-                Metis.MetisTable();
-                Metis.formGeneral();
+                //Metis.MetisTable();
+                //Metis.formGeneral();
                 //Metis.metisSortable();
             });
+ 
+
+            
         </script>
         <script src="assets/js/style-switcher.min.js"></script>
 
@@ -827,15 +833,19 @@
 
         <!--LINK MODULE-->
         <script>
+
             init_function();
         </script>
         <%
             String result = String.valueOf(request.getAttribute("result"));
+
             if (!result.equals("null")) {
         %>
         <script type="text/javascript">
+                        
             var data = <%=result%>;
             generateAll(data);
+
         </script>
         <%
             }
