@@ -675,11 +675,13 @@
                                                 <tr>
                                                     <th>Project Name</th>
                                                     <th>Property Type</th>
-                                                    <th>Sale Type</th>
-                                                    <th>Tenure</th>
+                                                    <th>Address</th>
                                                     <th>Date</th>
+                                                    <th>Size</th>
                                                     <th>Price</th>
-                                                    <th>Postal Code</th>
+                                                    <th>Area</th>
+                                                    <th>Postal District</th>
+                                                    <th>Postal Sector</th>
                                                 </tr>
                                             </thead>
 
