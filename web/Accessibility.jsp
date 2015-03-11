@@ -77,7 +77,7 @@
         <script src="Libraries/edit/handler/Edit.Circle.js"></script>
         <script src="Libraries/edit/handler/Edit.Rectangle.js"></script>
         <script src="Libraries/edit/handler/Edit.Marker.js"></script>
-        
+
         <!--for drawing-->
 
         <!--Custom Function-->
@@ -118,7 +118,7 @@
         <!-- metisMenu stylesheet -->
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/metisMenu/1.1.3/metisMenu.min.css">
         <link rel="stylesheet" href="//cdn.datatables.net/plug-ins/3cfcc339e89/integration/bootstrap/3/dataTables.bootstrap.css">
-        
+
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -139,7 +139,7 @@
         <link rel="stylesheet" href="assets/css/style-switcher.css">
         <link rel="stylesheet/less" type="text/css" href="assets/less/theme.less">
         <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.2.0/less.min.js"></script>
-        
+
         <!--Modernizr-->
         <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
 
@@ -147,14 +147,15 @@
 
 
         <style>
+            .tooltip-inner {
+                max-width: 500px !important;
+            }
             #map { 
                 position: relative;
                 height: 420px;
                 max-width: 100%;
                 z-index: 0;
             } 
-
-
 
 
             #dc-propertyVolume-chart{
@@ -226,10 +227,6 @@
 
 
     </head>
-
-
-
-
 
     <body class="  ">
 
@@ -351,25 +348,16 @@
 
                             <div class="form-group">
 
-                                <input type="text" class="form-control" name="planning_area" placeholder="Planning Area" size="10" value='<%=planning_area%>' >
+                                <input type="text" class="form-control" name="planning_area" placeholder="Property Type" size="11" value='<%=planning_area%>' >
 
                                 <div class="input-group">
-                                    <span class="input-group-addon">$</span>
-                                    <input type="text" class="form-control" name="start_price" placeholder="Start Price" size="8" value='<%=start_price%>' >
+                                    <input type="text" class="form-control" name="start_price" placeholder="Sale Type" size="7" value='<%=start_price%>' >
                                 </div>
                                 <div class="input-group">
-                                    <span class="input-group-addon">$</span>
-                                    <input type="text" class="form-control" name="end_price" placeholder="End Price" size="7" value='<%=end_price%>' >
+                                    <input type="text" class="form-control" name="end_price" placeholder="Tenure" size="5" value='<%=end_price%>' >
                                 </div>
-                                <div class="input-group">
-                                    <span class="input-group-addon">Psf</span>
-                                    <input type="text" class="form-control" name="start_size" placeholder="Start Size" size="7" value='<%=start_size%>' >
-                                </div>
-                                <div class="input-group">
-                                    <span class="input-group-addon">Psf</span>
-                                    <input type="text" class="form-control" name="end_size" placeholder="End Size" size="6" value='<%=end_size%>' >
-                                </div>
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+
+                                <button type="submit" class="btn btn-primary">Submit</button>
                             </div>
                         </form>
 
@@ -380,7 +368,7 @@
 
             </div><!-- /#top -->
 
- <div id="left">
+            <div id="left">
 
                 <!-- User Profile Here -->
                 <div class="media user-media bg-dark dker">
@@ -407,12 +395,12 @@
                 </div>
 
                 <!-- #menu -->
-                <ul id="menu" class="bg-blue dker">
+                <ul id="menu">
                     <li class="nav-header">Please select a module</li>
                     <li class="nav-divider"></li>
 
-                    <li class="active">
-                        <a href="#">
+                    <li>
+                        <a href="index.jsp">
                             <i class="fa fa-dashboard"></i>
                             <span class="link-title">
                                 &nbsp;Dashboard
@@ -420,15 +408,14 @@
                         </a> 
                     </li>
 
-                    <li>
-                        <a href="Accessibility.jsp">
+                    <li class="active">
+                        <a href="#">
                             <i class="fa fa-automobile"></i>
                             <span class="link-title">
                                 &nbsp;Accessibility
                             </span>  
                         </a> 
                     </li>
-
 
                     <!-- Lower Part of Menu-->
                     <li class="nav-divider"></li>
@@ -452,99 +439,18 @@
             <div id="content">
                 <div class="outer">
                     <div class="inner bg-light lter">
-
-                        <!-- Row for Data Count -->
-                        <div class="row">
-                            <div class="text-center">
-                                <ul class="stats_box">
-                                    <li>
-                                        <div class="dc-data-count" id='count-table' >
-                                            <div class="stat_text">
-                                                <span>
-                                                    <strong>
-                                                        <i class="glyphicon glyphicon-zoom-in"></i> 
-                                                        You have selected
-                                                        <span class="filter-count">0</span>
-                                                        out of 
-                                                        <span class="total-count">0</span>
-                                                        records   
-                                                    </strong>
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <a href="javascript:dc.filterAll(); dc.renderAll();" class="btn btn-warning btn-line">
-                                        <i class="glyphicon glyphicon-zoom-in"></i> Reset
-                                    </a> 
-                                </ul>
-                            </div>
-                        </div>
-
-
-                        <!-- Row for Time Series -->
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="box">
-
-                                    <!-- Header for Time Series -->
-                                    <header>
-                                        <div class="icons">
-                                            <i class="fa fa-calendar-o"></i>
-                                        </div>
-                                        <h5>Time Series</h5>
-                                        <div class="toolbar">
-                                            <div class="btn-group">
-                                                <a href="#dateVolume" data-toggle="collapse" class="btn btn-sm btn-default minimize-box">
-                                                    <i class="fa fa-angle-up"></i>
-                                                </a> 
-                                                <a class="btn btn-danger btn-sm close-box">
-                                                    <i class="fa fa-times"></i>
-                                                </a> 
-                                            </div>
-                                        </div>
-                                    </header>
-
-                                    <!-- Content for Time Series -->
-                                    <div id="dateVolume" class="body collapse in">
-                                        <!-- Daily Volume Chart -->
-                                        <div class="row">
-                                            <div id='dc-dateVolume-chart'>
-                                                <h6>
-                                                    <font>Daily Transaction Volume</font>
-
-                                                </h6>
-                                            </div>
-                                        </div>
-                                        <!-- Zoom In Stacked Chart -->
-                                        <div class="row">
-                                            <div id='dc-stackDateVolume-chart'>
-                                                <h6>
-                                                    <font>Zoom In Chart</font>
-                                                </h6>
-                                            </div>
-                                        </div>
-                                    </div>         
-
-                                </div>
-                            </div>
-                        </div>
-
-
-
-                        <!-- Left Pane for Basic Charts-->
                         <div class="row">
                             <div class="col-lg-4 ">
                                 <div class="box">
-
                                     <!-- Header -->
                                     <header>
                                         <div class="icons">
                                             <i class="fa fa-bar-chart-o"></i>
                                         </div>
-                                        <h5>Filter Charts</h5>
+                                        <h5>Input Fields</h5>
                                         <div class="toolbar">
                                             <div class="btn-group">
-                                                <a href="#basicCharts" data-toggle="collapse" class="btn btn-sm btn-default minimize-box">
+                                                <a href="#inputs" data-toggle="collapse" class="btn btn-sm btn-default minimize-box">
                                                     <i class="fa fa-angle-up"></i>
                                                 </a> 
                                                 <a class="btn btn-danger btn-sm close-box">
@@ -555,74 +461,49 @@
                                     </header>
 
                                     <!-- Content -->
-                                    <div id="basicCharts" class="body collapse in">
-                                        <div class="row">
-                                            <!-- Property Volume Chart -->
-
-                                            <div id='dc-propertyVolume-chart'>
-                                                <h6><strong>Property Volume</strong>
-                                                    <button type="button" class="btn btn-primary btn-xs" id="bar1" aria-label="Left Align">
-                                                        <span class="glyphicon glyphicon-signal" aria-hidden="true"></span>
-                                                    </button>
-                                                    <button type="button" class="btn btn-danger btn-xs" id="pie1" aria-label="Left Align">
-                                                        <span class="glyphicon glyphicon-adjust" aria-hidden="true"></span>
-                                                    </button>
-                                                    <span>
-                                                        <a class="reset"
-                                                           href="javascript:propertyVolumeRowChart.filterAll();dc.redrawAll();"
-                                                           style="display: none;">
-                                                            reset
-                                                        </a>
-                                                    </span>
-                                                </h6>
+                                    <form>
+                                        <div id="hawkers" class="body collapse in">
+                                            <label>
+                                                <input type="checkbox"> Hawker Centres
+                                            </label>  
+                                            <div class="input-group"  style="position:relative; float:right">
+                                                <label>Importance</label><input type="text" class="form-control"  name="hawkerweightageofimportance" placeholder="eg. 1" size="1" data-toggle="tooltip" data-placement="top" title="The greater the number, the more important">
+                                            </div>   
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" name="numberofhawkers" placeholder="eg. 1" size="4" data-toggle="tooltip" data-placement="right" title="Number of Hawker Centres">
                                             </div>
                                         </div>
-
-                                        <!-- Sale Volume Chart -->
-                                        <div class="row">
-                                            <div id='dc-propertySaleVolume-chart'>
-                                                <h6><strong>Sale Volume</strong>
-                                                    <button type="button" class="btn btn-primary btn-xs" id="bar2" aria-label="Left Align">
-                                                        <span class="glyphicon glyphicon-signal" aria-hidden="true"></span>
-                                                    </button>
-                                                    <button type="button" class="btn btn-danger btn-xs" id="pie2" aria-label="Left Align">
-                                                        <span class="glyphicon glyphicon-adjust" aria-hidden="true"></span>
-                                                    </button>
-                                                    <span>
-                                                        <a class="reset"
-                                                           href="javascript:propertySaleVolumePieChart.filterAll();dc.redrawAll();"
-                                                           style="display: none;">
-                                                            reset
-                                                        </a>
-                                                    </span>
-                                                </h6>
+                                        <div id="hospitals" class="body collapse in">
+                                            <label>
+                                                <input type="checkbox"> Hospitals
+                                            </label> 
+                                            <div class="input-group" style="position:relative; float:right">
+                                                <label>Importance</label><input type="text" class="form-control"  name="hospitalweightageofimportance" placeholder="eg. 1" size="1" data-toggle="tooltip" data-placement="top" title="The greater the number, the more important">
+                                            </div>   
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" name="numberofhospitals" placeholder="eg. 1" size="4" data-toggle="tooltip" data-placement="right" title="Number of Hospitals">
                                             </div>
                                         </div>
-                                        <!-- Tenure Volume Chart -->
-                                        <div class="row">
-                                            <div id='dc-propertyTenureVolume-chart'>
-                                                <h6><strong>Tenure Volume</strong>
-                                                    <button type="button" class="btn btn-primary btn-xs" id="bar3" aria-label="Left Align">
-                                                        <span class="glyphicon glyphicon-signal" aria-hidden="true"></span>
-                                                    </button>
-                                                    <button type="button" class="btn btn-danger btn-xs" id="pie3" aria-label="Left Align">
-                                                        <span class="glyphicon glyphicon-adjust" aria-hidden="true"></span>
-                                                    </button>
-                                                    <span>
-                                                        <a class="reset"
-                                                           href="javascript:propertyTenureVolumePieChart.filterAll();dc.redrawAll();"
-                                                           style="display: none;">
-                                                            reset
-                                                        </a>
-                                                    </span>
-                                                </h6>
-                                            </div> 
+                                        <div id="primary_schools" class="body collapse in">
+                                            <label>
+                                                <input type="checkbox"> Primary Schools
+                                            </label>  
+                                            <div class="input-group" style="position:relative; float:right">  
+                                                <label>Importance</label><input type="text" class="form-control"  name="psweightageofimportance" placeholder="eg. 1" size="1" data-toggle="tooltip" data-placement="top" title="The greater the number, the more important">
+                                            </div>
+                                                
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" name="numberofprimaryschools" placeholder="eg. 1" size="4" data-toggle="tooltip" data-placement="right" title="Number of Primary Schools">
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
-
-
+                                            
+                                        <div id="submit" style="position:relative; float:right">
+                                            <button type="submit" class="btn btn-default">Submit</button>
+                                        </div>
+                                    </form>
+                                        
+                                </div><!-- box -->
+                            </div><!-- col -->
                             <!-- Lower Pane for Map -->
                             <div class="col-lg-8 ">
                                 <div class="box">
@@ -648,60 +529,8 @@
                                         <div id="map"></div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-
-                        <!--Begin Datatables-->
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="box">
-                                    <header>
-                                        <div class="icons">
-                                            <i class="fa fa-table"></i>
-                                        </div>
-                                        <h5>Dynamic Table View</h5>
-
-                                        <div class="toolbar">
-                                            <div class="btn-group">
-                                                <a href="#dynamicTable" data-toggle="collapse" class="btn btn-sm btn-default minimize-box">
-                                                    <i class="fa fa-angle-up"></i>
-                                                </a> 
-                                                <a class="btn btn-danger btn-sm close-box">
-                                                    <i class="fa fa-times"></i>
-                                                </a> 
-                                            </div>
-                                        </div>
-                                    </header>
-                                    <div id="dynamicTable" class="body collapse in">
-                                        <table id="dc-table-graph" class="table table-bordered table-condensed table-hover table-striped">
-                                            <thead>
-                                                <tr>
-                                                    <th>Project Name</th>
-                                                    <th>Property Type</th>
-                                                    <th>Address</th>
-                                                    <th>Date</th>
-                                                    <th>Size</th>
-                                                    <th>Price</th>
-                                                    <th>Area</th>
-                                                    <th>Postal District</th>
-                                                    <th>Postal Sector</th>
-                                                </tr>
-                                            </thead>
-
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </div><!-- /.row -->
-
-                        <!--End Datatables-->
-
-
-
-
-
-
-
+                            </div><!-- /map -->
+                        </div> <!-- row -->
 
                     </div><!-- /.inner -->
                 </div><!-- /.outer -->
@@ -828,14 +657,8 @@
             
         </script>
         <script src="assets/js/style-switcher.min.js"></script>
-
-
-
-
-
         <!--LINK MODULE-->
         <script>
-
             init_function();
         </script>
         <%
