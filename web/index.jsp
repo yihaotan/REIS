@@ -511,13 +511,13 @@
                                         <div class="row">
                                             <div id='dc-stackDateVolume-chart'>
                                                 <h6>
-                                                    <font>Zoom In Chart</font>
+                                                    <font><strong>Monthly Transaction Volume</strong></font>
                                                 </h6>
                                             </div>
                                             
                                             <div id='dc-control-chart'>
                                                 <h6>
-                                                    <font>Line Chart</font>
+                                                    <font><strong>Monthly Psf Line Chart</strong></font>
                                                 </h6>
                                             </div>
                                         </div>
@@ -525,7 +525,7 @@
                                          <div class="row">
                                             <div id='dc-dateVolume-chart'>
                                                 <h6>
-                                                    <font>Daily Transaction Volume</font>
+                                                    <font><strong>Monthly Transaction Filter Volume</strong></font>
 
                                                 </h6>
                                             </div>
@@ -590,7 +590,7 @@
                                         <!-- Sale Volume Chart -->
                                         <div class="row">
                                             <div id='dc-propertySaleVolume-chart'>
-                                                <h6><strong>Sale Volume</strong>
+                                                <h6><strong>Sales Volume</strong>
                                                     <button type="button" class="btn btn-primary btn-xs" id="bar2" aria-label="Left Align">
                                                         <span class="glyphicon glyphicon-signal" aria-hidden="true"></span>
                                                     </button>
@@ -655,6 +655,13 @@
                                     <!-- Content -->
                                     <div id="mapView" class="body collapse in">
                                         <div id="map"></div>
+                                        <div class="row">
+                                            
+                                                <div id="dc-histogram">
+                                                    <h6><strong>Psf Histogram</strong></h6>
+                                                </div>
+                                            
+                                        </div>
                                     </div>
                                 </div>
                             </div>

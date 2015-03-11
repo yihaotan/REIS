@@ -4,7 +4,7 @@ function generateMapAndCharts(geoJsonData){
     dateVolumeBarChart = dc.barChart("#dc-dateVolume-chart");
     //boxPlotChart = dc.boxPlot("#dc-psfBoxPlot-chart");
     compositeControlChart = dc.compositeChart("#dc-control-chart"); //change html
-    //histogram = dc.barChart("#dc-histogram");
+    histogram = dc.barChart("#dc-histogram");
     stackedDateVolumeBarChart = dc.barChart("#dc-stackDateVolume-chart");
     dataTable = dc.dataTable("#dc-table-graph");
     dataTable.on("postRender", function(chart){reinit(chart)}).on("postRedraw", function(chart){reinit(chart)});
@@ -156,11 +156,11 @@ function generateMapAndCharts(geoJsonData){
         return Math.ceil(d / 1000) * 1000;
     });
     function plotTimeChart(){
-        plotTimeBarChart(dateVolumeBarChart,dateDimension,dateGroup,1000,122,20,5,getMinDate(geoJsonData),getMaxDate(geoJsonData),"%b %y");
+        plotTimeBarChart(dateVolumeBarChart,dateDimension,dateGroup,1050,102,20,5,getMinDate(geoJsonData),getMaxDate(geoJsonData),"%b %y");
         filterMap(dateVolumeBarChart,propertyDimension);
     }
     function plotStackTimeChart(){
-        plotStackedTimeBarChart(stackedDateVolumeBarChart,dateVolumeBarChart,dateDimension,apartmentGroup,condoGroup,detachGroup,ecGroup,sdGroup,terraceGroup,550,122,30,5,getMinDate(geoJsonData),getMaxDate(geoJsonData),"%b %y");
+        plotStackedTimeBarChart(stackedDateVolumeBarChart,dateVolumeBarChart,dateDimension,apartmentGroup,condoGroup,detachGroup,ecGroup,sdGroup,terraceGroup,550,152,30,5,getMinDate(geoJsonData),getMaxDate(geoJsonData),"%b %y");
         var f1 = getFilters(dateVolumeBarChart);
         //console.log(f1);
         applyFilter(stackedDateVolumeBarChart,f1);
@@ -255,7 +255,7 @@ function generateMapAndCharts(geoJsonData){
         plotBoxPlotChart(boxPlotChart,780,220,10,0,20,75,"Psf $",propertyDimension,boxPlotPriceGroup);
     }
     function plotPsfHistogram(){
-        plotHistogramChart(histogram,300,122,psfDimension,psfGroup,0,0,40,40,getMinPsf(geoJsonData),getMaxPsf(geoJsonData),10,50,5,"Psf $");
+        plotHistogramChart(histogram,600,160,psfDimension,psfGroup,10,0,20,40,getMinPsf(geoJsonData),getMaxPsf(geoJsonData),10,50,5,"Psf $");
         filterMap(histogram,propertyDimension);
     }
     function plotPsmHistogram(){
@@ -270,7 +270,7 @@ function generateMapAndCharts(geoJsonData){
         compose1 = plotLineChart(compositeControlChart,dateDimension,datePsfGroup,"Min Psf",5,"green","min",dateFormat);
         compose2 = plotLineChart(compositeControlChart,dateDimension,datePsfGroup,"Median Psf",5,"blue","median",dateFormat);
         compose3 = plotLineChart(compositeControlChart,dateDimension,datePsfGroup,"Max Psf",5,"red","max",dateFormat);
-        plotCompositeChart(compositeControlChart,dateDimension,400,122,10,0,40,60,"Psf $",getMinDate(geoJsonData),getMaxDate(geoJsonData),dateVolumeBarChart,compose1,compose2,compose3,"%b %y",5);
+        plotCompositeChart(compositeControlChart,dateDimension,450,152,10,0,40,50,"Psf $",getMinDate(geoJsonData),getMaxDate(geoJsonData),dateVolumeBarChart,compose1,compose2,compose3,"%b %y",5);
         filterMap(compositeControlChart,propertyDimension);
     }; // got bug for rangeChart
     function plotPsmLineChart(){
@@ -302,6 +302,7 @@ function generateMapAndCharts(geoJsonData){
     plotTenureVolumeRow();
     plotTable();
     plotPsfLineChart();
+    plotPsfHistogram();
     plotMapLayers(propertyDimension);
     
     //patch
