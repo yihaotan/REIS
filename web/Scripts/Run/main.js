@@ -3,25 +3,12 @@ function generateMapAndCharts(geoJsonData){
 
     dateVolumeBarChart = dc.barChart("#dc-dateVolume-chart");
     //boxPlotChart = dc.boxPlot("#dc-psfBoxPlot-chart");
-    //compositeControlChart = dc.compositeChart("#dc-control-chart"); //change html
+    compositeControlChart = dc.compositeChart("#dc-control-chart"); //change html
     //histogram = dc.barChart("#dc-histogram");
     stackedDateVolumeBarChart = dc.barChart("#dc-stackDateVolume-chart");
-    
     dataTable = dc.dataTable("#dc-table-graph");
-    
     dataTable.on("postRender", function(chart){reinit(chart)}).on("postRedraw", function(chart){reinit(chart)});
-    function reinit(chart)
-    {
-        // Get the div id of the chart requesting to be DataTable'd
-        var chart_anchor_id = '#' + chart.anchorName()
-        // Destroy the current DataTable (if any)
-        t = new $.fn.dataTable.Api($(chart_anchor_id))
-        t.destroy()
-        // Remove the 'group' as this won't work with DataTables
-        $(chart_anchor_id + ' .dc-table-group').remove()
-        // Reinit the jQuery dataTable
-        $(chart_anchor_id).dataTable({});
-    };
+   
     
     var cv = new SVY21();
     //Charts
@@ -99,9 +86,12 @@ function generateMapAndCharts(geoJsonData){
         var tenure = d.tenure;
         if (tenure === 'Freehold') {
             return 'Freehold';
-        } else if (tenure.substring(0, 3) === '999') {
+        } else if (tenure.substring(0, 4) === '9999') {
+            return '9999 Yrs';
+        } else if(tenure.substring(0,3) === '999'){
             return '999 Yrs';
-        } else {
+        }
+        else {
             return '99 Yrs';
         }
     });
@@ -166,7 +156,7 @@ function generateMapAndCharts(geoJsonData){
         return Math.ceil(d / 1000) * 1000;
     });
     function plotTimeChart(){
-        plotTimeBarChart(dateVolumeBarChart,dateDimension,dateGroup,550,122,5,5,getMinDate(geoJsonData),getMaxDate(geoJsonData),"%b %y");
+        plotTimeBarChart(dateVolumeBarChart,dateDimension,dateGroup,1000,122,20,5,getMinDate(geoJsonData),getMaxDate(geoJsonData),"%b %y");
         filterMap(dateVolumeBarChart,propertyDimension);
     }
     function plotStackTimeChart(){
@@ -301,9 +291,7 @@ function generateMapAndCharts(geoJsonData){
         plotDataTable(dataTable,500,600,dateDimension,300000);
         
   }
-    //$('#dc-table-graph').DataTable();
-
-    dc.dataCount(".dc-data-count")
+  dc.dataCount(".dc-data-count")
             .dimension(facts)
             .group(all);
     
@@ -313,11 +301,12 @@ function generateMapAndCharts(geoJsonData){
     plotSaleVolumeRow();
     plotTenureVolumeRow();
     plotTable();
-    //plotPsfLineChart();
-   
+    plotPsfLineChart();
     plotMapLayers(propertyDimension);
     
-    
+    //patch
+    rangeChartForTimeSeries(dateVolumeBarChart,stackedDateVolumeBarChart,compositeControlChart);
+  
         $("#dc-psfBoxPlot-chart").on('change', function () {
             var text = $('#dc-psfBoxPlot-chart .selectpicker option:selected').text();
             if (text === "Psf") {

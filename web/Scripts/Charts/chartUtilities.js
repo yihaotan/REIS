@@ -63,3 +63,12 @@ function applyFilter(chart, filterA) {
         chart.filter(filterA[i]);
     }
 }
+function rangeChartForTimeSeries(rangeChart,chart1,chart2){
+    rangeChart.on("filtered", function (chart) {
+            dc.events.trigger(function () {
+               chart1.focus(chart.filter());
+               chart2.focus(chart.filter());
+               dc.redrawAll(chart.chartGroup());
+            });
+    });
+}

@@ -90,7 +90,7 @@
         <script src="Scripts/Charts/chartGeneration.js"></script>
 
         <script src="Scripts/Tables/tableGeneration.js"></script>
-
+        <script src="Scripts/Tables/tableUtilities.js"></script>    
 
 
         <script src="Scripts/Maps/mapUtilities.js"></script>
@@ -506,15 +506,7 @@
 
                                     <!-- Content for Time Series -->
                                     <div id="dateVolume" class="body collapse in">
-                                        <!-- Daily Volume Chart -->
-                                        <div class="row">
-                                            <div id='dc-dateVolume-chart'>
-                                                <h6>
-                                                    <font>Daily Transaction Volume</font>
-
-                                                </h6>
-                                            </div>
-                                        </div>
+                                       
                                         <!-- Zoom In Stacked Chart -->
                                         <div class="row">
                                             <div id='dc-stackDateVolume-chart'>
@@ -522,7 +514,24 @@
                                                     <font>Zoom In Chart</font>
                                                 </h6>
                                             </div>
+                                            
+                                            <div id='dc-control-chart'>
+                                                <h6>
+                                                    <font>Line Chart</font>
+                                                </h6>
+                                            </div>
                                         </div>
+                                        <!-- Daily Volume Chart -->
+                                         <div class="row">
+                                            <div id='dc-dateVolume-chart'>
+                                                <h6>
+                                                    <font>Daily Transaction Volume</font>
+
+                                                </h6>
+                                            </div>
+                                        </div>
+                                        
+                                        
                                     </div>         
 
                                 </div>
