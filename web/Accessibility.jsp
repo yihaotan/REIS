@@ -287,12 +287,12 @@
                             <!-- .nav -->
                             <ul class="nav navbar-nav">
 
-                                <li class="active">
-                                    <a href="new_index.jsp">Data Visualisation</a> 
+                                <li >
+                                    <a href="index.jsp">Data Visualisation</a> 
                                 </li>
 
                                 <!-- placeholder for accessibility module, if possible -->
-                                <li> 
+                                <li class="active"> 
                                     <a href="#">Accessibility</a>  
                                 </li>
 

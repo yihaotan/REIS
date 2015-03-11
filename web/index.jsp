@@ -291,12 +291,12 @@
                             <ul class="nav navbar-nav">
 
                                 <li class="active">
-                                    <a href="new_index.jsp">Data Visualisation</a> 
+                                    <a href="#">Data Visualisation</a> 
                                 </li>
 
                                 <!-- placeholder for accessibility module, if possible -->
                                 <li> 
-                                    <a href="#">Accessibility</a>  
+                                    <a href="Accessibility.jsp">Accessibility</a>  
                                 </li>
 
                                 <!--Drop down might not work due to library conflict-->
