@@ -461,7 +461,7 @@
                                     </header>
 
                                     <!-- Content -->
-                                    <form>
+                                    <form id="inputs" class="body collapse in">
                                         <div id="hawkers" class="body collapse in">
                                             <label>
                                                 <input type="checkbox"> Hawker Centres
