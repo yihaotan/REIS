@@ -856,14 +856,14 @@
         </script>
         <%
             String result = String.valueOf(request.getAttribute("result"));
-
+            
             if (!result.equals("null")) {
         %>
         <script type="text/javascript">
                         
             var data = <%=result%>;
             generateAll(data);
-
+            
         </script>
         <%
             }

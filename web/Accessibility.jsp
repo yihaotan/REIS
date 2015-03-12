@@ -26,13 +26,13 @@
         <link rel="stylesheet" href="Css/button1.css" type="text/css">
         <link rel="stylesheet" href="Css/jquery.slidepanel.css" type="text/css">
         <link rel="stylesheet" href="Css/jquery.sidr.light.css" type="text/css">
-        <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css"  type="text/css">
+        <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css"  type="text/css">
         <link rel="stylesheet" href="Css/leaflet.draw.css" type="text/css">
         <!--Unknown-->
         <script src="http://maps.google.com/maps/api/js?v=3&sensor=false"></script>  
         <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
         <!--Unknown-->
-        <script src="Libraries/d3.v3.min.js" type="text/javascript"></script>
+        <script src="http://d3js.org/d3.v3.min.js" type="text/javascript"></script>
         <script src="Libraries/crossfilter.js" type='text/javascript'></script>
         <!--        <script src='Libraries/jquery.js' type='text/javascript'></script>
                 <script src="Libraries/bootstrap.min.js" type='text/javascript' ></script>-->
@@ -97,14 +97,6 @@
         <script src="Scripts/Run/main.js"></script> 
         <script src="Scripts/Run/run.js"></script>
         <!--Custom function-->
-
-
-
-
-
-
-
-
 
         <!-- Bootstrap -->
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/css/bootstrap.min.css">
@@ -473,35 +465,35 @@
                                                 <input type="text" class="form-control" name="numberofhawkers" placeholder="eg. 1" size="4" data-toggle="tooltip" data-placement="right" title="Number of Hawker Centres">
                                             </div>
                                         </div>
-                                        <div id="hospitals" class="body collapse in">
+                                        <div id="childcare" class="body collapse in">
                                             <label>
-                                                <input type="checkbox"> Hospitals
+                                                <input type="checkbox"> Child Care Centres
                                             </label> 
                                             <div class="input-group" style="position:relative; float:right">
-                                                <label>Importance</label><input type="text" class="form-control"  name="hospitalweightageofimportance" placeholder="eg. 1" size="1" data-toggle="tooltip" data-placement="top" title="The greater the number, the more important">
+                                                <label>Importance</label><input type="text" class="form-control"  name="childcareweightageofimportance" placeholder="eg. 1" size="1" data-toggle="tooltip" data-placement="top" title="The greater the number, the more important">
                                             </div>   
                                             <div class="input-group">
-                                                <input type="text" class="form-control" name="numberofhospitals" placeholder="eg. 1" size="4" data-toggle="tooltip" data-placement="right" title="Number of Hospitals">
+                                                <input type="text" class="form-control" name="numberofchildcare" placeholder="eg. 1" size="4" data-toggle="tooltip" data-placement="right" title="Number of child care centres">
                                             </div>
                                         </div>
-                                        <div id="primary_schools" class="body collapse in">
+                                        <div id="clinic" class="body collapse in">
                                             <label>
-                                                <input type="checkbox"> Primary Schools
+                                                <input type="checkbox"> Clinics
                                             </label>  
                                             <div class="input-group" style="position:relative; float:right">  
-                                                <label>Importance</label><input type="text" class="form-control"  name="psweightageofimportance" placeholder="eg. 1" size="1" data-toggle="tooltip" data-placement="top" title="The greater the number, the more important">
+                                                <label>Importance</label><input type="text" class="form-control"  name="clinicweightageofimportance" placeholder="eg. 1" size="1" data-toggle="tooltip" data-placement="top" title="The greater the number, the more important">
                                             </div>
-                                                
+
                                             <div class="input-group">
-                                                <input type="text" class="form-control" name="numberofprimaryschools" placeholder="eg. 1" size="4" data-toggle="tooltip" data-placement="right" title="Number of Primary Schools">
+                                                <input type="text" class="form-control" name="numberofclinics" placeholder="eg. 1" size="4" data-toggle="tooltip" data-placement="right" title="Number of Clinics">
                                             </div>
                                         </div>
-                                            
+
                                         <div id="submit" style="position:relative; float:right">
                                             <button type="submit" class="btn btn-default">Submit</button>
                                         </div>
                                     </form>
-                                        
+
                                 </div><!-- box -->
                             </div><!-- col -->
                             <!-- Lower Pane for Map -->
@@ -658,8 +650,27 @@
         </script>
         <script src="assets/js/style-switcher.min.js"></script>
         <!--LINK MODULE-->
+        <script src="https://rawgit.com/d3/d3-plugins/master/hexbin/hexbin.js"></script>
+        
+        <script src="Libraries/d3-leaflet.js"></script>
         <script>
             init_function();
+            
+            var options = {
+                radius : 12,                            // Size of the hexagons/bins
+                opacity: 0.5,                           // Opacity of the hexagonal layer
+                duration: 200,                          // millisecond duration of d3 transitions (see note below)
+                lng: function(d){ return d[0]; },       // longitude accessor
+                lat: function(d){ return d[1]; },       // latitude accessor
+                value: function(d){ return d[2]; }, // value accessor - derives the bin value
+                valueFloor: 0,                          // override the color scale domain low value
+                valueCeil: undefined,                   // override the color scale domain high value
+                colorRange: ['#FFFFFF', '#FFFFFF']      // default color range for the heat map
+            };            
+            var hexLayer = L.hexbinLayer(options).addTo(map);
+            hexLayer.colorScale().range('#FFFFFF', '#FFFFFF');
+            hexLayer.data([[103.8,1.3667,1],[103.9864,1.3911,10]]);
+            L.control.scale().addTo(map);
         </script>
         <%
             String result = String.valueOf(request.getAttribute("result"));
@@ -669,8 +680,7 @@
         <script type="text/javascript">
                         
             var data = <%=result%>;
-            generateAll(data);
-
+            
         </script>
         <%
             }
