@@ -22,7 +22,7 @@ public class ConnectionManager {
 
   static {
     // grab environment variable
-    String host = null;//System.getenv("$OPENSHIFT_POSTGRESQL_DB_HOST");
+    String host="127.9.152.130";//System.getenv("$OPENSHIFT_POSTGRESQL_DB_HOST");
     if (host != null) {
       // this is production environment
       // obtain database connection properties from environment variables

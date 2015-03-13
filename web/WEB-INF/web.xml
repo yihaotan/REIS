@@ -22,20 +22,20 @@
 -<env-entry>
         <env-entry-name>dbURL</env-entry-name>
         <env-entry-type>java.lang.String</env-entry-type>
-        <env-entry-value>postgresql://localhost:5432</env-entry-value>
+        <env-entry-value>postgresql://127.9.152.130:5432</env-entry-value>
     </env-entry>
 
 -<env-entry>
         <env-entry-name>dbUser</env-entry-name>
         <env-entry-type>java.lang.String</env-entry-type>
-        <env-entry-value>postgre</env-entry-value>
+        <env-entry-value>adminkqrhzlt</env-entry-value>
     </env-entry>
 
 
 -<env-entry>
         <env-entry-name>dbPassword</env-entry-name>
         <env-entry-type>java.lang.String</env-entry-type>
-        <env-entry-value/>123</env-entry>
+        <env-entry-value/>AdnWddkvFrNp</env-entry>
 
 <distributable/> 
 </web-app>

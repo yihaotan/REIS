@@ -151,7 +151,7 @@
 			var extent = d3.extent(bins, function(d){
 				return that.options.value(d);
 			});
-                        alert(that.options.lat)
+                        
 			if(null == extent[0]) extent[0] = 0;
 			if(null == extent[1]) extent[1] = 0;
 			if(null != that.options.valueFloor) extent[0] = that.options.valueFloor;

@@ -21,6 +21,7 @@
         <link rel='stylesheet' href='Css/dc.css' type='text/css'>
         <link rel='stylesheet' href='Css/bootstrap-select.css' type='text/css'>
         <link rel="stylesheet" href="Css/LeafletStyleSheet.css" type="text/css">
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
         <!--        <link rel="stylesheet" href="Css/jquery-ui.css" type="text/css">-->
         <link rel="stylesheet" href="Css/L.Control.Opencagesearch.css" type="text/css">
         <link rel="stylesheet" href="Css/button1.css" type="text/css">
@@ -102,9 +103,9 @@
 
 
 
+        <!-- Jquery -->
 
-
-
+        <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 
         <!-- Bootstrap -->
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/css/bootstrap.min.css">
@@ -221,14 +222,20 @@
             }
         </style>
 
-
-
-
-
     </head>
 
     <body class="  ">
-
+        <script>
+           $(function() {
+                $( "#sortable" ).sortable();
+                $( "#sortable1" ).sortable();
+                $( "#sortable2" ).sortable();
+                $( "#sortable3" ).sortable();
+               
+              }); 
+        </script>
+        
+        
 
         <div class="bg-dark dk" id="wrap">
 
@@ -478,7 +485,7 @@
 
 
                         <!-- Row for Time Series -->
-                        <div class="row">
+                        <div class="row" id="sortable" >
                             <div class="col-lg-12">
                                 <div class="box">
 
@@ -537,7 +544,7 @@
 
 
                         <!-- Left Pane for Basic Charts-->
-                        <div class="row">
+                        <div class="row" id="sortable1">
                             <div class="col-lg-4 ">
                                 <div class="box">
 
@@ -629,7 +636,7 @@
 
 
                             <!-- Lower Pane for Map -->
-                            <div class="col-lg-7 ">
+                            <div class="col-lg-7 " id="sortable2">
                                 <div class="box">
                                     <!-- Header -->
                                     <header>
@@ -664,7 +671,7 @@
                         </div>
 
                         <!--Begin Datatables-->
-                        <div class="row">
+                        <div class="row" id="sortable3">
                             <div class="col-lg-12">
                                 <div class="box">
                                     <header>
