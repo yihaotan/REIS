@@ -54,7 +54,7 @@ d3.hexbin = function() {
   hexbin.x = function(_) {
     if (!arguments.length) return x;
     x = _;
-    return hexbin;
+  return hexbin;
   };
 
   hexbin.y = function(_) {
@@ -62,7 +62,10 @@ d3.hexbin = function() {
     y = _;
     return hexbin;
   };
-
+  hexbin.value = function(_) {//created by Jovin
+    value = _;
+  return hexbin;
+  };
   hexbin.hexagon = function(radius) {
     if (arguments.length < 1) radius = r;
     return "m" + hexagon(radius).join("l") + "z";

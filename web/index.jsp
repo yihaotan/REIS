@@ -227,10 +227,6 @@
 
     </head>
 
-
-
-
-
     <body class="  ">
 
 
@@ -517,7 +513,7 @@
                                             
                                             <div id='dc-control-chart'>
                                                 <h6>
-                                                    <font><strong>Monthly Psf Line Chart</strong></font>
+                                                    <font><strong>Monthly Psf</strong></font>
                                                 </h6>
                                             </div>
                                         </div>
@@ -633,7 +629,7 @@
 
 
                             <!-- Lower Pane for Map -->
-                            <div class="col-lg-8 ">
+                            <div class="col-lg-7 ">
                                 <div class="box">
                                     <!-- Header -->
                                     <header>

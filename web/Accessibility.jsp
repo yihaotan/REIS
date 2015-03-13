@@ -650,7 +650,7 @@
         </script>
         <script src="assets/js/style-switcher.min.js"></script>
         <!--LINK MODULE-->
-        <script src="https://rawgit.com/d3/d3-plugins/master/hexbin/hexbin.js"></script>
+        <script src="Libraries/hexbin.js"></script>
         
         <script src="Libraries/d3-leaflet.js"></script>
         <script>
@@ -669,7 +669,7 @@
             };            
             var hexLayer = L.hexbinLayer(options).addTo(map);
             hexLayer.colorScale().range('#FFFFFF', '#FFFFFF');
-            hexLayer.data([[103.8,1.3667,1],[103.9864,1.3911,10]]);
+            hexLayer.data([[103.8,1.3667,10],[103.9864,1.3911,1],[103.9864,1.3911,1]]);
             L.control.scale().addTo(map);
         </script>
         <%

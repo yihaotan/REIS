@@ -17,7 +17,7 @@
 				return d[1];
 			},
 			value: function(d){
-				return d.length;
+				return d[2];
 			},
 			valueFloor: undefined,
 			valueCeil: undefined,
@@ -30,7 +30,7 @@
 			this._hexLayout = d3.hexbin()
 				.radius(this.options.radius)
 				.x(function(d){ return d.point[0]; })
-				.y(function(d){ return d.point[1]; });
+				.y(function(d){ return d.point[1]; })
 
 			this._data = [];
 			this._colorScale = d3.scale.linear()
@@ -135,22 +135,23 @@
 
 			// exit
 			join.exit().remove();
-
+                        
 			// add the hexagons to the select
 			this._createHexagons(join, data);
-
+                        
 		},
 
 		_createHexagons : function(g, data) {
 			var that = this;
-
 			// Create the bins using the hexbin layout
 			var bins = that._hexLayout(data);
+                            
 
 			// Determine the extent of the values
 			var extent = d3.extent(bins, function(d){
 				return that.options.value(d);
 			});
+                        alert(that.options.lat)
 			if(null == extent[0]) extent[0] = 0;
 			if(null == extent[1]) extent[1] = 0;
 			if(null != that.options.valueFloor) extent[0] = that.options.valueFloor;
@@ -237,10 +238,11 @@
 		 * Getter/Setter for the value function
 		 */
 		value: function(valueFn){
+                        
 			if(undefined === valueFn){
 				return this.options.value;
 			}
-
+                        
 			this.options.value = valueFn;
 			this._redraw();
 			return this;
