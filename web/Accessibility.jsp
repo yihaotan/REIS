@@ -47,38 +47,10 @@
         <script src="Libraries/L.Control.Opencagesearch.js" type='text/javascript'></script>
         <script src="Libraries/jquery.slidepanel.js" type="text/javascript"></script>
         <script src="Libraries/jquery.sidr.min.js" type="text/javascript"></script>
-        <!--        <script src="Libraries/modernizr.js" type="text/javascript"></script> -->
-        <script src="Libraries/reductio.js" type="text/javascript"></script> 
-        <script src="Libraries/Mergesort.js" type="text/javascript"></script>
-        <script src="Libraries/jQEditRangeSlider-min.js" type="text/javascript"></script>
-        <!--for drawing-->
-        <script src="Libraries/Leaflet.draw1.js"></script>
-        <script src="Libraries/Toolbar.js"></script>
-        <script src="Libraries/Tooltip.js"></script>
-        <script src="Libraries/ext/GeometryUtil.js"></script>
-        <script src="Libraries/ext/LatLngUtil.js"></script>
-        <script src="Libraries/ext/LineUtil.Intersect.js"></script>
-        <script src="Libraries/ext/Polygon.Intersect.js"></script>
-        <script src="Libraries/ext/Polyline.Intersect.js"></script>
-        <script src="Libraries/draw/DrawToolbar.js"></script>
-        <script src="Libraries/draw/handler/Draw.Feature.js"></script>
-        <script src="Libraries/draw/handler/Draw.SimpleShape.js"></script>
-        <script src="Libraries/draw/handler/Draw.Polyline.js"></script>
-        <script src="Libraries/draw/handler/Draw.Circle.js"></script>
-        <script src="Libraries/draw/handler/Draw.Marker.js"></script>
-        <script src="Libraries/draw/handler/Draw.Polygon.js"></script>
-        <script src="Libraries/draw/handler/Draw.Rectangle.js"></script>
-        <script src="Libraries/edit/EditToolbar.js"></script>
-        <script src="Libraries/edit/handler/EditToolbar.Edit.js"></script>
-        <script src="Libraries/edit/handler/EditToolbar.Delete.js"></script>
-        <script src="Libraries/Control.Draw.js"></script>
-        <script src="Libraries/edit/handler/Edit.Poly.js"></script>
-        <script src="Libraries/edit/handler/Edit.SimpleShape.js"></script>
-        <script src="Libraries/edit/handler/Edit.Circle.js"></script>
-        <script src="Libraries/edit/handler/Edit.Rectangle.js"></script>
-        <script src="Libraries/edit/handler/Edit.Marker.js"></script>
+        
+        <!-- Generate Hexagon for accessibility-->
+        <script src="GenerateAccessibility.js"></script>
 
-        <!--for drawing-->
 
         <!--Custom Function-->
         <script src="Scripts/Upload/svy21.js"></script>
@@ -86,8 +58,7 @@
         <script src='Scripts/Maps/mapCriteriaProcessing.js' type='text/javascript'></script>
         <script src="Scripts/Maps/mapPolygon.js"></script>
         <script src="Scripts/InteractiveUI/generatemapmarkersinbounds.js"></script> 
-        <script src="Scripts/Charts/chartUtilities.js"></script>
-        <script src="Scripts/Charts/chartGeneration.js"></script>
+
 
         <script src="Scripts/Tables/tableGeneration.js"></script>
 
@@ -111,23 +82,7 @@
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/metisMenu/1.1.3/metisMenu.min.css">
         <link rel="stylesheet" href="//cdn.datatables.net/plug-ins/3cfcc339e89/integration/bootstrap/3/dataTables.bootstrap.css">
 
-        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-
-        <!--[if lt IE 9]>
-          <script src="assets/lib/html5shiv/html5shiv.js"></script>
-          <script src="assets/lib/respond/respond.min.js"></script>
-          <![endif]-->
-
-        <!--For Development Only. Not required -->
-        <script>
-            less = {
-                env: "development",
-                relativeUrls: false,
-                rootpath: "../assets/"
-            };
-        </script>
         <link rel="stylesheet" href="assets/css/style-switcher.css">
         <link rel="stylesheet/less" type="text/css" href="assets/less/theme.less">
         <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.2.0/less.min.js"></script>
@@ -148,69 +103,16 @@
                 max-width: 100%;
                 z-index: 0;
             } 
-
-
-            #dc-propertyVolume-chart{
-                position: relative;
-                top: 0px;
-                left: 15px;
+            .legend {
+                line-height: 18px;
+                color: #555;
+            }
+            .legend i {
+                width: 18px;
+                height: 18px;
                 float: left;
-            }
-            #dc-propertySaleVolume-chart{
-                position: relative;
-                top: 0px;
-                left: 15px;
-                float: left;
-            }
-            #dc-propertyTenureVolume-chart{
-                position: relative;
-                top: 0px;
-                left: 15px;
-                float: left;
-            }
-
-
-
-            #count-table {
-                position: relative;
-            }
-
-
-            #dc-control-chart{
-                float: left;
-                position: relative;
-                top: 0px;
-                left: 15px;
-            }
-            #dc-histogram{
-                float: left;
-                position: relative;
-                top: 0px;
-                left: 15px;
-            }
-            #dc-psfBoxPlot-chart{
-                float: left;
-                position:absolute;
-                top:110px;
-                left: 236px;
-            }
-            #dc-table-graph{
-                position: relative;
-                max-width: 100%;
-            }
-
-
-            #dc-dateVolume-chart{
-                max-width: 100%;
-                position: relative;
-                top: 0px;
-                left: 15px;
-            }
-            #dc-stackDateVolume-chart{
-                max-width: 100%;
-                position: relative;
-                top: 0px;
-                left: 15px;
+                margin-right: 8px;
+                opacity: 0.7;
             }
         </style>
 
@@ -437,7 +339,7 @@
                                     <!-- Header -->
                                     <header>
                                         <div class="icons">
-                                            <i class="fa fa-bar-chart-o"></i>
+                                            <i class="glyphicon glyphicon-check"></i>
                                         </div>
                                         <h5>Input Fields</h5>
                                         <div class="toolbar">
@@ -638,39 +540,17 @@
         <script src="assets/js/app.js"></script>
         <script type="text/javascript" language="javascript" src="//cdn.datatables.net/1.10.5/js/jquery.dataTables.min.js"></script>
         <script type="text/javascript" language="javascript" src="//cdn.datatables.net/plug-ins/f2c75b7247b/integration/bootstrap/3/dataTables.bootstrap.js"></script>
-        <script>
-            $(function () {
-                //Metis.MetisTable();
-                //Metis.formGeneral();
-                //Metis.metisSortable();
-            });
- 
-
-            
-        </script>
+        
+        
         <script src="assets/js/style-switcher.min.js"></script>
         <!--LINK MODULE-->
         <script src="Libraries/hexbin.js"></script>
-        
+
         <script src="Libraries/d3-leaflet.js"></script>
         <script>
             init_function();
             
-            var options = {
-                radius : 12,                            // Size of the hexagons/bins
-                opacity: 0.5,                           // Opacity of the hexagonal layer
-                duration: 200,                          // millisecond duration of d3 transitions (see note below)
-                lng: function(d){ return d[0]; },       // longitude accessor
-                lat: function(d){ return d[1]; },       // latitude accessor
-                value: function(d){ return d[2]; }, // value accessor - derives the bin value
-                valueFloor: 0,                          // override the color scale domain low value
-                valueCeil: undefined,                   // override the color scale domain high value
-                colorRange: ['#FFFFFF', '#FFFFFF']      // default color range for the heat map
-            };            
-            var hexLayer = L.hexbinLayer(options).addTo(map);
-            hexLayer.colorScale().range('#FFFFFF', '#FFFFFF');
-            hexLayer.data([[103.8,1.3667,10],[103.9864,1.3911,1],[103.9864,1.3911,1]]);
-            L.control.scale().addTo(map);
+            generateAccessibilty();
         </script>
         <%
             String result = String.valueOf(request.getAttribute("result"));

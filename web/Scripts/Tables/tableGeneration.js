@@ -15,6 +15,9 @@ function plotDataTable(tableName,widthSize,heightSize,dimensionName,tableSize){
                     return  d.propertyType;
                 },
                 function(d) {
+                    return  d.sale;
+                },
+                function(d) {
                     return d.address;
                 },
                 function(d){

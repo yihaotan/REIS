@@ -30,9 +30,9 @@
         
         </style>  
         
-        <script src="../JQUERY/jquery-1.8.3.js"></script>
-        <script src="../JQUERY/jquery-ui-1.9.2.custom.js"></script>
-        <script src="../UIlibraries/jQEditRangeSlider-min.js"></script>
+        <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="../Libraries/jquery-ui-1.9.2.custom.js"></script>
+        <script src="../Libraries/jQEditRangeSlider-min.js"></script>
         
         <script>
         $("#slider").editRangeSlider({bounds:{min: 0, max: 4000}},{defaultValues:{min: 1500, max: 3000}});

@@ -13,7 +13,6 @@
 
 
 
-
         <!--        <link rel="stylesheet" href="Css/flat-ui.min.css" type="text/css">-->
         <link rel="stylesheet" href="Css/iThing.css" type="text/css">
         <!--        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" type="text/css">
@@ -29,6 +28,8 @@
         <link rel="stylesheet" href="Css/jquery.sidr.light.css" type="text/css">
         <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css"  type="text/css">
         <link rel="stylesheet" href="Css/leaflet.draw.css" type="text/css">
+
+
         <!--Unknown-->
         <script src="http://maps.google.com/maps/api/js?v=3&sensor=false"></script>  
         <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
@@ -78,7 +79,7 @@
         <script src="Libraries/edit/handler/Edit.Circle.js"></script>
         <script src="Libraries/edit/handler/Edit.Rectangle.js"></script>
         <script src="Libraries/edit/handler/Edit.Marker.js"></script>
-        
+
         <!--for drawing-->
 
         <!--Custom Function-->
@@ -97,15 +98,14 @@
         <script src="Scripts/Maps/mapUtilities.js"></script>
         <script src="Scripts/Run/main.js"></script> 
         <script src="Scripts/Run/run.js"></script>
-        <!--Custom function-->
-
-
-
-
 
         <!-- Jquery -->
 
         <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+
+        <!--PriceSlider-->
+
+
 
         <!-- Bootstrap -->
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/css/bootstrap.min.css">
@@ -119,7 +119,12 @@
         <!-- metisMenu stylesheet -->
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/metisMenu/1.1.3/metisMenu.min.css">
         <link rel="stylesheet" href="//cdn.datatables.net/plug-ins/3cfcc339e89/integration/bootstrap/3/dataTables.bootstrap.css">
-        
+
+
+
+
+
+
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -140,7 +145,7 @@
         <link rel="stylesheet" href="assets/css/style-switcher.css">
         <link rel="stylesheet/less" type="text/css" href="assets/less/theme.less">
         <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.2.0/less.min.js"></script>
-        
+
         <!--Modernizr-->
         <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
 
@@ -206,6 +211,14 @@
                 position: relative;
                 max-width: 100%;
             }
+           #dc-table-graph tbody td {
+                font-size: 11.5px;
+
+            }
+            #dc-table-graph th{
+                font-size: 11.5px;
+
+            }
 
 
             #dc-dateVolume-chart{
@@ -220,22 +233,23 @@
                 top: 0px;
                 left: 15px;
             }
+
         </style>
 
     </head>
 
     <body class="  ">
         <script>
-           $(function() {
+            $(function() {
                 $( "#sortable" ).sortable();
                 $( "#sortable1" ).sortable();
                 $( "#sortable2" ).sortable();
                 $( "#sortable3" ).sortable();
                
-              }); 
+            }); 
         </script>
-        
-        
+
+
 
         <div class="bg-dark dk" id="wrap">
 
@@ -372,7 +386,7 @@
                                     <span class="input-group-addon">Psf</span>
                                     <input type="text" class="form-control" name="end_size" placeholder="End Size" size="6" value='<%=end_size%>' >
                                 </div>
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="submit" class="btn btn-primary">Submit</button>
                             </div>
                         </form>
 
@@ -383,7 +397,9 @@
 
             </div><!-- /#top -->
 
- <div id="left">
+            
+
+            <div id="left">
 
                 <!-- User Profile Here -->
                 <div class="media user-media bg-dark dker">
@@ -509,7 +525,7 @@
 
                                     <!-- Content for Time Series -->
                                     <div id="dateVolume" class="body collapse in">
-                                       
+
                                         <!-- Zoom In Stacked Chart -->
                                         <div class="row">
                                             <div id='dc-stackDateVolume-chart'>
@@ -517,7 +533,7 @@
                                                     <font><strong>Monthly Transaction Volume</strong></font>
                                                 </h6>
                                             </div>
-                                            
+
                                             <div id='dc-control-chart'>
                                                 <h6>
                                                     <font><strong>Monthly Psf</strong></font>
@@ -525,7 +541,7 @@
                                             </div>
                                         </div>
                                         <!-- Daily Volume Chart -->
-                                         <div class="row">
+                                        <div class="row">
                                             <div id='dc-dateVolume-chart'>
                                                 <h6>
                                                     <font><strong>Monthly Transaction Filter Volume</strong></font>
@@ -533,8 +549,8 @@
                                                 </h6>
                                             </div>
                                         </div>
-                                        
-                                        
+
+
                                     </div>         
 
                                 </div>
@@ -659,11 +675,11 @@
                                     <div id="mapView" class="body collapse in">
                                         <div id="map"></div>
                                         <div class="row">
-                                            
-                                                <div id="dc-histogram">
-                                                    <h6><strong>Psf Histogram</strong></h6>
-                                                </div>
-                                            
+
+                                            <div id="dc-histogram">
+                                                <h6><strong>Psf Histogram</strong></h6>
+                                            </div>
+
                                         </div>
                                     </div>
                                 </div>
@@ -697,6 +713,7 @@
                                                 <tr>
                                                     <th>Project Name</th>
                                                     <th>Property Type</th>
+                                                    <th>Sale Type</th>
                                                     <th>Address</th>
                                                     <th>Date</th>
                                                     <th>Size</th>
@@ -859,7 +876,7 @@
         </script>
         <%
             String result = String.valueOf(request.getAttribute("result"));
-            
+
             if (!result.equals("null")) {
         %>
         <script type="text/javascript">
