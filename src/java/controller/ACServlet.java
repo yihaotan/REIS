@@ -47,8 +47,6 @@ public class ACServlet extends HttpServlet {
             ArrayList<Hexagon> result = new ArrayList<Hexagon>();
             result = hdao.retrieve();
             
-            System.out.println(result.size());
-            
             // pretty print and convert to string
             JsonArray hexagonList = hdao.toJSON(result);
             Gson gson = new GsonBuilder().setPrettyPrinting().create();

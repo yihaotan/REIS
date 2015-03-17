@@ -180,36 +180,32 @@ public class HexagonDAO {
             Gson gson = new Gson();
             JsonElement je = gson.fromJson(geojson_str, JsonElement.class);
             JsonObject jo = je.getAsJsonObject();
-
-            if (i == 0) {
-                JsonArray ja = (JsonArray) jo.get("coordinates");
-                JsonArray first_instance = (JsonArray) ja.get(0);
-                JsonArray first_polygon = (JsonArray) first_instance.get(0);
-                JsonArray vertex_one = (JsonArray) first_polygon.get(0);
-                
-                double northing = vertex_one.get(0).getAsDouble();
-                double easting = vertex_one.get(1).getAsDouble();
-
-                SVY21Coordinate svy21_result = new SVY21Coordinate(northing, easting);
-                LatLonCoordinate latlon_result = svy21_result.asLatLon();
-                double lat = latlon_result.getLatitude();
-                double lon = latlon_result.getLongitude();
-                System.out.println("Lon is " + lon + " and Lat is " + lat);
+            JsonArray ja = (JsonArray) jo.get("coordinates");
+            JsonArray first_instance = (JsonArray) ja.get(0);
+            JsonArray first_polygon = (JsonArray) first_instance.get(0);
+            
+            for (int x = 0; x < 7; x++) {
+                JsonArray vertex = (JsonArray) first_polygon.get(x);
+                JsonArray new_vertex = geo_conversion(vertex);
+                first_polygon.set(x, new_vertex);
             }
 
             // add geometry
-//            JsonObject geometry = new JsonObject();
-//            geometry.addProperty("type", "Polygon");
-//            geometry.add("coordinates", jo.coordinates);
-            // add everything into one record
             JsonObject record = new JsonObject();
-
             record.addProperty("type", "Feature");
             record.add("properties", properties);
             record.add("geometry", jo);
 
             // append to resultArray
             resultArray.add(record);
+            
+            if (i ==0) {
+            Gson gg = new GsonBuilder().setPrettyPrinting().create();
+            String jj = gg.toJson(record);
+            
+            System.out.println(jj);
+            
+            }
 
         }
 
@@ -245,4 +241,25 @@ public class HexagonDAO {
 
         return result;
     }
+
+    public JsonArray geo_conversion(JsonArray vertex) {
+        double northing = vertex.get(0).getAsDouble();
+        double easting = vertex.get(1).getAsDouble();
+
+        SVY21Coordinate svy21_result = new SVY21Coordinate(northing, easting);
+        LatLonCoordinate latlon_result = svy21_result.asLatLon();
+        double lat = latlon_result.getLatitude();
+        double lon = latlon_result.getLongitude();
+
+        JsonArray new_vertex = new JsonArray();
+
+        JsonPrimitive json_lat = new JsonPrimitive(lat);
+        JsonPrimitive json_lon = new JsonPrimitive(lon);
+
+        new_vertex.add(json_lon);
+        new_vertex.add(json_lat);
+
+        return new_vertex;
+    }
+
 }
