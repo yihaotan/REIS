@@ -636,17 +636,17 @@
         <script>
             init_function();
             
-            generateAccessibilty();
+            
         </script>
         <%
-            String result = String.valueOf(request.getAttribute("result"));
+            String result = String.valueOf(request.getAttribute("accessibility_result"));
 
             if (!result.equals("null")) {
         %>
         <script type="text/javascript">
                         
             var data = <%=result%>;
-            
+            generateAccessibilty(data);
         </script>
         <%
             }

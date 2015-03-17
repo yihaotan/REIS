@@ -2,7 +2,16 @@
 var geocoder=new google.maps.Geocoder();
 
 
-function generateAccessibilty(){
+function generateAccessibilty(data){
+
+var cv = new SVY21();
+
+data.forEach(function (d) {
+        
+        
+       
+    });
+
 
 var test={
     "type": "Feature",
@@ -14,7 +23,7 @@ var test={
         "coordinates":[
         [
         
-        [103.68794925421703,1.3382176179439507],
+        [103.68794925421703, 1.3382176179439507],
         [103.6884679825861, 1.339122006170787],
         [103.68950554589199, 1.3391220676536735],
         [103.69002438006846, 1.338217740826652],
