@@ -47,7 +47,7 @@ public class HexagonDAO {
      *
      * @return an ArrayList of Transaction
      */
-    public ArrayList<Hexagon> retrieve() {
+    public ArrayList<Hexagon> retrieve(String[] facility_list) {
         Connection conn = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -88,39 +88,56 @@ public class HexagonDAO {
                     + " FROM grid_centroid, chasclinic"
                     + " ) ";
 
-            // Formulate the query string
+            String base_table = "WITH ";
+
             String select_list
                     = " SELECT grid_centroid.gid as point, "
-                    + "     selected_grid.gid as hexagon, "
-                    + "     AVG(hawkercentre_distance) as hawkercentre, "
-                    + "     AVG(childcare_distance) as childcare, "
-                    + "     AVG(chasclinic_distance) as chasclinic, "
-                    + "     ST_AsGeoJSON(selected_grid.geom) as GeoJSON ";
+                    + "     selected_grid.gid as hexagon, ";
+
             String from_list
                     = " FROM grid_centroid, "
-                    + "     selected_grid, "
-                    + "     hawkercentre_table, "
-                    + "     childcare_table, "
-                    + "     chasclinic_table ";
+                    + "     selected_grid, ";
+
             String where_list
-                    = " WHERE hawkercentre_row_number <= 3 "
-                    + " AND childcare_row_number <= 3"
-                    + " AND chasclinic_row_number <= 3"
-                    + " AND selected_grid.gid = grid_centroid.gid"
-                    + " AND grid_centroid.gid = hawkercentre_table.grid_id"
-                    + " AND hawkercentre_table.grid_id = childcare_table.grid_id"
-                    + " AND hawkercentre_table.grid_id = chasclinic_table.grid_id";
+                    = " WHERE selected_grid.gid = grid_centroid.gid ";
+
+            for (int x = 0; x < facility_list.length; x++) {
+                String facility_name = facility_list[x];
+                if (facility_name.equals("hawkercentre")) {
+                    base_table += hawkercentre_table + ",";
+                    select_list += "     AVG(hawkercentre_distance) as hawkercentre, ";
+                    from_list += "     hawkercentre_table,";
+                    where_list += " AND grid_centroid.gid = hawkercentre_table.grid_id"
+                            + " AND hawkercentre_row_number <= 3 ";
+                }
+                if (facility_name.equals("childcare")) {
+                    base_table += childcare_table + ",";
+                    select_list += "     AVG(childcare_distance) as childcare, ";
+                    from_list += "     childcare_table,";
+                    where_list += " AND grid_centroid.gid = childcare_table.grid_id "
+                            + " AND childcare_row_number <= 3 ";
+                }
+                if (facility_name.equals("chasclinic")) {
+                    base_table += chasclinic_table + ",";
+                    select_list += "     AVG(chasclinic_distance) as chasclinic, ";
+                    from_list += "     chasclinic_table,";
+                    where_list += " AND grid_centroid.gid = chasclinic_table.grid_id "
+                            + " AND chasclinic_row_number <= 3 ";
+                }
+            }
+
+            base_table = base_table.substring(0, base_table.length() - 1);
+            from_list = from_list.substring(0, from_list.length() - 1);
+
+            select_list += "     ST_AsGeoJSON(ST_Transform(selected_grid.geom, 4326)) as GeoJSON ";
+
             String group_by
-                    = " GROUP BY point, hexagon"
-                    + " ORDER BY point;";
+                    = " GROUP BY point, hexagon "
+                    + " ORDER BY point; ";
             String query = select_list + from_list + where_list + group_by;
 
             // final sql
-            sql = "WITH "
-                    + hawkercentre_table + ","
-                    + childcare_table + ","
-                    + chasclinic_table + " "
-                    + query;
+            sql = base_table + query;
 
             ps = conn.prepareStatement(sql);
             rs = ps.executeQuery();
@@ -129,14 +146,24 @@ public class HexagonDAO {
                 //Retrieve by column name
                 int id = rs.getInt("point");
                 String geojson = rs.getString("geojson");
-                double hawkercentre = rs.getDouble("hawkercentre");
-                double childcare = rs.getDouble("childcare");
-                double chasclinic = rs.getDouble("chasclinic");
 
                 HashMap hm = new HashMap();
-                hm.put("hawkercentre", hawkercentre);
-                hm.put("childcare", childcare);
-                hm.put("chasclinic", chasclinic);
+
+                for (int p = 0; p < facility_list.length; p++) {
+                    String facility_name = facility_list[p];
+                    if (facility_name.equals("hawkercentre")) {
+                        double hawkercentre = rs.getDouble("hawkercentre");
+                        hm.put("hawkercentre", hawkercentre);
+                    }
+                    if (facility_name.equals("childcare")) {
+                        double childcare = rs.getDouble("childcare");
+                        hm.put("childcare", childcare);
+                    }
+                    if (facility_name.equals("chasclinic")) {
+                        double chasclinic = rs.getDouble("chasclinic");
+                        hm.put("chasclinic", chasclinic);
+                    }
+                }
 
                 Hexagon h = new Hexagon(id, hm, geojson);
 
@@ -157,7 +184,7 @@ public class HexagonDAO {
      *
      * @return Json of all Transaction
      */
-    public JsonArray toJSON(ArrayList<Hexagon> result) {
+    public JsonArray toJSON(ArrayList<Hexagon> result, String[] facility_list) {
 
         JsonArray resultArray = new JsonArray();
 
@@ -166,29 +193,36 @@ public class HexagonDAO {
             // add properties
             JsonObject properties = new JsonObject();
             HashMap hm = result.get(i).get_hm();
-            double hawkercentre = (Double) hm.get("hawkercentre");
-            double childcare = (Double) hm.get("childcare");
-            double chasclinic = (Double) hm.get("chasclinic");
+
+            double hawkercentre = -1;
+            double childcare = -1;
+            double chasclinic = -1;
+
+            for (int p = 0; p < facility_list.length; p++) {
+                String facility_name = facility_list[p];
+                if (facility_name.equals("hawkercentre")) {
+                    hawkercentre = (Double) hm.get("hawkercentre");
+                }
+                if (facility_name.equals("childcare")) {
+                    childcare = (Double) hm.get("childcare");
+                }
+                if (facility_name.equals("chasclinic")) {
+                    chasclinic = (Double) hm.get("chasclinic");
+                }
+            }
+
             int accessibility_score = calculate_accessbility(hawkercentre, childcare, chasclinic);
+            properties.addProperty("grid_id", result.get(i).get_id());
             properties.addProperty("density", accessibility_score);
-            properties.addProperty("hawkercentre", hawkercentre);
-            properties.addProperty("childcare", childcare);
-            properties.addProperty("chasclinic", chasclinic);
+//            properties.addProperty("hawkercentre", hawkercentre);
+//            properties.addProperty("childcare", childcare);
+//            properties.addProperty("chasclinic", chasclinic);
 
             // add coordinates
             String geojson_str = result.get(i).get_geojson();
             Gson gson = new Gson();
             JsonElement je = gson.fromJson(geojson_str, JsonElement.class);
             JsonObject jo = je.getAsJsonObject();
-            JsonArray ja = (JsonArray) jo.get("coordinates");
-            JsonArray first_instance = (JsonArray) ja.get(0);
-            JsonArray first_polygon = (JsonArray) first_instance.get(0);
-            
-            for (int x = 0; x < 7; x++) {
-                JsonArray vertex = (JsonArray) first_polygon.get(x);
-                JsonArray new_vertex = geo_conversion(vertex);
-                first_polygon.set(x, new_vertex);
-            }
 
             // add geometry
             JsonObject record = new JsonObject();
@@ -198,14 +232,6 @@ public class HexagonDAO {
 
             // append to resultArray
             resultArray.add(record);
-            
-            if (i ==0) {
-            Gson gg = new GsonBuilder().setPrettyPrinting().create();
-            String jj = gg.toJson(record);
-            
-            System.out.println(jj);
-            
-            }
 
         }
 
@@ -215,51 +241,47 @@ public class HexagonDAO {
 
     public int calculate_accessbility(double hawkercentre, double childcare, double chasclinic) {
 
-        int hawkercentre_score;
-        int childcare_score;
-        int chasclinic_score;
+        int hawkercentre_score = -1;
+        int childcare_score = -1;
+        int chasclinic_score = -1;
 
-        if (hawkercentre > 300) {
-            hawkercentre_score = 0;
-        } else {
-            hawkercentre_score = 5;
+        if (hawkercentre != -1) {
+            if (hawkercentre > 500) {
+                hawkercentre_score = 2;
+            } else {
+                hawkercentre_score = 5;
+            }
         }
 
-        if (childcare > 300) {
-            childcare_score = 0;
-        } else {
-            childcare_score = 5;
+        if (childcare != -1) {
+            if (childcare > 500) {
+                childcare_score = 2;
+            } else {
+                childcare_score = 5;
+            }
         }
 
-        if (chasclinic > 300) {
-            chasclinic_score = 0;
-        } else {
-            chasclinic_score = 5;
+        if (chasclinic != -1) {
+            if (chasclinic > 500) {
+                chasclinic_score = 2;
+            } else {
+                chasclinic_score = 5;
+            }
         }
-
-        int result = hawkercentre_score + childcare_score + chasclinic_score;
+        
+        int result = 0;
+        
+        if (hawkercentre_score != -1) {
+            result += hawkercentre_score;
+        }
+        if (childcare_score != -1) {
+            result += childcare_score;
+        }
+        if (chasclinic_score != -1) {
+            result += chasclinic_score;
+        }
 
         return result;
-    }
-
-    public JsonArray geo_conversion(JsonArray vertex) {
-        double northing = vertex.get(0).getAsDouble();
-        double easting = vertex.get(1).getAsDouble();
-
-        SVY21Coordinate svy21_result = new SVY21Coordinate(northing, easting);
-        LatLonCoordinate latlon_result = svy21_result.asLatLon();
-        double lat = latlon_result.getLatitude();
-        double lon = latlon_result.getLongitude();
-
-        JsonArray new_vertex = new JsonArray();
-
-        JsonPrimitive json_lat = new JsonPrimitive(lat);
-        JsonPrimitive json_lon = new JsonPrimitive(lon);
-
-        new_vertex.add(json_lon);
-        new_vertex.add(json_lat);
-
-        return new_vertex;
     }
 
 }

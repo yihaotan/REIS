@@ -356,44 +356,45 @@
                                     </header>
 
                                     <!-- Accessibility -->
-                                    <form id="inputs" class="body collapse in">
+                                    <form id="inputs" class="body collapse in" action="ACServlet">
                                         <div id="hawkers" class="body collapse in">
                                             <label>
-                                                <input type="checkbox"> Hawker centres
+                                                <input type="checkbox" name="facility" value="hawkercentre"> Hawker centres
                                             </label>  
                                             <div class="input-group"  style="position:relative; float:right">
                                                 <label>Importance</label><input type="text" class="form-control"  name="hawkerweightageofimportance" placeholder="eg. 1" size="1" data-toggle="tooltip" data-placement="top" title="The greater the number, the more important">
                                             </div>   
                                             <div class="input-group">
-                                                <input type="text" class="form-control" name="numberofhawkers" placeholder="eg. 1" size="4" data-toggle="tooltip" data-placement="right" title="No. of hawker centres">
+                                                <input type="text" class="form-control" name="num_hawkercentre" placeholder="eg. 1" size="4" data-toggle="tooltip" data-placement="right" title="No. of hawker centres">
                                             </div>
                                         </div>
                                         <div id="childcare" class="body collapse in">
                                             <label>
-                                                <input type="checkbox"> Child care
+                                                <input type="checkbox"  name="facility" value="childcare"> Child care
                                             </label> 
                                             <div class="input-group" style="position:relative; float:right">
                                                 <label>Importance</label><input type="text" class="form-control"  name="childcareweightageofimportance" placeholder="eg. 1" size="1" data-toggle="tooltip" data-placement="top" title="The greater the number, the more important">
                                             </div>   
                                             <div class="input-group">
-                                                <input type="text" class="form-control" name="numberofchildcare" placeholder="eg. 1" size="4" data-toggle="tooltip" data-placement="right" title="No. of child care centres">
+                                                <input type="text" class="form-control" name="num_childcare" placeholder="eg. 1" size="4" data-toggle="tooltip" data-placement="right" title="No. of child care centres">
                                             </div>
                                         </div>
                                         <div id="clinic" class="body collapse in">
                                             <label>
-                                                <input type="checkbox"> Clinics
+                                                <input type="checkbox" name="facility"  value="chasclinic"> Clinics
                                             </label>  
                                             <div class="input-group" style="position:relative; float:right">  
                                                 <label>Importance</label><input type="text" class="form-control"  name="clinicweightageofimportance" placeholder="eg. 1" size="1" data-toggle="tooltip" data-placement="top" title="The greater the number, the more important">
                                             </div>
 
                                             <div class="input-group">
-                                                <input type="text" class="form-control" name="numberofclinics" placeholder="eg. 1" size="4" data-toggle="tooltip" data-placement="right" title="No. of clinics">
+                                                <input type="text" class="form-control" name="num_chasclinic" placeholder="eg. 1" size="4" data-toggle="tooltip" data-placement="right" title="No. of clinics">
                                             </div>
                                         </div>
-
-                                        <div id="submit" style="position:relative; float:right">
-                                            <button type="submit" class="btn btn-default">Submit</button>
+                                        <div id="submit_button" class="body collapse in">
+                                            <div id="submit">
+                                                <button type="submit" class="btn btn-info">Submit</button>
+                                            </div>
                                         </div>
                                     </form>
 
@@ -636,8 +637,8 @@
         <script src="Libraries/d3-leaflet.js"></script>
         <script>
             init_function();
-            
-            generateAccessibilty();
+
+
         </script>
         <%
             String result = String.valueOf(request.getAttribute("accessibility_result"));
@@ -645,10 +646,10 @@
             if (!result.equals("null")) {
         %>
         <script type="text/javascript">
-                        
+
             var data = <%=result%>;
-            
-            
+            generateAccessibilty(data);
+
         </script>
         <%
             }

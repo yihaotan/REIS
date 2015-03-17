@@ -41,20 +41,41 @@ public class ACServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
         try {
             /* TODO output your page here. You may use following sample code. */
+            
+            String[] facility_list = request.getParameterValues("facility");
+            
+            String num_hawkercentre_str = request.getParameter("num_hawkercentre");
+            if (num_hawkercentre_str != null) {
+                // to be continued
+            }
+            
+            
+            String num_childcare_str = request.getParameter("num_childcare");
+            String num_chasclinic_str = request.getParameter("num_chasclinic");
+            
             HexagonDAO hdao = new HexagonDAO();
             
             // retrieve all hexagons
             ArrayList<Hexagon> result = new ArrayList<Hexagon>();
-            result = hdao.retrieve();
+            result = hdao.retrieve(facility_list);
             
             // pretty print and convert to string
-            JsonArray hexagonList = hdao.toJSON(result);
+            JsonArray hexagonList = hdao.toJSON(result, facility_list);
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
             String json = gson.toJson(hexagonList);
             
             request.setAttribute("accessibility_result", json);
             RequestDispatcher rd = request.getRequestDispatcher("Accessibility.jsp");
             rd.forward(request, response);
+            
+            } catch (Exception e) {
+            
+            // Send error (if any) back to homepage
+            String error = "Error!";
+            System.out.println();
+//            request.setAttribute("error", error);
+//            RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+//            rd.forward(request, response);
             
         } finally {
             out.close();
