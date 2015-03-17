@@ -79,9 +79,9 @@
         <script src="Libraries/edit/handler/Edit.Circle.js"></script>
         <script src="Libraries/edit/handler/Edit.Rectangle.js"></script>
         <script src="Libraries/edit/handler/Edit.Marker.js"></script>
-
         <!--for drawing-->
-        <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+        <!--for tooltip-->
+        <script src="Libraries/d3.tip.v0.6.3.js"></script>
         <!--Custom Function-->
         <script src="Scripts/Upload/svy21.js"></script>
         <script src="Scripts/Maps/mapGeneration.js"></script>

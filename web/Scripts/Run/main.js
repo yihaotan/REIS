@@ -9,8 +9,8 @@ function generateMapAndCharts(geoJsonData){
     dataTable = dc.dataTable("#dc-table-graph");
     dataTable.on("postRender", function(chart){reinit(chart)}).on("postRedraw", function(chart){reinit(chart)});
    
-    
     var cv = new SVY21();
+    
     //Charts
     geoJsonData.forEach(function (d) {
         d.projectName = d.properties.PROJECT_NAME;
@@ -110,23 +110,23 @@ function generateMapAndCharts(geoJsonData){
     });
     //new method 
     var apartmentGroup = dateDimension.group().reduceSum(function(d){
-        return d.propertyType == 'Apartment'? 1:0;
+        return d.propertyType === 'Apartment'? 1:0;
     });
     
     var condoGroup = dateDimension.group().reduceSum(function(d){
-        return d.propertyType == 'Condominium'?1:0;
+        return d.propertyType === 'Condominium'?1:0;
     });
     var detachGroup = dateDimension.group().reduceSum(function(d){
-        return d.propertyType == 'Detached House'?1:0;
+        return d.propertyType === 'Detached House'?1:0;
     });
     var ecGroup = dateDimension.group().reduceSum(function(d){
-        return d.propertyType == 'Executive Condominium'?1:0;
+        return d.propertyType === 'Executive Condominium'?1:0;
     });
     var sdGroup = dateDimension.group().reduceSum(function(d){
-        return d.propertyType == 'Semi-Detached House'?1:0;
+        return d.propertyType === 'Semi-Detached House'?1:0;
     });
     var terraceGroup = dateDimension.group().reduceSum(function(d){
-        return d.propertyType == 'Terrace House'?1:0;
+        return d.propertyType === 'Terrace House'?1:0;
     });
     var dateGroup = dateDimension.group().reduceCount();
     var datePsfGroup = dateDimension.group();
@@ -163,7 +163,6 @@ function generateMapAndCharts(geoJsonData){
     function plotStackTimeChart(){
         plotStackedTimeBarChart(stackedDateVolumeBarChart,dateVolumeBarChart,dateDimension,apartmentGroup,condoGroup,detachGroup,ecGroup,sdGroup,terraceGroup,550,152,30,5,getMinDate(geoJsonData),getMaxDate(geoJsonData),"%b %y");
         var f1 = getFilters(dateVolumeBarChart);
-        //console.log(f1);
         applyFilter(stackedDateVolumeBarChart,f1);
     }
     function plotPropertyVolumePie() {
@@ -186,12 +185,11 @@ function generateMapAndCharts(geoJsonData){
             plotRowChart(propertyVolumeRowChart,propertyVolumeDimension,propertyVolumeGroup,300,160,3,5);
             applyFilter(propertyVolumeRowChart, f2);
             filterMap(propertyVolumeRowChart,propertyDimension);
-            propertyVolumeRowChart;
+           
         } else {
             propertyVolumeRowChart = dc.rowChart("#dc-propertyVolume-chart");
             plotRowChart(propertyVolumeRowChart,propertyVolumeDimension,propertyVolumeGroup,300,160,3,5);
             filterMap(propertyVolumeRowChart,propertyDimension);
-            propertyVolumeRowChart;
         }
     }
     function plotSaleVolumePie() {
@@ -331,10 +329,23 @@ function generateMapAndCharts(geoJsonData){
         $("#bar1").prop("disabled", true);
         $("#bar2").prop("disabled", true);
         $("#bar3").prop("disabled", true);
+        $("#bar1").mouseenter(function () {
+            $(this).html("Bar");
+        });
+        $('#bar1').mouseleave(function () {
+            $("#bar1").button();
+        });
+        $("#pie1").mouseenter(function () {
+            $(this).html("Pie");
+        });
+        $('#pie1').mouseleave(function () {
+            //$(this).html("");
+        });
+    
         $("#bar1").on("click", function () {
             $(this).prop('disabled', true);
-             $("#pie1").prop('disabled', false);
-             plotPropertyVolumeRow();
+            $("#pie1").prop('disabled', false);
+            plotPropertyVolumeRow();
             dc.renderAll();
         });
         $("#pie1").on("click", function () {
@@ -367,7 +378,7 @@ function generateMapAndCharts(geoJsonData){
             plotTenureVolumePie();
             dc.renderAll();
         });
-        
+ 
      
 }
 
