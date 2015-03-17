@@ -1,16 +1,10 @@
 
-var geocoder=new google.maps.Geocoder();
 
 
-function generateAccessibilty(data){
 
-var cv = new SVY21();
+function generateAccessibilty(){
 
-data.forEach(function (d) {
-        
-        
-       
-    });
+
 
 
 var test={
@@ -36,10 +30,9 @@ var test={
 addLegend();
 L.geoJson(test, {style: style}).addTo(map);
 
-
+googlegeocode(309233);
 
 }
-
 function getColor(d) {
     
     return d > 12 ? "#810f7c":
@@ -91,11 +84,17 @@ function onEachFeature(feature, layer) {
 }
 
 function googlegeocode(postalcode){
-    var coordinates;
-    geocoder.geocode({address:postalcode},function(results,status){
-        coords_obj=results[0].geometry.location;
-        coordinates=[coords_obj.lat,coords_obj.lng];
-        
-    })
-    return coordinates;
+  var geocoder = new google.maps.Geocoder();
+
+  geocoder.geocode( { 'address': "Singapore"+" "+postalcode}, function(results, status) {
+    if (status == google.maps.GeocoderStatus.OK) {
+          var lat= results[0].geometry.location.lat();
+          var lng= results[0].geometry.location.lng();
+          var latlng=[lat,lng];
+          
+    } else {
+      alert('Geocode was not successful for the following reason: ' + status);
+    }
+  });
+
 }

@@ -29,8 +29,9 @@
         <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css"  type="text/css">
         <link rel="stylesheet" href="Css/leaflet.draw.css" type="text/css">
         <!--Unknown-->
-        <script src="http://maps.google.com/maps/api/js?v=3&sensor=false"></script>  
         <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
+        <script src="http://maps.google.com/maps/api/js?v=3&sensor=false"></script>  
+
         <!--Unknown-->
         <script src="http://d3js.org/d3.v3.min.js" type="text/javascript"></script>
         <script src="Libraries/crossfilter.js" type='text/javascript'></script>
@@ -636,7 +637,7 @@
         <script>
             init_function();
             
-            
+            generateAccessibilty();
         </script>
         <%
             String result = String.valueOf(request.getAttribute("accessibility_result"));
@@ -646,7 +647,8 @@
         <script type="text/javascript">
                         
             var data = <%=result%>;
-            generateAccessibilty(data);
+            
+            
         </script>
         <%
             }
