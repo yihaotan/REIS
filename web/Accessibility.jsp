@@ -47,7 +47,7 @@
         <script src="Libraries/L.Control.Opencagesearch.js" type='text/javascript'></script>
         <script src="Libraries/jquery.slidepanel.js" type="text/javascript"></script>
         <script src="Libraries/jquery.sidr.min.js" type="text/javascript"></script>
-        
+
         <!-- Generate Hexagon for accessibility-->
         <script src="GenerateAccessibility.js"></script>
 
@@ -354,28 +354,28 @@
                                         </div>
                                     </header>
 
-                                    <!-- Content -->
+                                    <!-- Accessibility -->
                                     <form id="inputs" class="body collapse in">
                                         <div id="hawkers" class="body collapse in">
                                             <label>
-                                                <input type="checkbox"> Hawker Centres
+                                                <input type="checkbox"> Hawker centres
                                             </label>  
                                             <div class="input-group"  style="position:relative; float:right">
                                                 <label>Importance</label><input type="text" class="form-control"  name="hawkerweightageofimportance" placeholder="eg. 1" size="1" data-toggle="tooltip" data-placement="top" title="The greater the number, the more important">
                                             </div>   
                                             <div class="input-group">
-                                                <input type="text" class="form-control" name="numberofhawkers" placeholder="eg. 1" size="4" data-toggle="tooltip" data-placement="right" title="Number of Hawker Centres">
+                                                <input type="text" class="form-control" name="numberofhawkers" placeholder="eg. 1" size="4" data-toggle="tooltip" data-placement="right" title="No. of hawker centres">
                                             </div>
                                         </div>
                                         <div id="childcare" class="body collapse in">
                                             <label>
-                                                <input type="checkbox"> Child Care Centres
+                                                <input type="checkbox"> Child care
                                             </label> 
                                             <div class="input-group" style="position:relative; float:right">
                                                 <label>Importance</label><input type="text" class="form-control"  name="childcareweightageofimportance" placeholder="eg. 1" size="1" data-toggle="tooltip" data-placement="top" title="The greater the number, the more important">
                                             </div>   
                                             <div class="input-group">
-                                                <input type="text" class="form-control" name="numberofchildcare" placeholder="eg. 1" size="4" data-toggle="tooltip" data-placement="right" title="Number of child care centres">
+                                                <input type="text" class="form-control" name="numberofchildcare" placeholder="eg. 1" size="4" data-toggle="tooltip" data-placement="right" title="No. of child care centres">
                                             </div>
                                         </div>
                                         <div id="clinic" class="body collapse in">
@@ -387,7 +387,7 @@
                                             </div>
 
                                             <div class="input-group">
-                                                <input type="text" class="form-control" name="numberofclinics" placeholder="eg. 1" size="4" data-toggle="tooltip" data-placement="right" title="Number of Clinics">
+                                                <input type="text" class="form-control" name="numberofclinics" placeholder="eg. 1" size="4" data-toggle="tooltip" data-placement="right" title="No. of clinics">
                                             </div>
                                         </div>
 
@@ -424,6 +424,92 @@
                                     </div>
                                 </div>
                             </div><!-- /map -->
+                        </div> <!-- row -->
+
+                    </div><!-- /.inner -->
+                </div><!-- /.outer -->
+                <div class="outer">
+                    <div class="inner bg-light lter">
+                        <div class="row">
+                            <div class="col-lg-4 ">
+                                <div class="box">
+                                    <!-- Header -->
+                                    <header>
+                                        <div class="icons">
+                                            <i class="glyphicon glyphicon-tasks"></i>
+                                        </div>
+                                        <h5>Analyze a new project</h5>
+                                        <div class="toolbar">
+                                            <div class="btn-group">
+                                                <a href="#inputsAnalysis" data-toggle="collapse" class="btn btn-sm btn-default minimize-box">
+                                                    <i class="fa fa-angle-up"></i>
+                                                </a> 
+                                                <a class="btn btn-danger btn-sm close-box">
+                                                    <i class="fa fa-times"></i>
+                                                </a> 
+                                            </div>
+                                        </div>
+                                    </header>
+
+                                    <!-- For Table -->
+                                    <form id="inputsAnalysis" class="body collapse in">
+                                        <div id="New Project" class="body collapse in">
+                                            <div class="input-group">
+                                                <label>Enter postal code of new project</label><input type="text" class="form-control"  name="Enterpostalcode" placeholder="e.g 309233" size="2" data-toggle="tooltip" data-placement="bottom" title="Find out the location of the ">
+                                            </div>   
+                                        </div>
+
+                                        <div id="NumofProjects" class="body collapse in">
+                                            <div class="input-group">
+                                                <label>Number of projects to compare with</label><input type="text" class="form-control"  name="Enternumofprojects" placeholder="e.g 3" size="2" data-toggle="tooltip" data-placement="bottom" title="We will find the nearby projects for you">
+                                            </div>   
+                                        </div>
+
+                                        <div id="submit" style="position:relative; float:right">
+                                            <button type="submit" class="btn btn-default">Submit</button>
+                                        </div>
+                                    </form>
+
+                                </div><!-- box -->
+                            </div><!-- col -->
+                            <!-- Lower Pane for Map -->
+                            <div class="col-lg-8 ">
+                                <div class="box">
+                                    <!-- Header -->
+                                    <header>
+                                        <div class="icons">
+                                            <i class="fa fa-globe"></i>
+                                        </div>
+                                        <h5>Table</h5>
+                                        <div class="toolbar">
+                                            <div class="btn-group">
+                                                <a href="#AnalysisTable" data-toggle="collapse" class="btn btn-sm btn-default minimize-box">
+                                                    <i class="fa fa-angle-up"></i>
+                                                </a> 
+                                                <a class="btn btn-danger btn-sm close-box">
+                                                    <i class="fa fa-times"></i>
+                                                </a> 
+                                            </div>
+                                        </div>
+                                    </header>
+                                    <!-- Content -->
+                                    <div id="AnalysisTable" class="body collapse in">
+                                        <table id="dc-table-graph" class="table table-bordered table-condensed table-hover table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>Project Name</th>
+                                                    <th>Median Price</th>
+                                                    <th>Dist from new project</th>
+                                                    <th>No. of transactions</th>
+                                                    <th>Size</th>
+                                                    <th>Price</th>
+                                                    <th>Area</th>
+                                                </tr>
+                                            </thead>
+                                        </table>
+                                    </div>
+                                </div><!-- box -->
+                            </div><!-- col -->
                         </div> <!-- row -->
 
                     </div><!-- /.inner -->
@@ -540,8 +626,8 @@
         <script src="assets/js/app.js"></script>
         <script type="text/javascript" language="javascript" src="//cdn.datatables.net/1.10.5/js/jquery.dataTables.min.js"></script>
         <script type="text/javascript" language="javascript" src="//cdn.datatables.net/plug-ins/f2c75b7247b/integration/bootstrap/3/dataTables.bootstrap.js"></script>
-        
-        
+
+
         <script src="assets/js/style-switcher.min.js"></script>
         <!--LINK MODULE-->
         <script src="Libraries/hexbin.js"></script>

@@ -1,27 +1,33 @@
+
+var geocoder=new google.maps.Geocoder();
+
+
 function generateAccessibilty(){
+
 var test={
     "type": "Feature",
     "properties": {
         "density": 13
     },
     "geometry":{
-        "type":"MultiPolygon",
+        "type":"Polygon",
         "coordinates":[
         [
-        [
+        
         [103.68794925421703,1.3382176179439507],
         [103.6884679825861, 1.339122006170787],
         [103.68950554589199, 1.3391220676536735],
         [103.69002438006846, 1.338217740826652],
         [103.68950565124784, 1.3373133528828187],
-        [103.68846808870195, 1.3373132914830042],
-        [103.68794925421703, 1.3382176179439507]]
+        [103.68846808870195, 1.3373132914830042]
         ]
         ]
     }
 }
 addLegend();
 L.geoJson(test, {style: style}).addTo(map);
+
+
 
 }
 
@@ -38,7 +44,7 @@ function getColor(d) {
 function style(feature) {
     return {
         fillColor: getColor(feature.properties.density),
-        weight: 2,
+        weight: 0.1,
         opacity: 1,
         fillOpacity: 0.7
     };
@@ -73,4 +79,14 @@ function onEachFeature(feature, layer) {
         mouseout: resetHighlight,
         click: zoomToFeature
     });
+}
+
+function googlegeocode(postalcode){
+    var coordinates;
+    geocoder.geocode({address:postalcode},function(results,status){
+        coords_obj=results[0].geometry.location;
+        coordinates=[coords_obj.lat,coords_obj.lng];
+        
+    })
+    return coordinates;
 }
