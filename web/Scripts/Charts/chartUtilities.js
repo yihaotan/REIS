@@ -72,26 +72,15 @@ function rangeChartForTimeSeries(rangeChart,chart1,chart2){
             });
     });
 }
- var tip = d3.tip()
+var rowChartTip = d3.tip()
         .attr('class', 'd3-tip')
         .offset([-10, 0])
         .html(function (d) {
             return "<span style='color: #f0027f'>" + d.key + "</span> : " + (d.value);
         });
-
-// tooltips for pie chart
-var pieTip = d3.tip()
+var pieChartTip = d3.tip()
         .attr('class', 'd3-tip')
         .offset([-10, 0])
         .html(function (d) {
             return "<span style='color: #f0027f'>" + d.data.key + "</span> : " + (d.value);
         });
-
-// tooltips for bar chart
-var barTip = d3.tip()
-        .attr('class', 'd3-tip')
-        .offset([-10, 0])
-        .html(function (d) {
-            return "<span style='color: #f0027f'>" + d.data.key + "</span> : " + (d.y);
-        });
-

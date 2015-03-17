@@ -1,3 +1,4 @@
+
 function plotTimeBarChart(chartName,dimensionName,groupName,widthSize,heightSize,gapSize,tickNumber,minDate,maxDate,timeFormat){
     chartName.width(widthSize)
              .height(heightSize)
@@ -49,11 +50,11 @@ function plotPieChart(chartName,dimensionName,groupName,widthSize,heightSize,rad
                 })
                 .colors(d3.scale.category10())
                 .renderLabel(true)
-                .renderTitle(true)
+                .renderTitle(false)
                 .renderlet(function(chart){
-                  chart.selectAll(".pie-slice").call(pieTip);
-                  chart.selectAll(".pie-slice").on('mouseover', pieTip.show)
-                                                .on('mouseout', pieTip.hide);
+                  chart.selectAll(".pie-slice").call(pieChartTip);
+                  chart.selectAll(".pie-slice").on('mouseover', pieChartTip.show)
+                                               .on('mouseout', pieChartTip.hide);
                 });
 }
 function plotRowChart(chartName,dimensionName,groupName,widthSize,heightSize,gapSize,tickNumber){
@@ -68,14 +69,15 @@ function plotRowChart(chartName,dimensionName,groupName,widthSize,heightSize,gap
                 .gap(gapSize)
                 .elasticX(true)
                 .title(function (d) {return d.value; })
-                .renderTitle(true)
+                .renderTitle(false)
                 .renderLabel(true)
                 .xAxis().ticks(tickNumber).tickFormat(d3.format("s"));
-        chartName.renderlet(function (chart) {
-            chart.selectAll("g.row").call(tip);
-            chart.selectAll("g.row").on("mouseover", tip.show)
-                .on("mouseout", tip.hide);
-        })
+         
+        chartName.renderlet(function(chart){
+                chart.selectAll("g.row").call(rowChartTip);
+                chart.selectAll("g.row").on("mouseover", rowChartTip.show)
+                                        .on("mouseout", rowChartTip.hide);
+        });
 }
 function plotBoxPlotChart(chartName,widthSize,heightSize,marginsTop,marginsRight,marginsBottom,marginsLeft,yAxisLabelName,dimensionName,groupName){
         chartName.width(widthSize)
