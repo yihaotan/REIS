@@ -81,7 +81,7 @@
         <script src="Libraries/edit/handler/Edit.Marker.js"></script>
 
         <!--for drawing-->
-
+        <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
         <!--Custom Function-->
         <script src="Scripts/Upload/svy21.js"></script>
         <script src="Scripts/Maps/mapGeneration.js"></script>
@@ -90,11 +90,8 @@
         <script src="Scripts/InteractiveUI/generatemapmarkersinbounds.js"></script> 
         <script src="Scripts/Charts/chartUtilities.js"></script>
         <script src="Scripts/Charts/chartGeneration.js"></script>
-
         <script src="Scripts/Tables/tableGeneration.js"></script>
         <script src="Scripts/Tables/tableUtilities.js"></script>    
-
-
         <script src="Scripts/Maps/mapUtilities.js"></script>
         <script src="Scripts/Run/main.js"></script> 
         <script src="Scripts/Run/run.js"></script>
@@ -159,10 +156,6 @@
                 max-width: 100%;
                 z-index: 0;
             } 
-
-
-
-
             #dc-propertyVolume-chart{
                 position: relative;
                 top: 0px;
@@ -181,14 +174,9 @@
                 left: 15px;
                 float: left;
             }
-
-
-
             #count-table {
                 position: relative;
             }
-
-
             #dc-control-chart{
                 float: left;
                 position: relative;
@@ -219,8 +207,6 @@
                 font-size: 11.5px;
 
             }
-
-
             #dc-dateVolume-chart{
                 max-width: 100%;
                 position: relative;
@@ -233,6 +219,34 @@
                 top: 0px;
                 left: 15px;
             }
+            .d3-tip {
+                line-height: 1;
+                font-weight: bold;
+                padding: 12px;
+                background: rgba(0, 0, 0, 0.8);
+                color: #fff;
+                border-radius: 8px;
+            }
+
+            /* Creates a small triangle extender for the tooltip */
+            .d3-tip:after {
+                box-sizing: border-box;
+                display: inline;
+                font-size: 10px;
+                width: 100%;
+                line-height: 1;
+                color: rgba(0, 0, 0, 0.8);
+                content: "\25BC";
+                position: absolute;
+                text-align: center;
+            }
+            /* Style northward tooltips differently */
+            .d3-tip.n:after {
+                margin: -1px 0 0 0;
+                top: 100%;
+                left: 0;
+            }
+
 
         </style>
 

@@ -49,7 +49,12 @@ function plotPieChart(chartName,dimensionName,groupName,widthSize,heightSize,rad
                 })
                 .colors(d3.scale.category10())
                 .renderLabel(true)
-                .renderTitle(true);
+                .renderTitle(true)
+                .renderlet(function(chart){
+                  chart.selectAll(".pie-slice").call(pieTip);
+                  chart.selectAll(".pie-slice").on('mouseover', pieTip.show)
+                                                .on('mouseout', pieTip.hide);
+                });
 }
 function plotRowChart(chartName,dimensionName,groupName,widthSize,heightSize,gapSize,tickNumber){
         chartName.width(widthSize)
@@ -66,6 +71,11 @@ function plotRowChart(chartName,dimensionName,groupName,widthSize,heightSize,gap
                 .renderTitle(true)
                 .renderLabel(true)
                 .xAxis().ticks(tickNumber).tickFormat(d3.format("s"));
+        chartName.renderlet(function (chart) {
+            chart.selectAll("g.row").call(tip);
+            chart.selectAll("g.row").on("mouseover", tip.show)
+                .on("mouseout", tip.hide);
+        })
 }
 function plotBoxPlotChart(chartName,widthSize,heightSize,marginsTop,marginsRight,marginsBottom,marginsLeft,yAxisLabelName,dimensionName,groupName){
         chartName.width(widthSize)
