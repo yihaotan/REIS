@@ -253,15 +253,6 @@
     </head>
 
     <body class="  ">
-        <script>
-            $(function() {
-                $( "#sortable" ).sortable();
-                $( "#sortable1" ).sortable();
-                $( "#sortable2" ).sortable();
-                $( "#sortable3" ).sortable();
-               
-            }); 
-        </script>
 
 
 
