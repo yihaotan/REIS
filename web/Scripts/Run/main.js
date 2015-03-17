@@ -31,6 +31,7 @@ function generateMapAndCharts(geoJsonData){
         var resultLatLon = cv.computeLatLon(d.geometry.coordinates[1].lon, d.geometry.coordinates[0].lat);
         d.lat = resultLatLon.lat;
         d.lon = resultLatLon.lon;
+       
     });
     var facts = crossfilter(geoJsonData);
     var all = facts.groupAll();
