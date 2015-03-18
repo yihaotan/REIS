@@ -373,6 +373,21 @@
                                         if (chasclinic_check_num.equals("1")) {
                                             chasclinic_check = "checked";
                                         }
+                                        
+                                        // now, number of facilities
+                                        String num_hawkercentre = String.valueOf(request.getAttribute("num_hawkercentre"));
+                                        String num_childcare = String.valueOf(request.getAttribute("num_childcare"));
+                                        String num_chasclinic = String.valueOf(request.getAttribute("num_chasclinic"));
+                                        
+                                        if (num_hawkercentre.equals("null")) {
+                                            num_hawkercentre = "0";
+                                        }
+                                        if (num_childcare.equals("null")) {
+                                            num_childcare = "0";
+                                        }
+                                        if (num_chasclinic.equals("null")) {
+                                            num_chasclinic = "0";
+                                        }
                                      
 
                                     %>
@@ -387,7 +402,7 @@
                                                 <label>Importance</label><input type="text" class="form-control"  name="hawkerweightageofimportance" placeholder="eg. 1" size="1" data-toggle="tooltip" data-placement="top" title="The greater the number, the more important">
                                             </div>   
                                             <div class="input-group">
-                                                <input type="text" class="form-control" name="num_hawkercentre" placeholder="eg. 1" size="4" data-toggle="tooltip" data-placement="right" title="No. of hawker centres">
+                                                <input type="text" class="form-control" name="num_hawkercentre" value=<%=num_hawkercentre%> placeholder="eg. 1" size="4" data-toggle="tooltip" data-placement="right" title="No. of hawker centres">
                                             </div>
                                         </div>
                                         <div id="childcare" class="body collapse in">
@@ -398,7 +413,7 @@
                                                 <label>Importance</label><input type="text" class="form-control"  name="childcareweightageofimportance" placeholder="eg. 1" size="1" data-toggle="tooltip" data-placement="top" title="The greater the number, the more important">
                                             </div>   
                                             <div class="input-group">
-                                                <input type="text" class="form-control" name="num_childcare" placeholder="eg. 1" size="4" data-toggle="tooltip" data-placement="right" title="No. of child care centres">
+                                                <input type="text" class="form-control" name="num_childcare" value=<%=num_childcare%> placeholder="eg. 1" size="4" data-toggle="tooltip" data-placement="right" title="No. of child care centres">
                                             </div>
                                         </div>
                                         <div id="clinic" class="body collapse in">
@@ -410,7 +425,7 @@
                                             </div>
 
                                             <div class="input-group">
-                                                <input type="text" class="form-control" name="num_chasclinic" placeholder="eg. 1" size="4" data-toggle="tooltip" data-placement="right" title="No. of clinics">
+                                                <input type="text" class="form-control" value=<%=num_chasclinic%> name="num_chasclinic" placeholder="eg. 1" size="4" data-toggle="tooltip" data-placement="right" title="No. of clinics">
                                             </div>
                                         </div>
                                         <div id="submit_button" class="body collapse in">

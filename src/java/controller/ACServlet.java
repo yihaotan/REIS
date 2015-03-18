@@ -65,19 +65,27 @@ public class ACServlet extends HttpServlet {
             String num_childcare_str = request.getParameter("num_childcare");
             String num_chasclinic_str = request.getParameter("num_chasclinic");
             
+            
+            
             int num_hawkercentre = 3;
-            if (num_hawkercentre_str.equals("null")) {
+            int num_hawkercentre_placerholder = 0;
+            if (!num_hawkercentre_str.equals("null")) {
                 num_hawkercentre = Integer.parseInt(num_hawkercentre_str);
+                num_hawkercentre_placerholder = Integer.parseInt(num_hawkercentre_str);
             }
             
             int num_childcare = 3;
-            if (num_childcare_str.equals("null")) {
+            int num_childcare_placerholder = 0;
+            if (!num_childcare_str.equals("null")) {
                 num_childcare = Integer.parseInt(num_childcare_str);
+                num_childcare_placerholder = Integer.parseInt(num_childcare_str);
             }
             
             int num_chasclinic = 3;
-            if (num_chasclinic_str.equals("null")) {
+            int num_chasclinic_placerholder = 0;
+            if (!num_chasclinic_str.equals("null")) {
                 num_chasclinic = Integer.parseInt(num_chasclinic_str);
+                num_chasclinic_placerholder = Integer.parseInt(num_chasclinic_str);
             }
             
             int[] num_list = new int[3];
@@ -104,7 +112,9 @@ public class ACServlet extends HttpServlet {
             request.setAttribute("childcare_check", childcare_check);
             request.setAttribute("chasclinic_check", chasclinic_check);
             
-            
+            request.setAttribute("num_hawkercentre", num_hawkercentre_placerholder);
+            request.setAttribute("num_childcare", num_childcare_placerholder);
+            request.setAttribute("num_chasclinic", num_chasclinic_placerholder);
             
             
             
