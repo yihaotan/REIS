@@ -38,24 +38,39 @@ function plotStackedTimeBarChart(chartName,rangeChartName,dimensionName,groupNam
     
         chartName.yAxis().ticks(tickNumber);
 }
-function plotPieChart(chartName,dimensionName,groupName,widthSize,heightSize,radiusSize,innerRadiusSize){
+function plotPieChart(chartName,dimensionName,groupName,widthSize,heightSize,radiusSize,innerRadiusSize,centrePoint,legendX){
     chartName.width(widthSize)
-                .height(heightSize)
-                .radius(radiusSize)
-                .innerRadius(innerRadiusSize)
-                .dimension(dimensionName)
-                .group(groupName)
-                .title(function (d) {
-                    return d.key + ": " + d.value;
-                })
-                .colors(d3.scale.category10())
-                .renderLabel(true)
-                .renderTitle(false)
-                .renderlet(function(chart){
-                  chart.selectAll(".pie-slice").call(pieChartTip);
-                  chart.selectAll(".pie-slice").on('mouseover', pieChartTip.show)
-                                               .on('mouseout', pieChartTip.hide);
-                });
+            .height(heightSize)
+            .radius(radiusSize)
+            .innerRadius(innerRadiusSize)
+            .dimension(dimensionName)
+            .group(groupName)
+            .title(function (d) {
+                return d.key + ": " + d.value;
+            })
+            .legend(dc.legend().x(legendX).y(10).itemHeight(13).gap(5))
+            .cx(centrePoint)
+            .colors(d3.scale.category10())
+            .filterPrinter(function (filters)
+            {
+              var len = filters.length;
+              if (len == 1){
+                  return filters[0];
+              }else if(len>1){
+                  var str = "";
+                  for (var i =0 ; i<len;i++){
+                      str = str + filters[i]+" ";
+                  }
+                  return str;
+              }
+            })
+            .renderLabel(false)
+            .renderTitle(false)
+            .renderlet(function (chart) {
+                chart.selectAll(".pie-slice").call(pieChartTip);
+                chart.selectAll(".pie-slice").on('mouseover', pieChartTip.show)
+                        .on('mouseout', pieChartTip.hide);
+            });
 }
 function plotRowChart(chartName,dimensionName,groupName,widthSize,heightSize,gapSize,tickNumber){
         chartName.width(widthSize)

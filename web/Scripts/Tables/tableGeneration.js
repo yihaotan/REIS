@@ -30,9 +30,6 @@ function plotDataTable(tableName,widthSize,heightSize,dimensionName,tableSize){
                     return "$"+d.price;
                 },
                 function(d) {
-                   return d.planningArea;
-                },
-                function(d) {
                    return d.postalDistrict;
                 },
                 function(d) {

@@ -384,11 +384,11 @@
                                     <input type="text" class="form-control" name="end_price" placeholder="End Price" size="7" value='<%=end_price%>' >
                                 </div>
                                 <div class="input-group">
-                                    <span class="input-group-addon">Psf</span>
+                                    <span class="input-group-addon">Size</span>
                                     <input type="text" class="form-control" name="start_size" placeholder="Start Size" size="7" value='<%=start_size%>' >
                                 </div>
                                 <div class="input-group">
-                                    <span class="input-group-addon">Psf</span>
+                                    <span class="input-group-addon">Size</span>
                                     <input type="text" class="form-control" name="end_size" placeholder="End Size" size="6" value='<%=end_size%>' >
                                 </div>
                                 <button type="submit" class="btn btn-primary">Submit</button>
@@ -600,13 +600,11 @@
                                                     <button type="button" class="btn btn-danger btn-xs" id="pie1" aria-label="Left Align">
                                                         <span class="glyphicon glyphicon-adjust" aria-hidden="true"></span>
                                                     </button>
-                                                    <span>
-                                                        <a class="reset"
-                                                           href="javascript:propertyVolumeRowChart.filterAll();dc.redrawAll();"
-                                                           style="display: none;">
-                                                            reset
-                                                        </a>
+                                                    <span class='reset' href="javascript:propertyVolumeRowChart.filterAll();dc.redrawAll();" 
+                                                          style='display: none;'>Filters:<span class='filter'><strong></strong></span>
+                                                        
                                                     </span>
+                                                   
                                                 </h6>
                                             </div>
                                         </div>
@@ -723,7 +721,6 @@
                                                     <th>Date</th>
                                                     <th>Size</th>
                                                     <th>Price</th>
-                                                    <th>Area</th>
                                                     <th>Postal District</th>
                                                     <th>Postal Sector</th>
                                                 </tr>

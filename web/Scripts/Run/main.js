@@ -169,12 +169,12 @@ function generateMapAndCharts(geoJsonData){
        if (typeof propertyVolumeRowChart !== 'undefined'){
             var f1 = getFilters(propertyVolumeRowChart);
             propertyVolumePieChart = dc.pieChart("#dc-propertyVolume-chart");
-            plotPieChart(propertyVolumePieChart,propertyVolumeDimension,propertyVolumeGroup,300,160,80,20);
+            plotPieChart(propertyVolumePieChart,propertyVolumeDimension,propertyVolumeGroup,300,160,80,20,220,3);
             applyFilter(propertyVolumePieChart, f1);
             filterMap(propertyVolumePieChart,propertyDimension);
         }else{
             propertyVolumePieChart = dc.pieChart("#dc-propertyVolume-chart");
-            plotPieChart(propertyVolumePieChart,propertyVolumeDimension,propertyVolumeGroup,300,160,80,20);
+            plotPieChart(propertyVolumePieChart,propertyVolumeDimension,propertyVolumeGroup,300,160,80,20,220,3);
             filterMap(propertyVolumePieChart,propertyDimension);
         }   
     }
@@ -196,12 +196,12 @@ function generateMapAndCharts(geoJsonData){
       if (typeof propertySaleVolumeRowChart !== 'undefined' ){
             var f1 = getFilters(propertySaleVolumeRowChart);
             propertySaleVolumePieChart = dc.pieChart("#dc-propertySaleVolume-chart");
-            plotPieChart(propertySaleVolumePieChart,salesDimension,salesGroup,300,160,80,20);
+            plotPieChart(propertySaleVolumePieChart,salesDimension,salesGroup,300,160,80,20,220,3);
             applyFilter(propertySaleVolumePieChart, f1);
             filterMap(propertySaleVolumePieChart,propertyDimension);
         }else{
             propertySaleVolumePieChart = dc.pieChart("#dc-propertySaleVolume-chart");
-            plotPieChart(propertySaleVolumePieChart,salesDimension,salesGroup,300,160,80,20);
+            plotPieChart(propertySaleVolumePieChart,salesDimension,salesGroup,300,160,80,20,220,3);
             filterMap(propertySaleVolumePieChart,propertyDimension);
         }
     }
@@ -222,12 +222,12 @@ function generateMapAndCharts(geoJsonData){
         if (typeof propertyTenureVolumeRowChart !== 'undefined'){
             var f1 = getFilters(propertyTenureVolumeRowChart);
             propertyTenureVolumePieChart = dc.pieChart("#dc-propertyTenureVolume-chart");
-            plotPieChart(propertyTenureVolumePieChart,tenureDimension,tenureGroup,300,160,80,20);
+            plotPieChart(propertyTenureVolumePieChart,tenureDimension,tenureGroup,300,160,80,20,220,3);
             applyFilter(propertyTenureVolumePieChart, f1);
             filterMap(propertyTenureVolumePieChart,propertyDimension);
         }else{
             propertyTenureVolumePieChart = dc.pieChart("#dc-propertyTenureVolume-chart");
-            plotPieChart(propertyTenureVolumePieChart,tenureDimension,tenureGroup,300,160,80,20);
+            plotPieChart(propertyTenureVolumePieChart,tenureDimension,tenureGroup,300,160,80,20,220,3);
             filterMap(propertyTenureVolumePieChart,propertyDimension);
         }
     }
@@ -306,7 +306,6 @@ function generateMapAndCharts(geoJsonData){
     
     //patch
     rangeChartForTimeSeries(dateVolumeBarChart,stackedDateVolumeBarChart,compositeControlChart);
-  
         $("#dc-psfBoxPlot-chart").on('change', function () {
             var text = $('#dc-psfBoxPlot-chart .selectpicker option:selected').text();
             if (text === "Psf") {
@@ -325,7 +324,6 @@ function generateMapAndCharts(geoJsonData){
             }
             dc.renderAll();
         });
-        
         $("#bar1").prop("disabled", true);
         $("#bar2").prop("disabled", true);
         $("#bar3").prop("disabled", true);
@@ -333,47 +331,88 @@ function generateMapAndCharts(geoJsonData){
             $(this).html("Bar");
         });
         $('#bar1').mouseleave(function () {
-            $("#bar1").button();
+            $(this).html("");
+            $(this).append("<span class='glyphicon glyphicon-signal' aria-hidden='true'>"+'</span>');
+        });
+        $("#bar1").on("click", function () {
+            $(this).prop('disabled', true);
+            $(this).html("");
+            $(this).append("<span class='glyphicon glyphicon-signal' aria-hidden='true'>"+'</span>');
+            $("#pie1").prop('disabled', false);
+            plotPropertyVolumeRow();
+            dc.renderAll();
         });
         $("#pie1").mouseenter(function () {
             $(this).html("Pie");
         });
         $('#pie1').mouseleave(function () {
-            //$(this).html("");
-        });
-    
-        $("#bar1").on("click", function () {
-            $(this).prop('disabled', true);
-            $("#pie1").prop('disabled', false);
-            plotPropertyVolumeRow();
-            dc.renderAll();
+            $(this).html("");
+            $(this).append("<span class='glyphicon glyphicon-adjust' aria-hidden='true'>"+'</span>');
         });
         $("#pie1").on("click", function () {
             $(this).prop('disabled', true);
+            $(this).html("");
+            $(this).append("<span class='glyphicon glyphicon-adjust' aria-hidden='true'>"+'</span>');
             $("#bar1").prop('disabled', false);
                plotPropertyVolumePie();
                dc.renderAll();
         });
+        $("#bar2").mouseenter(function () {
+            $(this).html("Bar");
+        });
+        $('#bar2').mouseleave(function () {
+            $(this).html("");
+            $(this).append("<span class='glyphicon glyphicon-signal' aria-hidden='true'>"+'</span>');
+        });
         $("#bar2").on("click", function () {
+            $(this).html("");
+            $(this).append("<span class='glyphicon glyphicon-signal' aria-hidden='true'>"+'</span>');
             $(this).prop('disabled', true);
             $("#pie2").prop('disabled', false);
             plotSaleVolumeRow();
             dc.renderAll();
         });
+        $("#pie2").mouseenter(function () {
+            $(this).html("Pie");
+        });
+        $('#pie2').mouseleave(function () {
+            $(this).html("");
+            $(this).append("<span class='glyphicon glyphicon-adjust' aria-hidden='true'>"+'</span>');
+        });
         $("#pie2").on("click", function () {
             $(this).prop('disabled', true);
+            $(this).html("");
+            $(this).append("<span class='glyphicon glyphicon-adjust' aria-hidden='true'>"+'</span>');
             $("#bar2").prop('disabled', false);
             plotSaleVolumePie();
             dc.renderAll();
         });
+         $("#bar3").mouseenter(function () {
+            $(this).html("Bar");
+        });
+        $('#bar3').mouseleave(function () {
+            $(this).html("");
+            $(this).append("<span class='glyphicon glyphicon-signal' aria-hidden='true'>"+'</span>');
+        });
         $("#bar3").on("click", function () {
             $(this).prop('disabled', true);
+            $(this).html("");
+            $(this).append("<span class='glyphicon glyphicon-signal' aria-hidden='true'>"+'</span>');
             $("#pie3").prop('disabled', false);
             plotTenureVolumeRow();
             dc.renderAll();
         });
+        $("#pie3").mouseenter(function () {
+            $(this).html("Pie");
+        });
+        $('#pie3').mouseleave(function () {
+            $(this).html("");
+            $(this).append("<span class='glyphicon glyphicon-adjust' aria-hidden='true'>"+'</span>');
+        });
         $("#pie3").on("click", function () {
             $(this).prop('disabled', true);
+            $(this).html("");
+            $(this).append("<span class='glyphicon glyphicon-adjust' aria-hidden='true'>"+'</span>');
             $("#bar3").prop('disabled', false);
             plotTenureVolumePie();
             dc.renderAll();
