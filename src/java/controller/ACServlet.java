@@ -66,17 +66,17 @@ public class ACServlet extends HttpServlet {
             String num_chasclinic_str = request.getParameter("num_chasclinic");
             
             int num_hawkercentre = 3;
-            if (num_hawkercentre_str != null) {
+            if (num_hawkercentre_str.equals("null")) {
                 num_hawkercentre = Integer.parseInt(num_hawkercentre_str);
             }
             
             int num_childcare = 3;
-            if (num_childcare_str != null) {
+            if (num_childcare_str.equals("null")) {
                 num_childcare = Integer.parseInt(num_childcare_str);
             }
             
             int num_chasclinic = 3;
-            if (num_chasclinic_str != null) {
+            if (num_chasclinic_str.equals("null")) {
                 num_chasclinic = Integer.parseInt(num_chasclinic_str);
             }
             
