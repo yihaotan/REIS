@@ -48,22 +48,12 @@ function plotPieChart(chartName,dimensionName,groupName,widthSize,heightSize,rad
             .title(function (d) {
                 return d.key + ": " + d.value;
             })
+            .label(function (d) {
+                    return Math.round((d.endAngle - d.startAngle) / Math.PI * 50) + '%';
+            })
             .legend(dc.legend().x(legendX).y(10).itemHeight(13).gap(5))
             .cx(centrePoint)
             .colors(d3.scale.category10())
-            .filterPrinter(function (filters)
-            {
-              var len = filters.length;
-              if (len == 1){
-                  return filters[0];
-              }else if(len>1){
-                  var str = "";
-                  for (var i =0 ; i<len;i++){
-                      str = str + filters[i]+" ";
-                  }
-                  return str;
-              }
-            })
             .renderLabel(false)
             .renderTitle(false)
             .renderlet(function (chart) {
