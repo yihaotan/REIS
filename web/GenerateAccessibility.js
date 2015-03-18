@@ -5,17 +5,19 @@
 function generateAccessibilty(data) {
 
     addLegend();
-    L.geoJson(data, {style: style}).addTo(map);
+    L.geoJson(data, {style: style, 
+                    onEachFeature: onEachFeature}
+              ).addTo(map);
 
     googlegeocode(309233);
 
 }
 function getColor(d) {
 
-    return d > 12 ? "#00FF00":
-            d > 9 ? "#CCFF00" :
-            d > 6 ? "#FFFF00" :
-            d > 3 ? "#FF9900" :
+    return d > 0.8 ? "#00FF00" :
+            d > 0.6 ? "#CCFF00" :
+            d > 0.4 ? "#FFFF00" :
+            d > 0.2 ? "#FF9900" :
             "#FF0000";
 
 }
@@ -34,13 +36,14 @@ function addLegend() {
     legend.onAdd = function (map) {
 
         var div = L.DomUtil.create('div', 'info legend'),
-                grades = [0, 3, 6, 9, 12],
+                grades = [0, 0.2, 0.4, 0.6, 0.8],
+                //grades = scale,
                 labels = [];
 
         // loop through our density intervals and generate a label with a colored square for each interval
         for (var i = 0; i < grades.length; i++) {
             div.innerHTML +=
-                    '<i style="background:' + getColor(grades[i] + 1) + '"></i> ' +
+                    '<i style="background:' + getColor(grades[i] + 0.2) + '"></i> ' +
                     grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
         }
 
@@ -54,9 +57,9 @@ function addLegend() {
 // L.geoJson(test, {style: style,onEachFeature: onEachFeature}).addTo(map);
 function onEachFeature(feature, layer) {
     layer.on({
-        mouseover: highlightFeature,
-        mouseout: resetHighlight,
-        click: zoomToFeature
+//        mouseover: highlightFeature,
+//        mouseout: resetHighlight,
+//        click: zoomToFeature
     });
 }
 

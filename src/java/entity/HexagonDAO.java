@@ -47,7 +47,7 @@ public class HexagonDAO {
      *
      * @return an ArrayList of Transaction
      */
-    public ArrayList<Hexagon> retrieve(String[] facility_list) {
+    public ArrayList<Hexagon> retrieve(String[] facility_list, int[] num_list) {
         Connection conn = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -108,21 +108,21 @@ public class HexagonDAO {
                     select_list += "     AVG(hawkercentre_distance) as hawkercentre, ";
                     from_list += "     hawkercentre_table,";
                     where_list += " AND grid_centroid.gid = hawkercentre_table.grid_id"
-                            + " AND hawkercentre_row_number <= 3 ";
+                            + " AND hawkercentre_row_number <= " + num_list[0];
                 }
                 if (facility_name.equals("childcare")) {
                     base_table += childcare_table + ",";
                     select_list += "     AVG(childcare_distance) as childcare, ";
                     from_list += "     childcare_table,";
                     where_list += " AND grid_centroid.gid = childcare_table.grid_id "
-                            + " AND childcare_row_number <= 3 ";
+                            + " AND childcare_row_number <= " + num_list[1];
                 }
                 if (facility_name.equals("chasclinic")) {
                     base_table += chasclinic_table + ",";
                     select_list += "     AVG(chasclinic_distance) as chasclinic, ";
                     from_list += "     chasclinic_table,";
                     where_list += " AND grid_centroid.gid = chasclinic_table.grid_id "
-                            + " AND chasclinic_row_number <= 3 ";
+                            + " AND chasclinic_row_number <= " + num_list[2];
                 }
             }
 
@@ -211,7 +211,7 @@ public class HexagonDAO {
                 }
             }
 
-            int accessibility_score = calculate_accessbility(hawkercentre, childcare, chasclinic);
+            double accessibility_score = calculate_accessbility(hawkercentre, childcare, chasclinic);
             properties.addProperty("grid_id", result.get(i).get_id());
             properties.addProperty("density", accessibility_score);
 //            properties.addProperty("hawkercentre", hawkercentre);
@@ -239,13 +239,16 @@ public class HexagonDAO {
 
     }
 
-    public int calculate_accessbility(double hawkercentre, double childcare, double chasclinic) {
+    public double calculate_accessbility(double hawkercentre, double childcare, double chasclinic) {
 
         int hawkercentre_score = -1;
         int childcare_score = -1;
         int chasclinic_score = -1;
+        
+        int total_score = 0;
 
         if (hawkercentre != -1) {
+            total_score += 5;
             if (hawkercentre > 500) {
                 hawkercentre_score = 2;
             } else {
@@ -254,6 +257,7 @@ public class HexagonDAO {
         }
 
         if (childcare != -1) {
+            total_score += 5;
             if (childcare > 500) {
                 childcare_score = 2;
             } else {
@@ -262,6 +266,7 @@ public class HexagonDAO {
         }
 
         if (chasclinic != -1) {
+            total_score += 5;
             if (chasclinic > 500) {
                 chasclinic_score = 2;
             } else {
@@ -269,7 +274,7 @@ public class HexagonDAO {
             }
         }
         
-        int result = 0;
+        double result = 0;
         
         if (hawkercentre_score != -1) {
             result += hawkercentre_score;
@@ -281,7 +286,7 @@ public class HexagonDAO {
             result += chasclinic_score;
         }
 
-        return result;
+        return result / total_score;
     }
 
 }

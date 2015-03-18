@@ -355,11 +355,33 @@
                                         </div>
                                     </header>
 
+                                    <%
+                                        String hawkercentre_check_num = String.valueOf(request.getAttribute("hawkercentre_check"));
+                                        String childcare_check_num = String.valueOf(request.getAttribute("childcare_check"));
+                                        String chasclinic_check_num = String.valueOf(request.getAttribute("chasclinic_check"));
+                                        
+                                        String hawkercentre_check = "";
+                                        String childcare_check = "";
+                                        String chasclinic_check = "";
+                                        
+                                        if (hawkercentre_check_num.equals("1")) {
+                                            hawkercentre_check = "checked";
+                                        }
+                                        if (childcare_check_num.equals("1")) {
+                                            childcare_check = "checked";
+                                        }
+                                        if (chasclinic_check_num.equals("1")) {
+                                            chasclinic_check = "checked";
+                                        }
+                                     
+
+                                    %>
+
                                     <!-- Accessibility -->
                                     <form id="inputs" class="body collapse in" action="ACServlet">
                                         <div id="hawkers" class="body collapse in">
                                             <label>
-                                                <input type="checkbox" name="facility" value="hawkercentre"> Hawker centres
+                                                <input type="checkbox" name="facility" value="hawkercentre" <%=hawkercentre_check%>> Hawker centres
                                             </label>  
                                             <div class="input-group"  style="position:relative; float:right">
                                                 <label>Importance</label><input type="text" class="form-control"  name="hawkerweightageofimportance" placeholder="eg. 1" size="1" data-toggle="tooltip" data-placement="top" title="The greater the number, the more important">
@@ -370,7 +392,7 @@
                                         </div>
                                         <div id="childcare" class="body collapse in">
                                             <label>
-                                                <input type="checkbox"  name="facility" value="childcare"> Child care
+                                                <input type="checkbox"  name="facility" value="childcare" <%=childcare_check%>> Child care
                                             </label> 
                                             <div class="input-group" style="position:relative; float:right">
                                                 <label>Importance</label><input type="text" class="form-control"  name="childcareweightageofimportance" placeholder="eg. 1" size="1" data-toggle="tooltip" data-placement="top" title="The greater the number, the more important">
@@ -381,7 +403,7 @@
                                         </div>
                                         <div id="clinic" class="body collapse in">
                                             <label>
-                                                <input type="checkbox" name="facility"  value="chasclinic"> Clinics
+                                                <input type="checkbox" name="facility"  value="chasclinic" <%=chasclinic_check%>> Clinics
                                             </label>  
                                             <div class="input-group" style="position:relative; float:right">  
                                                 <label>Importance</label><input type="text" class="form-control"  name="clinicweightageofimportance" placeholder="eg. 1" size="1" data-toggle="tooltip" data-placement="top" title="The greater the number, the more important">
@@ -640,14 +662,15 @@
 
 
         </script>
-        <%
-            String result = String.valueOf(request.getAttribute("accessibility_result"));
+        <%            String result = String.valueOf(request.getAttribute("accessibility_result"));
 
             if (!result.equals("null")) {
+                //int num_facility = Integer.parseInt(String.valueOf(request.getAttribute("num_facility")));
         %>
         <script type="text/javascript">
 
             var data = <%=result%>;
+
             generateAccessibilty(data);
 
         </script>

@@ -44,20 +44,52 @@ public class ACServlet extends HttpServlet {
             
             String[] facility_list = request.getParameterValues("facility");
             
-            String num_hawkercentre_str = request.getParameter("num_hawkercentre");
-            if (num_hawkercentre_str != null) {
-                // to be continued
+            int hawkercentre_check = 0;
+            int childcare_check = 0;
+            int chasclinic_check = 0;
+            
+            for (int p = 0; p < facility_list.length; p++) {
+                String facility_name = facility_list[p];
+                if (facility_name.equals("hawkercentre")) {
+                    hawkercentre_check = 1;
+                }
+                if (facility_name.equals("childcare")) {
+                    childcare_check = 1;
+                }
+                if (facility_name.equals("chasclinic")) {
+                    chasclinic_check = 1;
+                }
             }
             
-            
+            String num_hawkercentre_str = request.getParameter("num_hawkercentre");
             String num_childcare_str = request.getParameter("num_childcare");
             String num_chasclinic_str = request.getParameter("num_chasclinic");
+            
+            int num_hawkercentre = 3;
+            if (num_hawkercentre_str != null) {
+                num_hawkercentre = Integer.parseInt(num_hawkercentre_str);
+            }
+            
+            int num_childcare = 3;
+            if (num_childcare_str != null) {
+                num_childcare = Integer.parseInt(num_childcare_str);
+            }
+            
+            int num_chasclinic = 3;
+            if (num_chasclinic_str != null) {
+                num_chasclinic = Integer.parseInt(num_chasclinic_str);
+            }
+            
+            int[] num_list = new int[3];
+            num_list[0] = num_hawkercentre;
+            num_list[1] = num_childcare;
+            num_list[2] = num_chasclinic;
             
             HexagonDAO hdao = new HexagonDAO();
             
             // retrieve all hexagons
             ArrayList<Hexagon> result = new ArrayList<Hexagon>();
-            result = hdao.retrieve(facility_list);
+            result = hdao.retrieve(facility_list, num_list);
             
             // pretty print and convert to string
             JsonArray hexagonList = hdao.toJSON(result, facility_list);
@@ -65,6 +97,17 @@ public class ACServlet extends HttpServlet {
             String json = gson.toJson(hexagonList);
             
             request.setAttribute("accessibility_result", json);
+            request.setAttribute("num_facility", facility_list.length);
+            
+            
+            request.setAttribute("hawkercentre_check", hawkercentre_check);
+            request.setAttribute("childcare_check", childcare_check);
+            request.setAttribute("chasclinic_check", chasclinic_check);
+            
+            
+            
+            
+            
             RequestDispatcher rd = request.getRequestDispatcher("Accessibility.jsp");
             rd.forward(request, response);
             
