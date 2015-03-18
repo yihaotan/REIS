@@ -68,11 +68,6 @@ function plotPieChart(chartName,dimensionName,groupName,widthSize,heightSize,rad
             if(chartType === 'property'){
                chartName.colors(d3.scale.category10())
             }else if(chartType === 'sales'){
-              
-                //var colorScale = d3.scale.ordinal().domain(["New Sale", "Resale", "Sub Sale"])
-                                   //.range(['#005a32','#a50f15','#08306b']);
-               //chartName.colors(colorScale.range())
-                    //.colorAccessor(function(d){ return colorScale.domain().indexOf(d.key); });
                 chartName.ordinalColors(['#005a32','#a50f15','#08306b'])
                         .colorAccessor(function(d,i){
                             if(d.key === "New Sale"){
