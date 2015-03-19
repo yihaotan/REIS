@@ -600,12 +600,16 @@
                                                     <button type="button" class="btn btn-danger btn-xs" id="pie1" aria-label="Left Align">
                                                         <span class="glyphicon glyphicon-adjust" aria-hidden="true"></span>
                                                     </button>
-                                                    <span class='reset' href="javascript:propertyVolumeRowChart.filterAll();dc.redrawAll();" 
-                                                          style='display: none;'>Filters:<span class='filter'><strong></strong></span>
+                                                     <span>
+                                                        <!-- <a class='filter' style='display:none;'> Filters: </a> -->
+                                                        <a class="reset"
+                                                           href="javascript:propertyVolumePieChart.filterAll();propertyVolumeRowChart;dc.redrawAll();"
+                                                           style="display: none;">
+                                                            reset
+                                                        </a>
                                                         
                                                     </span>
-                                                   
-                                                </h6>
+                                                   </h6>
                                             </div>
                                         </div>
 
@@ -620,8 +624,9 @@
                                                         <span class="glyphicon glyphicon-adjust" aria-hidden="true"></span>
                                                     </button>
                                                     <span>
+                                                       <!-- <a class='filter' style='display:none;'> Filters: </a> -->
                                                         <a class="reset"
-                                                           href="javascript:propertySaleVolumePieChart.filterAll();dc.redrawAll();"
+                                                           href="javascript:propertySaleVolumePieChart.filterAll();propertySaleVolumeRowChart.filterAll();dc.redrawAll();"
                                                            style="display: none;">
                                                             reset
                                                         </a>
@@ -640,8 +645,9 @@
                                                         <span class="glyphicon glyphicon-adjust" aria-hidden="true"></span>
                                                     </button>
                                                     <span>
+                                                       <!-- <a class='filter' style='display:none;'> Filters: </a> -->
                                                         <a class="reset"
-                                                           href="javascript:propertyTenureVolumePieChart.filterAll();dc.redrawAll();"
+                                                           href="javascript:propertyTenureVolumePieChart.filterAll();propertyTenureVolumeRowChart.filterAll();dc.redrawAll();"
                                                            style="display: none;">
                                                             reset
                                                         </a>

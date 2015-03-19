@@ -1,4 +1,3 @@
-
 function plotTimeBarChart(chartName,dimensionName,groupName,widthSize,heightSize,gapSize,tickNumber,minDate,maxDate,timeFormat){
     chartName.width(widthSize)
              .height(heightSize)
@@ -38,41 +37,54 @@ function plotStackedTimeBarChart(chartName,rangeChartName,dimensionName,groupNam
     
         chartName.yAxis().ticks(tickNumber);
 }
-function plotPieChart(chartName,dimensionName,groupName,widthSize,heightSize,radiusSize,innerRadiusSize,centrePoint,legendX){
+function plotPieChart(chartName,dimensionName,groupName,widthSize,heightSize,radiusSize,innerRadiusSize,centrePoint,legendX,chartType){
     chartName.width(widthSize)
             .height(heightSize)
             .radius(radiusSize)
             .innerRadius(innerRadiusSize)
             .dimension(dimensionName)
             .group(groupName)
-            .title(function (d) {
-                return d.key + ": " + d.value;
+            .label(function (d) {
+                   return d3.round((d.value / d3.sum(groupName.all(), function(d){ return d.value;}))*100,2)+"%";
             })
             .legend(dc.legend().x(legendX).y(10).itemHeight(13).gap(5))
             .cx(centrePoint)
-            .colors(d3.scale.category10())
-            .filterPrinter(function (filters)
-            {
-              var len = filters.length;
-              if (len == 1){
-                  return filters[0];
-              }else if(len>1){
-                  var str = "";
-                  for (var i =0 ; i<len;i++){
-                      str = str + filters[i]+" ";
-                  }
-                  return str;
-              }
-            })
-            .renderLabel(false)
+            .renderLabel(true)
             .renderTitle(false)
             .renderlet(function (chart) {
+                var pieChartTip = d3.tip()
+                        .attr('class', 'd3-tip')
+                        .offset([-10, 0])
+                        .html(function (d) {
+                            return "<span style='color: #f0027f'>" + d.data.key + "</span> : " + (d.value) + " (" + d3.round((d.value / d3.sum(groupName.all(), function (d) {
+                                return d.value;
+                            })) * 100, 2) + "%)";
+                        });        
                 chart.selectAll(".pie-slice").call(pieChartTip);
                 chart.selectAll(".pie-slice").on('mouseover', pieChartTip.show)
-                        .on('mouseout', pieChartTip.hide);
+                                             .on('mouseleave', pieChartTip.hide);
             });
+            
+            if(chartType === 'property'){
+               chartName.colors(d3.scale.category10())
+            }else if(chartType === 'sales'){
+                chartName.ordinalColors(['#005a32','#a50f15','#08306b'])
+                        .colorAccessor(function(d,i){
+                            if(d.key === "New Sale"){
+                                return 0;
+                            }else if(d.key==="Resale"){
+                                return 1;
+                            }else{
+                                return 2;
+                            }
+                        });
+                       
+            }else{
+                chartName.colors(d3.scale.category10());
+            }
 }
-function plotRowChart(chartName,dimensionName,groupName,widthSize,heightSize,gapSize,tickNumber){
+function plotRowChart(chartName,dimensionName,groupName,widthSize,heightSize,gapSize,tickNumber,legendX,chartType){
+        
         chartName.width(widthSize)
                .height(heightSize)
                .ordering(function(d){
@@ -80,19 +92,44 @@ function plotRowChart(chartName,dimensionName,groupName,widthSize,heightSize,gap
                 })
                 .dimension(dimensionName)
                 .group(groupName)
-                .colors(d3.scale.category10())
                 .gap(gapSize)
                 .elasticX(true)
-                .title(function (d) {return d.value; })
+                .legend(dc.legend().x(legendX).y(10).itemHeight(13).gap(5))
                 .renderTitle(false)
                 .renderLabel(true)
                 .xAxis().ticks(tickNumber).tickFormat(d3.format("s"));
          
         chartName.renderlet(function(chart){
+                  var rowChartTip = d3.tip()
+                        .attr('class', 'd3-tip')
+                        .offset([-10, 0])
+                        .html(function (d) {
+                            return "<span style='color: #f0027f'>" + d.key + "</span> : " + (d.value) + " (" + d3.round((d.value / d3.sum(groupName.all(), function (d) {
+                                return d.value;
+                            })) * 100, 2) + "%)";
+                        });       
                 chart.selectAll("g.row").call(rowChartTip);
                 chart.selectAll("g.row").on("mouseover", rowChartTip.show)
-                                        .on("mouseout", rowChartTip.hide);
+                                        .on("mouseleave", rowChartTip.hide);
         });
+        
+          if (chartType === 'property') {
+            chartName.colors(d3.scale.category10())
+        } else if (chartType === 'sales') {
+         
+            chartName.renderlet(function (chart) {
+                chart.selectAll("g.row rect").attr("fill", function (d) {
+                    if (d.key === "New Sale")
+                        return '#005a32';
+                    else if (d.key === "Resale")
+                        return '#a50f15';
+                    else
+                        return '#08306b';
+                });
+            });
+        } else {
+            chartName.colors(d3.scale.category10());
+        }
 }
 function plotBoxPlotChart(chartName,widthSize,heightSize,marginsTop,marginsRight,marginsBottom,marginsLeft,yAxisLabelName,dimensionName,groupName){
         chartName.width(widthSize)
