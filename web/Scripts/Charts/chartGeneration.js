@@ -38,6 +38,14 @@ function plotStackedTimeBarChart(chartName,rangeChartName,dimensionName,groupNam
         chartName.yAxis().ticks(tickNumber);
 }
 function plotPieChart(chartName,dimensionName,groupName,widthSize,heightSize,radiusSize,innerRadiusSize,centrePoint,legendX,chartType){
+    var pieChartTip = d3.tip()
+                        .attr('class', 'd3-tip')
+                        .offset([-10, 0])
+                        .html(function (d) {
+                            return "<span style='color: #f0027f'>" + d.data.key + "</span> : " + (d.value) + " (" + d3.round((d.value / d3.sum(groupName.all(), function (d) {
+                                return d.value;
+                            })) * 100, 2) + "%)";
+                        });       
     chartName.width(widthSize)
             .height(heightSize)
             .radius(radiusSize)
@@ -52,23 +60,16 @@ function plotPieChart(chartName,dimensionName,groupName,widthSize,heightSize,rad
             .renderLabel(true)
             .renderTitle(false)
             .renderlet(function (chart) {
-                var pieChartTip = d3.tip()
-                        .attr('class', 'd3-tip')
-                        .offset([-10, 0])
-                        .html(function (d) {
-                            return "<span style='color: #f0027f'>" + d.data.key + "</span> : " + (d.value) + " (" + d3.round((d.value / d3.sum(groupName.all(), function (d) {
-                                return d.value;
-                            })) * 100, 2) + "%)";
-                        });        
+               
                 chart.selectAll(".pie-slice").call(pieChartTip);
                 chart.selectAll(".pie-slice").on('mouseover', pieChartTip.show)
                                              .on('mouseleave', pieChartTip.hide);
             });
             
             if(chartType === 'property'){
-               chartName.colors(d3.scale.category10())
+               chartName.colors(d3.scale.category10());
             }else if(chartType === 'sales'){
-                chartName.ordinalColors(['#005a32','#a50f15','#08306b'])
+                chartName.ordinalColors(['#2ca02c','#d62728','#1f77b4'])
                         .colorAccessor(function(d,i){
                             if(d.key === "New Sale"){
                                 return 0;
@@ -80,16 +81,24 @@ function plotPieChart(chartName,dimensionName,groupName,widthSize,heightSize,rad
                         });
                        
             }else{
-                chartName.colors(d3.scale.category10());
+                 chartName.ordinalColors(['#9c9ede','#6b6ecf','#5254a3','#393b79'])
+                .colorAccessor(function (d, i) {
+                    if (d.key === "99 Yrs") {
+                        return 0;
+                    } else if (d.key === "999 Yrs") {
+                        return 1;
+                    }else if (d.key === "9999 Yrs") {
+                        return 2;
+                    } else {
+                        return 3;
+                    }
+                });
             }
 }
 function plotRowChart(chartName,dimensionName,groupName,widthSize,heightSize,gapSize,tickNumber,legendX,chartType){
         
         chartName.width(widthSize)
                .height(heightSize)
-               .ordering(function(d){
-                    return -d.value;
-                })
                 .dimension(dimensionName)
                 .group(groupName)
                 .gap(gapSize)
@@ -98,38 +107,53 @@ function plotRowChart(chartName,dimensionName,groupName,widthSize,heightSize,gap
                 .renderTitle(false)
                 .renderLabel(true)
                 .xAxis().ticks(tickNumber).tickFormat(d3.format("s"));
-         
-        chartName.renderlet(function(chart){
-                  var rowChartTip = d3.tip()
-                        .attr('class', 'd3-tip')
-                        .offset([-10, 0])
-                        .html(function (d) {
-                            return "<span style='color: #f0027f'>" + d.key + "</span> : " + (d.value) + " (" + d3.round((d.value / d3.sum(groupName.all(), function (d) {
-                                return d.value;
-                            })) * 100, 2) + "%)";
-                        });       
-                chart.selectAll("g.row").call(rowChartTip);
-                chart.selectAll("g.row").on("mouseover", rowChartTip.show)
-                                        .on("mouseleave", rowChartTip.hide);
-        });
         
-          if (chartType === 'property') {
-            chartName.colors(d3.scale.category10())
-        } else if (chartType === 'sales') {
-         
-            chartName.renderlet(function (chart) {
-                chart.selectAll("g.row rect").attr("fill", function (d) {
-                    if (d.key === "New Sale")
-                        return '#005a32';
-                    else if (d.key === "Resale")
-                        return '#a50f15';
-                    else
-                        return '#08306b';
-                });
-            });
-        } else {
+        if (chartType === 'property') {
             chartName.colors(d3.scale.category10());
+        } else if (chartType === 'sales') {
+            chartName.ordinalColors(['#2ca02c','#d62728','#1f77b4'])
+                        .colorAccessor(function(d,i){
+                            if(d.key === "New Sale"){
+                                return 0;
+                            }else if(d.key==="Resale"){
+                                return 1;
+                            }else{
+                                return 2;
+                            }
+                        });       
+        } else {
+              chartName.ordinalColors(['#9c9ede','#6b6ecf','#5254a3','#393b79'])
+                .colorAccessor(function (d, i) {
+                    if (d.key === "99 Yrs") {
+                        return 0;
+                    } else if (d.key === "999 Yrs") {
+                        return 1;
+                    }else if (d.key === "9999 Yrs") {
+                        return 2;
+                    } else {
+                        return 3;
+                    }
+                });
         }
+         chartName.ordering(function(d){
+                    return -d.value;
+                });
+        //tooltip
+        var rowChartTip = d3.tip()
+                .attr('class', 'd3-tip')
+                .offset([-10, 0])
+                .html(function (d) {
+                    return "<span style='color: #f0027f'>" + d.key + "</span> : " + (d.value) + " (" + d3.round((d.value / d3.sum(groupName.all(), function (d) {
+                        return d.value;
+                    })) * 100, 2) + "%)";
+                });
+        chartName.renderlet(function(chart){
+             
+            chart.selectAll("g.row").call(rowChartTip);
+            chart.selectAll("g.row").on("mouseover", rowChartTip.show)
+                    .on("mouseleave", rowChartTip.hide);
+    });
+        
 }
 function plotBoxPlotChart(chartName,widthSize,heightSize,marginsTop,marginsRight,marginsBottom,marginsLeft,yAxisLabelName,dimensionName,groupName){
         chartName.width(widthSize)
