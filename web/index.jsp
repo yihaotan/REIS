@@ -219,6 +219,7 @@
                 top: 0px;
                 left: 15px;
             }
+           
             .d3-tip {
                 line-height: 1;
                 font-weight: bold;
@@ -671,6 +672,11 @@
                                         <h5>Geospatial View</h5>
                                         <div class="toolbar">
                                             <div class="btn-group">
+                                                <div id="resetmap" class="btn btn-info btn-sm">
+                                                     Reset Map
+                                                </div> 
+                                            </div>
+                                            <div class="btn-group">
                                                 <a href="#mapView" data-toggle="collapse" class="btn btn-sm btn-default minimize-box">
                                                     <i class="fa fa-angle-up"></i>
                                                 </a> 
@@ -678,6 +684,7 @@
                                                     <i class="fa fa-times"></i>
                                                 </a> 
                                             </div>
+                                            
                                         </div>
                                     </header>
                                     <!-- Content -->
@@ -862,14 +869,9 @@
         <script type="text/javascript" language="javascript" src="//cdn.datatables.net/1.10.5/js/jquery.dataTables.min.js"></script>
         <script type="text/javascript" language="javascript" src="//cdn.datatables.net/plug-ins/f2c75b7247b/integration/bootstrap/3/dataTables.bootstrap.js"></script>
         <script>
-            $(function () {
-                //Metis.MetisTable();
-                //Metis.formGeneral();
-                //Metis.metisSortable();
-            });
- 
+        $('#resetmap').on('click',function(){map.setView([1.3667,103.8], 11)});
 
-            
+            //map = L.map('map').setView([1.3667,103.8], 11);
         </script>
         <script src="assets/js/style-switcher.min.js"></script>
 
