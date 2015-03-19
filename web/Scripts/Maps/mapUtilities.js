@@ -1,12 +1,14 @@
+
 function filterMap(chartName,dimensionName){
     chartName.on('filtered',function(){
         var properties = dimensionName.top(Infinity);
-        filtereddata = properties;
+        var filtereddata = properties;
         markers.clearLayers();
         heatmapVolume.clearLayers();
         heatmapPrice.clearLayers();
         criteriastolayers(properties);
     });
+
 }
 function plotMapLayers(dimensionName){
     //Create map layer using googlemap terrain
@@ -16,7 +18,8 @@ function plotMapLayers(dimensionName){
     //Create map layer using googlemap road map
     var groadmap = new L.Google('ROADMAP');
     var properties = dimensionName.top(Infinity);
-    filtereddata = properties;
+    var filtereddata = properties;
+    
     criteriastolayers(properties);
     var overlayMaps = {
         "Show Markers": markers,
@@ -39,18 +42,26 @@ function plotMapLayers(dimensionName){
     //Adding listener to polygon layer
     map.on('draw:created', function (event) {
         var layer = event.layer;
-
         layer.on('click', function () {
-           var options = {
-                "backdrop" :true,
-                "show":true
+            if(event.layerType=='circle'){
+                var circlecenter= layer.getLatLng();
+                var circleradius=layer.getRadius();
+                var pointswithincircle=getpointswithincircle(filtereddata,circlecenter,circleradius);
             }
-            var pointswithinpolygon=getpointswithinpolygon(filtereddata,layer.getLatLngs());
-            $('#polygoncharts').modal(options);
+
+            else{
+                var options = {
+                    "backdrop" :true,
+                    "show":true
+                }
+                var pointswithinpolygon=getpointswithinpolygon(filtereddata,layer.getLatLngs());
+                $('#polygoncharts').modal(options);
+            }
         });
         drawnItems.addLayer(layer);
         
     });
+
     L.control.layers(basemaps, overlayMaps).addTo(map);
 };
 
