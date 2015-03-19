@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Street View service</title>
+   <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=false"></script>
+    <style>
+      html, body, #map-canvas {
+        height: 100%;
+        margin: 0px;
+        padding: 0px
+      }
+    </style>
+    
+    <script>
+var geocoder;
+var googlemap;
+function initialize() {
+  var fenway = new google.maps.LatLng(1.3667,103.8);
+  var mapOptions = {
+    center: fenway,
+    zoom: 11
+  };
+  googlemap = new google.maps.Map(
+      document.getElementById('map-canvas'), mapOptions);
+  var panoramaOptions = {
+    position: fenway,
+    pov: {
+      heading: 34,
+      pitch: 10
+    }
+  };
+  var panorama = new google.maps.StreetViewPanorama(document.getElementById('pano'), panoramaOptions);
+  googlemap.setStreetView(panorama);
+}
+
+function codeAddress() {
+  geocoder = new google.maps.Geocoder();
+  var address = document.getElementById('address').value;
+  geocoder.geocode( { 'address': "Singapore"+ address}, function(results, status) {
+    if (status == google.maps.GeocoderStatus.OK) {
+      googlemap.setCenter(results[0].geometry.location);
+      var marker = new google.maps.Marker({
+          map: googlemap,
+          position: results[0].geometry.location
+      });
+    } else {
+      alert('Geocode was not successful for the following reason: ' + status);
+    }
+  });
+}
+
+google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+  </head>
+  <body>
+     <input id="address" type="text" value="">
+      <input type="button" value="Place marker" onclick="codeAddress()">  
+    <div id="map-canvas" style="width: 400px; height: 300px">
+        
+    </div>
+    <div id="pano" style="position:absolute; left:410px; top: 8px; width: 400px; height: 300px;"></div>
+  </body>
+</html>

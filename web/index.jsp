@@ -32,7 +32,7 @@
 
         <!--Unknown-->
         <script src="http://maps.google.com/maps/api/js?v=3&sensor=false"></script>  
-        <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
+        
         <!--Unknown-->
         <script src="Libraries/d3.v3.min.js" type="text/javascript"></script>
         <script src="Libraries/crossfilter.js" type='text/javascript'></script>
@@ -706,6 +706,9 @@
                                         <h5>Geospatial View</h5>
                                         <div class="toolbar">
                                             <div class="btn-group">
+                                                <div id="googlestreetviewbtn" class="btn btn-info btn-sm" style="background:#ff3333">
+                                                     Street View
+                                                </div> 
                                                 <div id="resetmap" class="btn btn-info btn-sm">
                                                      Reset Map
                                                 </div> 
@@ -735,7 +738,7 @@
                                 </div>
                             </div>
                         </div>
-
+                        
                         <!--Begin Datatables-->
                         <div class="row" id="sortable3">
                             <div class="col-lg-12">
@@ -780,13 +783,6 @@
                         </div><!-- /.row -->
 
                         <!--End Datatables-->
-
-
-
-
-
-
-
 
                     </div><!-- /.inner -->
                 </div><!-- /.outer -->
@@ -854,6 +850,45 @@
                 </div>
             </div><!-- /#right -->
         </div><!-- /#wrap -->
+        
+        
+        
+        <div id="polygoncharts" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">Properties comparison</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                            
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal --><!-- /#polygon -->
+        
+        <!-- /#googlestreetview -->
+        <div id="googlestreetview" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">Streetview</h4>
+                    </div>
+                    <div class="modal-body">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal --><!-- /#googlestreetview -->
+        
         <footer class="Footer bg-dark dker">
             <p>2015 &copy; Real Estate Information System</p>
         </footer><!-- /#footer -->
@@ -869,25 +904,6 @@
                     <div class="modal-body">
                         <p>
                             This is it!
-                        </p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    </div>
-                </div><!-- /.modal-content -->
-            </div><!-- /.modal-dialog -->
-        </div><!-- /.modal --><!-- /#helpModal -->
-        
-        <div id="polygoncharts" class="modal fade">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title">Properties comparison</h4>
-                    </div>
-                    <div class="modal-body">
-                        <p>
-                            
                         </p>
                     </div>
                     <div class="modal-footer">
@@ -921,7 +937,18 @@
         <script type="text/javascript" language="javascript" src="//cdn.datatables.net/1.10.5/js/jquery.dataTables.min.js"></script>
         <script type="text/javascript" language="javascript" src="//cdn.datatables.net/plug-ins/f2c75b7247b/integration/bootstrap/3/dataTables.bootstrap.js"></script>
         <script>
+            
         $('#resetmap').on('click',function(){map.setView([1.3667,103.8], 11)});
+        
+        $('#googlestreetviewbtn').on('click',function(){
+        var optionsgooglestreet = {
+                    "backdrop" :true,
+                    "show":true,
+                    "remote":'googlestreetview.html'
+                }
+        $('#googlestreetview').modal(optionsgooglestreet);
+        })
+        
 
             //map = L.map('map').setView([1.3667,103.8], 11);
         </script>
