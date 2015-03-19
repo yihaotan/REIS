@@ -65,9 +65,23 @@ function plotPieChart(chartName,dimensionName,groupName,widthSize,heightSize,rad
                 chart.selectAll(".pie-slice").on('mouseover', pieChartTip.show)
                                              .on('mouseleave', pieChartTip.hide);
             });
-            
             if(chartType === 'property'){
-               chartName.colors(d3.scale.category10());
+                chartName.ordinalColors(['#1f77b4','#ff7f0e','#2ca02c','#d62728','#9467bd','#8c564b'])
+                        .colorAccessor(function(d,i){
+                            if(d.key === "Apartment"){
+                                return 0;
+                            }else if(d.key==="Condominium"){
+                                return 1;
+                            }else if(d.key==="Detached House"){
+                                return 2;
+                            }else if(d.key==="Executive Condominium"){
+                                return 3;
+                            }else if(d.key==="Semi-Detached House"){
+                                return 4;
+                            }else{
+                                return 5;
+                            }
+                        });
             }else if(chartType === 'sales'){
                 chartName.ordinalColors(['#2ca02c','#d62728','#1f77b4'])
                         .colorAccessor(function(d,i){
@@ -80,8 +94,8 @@ function plotPieChart(chartName,dimensionName,groupName,widthSize,heightSize,rad
                             }
                         });
                        
-            }else{
-                 chartName.ordinalColors(['#9c9ede','#6b6ecf','#5254a3','#393b79'])
+            }else if(chartType === 'tenure'){
+                 chartName.ordinalColors(['#fc9272','#ef3b2c','#cb181d','#67000d'])
                 .colorAccessor(function (d, i) {
                     if (d.key === "99 Yrs") {
                         return 0;
@@ -93,15 +107,30 @@ function plotPieChart(chartName,dimensionName,groupName,widthSize,heightSize,rad
                         return 3;
                     }
                 });
+            }else{
+                 chartName.ordinalColors(['#1f77b4','#ff7f0e','#2ca02c','#d62728','#9467bd'])
+                    .colorAccessor(function (d, i) {
+                    if (d.key === "North East Region") {
+                           return 0;
+                       } else if (d.key === "West Region") {
+                           return 1;
+                       } else if (d.key === "Central Region") {
+                           return 2;
+                       } else if (d.key === "North Region") {
+                           return 3;
+                       } else {
+                           return 4;
+                       }
+                    });
             }
 }
 function plotRowChart(chartName,dimensionName,groupName,widthSize,heightSize,gapSize,tickNumber,legendX,chartType){
-        
         chartName.width(widthSize)
                .height(heightSize)
                 .dimension(dimensionName)
                 .group(groupName)
                 .gap(gapSize)
+                .ordering(function(d){return -d.value;})
                 .elasticX(true)
                 .legend(dc.legend().x(legendX).y(10).itemHeight(13).gap(5))
                 .renderTitle(false)
@@ -109,35 +138,66 @@ function plotRowChart(chartName,dimensionName,groupName,widthSize,heightSize,gap
                 .xAxis().ticks(tickNumber).tickFormat(d3.format("s"));
         
         if (chartType === 'property') {
-            chartName.colors(d3.scale.category10());
-        } else if (chartType === 'sales') {
-            chartName.ordinalColors(['#2ca02c','#d62728','#1f77b4'])
-                        .colorAccessor(function(d,i){
-                            if(d.key === "New Sale"){
-                                return 0;
-                            }else if(d.key==="Resale"){
-                                return 1;
-                            }else{
-                                return 2;
-                            }
-                        });       
-        } else {
-              chartName.ordinalColors(['#9c9ede','#6b6ecf','#5254a3','#393b79'])
-                .colorAccessor(function (d, i) {
-                    if (d.key === "99 Yrs") {
-                        return 0;
-                    } else if (d.key === "999 Yrs") {
-                        return 1;
-                    }else if (d.key === "9999 Yrs") {
-                        return 2;
+            chartName.renderlet(function (chart) {
+                chart.selectAll("g.row rect").attr("fill", function (d) {
+                    if (d.key === "Apartment") {
+                        return '#1f77b4';
+                    } else if (d.key === "Condominium") {
+                        return '#ff7f0e';
+                    } else if (d.key === "Detached House") {
+                        return '#2ca02c';
+                    } else if (d.key === "Executive Condominium") {
+                        return '#d62728';
+                    } else if (d.key === "Semi-Detached House") {
+                        return '#9467bd';
                     } else {
-                        return 3;
+                        return '#8c564b';
                     }
                 });
-        }
-         chartName.ordering(function(d){
-                    return -d.value;
+            });
+        }else if (chartType === 'sales') {
+          chartName.renderlet(function (chart) {
+            chart.selectAll("g.row rect").attr("fill", function (d) {
+                if (d.key === "New Sale") {
+                    return '#2ca02c';
+                } else if (d.key === "Resale") {
+                    return '#d62728';
+                } else {
+                    return '#1f77b4';
+                }
+            });
+        });
+        }else if(chartType === 'tenure') {
+            chartName.renderlet(function (chart) {
+                chart.selectAll("g.row rect").attr("fill", function (d) {
+                    if (d.key === "99 Yrs") {
+                        return '#fc9272';
+                    } else if (d.key === "999 Yrs") {
+                        return '#ef3b2c';
+                    } else if (d.key === "9999 Yrs") {
+                        return '#cb181d';
+                    } else {
+                        return '#99000d';
+                    }
                 });
+            });
+        }else{
+            chartName.renderlet(function (chart) {
+                chart.selectAll("g.row rect").attr("fill", function (d) {
+                    if (d.key === "North East Region") {
+                        return '#1f77b4';
+                    } else if (d.key === "West Region") {
+                        return '#ff7f0e';
+                    } else if (d.key === "Central Region") {
+                        return '#2ca02c';
+                    } else if (d.key === "North Region") {
+                        return '#d62728';
+                    } else {
+                        return '#9467bd';
+                    }
+                });
+            });
+        }
         //tooltip
         var rowChartTip = d3.tip()
                 .attr('class', 'd3-tip')
@@ -152,9 +212,9 @@ function plotRowChart(chartName,dimensionName,groupName,widthSize,heightSize,gap
             chart.selectAll("g.row").call(rowChartTip);
             chart.selectAll("g.row").on("mouseover", rowChartTip.show)
                     .on("mouseleave", rowChartTip.hide);
-    });
+        });
         
-}
+};
 function plotBoxPlotChart(chartName,widthSize,heightSize,marginsTop,marginsRight,marginsBottom,marginsLeft,yAxisLabelName,dimensionName,groupName){
         chartName.width(widthSize)
                   .height(heightSize)

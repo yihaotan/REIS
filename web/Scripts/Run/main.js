@@ -108,11 +108,9 @@ function generateMapAndCharts(geoJsonData){
     var dateDimension = facts.dimension(function (d) {
         return d3.time.month(d.date);
     });
-    //new method 
     var apartmentGroup = dateDimension.group().reduceSum(function(d){
         return d.propertyType === 'Apartment'? 1:0;
     });
-    
     var condoGroup = dateDimension.group().reduceSum(function(d){
         return d.propertyType === 'Condominium'?1:0;
     });
@@ -244,6 +242,32 @@ function generateMapAndCharts(geoJsonData){
             filterMap(propertyTenureVolumeRowChart,propertyDimension);
         }
     }
+    function plotRegionVolumeRow(){
+        if (typeof propertyRegionVolumePieChart !== 'undefined') {
+            var f2 = getFilters(propertyRegionVolumePieChart);
+            propertyRegionVolumeRowChart = dc.rowChart("#dc-propertyRegionVolume-chart");
+            plotRowChart(propertyRegionVolumeRowChart,regionDimension,regionGroup,300,160,3,5,5,"region");
+            applyFilter(propertyRegionVolumeRowChart, f2);
+            filterMap(propertyRegionVolumeRowChart,regionDimension);
+        } else {
+            propertyRegionVolumeRowChart = dc.rowChart("#dc-propertyRegionVolume-chart");
+            plotRowChart(propertyRegionVolumeRowChart,regionDimension,regionGroup,300,160,3,5,5,"region");
+            filterMap(propertyRegionVolumeRowChart,regionDimension);
+        }
+    }
+    function plotRegionVolumePie(){
+         if (typeof propertyRegionVolumeRowChart !== 'undefined'){
+            var f1 = getFilters(propertyRegionVolumeRowChart);
+            propertyRegionVolumePieChart = dc.pieChart("#dc-propertyRegionVolume-chart");
+            plotPieChart(propertyRegionVolumePieChart,regionDimension,regionGroup,300,160,80,20,220,3,"region");
+            applyFilter(propertyRegionVolumePieChart, f1);
+            filterMap(propertyRegionVolumePieChart,regionDimension);
+        }else{
+            propertyRegionVolumePieChart = dc.pieChart("#dc-propertyRegionVolume-chart");
+            plotPieChart(propertyRegionVolumePieChart,regionDimension,regionGroup,300,160,80,20,220,3,"region");
+            filterMap(propertyRegionVolumePieChart,regionDimension);
+        }
+    }
     function plotPsfBoxPlot(){
          plotBoxPlotChart(boxPlotChart,780,220,10,0,20,75,"Psf $",propertyDimension,boxPlotPsfGroup);
     }
@@ -259,32 +283,32 @@ function generateMapAndCharts(geoJsonData){
     }
     function plotPsmHistogram(){
         plotHistogramChart(histogram,320,160,psmDimension,psmGroup,0,0,40,40,getMinPsm(geoJsonData),getMaxPsm(geoJsonData),10,50,5,"Psm $");
-        filterMap(histogram,propertyDimension);
+        //filterMap(histogram,propertyDimension);
     }
     function plotPriceHistogram(){
         plotHistogramChart(histogram,300,80,priceDimension,priceGroup,0,0,40,40,getMinPrice(geoJsonData),getMaxPrice(geoJsonData),10,1000,5,"Price $");
-        filterMap(histogram,propertyDimension);
+        //filterMap(histogram,propertyDimension);
     }
     function plotPsfLineChart(){
         compose1 = plotLineChart(compositeControlChart,dateDimension,datePsfGroup,"Min Psf",5,"green","min",dateFormat);
         compose2 = plotLineChart(compositeControlChart,dateDimension,datePsfGroup,"Median Psf",5,"blue","median",dateFormat);
         compose3 = plotLineChart(compositeControlChart,dateDimension,datePsfGroup,"Max Psf",5,"red","max",dateFormat);
         plotCompositeChart(compositeControlChart,dateDimension,450,152,10,0,40,50,"Psf $",getMinDate(geoJsonData),getMaxDate(geoJsonData),dateVolumeBarChart,compose1,compose2,compose3,"%b %y",5);
-        filterMap(compositeControlChart,propertyDimension);
-    }; // got bug for rangeChart
+        //filterMap(compositeControlChart,propertyDimension);
+    }; 
     function plotPsmLineChart(){
         compose1 = plotLineChart(compositeControlChart,dateDimension,datePsmGroup,"Min Psm",5,"green","min",dateFormat);
         compose2 = plotLineChart(compositeControlChart,dateDimension,datePs,Group,"Median Psm",5,"blue","median",dateFormat);
         compose3 = plotLineChart(compositeControlChart,dateDimension,datePsmGroup,"Max Psm",5,"red","max",dateFormat);
         plotCompositeChart(compositeControlChart,dateDimension,400,122,10,0,40,60,"Psm $",getMinDate(geoJsonData),getMaxDate(geoJsonData),dateVolumeBarChart,compose1,compose2,compose3,"%b %y",5);
-        filterMap(compositeControlChart,propertyDimension);
+        //filterMap(compositeControlChart,propertyDimension);
     }
     function plotPriceLineChart(){
         compose1 = plotLineChart(compositeControlChart,dateDimension,datePriceGroup,"Min Psf",5,"green","min",dateFormat);
         compose2 = plotLineChart(compositeControlChart,dateDimension,datePriceGroup,"Median Psf",5,"blue","median",dateFormat);
         compose3 = plotLineChart(compositeControlChart,dateDimension,datePriceGroup,"Max Psf",5,"red","max",dateFormat);
         plotCompositeChart(compositeControlChart,dateDimension,400,122,10,0,40,60,"Psf $",getMinDate(geoJsonData),getMaxDate(geoJsonData),dateVolumeBarChart,compose1,compose2,compose3,"%b %y",5);
-        filterMap(compositeControlChart,propertyDimension);
+        //filterMap(compositeControlChart,propertyDimension);
     }
   function plotTable(){
         plotDataTable(dataTable,500,600,dateDimension,300000);
@@ -299,13 +323,18 @@ function generateMapAndCharts(geoJsonData){
     plotPropertyVolumeRow();
     plotSaleVolumeRow();
     plotTenureVolumeRow();
+    plotRegionVolumeRow();
     plotTable();
     plotPsfLineChart();
     plotPsfHistogram();
-    plotMapLayers(propertyDimension);
     
+    var a = performance.now();
+    plotMapLayers(propertyDimension);
+    var b = performance.now();
+    alert('It took ' + (b - a) + ' ms.');
     //patch
     rangeChartForTimeSeries(dateVolumeBarChart,stackedDateVolumeBarChart,compositeControlChart);
+    //jQuery
         $("#dc-psfBoxPlot-chart").on('change', function () {
             var text = $('#dc-psfBoxPlot-chart .selectpicker option:selected').text();
             if (text === "Psf") {
@@ -327,6 +356,7 @@ function generateMapAndCharts(geoJsonData){
         $("#bar1").prop("disabled", true);
         $("#bar2").prop("disabled", true);
         $("#bar3").prop("disabled", true);
+        $("#bar4").prop("disabled", true);
         $("#bar1").mouseenter(function () {
             $(this).html("Bar");
         });
@@ -417,7 +447,36 @@ function generateMapAndCharts(geoJsonData){
             plotTenureVolumePie();
             dc.renderAll();
         });
-        
+        $("#bar4").mouseenter(function () {
+            $(this).html("Bar");
+        });
+        $('#bar4').mouseleave(function () {
+            $(this).html("");
+            $(this).append("<span class='glyphicon glyphicon-signal' aria-hidden='true'>"+'</span>');
+        });
+        $("#bar4").on("click", function () {
+            $(this).prop('disabled', true);
+            $(this).html("");
+            $(this).append("<span class='glyphicon glyphicon-signal' aria-hidden='true'>"+'</span>');
+            $("#pie4").prop('disabled', false);
+            plotRegionVolumeRow();
+            dc.renderAll();
+        });
+         $("#pie4").mouseenter(function () {
+            $(this).html("Pie");
+        });
+        $('#pie4').mouseleave(function () {
+            $(this).html("");
+            $(this).append("<span class='glyphicon glyphicon-adjust' aria-hidden='true'>"+'</span>');
+        });
+        $("#pie4").on("click", function () {
+            $(this).prop('disabled', true);
+            $(this).html("");
+            $(this).append("<span class='glyphicon glyphicon-adjust' aria-hidden='true'>"+'</span>');
+            $("#bar4").prop('disabled', false);
+            plotRegionVolumePie();
+            dc.renderAll();
+        });
 }
 
 
