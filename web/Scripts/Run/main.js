@@ -417,6 +417,7 @@ function generateMapAndCharts(geoJsonData){
             plotTenureVolumePie();
             dc.renderAll();
         });
+        
 }
 
 

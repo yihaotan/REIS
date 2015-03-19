@@ -1,11 +1,11 @@
 function filterMap(chartName,dimensionName){
     chartName.on('filtered',function(){
         var properties = dimensionName.top(Infinity);
-            filtereddata = properties;
-            markers.clearLayers();
-            heatmapVolume.clearLayers();
-            heatmapPrice.clearLayers();
-            criteriastolayers(properties);
+        filtereddata = properties;
+        markers.clearLayers();
+        heatmapVolume.clearLayers();
+        heatmapPrice.clearLayers();
+        criteriastolayers(properties);
     });
 }
 function plotMapLayers(dimensionName){
@@ -28,28 +28,28 @@ function plotMapLayers(dimensionName){
         "Google Roadmap": groadmap,
         "Google Satellite": gsatellite
     };
-    //map.addLayer(markers);
+    //Adding controls to the polygon
     var drawnItems = L.featureGroup().addTo(map);
     map.addControl(new L.Control.Draw({
         edit: {
             featureGroup: drawnItems
         }
     }));
+    
+    //Adding listener to polygon layer
     map.on('draw:created', function (event) {
         var layer = event.layer;
 
         layer.on('click', function () {
-            if (opened === false)
-            {
-                $.sidr('open', 'sidr-left');
+           var options = {
+                "backdrop" :true,
+                "show":true
             }
-            else {
-                $.sidr('close', 'sidr-left');
-            }
-            chartingforpolygon(getmapmarkers(layer.getLatLngs(), filtereddata));
+            var pointswithinpolygon=getpointswithinpolygon(filtereddata,layer.getLatLngs());
+            $('#polygoncharts').modal(options);
         });
         drawnItems.addLayer(layer);
-
+        
     });
     L.control.layers(basemaps, overlayMaps).addTo(map);
 };

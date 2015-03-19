@@ -15,8 +15,7 @@
 
         <!--        <link rel="stylesheet" href="Css/flat-ui.min.css" type="text/css">-->
         <link rel="stylesheet" href="Css/iThing.css" type="text/css">
-        <!--        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" type="text/css">
-                <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css" type="text/css">-->
+
         <link rel='stylesheet' href='Css/dc.css' type='text/css'>
         <link rel='stylesheet' href='Css/bootstrap-select.css' type='text/css'>
         <link rel="stylesheet" href="Css/LeafletStyleSheet.css" type="text/css">
@@ -146,6 +145,8 @@
         <!--Modernizr-->
         <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
 
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
 
 
 
@@ -199,7 +200,7 @@
                 position: relative;
                 max-width: 100%;
             }
-           #dc-table-graph tbody td {
+            #dc-table-graph tbody td {
                 font-size: 11.5px;
 
             }
@@ -219,7 +220,7 @@
                 top: 0px;
                 left: 15px;
             }
-           
+
             .d3-tip {
                 line-height: 1;
                 font-weight: bold;
@@ -403,7 +404,7 @@
 
             </div><!-- /#top -->
 
-            
+
 
             <div id="left">
 
@@ -522,9 +523,7 @@
                                                 <a href="#dateVolume" data-toggle="collapse" class="btn btn-sm btn-default minimize-box">
                                                     <i class="fa fa-angle-up"></i>
                                                 </a> 
-                                                <a class="btn btn-danger btn-sm close-box">
-                                                    <i class="fa fa-times"></i>
-                                                </a> 
+                                                
                                             </div>
                                         </div>
                                     </header>
@@ -536,13 +535,13 @@
                                         <div class="row">
                                             <div id='dc-stackDateVolume-chart'>
                                                 <h6>
-                                                    <font><strong>Monthly Transaction Volume</strong></font>
+                                                    <font><strong>Monthly Transaction by properties </strong></font>
                                                 </h6>
                                             </div>
 
                                             <div id='dc-control-chart'>
                                                 <h6>
-                                                    <font><strong>Monthly Psf</strong></font>
+                                                    <font><strong>Monthly Unit Price</strong></font>
                                                 </h6>
                                             </div>
                                         </div>
@@ -550,7 +549,7 @@
                                         <div class="row">
                                             <div id='dc-dateVolume-chart'>
                                                 <h6>
-                                                    <font><strong>Monthly Transaction Filter Volume</strong></font>
+                                                    <font><strong>Monthly Transaction</strong></font>
 
                                                 </h6>
                                             </div>
@@ -581,9 +580,7 @@
                                                 <a href="#basicCharts" data-toggle="collapse" class="btn btn-sm btn-default minimize-box">
                                                     <i class="fa fa-angle-up"></i>
                                                 </a> 
-                                                <a class="btn btn-danger btn-sm close-box">
-                                                    <i class="fa fa-times"></i>
-                                                </a> 
+                                                
                                             </div>
                                         </div>
                                     </header>
@@ -594,30 +591,30 @@
                                             <!-- Property Volume Chart -->
 
                                             <div id='dc-propertyVolume-chart'>
-                                                <h6><strong>Property Volume</strong>
+                                                <h6><strong>Property Type</strong>
                                                     <button type="button" class="btn btn-primary btn-xs" id="bar1" aria-label="Left Align">
                                                         <span class="glyphicon glyphicon-signal" aria-hidden="true"></span>
                                                     </button>
                                                     <button type="button" class="btn btn-danger btn-xs" id="pie1" aria-label="Left Align">
                                                         <span class="glyphicon glyphicon-adjust" aria-hidden="true"></span>
                                                     </button>
-                                                     <span>
+                                                    <span>
                                                         <!-- <a class='filter' style='display:none;'> Filters: </a> -->
                                                         <a class="reset"
                                                            href="javascript:propertyVolumePieChart.filterAll();propertyVolumeRowChart;dc.redrawAll();"
                                                            style="display: none;">
                                                             reset
                                                         </a>
-                                                        
+
                                                     </span>
-                                                   </h6>
+                                                </h6>
                                             </div>
                                         </div>
 
                                         <!-- Sale Volume Chart -->
                                         <div class="row">
                                             <div id='dc-propertySaleVolume-chart'>
-                                                <h6><strong>Sales Volume</strong>
+                                                <h6><strong>Sale Type</strong>
                                                     <button type="button" class="btn btn-primary btn-xs" id="bar2" aria-label="Left Align">
                                                         <span class="glyphicon glyphicon-signal" aria-hidden="true"></span>
                                                     </button>
@@ -625,7 +622,7 @@
                                                         <span class="glyphicon glyphicon-adjust" aria-hidden="true"></span>
                                                     </button>
                                                     <span>
-                                                       <!-- <a class='filter' style='display:none;'> Filters: </a> -->
+                                                        <!-- <a class='filter' style='display:none;'> Filters: </a> -->
                                                         <a class="reset"
                                                            href="javascript:propertySaleVolumePieChart.filterAll();propertySaleVolumeRowChart.filterAll();dc.redrawAll();"
                                                            style="display: none;">
@@ -638,7 +635,7 @@
                                         <!-- Tenure Volume Chart -->
                                         <div class="row">
                                             <div id='dc-propertyTenureVolume-chart'>
-                                                <h6><strong>Tenure Volume</strong>
+                                                <h6><strong>Tenure Type</strong>
                                                     <button type="button" class="btn btn-primary btn-xs" id="bar3" aria-label="Left Align">
                                                         <span class="glyphicon glyphicon-signal" aria-hidden="true"></span>
                                                     </button>
@@ -646,7 +643,7 @@
                                                         <span class="glyphicon glyphicon-adjust" aria-hidden="true"></span>
                                                     </button>
                                                     <span>
-                                                       <!-- <a class='filter' style='display:none;'> Filters: </a> -->
+                                                        <!-- <a class='filter' style='display:none;'> Filters: </a> -->
                                                         <a class="reset"
                                                            href="javascript:propertyTenureVolumePieChart.filterAll();propertyTenureVolumeRowChart.filterAll();dc.redrawAll();"
                                                            style="display: none;">
@@ -672,19 +669,17 @@
                                         <h5>Geospatial View</h5>
                                         <div class="toolbar">
                                             <div class="btn-group">
-                                                <div id="resetmap" class="btn btn-info btn-sm">
-                                                     Reset Map
+                                                <div id="resetmap" class="btn btn-info btn-sm" style="background: #006699; color:white;">
+                                                    Reset Map
                                                 </div> 
                                             </div>
                                             <div class="btn-group">
                                                 <a href="#mapView" data-toggle="collapse" class="btn btn-sm btn-default minimize-box">
                                                     <i class="fa fa-angle-up"></i>
                                                 </a> 
-                                                <a class="btn btn-danger btn-sm close-box">
-                                                    <i class="fa fa-times"></i>
-                                                </a> 
+                                               
                                             </div>
-                                            
+
                                         </div>
                                     </header>
                                     <!-- Content -->
@@ -693,7 +688,7 @@
                                         <div class="row">
 
                                             <div id="dc-histogram">
-                                                <h6><strong>Psf Histogram</strong></h6>
+                                                <h6><strong>Unit Price</strong></h6>
                                             </div>
 
                                         </div>
@@ -717,9 +712,7 @@
                                                 <a href="#dynamicTable" data-toggle="collapse" class="btn btn-sm btn-default minimize-box">
                                                     <i class="fa fa-angle-up"></i>
                                                 </a> 
-                                                <a class="btn btn-danger btn-sm close-box">
-                                                    <i class="fa fa-times"></i>
-                                                </a> 
+                                               
                                             </div>
                                         </div>
                                     </header>
@@ -746,18 +739,9 @@
                         </div><!-- /.row -->
 
                         <!--End Datatables-->
-
-
-
-
-
-
-
-
                     </div><!-- /.inner -->
                 </div><!-- /.outer -->
             </div><!-- /#content -->
-
 
 
 
@@ -844,6 +828,23 @@
             </div><!-- /.modal-dialog -->
         </div><!-- /.modal --><!-- /#helpModal -->
 
+        <!-- Modal for Polygon charts-->
+        <div id="polygoncharts" class="modal fade">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">Properties Comparison</h4>
+                    </div>
+                    <div class="modal-body">
+                        
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <!--jQuery -->
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
@@ -869,8 +870,8 @@
         <script type="text/javascript" language="javascript" src="//cdn.datatables.net/1.10.5/js/jquery.dataTables.min.js"></script>
         <script type="text/javascript" language="javascript" src="//cdn.datatables.net/plug-ins/f2c75b7247b/integration/bootstrap/3/dataTables.bootstrap.js"></script>
         <script>
-        $('#resetmap').on('click',function(){map.setView([1.3667,103.8], 11)});
-
+            $('#resetmap').on('click',function(){map.setView([1.3667,103.8], 11)});
+           
             //map = L.map('map').setView([1.3667,103.8], 11);
         </script>
         <script src="assets/js/style-switcher.min.js"></script>

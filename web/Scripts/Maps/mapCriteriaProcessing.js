@@ -177,8 +177,7 @@ function criteriastolayers(filteredData){
                                         + "<br> <b>Transacted Price</b>: $"+geojson.price
                                         +"<br> <b>Area(sqm)</b>: "+geojson.areasqm 
                                         + "<br> <b>Unit Price PSF</b>: $"+geojson.psf
-                                        + "<br> <b>Description</b>: "+geojson.sale+" "+geojson.propertyType+" at "
-                                        +geojson.address+" S"+geojson.postalCode+", District:"+geojson.postalDistrict);
+                                        + "<br><b>Sale/Property type: </b>"+geojson.sale+" "+geojson.propertyType);
             //put these markers on to the layer criteriaCluster
             criteriaCluster.RegisterMarker(criteriamarker);
 

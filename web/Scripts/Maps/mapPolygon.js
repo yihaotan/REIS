@@ -1,14 +1,13 @@
-function getpointsofpolygon(tempmarkers){
+function getpointswithinpolygon(filtereddata,polygonpoints){
      var storemarkers=[];
-     for(i=0;i<tempmarkers.length;i++){  
-        var storemarker=[];
-        var marker=tempmarkers[i];
-        var lat=marker.lat;
-        var lng=marker.lng;
-        storemarker=[lat,lng];
-        storemarkers.push(storemarker);
+     for(i=0;i<filtereddata.length;i++){  
+        var pointswithinpolygon=[];
+        var marker=[filtereddata[i].lat,filtereddata[i].lon];
+        if(pointinpolygon(marker,polygonpoints)){
+            pointswithinpolygon.push(marker);
+        }
      }
-     return storemarkers;
+     return pointswithinpolygon;
 }
 
 

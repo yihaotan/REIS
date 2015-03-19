@@ -75,7 +75,7 @@ L.Draw.Polygon = L.Draw.Polyline.extend({
 	},
 
 	_shapeIsValid: function () {//indicates that the drawing has stopped
-               
+                
 		return this._markers.length >= 3;
 	},
 
