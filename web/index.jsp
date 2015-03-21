@@ -225,7 +225,7 @@
                 top: 0px;
                 left: 15px;
             }
-           
+
             .d3-tip {
                 line-height: 1;
                 font-weight: bold;
@@ -247,6 +247,7 @@
                 position: absolute;
                 text-align: center;
             }
+
             /* Style northward tooltips differently */
             .d3-tip.n:after {
                 margin: -1px 0 0 0;

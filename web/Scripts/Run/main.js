@@ -12,6 +12,7 @@ function generateMapAndCharts(geoJsonData){
     var cv = new SVY21();
     
     //Charts
+    var timeStart = performance.now();
     geoJsonData.forEach(function (d) {
         d.projectName = d.properties.PROJECT_NAME;
         d.address = d.properties.ADDRESS;
@@ -33,8 +34,13 @@ function generateMapAndCharts(geoJsonData){
         d.lon = resultLatLon.lon;
        
     });
+    var timeEnd = performance.now();
+    alert('It took ' + (timeEnd - timeStart) + ' ms.for the data to load..');
     var facts = crossfilter(geoJsonData);
     var all = facts.groupAll();
+    //bind the lat and long
+    
+    var timeStart1 = performance.now();
     var propertyVolumeDimension = facts.dimension(function (d) {
         return d.propertyType;
     });
@@ -154,14 +160,17 @@ function generateMapAndCharts(geoJsonData){
     var psmGroup = psmDimension.group(function (d) {
         return Math.ceil(d / 1000) * 1000;
     });
+     var timeEnd1 = performance.now();
+     alert('It took ' + (timeEnd1 - timeStart1) + ' ms.for the dimensions and groups..');
     function plotTimeChart(){
         plotTimeBarChart(dateVolumeBarChart,dateDimension,dateGroup,1050,102,20,5,getMinDate(geoJsonData),getMaxDate(geoJsonData),"%b %y");
         filterMap(dateVolumeBarChart,propertyDimension);
+        alert("In Time Chart");
     }
     function plotStackTimeChart(){
         plotStackedTimeBarChart(stackedDateVolumeBarChart,dateVolumeBarChart,dateDimension,apartmentGroup,condoGroup,detachGroup,ecGroup,sdGroup,terraceGroup,550,152,30,5,getMinDate(geoJsonData),getMaxDate(geoJsonData),"%b %y");
         var f1 = getFilters(dateVolumeBarChart);
-        applyFilter(stackedDateVolumeBarChart,f1);
+        //applyFilter(stackedDateVolumeBarChart,f1);
     }
     function plotPropertyVolumePie() {
        if (typeof propertyVolumeRowChart !== 'undefined'){
@@ -180,13 +189,13 @@ function generateMapAndCharts(geoJsonData){
         if (typeof propertyVolumePieChart !== 'undefined') {
             var f2 = getFilters(propertyVolumePieChart);
             propertyVolumeRowChart = dc.rowChart("#dc-propertyVolume-chart");
-            plotRowChart(propertyVolumeRowChart,propertyVolumeDimension,propertyVolumeGroup,300,160,3,5,5,"property");
+            plotRowChart(propertyVolumeRowChart,propertyVolumeDimension,propertyVolumeGroup,300,180,3,5,5,"property",0,0,20,80);
             applyFilter(propertyVolumeRowChart, f2);
             filterMap(propertyVolumeRowChart,propertyDimension);
            
         } else {
             propertyVolumeRowChart = dc.rowChart("#dc-propertyVolume-chart");
-            plotRowChart(propertyVolumeRowChart,propertyVolumeDimension,propertyVolumeGroup,300,160,3,5,5,"property");
+            plotRowChart(propertyVolumeRowChart,propertyVolumeDimension,propertyVolumeGroup,300,180,3,5,5,"property",0,0,20,80);
             filterMap(propertyVolumeRowChart,propertyDimension);
         }
     }
@@ -207,12 +216,12 @@ function generateMapAndCharts(geoJsonData){
         if (typeof propertySaleVolumePieChart !== 'undefined') {
             var f2 = getFilters(propertySaleVolumePieChart);
             propertySaleVolumeRowChart = dc.rowChart("#dc-propertySaleVolume-chart");
-            plotRowChart(propertySaleVolumeRowChart,salesDimension,salesGroup,300,160,3,5,5,"sales");
+            plotRowChart(propertySaleVolumeRowChart,salesDimension,salesGroup,300,120,3,5,5,"sales",0,0,20,50);
             applyFilter(propertySaleVolumeRowChart, f2);
             filterMap(propertySaleVolumeRowChart,propertyDimension);
         } else {
             propertySaleVolumeRowChart = dc.rowChart("#dc-propertySaleVolume-chart");
-            plotRowChart(propertySaleVolumeRowChart,salesDimension,salesGroup,300,160,3,5,5,"sales");
+            plotRowChart(propertySaleVolumeRowChart,salesDimension,salesGroup,300,120,3,5,5,"sales",0,0,20,50);
             filterMap(propertySaleVolumeRowChart,propertyDimension);
         }
     }
@@ -233,12 +242,12 @@ function generateMapAndCharts(geoJsonData){
         if (typeof propertyTenureVolumePieChart !== 'undefined') {
             var f2 = getFilters(propertyTenureVolumePieChart);
             propertyTenureVolumeRowChart = dc.rowChart("#dc-propertyTenureVolume-chart");
-            plotRowChart(propertyTenureVolumeRowChart,tenureDimension,tenureGroup,300,160,3,5,5,"tenure");
+            plotRowChart(propertyTenureVolumeRowChart,tenureDimension,tenureGroup,300,140,3,5,5,"tenure",0,0,20,50);
             applyFilter(propertyTenureVolumeRowChart, f2);
             filterMap(propertyTenureVolumeRowChart,propertyDimension);
         } else {
             propertyTenureVolumeRowChart = dc.rowChart("#dc-propertyTenureVolume-chart");
-            plotRowChart(propertyTenureVolumeRowChart,tenureDimension,tenureGroup,300,160,3,5,5,"tenure");
+            plotRowChart(propertyTenureVolumeRowChart,tenureDimension,tenureGroup,300,140,3,5,5,"tenure",0,0,20,50);
             filterMap(propertyTenureVolumeRowChart,propertyDimension);
         }
     }
@@ -246,12 +255,12 @@ function generateMapAndCharts(geoJsonData){
         if (typeof propertyRegionVolumePieChart !== 'undefined') {
             var f2 = getFilters(propertyRegionVolumePieChart);
             propertyRegionVolumeRowChart = dc.rowChart("#dc-propertyRegionVolume-chart");
-            plotRowChart(propertyRegionVolumeRowChart,regionDimension,regionGroup,300,160,3,5,5,"region");
+            plotRowChart(propertyRegionVolumeRowChart,regionDimension,regionGroup,300,160,3,5,5,"region",0,0,20,50);
             applyFilter(propertyRegionVolumeRowChart, f2);
             filterMap(propertyRegionVolumeRowChart,regionDimension);
         } else {
             propertyRegionVolumeRowChart = dc.rowChart("#dc-propertyRegionVolume-chart");
-            plotRowChart(propertyRegionVolumeRowChart,regionDimension,regionGroup,300,160,3,5,5,"region");
+            plotRowChart(propertyRegionVolumeRowChart,regionDimension,regionGroup,300,160,3,5,5,"region",0,0,20,50);
             filterMap(propertyRegionVolumeRowChart,regionDimension);
         }
     }
@@ -290,11 +299,11 @@ function generateMapAndCharts(geoJsonData){
         //filterMap(histogram,propertyDimension);
     }
     function plotPsfLineChart(){
-        compose1 = plotLineChart(compositeControlChart,dateDimension,datePsfGroup,"Min Psf",5,"green","min",dateFormat);
-        compose2 = plotLineChart(compositeControlChart,dateDimension,datePsfGroup,"Median Psf",5,"blue","median",dateFormat);
-        compose3 = plotLineChart(compositeControlChart,dateDimension,datePsfGroup,"Max Psf",5,"red","max",dateFormat);
+        compose1 = plotLineChart(compositeControlChart,dateDimension,datePsfGroup,"Min Psf",3,"#bdd7e7","min",dateFormat);
+        compose2 = plotLineChart(compositeControlChart,dateDimension,datePsfGroup,"Median Psf",3,"#08519c","median",dateFormat);
+        compose3 = plotLineChart(compositeControlChart,dateDimension,datePsfGroup,"Max Psf",3,"#bdd7e7","max",dateFormat);
         plotCompositeChart(compositeControlChart,dateDimension,450,152,10,0,40,50,"Psf $",getMinDate(geoJsonData),getMaxDate(geoJsonData),dateVolumeBarChart,compose1,compose2,compose3,"%b %y",5);
-        //filterMap(compositeControlChart,propertyDimension);
+        filterMap(compositeControlChart,propertyDimension);
     }; 
     function plotPsmLineChart(){
         compose1 = plotLineChart(compositeControlChart,dateDimension,datePsmGroup,"Min Psm",5,"green","min",dateFormat);
@@ -317,7 +326,7 @@ function generateMapAndCharts(geoJsonData){
   dc.dataCount(".dc-data-count")
             .dimension(facts)
             .group(all);
-    
+    var a = performance.now();
     plotTimeChart();
     plotStackTimeChart();
     plotPropertyVolumeRow();
@@ -327,15 +336,12 @@ function generateMapAndCharts(geoJsonData){
     plotTable();
     plotPsfLineChart();
     plotPsfHistogram();
-    
-    var a = performance.now();
+    rangeChartForTimeSeries(dateVolumeBarChart,compositeControlChart, stackedDateVolumeBarChart); 
     plotMapLayers(propertyDimension);
     var b = performance.now();
-    alert('It took ' + (b - a) + ' ms.');
-    //patch
-    rangeChartForTimeSeries(dateVolumeBarChart,stackedDateVolumeBarChart,compositeControlChart);
+    alert('It took ' + (b - a) + ' ms for all the plot methods');
     //jQuery
-        $("#dc-psfBoxPlot-chart").on('change', function () {
+       $("#dc-psfBoxPlot-chart").on('change', function () {
             var text = $('#dc-psfBoxPlot-chart .selectpicker option:selected').text();
             if (text === "Psf") {
                 plotPsfHistogram();

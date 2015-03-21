@@ -215,11 +215,12 @@ div.dc-chart {
 }
 
 .dc-chart g.row text {
-    fill: white;
-    font-size: 12px;
+    fill: #525252;
+    font-size: 10px;
     cursor: pointer;
+    text-anchor: end;
+   
 }
-
 .dc-legend {
     font-size: 11px;
 }

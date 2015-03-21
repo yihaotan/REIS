@@ -72,5 +72,26 @@ function rangeChartForTimeSeries(rangeChart,chart1,chart2){
             });
     });
 }
+var colors = {}; 
+colors["Apartment"]='#1f77b4';
+colors["Condominium"]='#ff7f0e';
+colors["Detached House"]='#2ca02c';
+colors["Executive Condominium"]='#d62728';
+colors['Semi-Detached House']='#9467bd';
+colors['Terrace House']="#8c564b";
+colors['99 Yrs']='#fc9272';
+colors['999 Yrs']='#ef3b2c';
+colors['9999 Yrs']='#cb181d';
+colors['Freehold']='#67000d';
+colors['New Sale']='#2ca02c';
+colors['Resale']='#d62728';
+colors['Sub Sale']='#1f77b4';
+colors["North East Region"]='#1f77b4';
+colors["West Region"]='#ff7f0e';
+colors["Central Region"]='#2ca02c';
+colors["North Region"]='#d62728';
+colors["East Region"]='#9467bd';
 
- 
+function getColors(k) {
+    return colors[k];
+}

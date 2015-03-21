@@ -23,11 +23,16 @@ function plotStackedTimeBarChart(chartName,rangeChartName,dimensionName,groupNam
             .gap(gapSize)
             .brushOn(false)
             .group(groupName)
-            .stack(stackGroupName1)
+            .stack(stackGroupName1,"")
             .stack(stackGroupName2)
             .stack(stackGroupName3)
             .stack(stackGroupName4)
             .stack(stackGroupName5)
+            .renderlet(function (chart) {
+                chart.selectAll("g.rect.stack").attr("fill", function (d) {
+                    return getColors(d.key);
+                });
+            })
             .x(d3.time.scale().domain([minDate, maxDate]))
             .rangeChart(rangeChartName)
             .round(d3.time.month.round)
@@ -35,14 +40,14 @@ function plotStackedTimeBarChart(chartName,rangeChartName,dimensionName,groupNam
             .xAxis().tickFormat(d3.time.format(timeFormat))
             .ticks(tickNumber);
     
-        chartName.yAxis().ticks(tickNumber);
+      chartName.yAxis().ticks(tickNumber);
 }
 function plotPieChart(chartName,dimensionName,groupName,widthSize,heightSize,radiusSize,innerRadiusSize,centrePoint,legendX,chartType){
     var pieChartTip = d3.tip()
                         .attr('class', 'd3-tip')
                         .offset([-10, 0])
                         .html(function (d) {
-                            return "<span style='color: #f0027f'>" + d.data.key + "</span> : " + (d.value) + " (" + d3.round((d.value / d3.sum(groupName.all(), function (d) {
+                            return "<span style='color: #c6dbef'>" + d.data.key + "</span> : " + (d.value) + " (" + d3.round((d.value / d3.sum(groupName.all(), function (d) {
                                 return d.value;
                             })) * 100, 2) + "%)";
                         });       
@@ -59,161 +64,57 @@ function plotPieChart(chartName,dimensionName,groupName,widthSize,heightSize,rad
             .cx(centrePoint)
             .renderLabel(true)
             .renderTitle(false)
-            .renderlet(function (chart) {
-               
+            .renderlet(function(chart){
                 chart.selectAll(".pie-slice").call(pieChartTip);
                 chart.selectAll(".pie-slice").on('mouseover', pieChartTip.show)
                                              .on('mouseleave', pieChartTip.hide);
-            });
-            if(chartType === 'property'){
-                chartName.ordinalColors(['#1f77b4','#ff7f0e','#2ca02c','#d62728','#9467bd','#8c564b'])
-                        .colorAccessor(function(d,i){
-                            if(d.key === "Apartment"){
-                                return 0;
-                            }else if(d.key==="Condominium"){
-                                return 1;
-                            }else if(d.key==="Detached House"){
-                                return 2;
-                            }else if(d.key==="Executive Condominium"){
-                                return 3;
-                            }else if(d.key==="Semi-Detached House"){
-                                return 4;
-                            }else{
-                                return 5;
-                            }
-                        });
-            }else if(chartType === 'sales'){
-                chartName.ordinalColors(['#2ca02c','#d62728','#1f77b4'])
-                        .colorAccessor(function(d,i){
-                            if(d.key === "New Sale"){
-                                return 0;
-                            }else if(d.key==="Resale"){
-                                return 1;
-                            }else{
-                                return 2;
-                            }
-                        });
-                       
-            }else if(chartType === 'tenure'){
-                 chartName.ordinalColors(['#fc9272','#ef3b2c','#cb181d','#67000d'])
-                .colorAccessor(function (d, i) {
-                    if (d.key === "99 Yrs") {
-                        return 0;
-                    } else if (d.key === "999 Yrs") {
-                        return 1;
-                    }else if (d.key === "9999 Yrs") {
-                        return 2;
-                    } else {
-                        return 3;
-                    }
-                });
-            }else{
-                 chartName.ordinalColors(['#1f77b4','#ff7f0e','#2ca02c','#d62728','#9467bd'])
-                    .colorAccessor(function (d, i) {
-                    if (d.key === "North East Region") {
-                           return 0;
-                       } else if (d.key === "West Region") {
-                           return 1;
-                       } else if (d.key === "Central Region") {
-                           return 2;
-                       } else if (d.key === "North Region") {
-                           return 3;
-                       } else {
-                           return 4;
-                       }
-                    });
-            }
+            })
+            .getColor = function(d, i){
+                return getColors(d.key);   
+            };
 }
-function plotRowChart(chartName,dimensionName,groupName,widthSize,heightSize,gapSize,tickNumber,legendX,chartType){
+function plotRowChart(chartName,dimensionName,groupName,widthSize,heightSize,gapSize,tickNumber,legendX,chartType,top,right,bottom,left){
+         var rowChartTip = d3.tip()
+                .attr('class', 'd3-tip')
+                .offset([-10, 0])
+                .html(function (d) {
+                    return "<span style='color: #c6dbef'>" + d.key + "</span> : " + (d.value) + " (" + d3.round((d.value / d3.sum(groupName.all(), function (d) {
+                        return d.value;
+                    })) * 100, 2) + "%)";
+                });
+    
         chartName.width(widthSize)
-               .height(heightSize)
+                .margins({top: top, right: right, bottom: bottom, left: left})
+                .height(heightSize)
                 .dimension(dimensionName)
                 .group(groupName)
                 .gap(gapSize)
                 .ordering(function(d){return -d.value;})
                 .elasticX(true)
-                .legend(dc.legend().x(legendX).y(10).itemHeight(13).gap(5))
+                .colors(d3.scale.category10())
+                .fixedBarHeight(20)
+                .labelOffsetX(-5)
+                .label(function(d){
+                    if(chartType === 'region' ||(d.key).lastIndexOf("House")!==-1){
+                        return (d.key).substring(0,(d.key).lastIndexOf(" "));
+                    }
+                    if(d.key === 'Executive Condominium'){
+                        return 'E.Condominium';
+                    }
+                    return d.key;
+                })
                 .renderTitle(false)
                 .renderLabel(true)
+                .renderlet(function(chart){
+                    chart.selectAll("g.row rect").attr("fill", function (d) {
+                        return getColors(d.key);
+                    });
+                     chart.selectAll("g.row").call(rowChartTip);
+                        chart.selectAll("g.row").on("mouseover", rowChartTip.show)
+                                .on("mouseleave", rowChartTip.hide);
+                    })
                 .xAxis().ticks(tickNumber).tickFormat(d3.format("s"));
-        
-        if (chartType === 'property') {
-            chartName.renderlet(function (chart) {
-                chart.selectAll("g.row rect").attr("fill", function (d) {
-                    if (d.key === "Apartment") {
-                        return '#1f77b4';
-                    } else if (d.key === "Condominium") {
-                        return '#ff7f0e';
-                    } else if (d.key === "Detached House") {
-                        return '#2ca02c';
-                    } else if (d.key === "Executive Condominium") {
-                        return '#d62728';
-                    } else if (d.key === "Semi-Detached House") {
-                        return '#9467bd';
-                    } else {
-                        return '#8c564b';
-                    }
-                });
-            });
-        }else if (chartType === 'sales') {
-          chartName.renderlet(function (chart) {
-            chart.selectAll("g.row rect").attr("fill", function (d) {
-                if (d.key === "New Sale") {
-                    return '#2ca02c';
-                } else if (d.key === "Resale") {
-                    return '#d62728';
-                } else {
-                    return '#1f77b4';
-                }
-            });
-        });
-        }else if(chartType === 'tenure') {
-            chartName.renderlet(function (chart) {
-                chart.selectAll("g.row rect").attr("fill", function (d) {
-                    if (d.key === "99 Yrs") {
-                        return '#fc9272';
-                    } else if (d.key === "999 Yrs") {
-                        return '#ef3b2c';
-                    } else if (d.key === "9999 Yrs") {
-                        return '#cb181d';
-                    } else {
-                        return '#99000d';
-                    }
-                });
-            });
-        }else{
-            chartName.renderlet(function (chart) {
-                chart.selectAll("g.row rect").attr("fill", function (d) {
-                    if (d.key === "North East Region") {
-                        return '#1f77b4';
-                    } else if (d.key === "West Region") {
-                        return '#ff7f0e';
-                    } else if (d.key === "Central Region") {
-                        return '#2ca02c';
-                    } else if (d.key === "North Region") {
-                        return '#d62728';
-                    } else {
-                        return '#9467bd';
-                    }
-                });
-            });
-        }
-        //tooltip
-        var rowChartTip = d3.tip()
-                .attr('class', 'd3-tip')
-                .offset([-10, 0])
-                .html(function (d) {
-                    return "<span style='color: #f0027f'>" + d.key + "</span> : " + (d.value) + " (" + d3.round((d.value / d3.sum(groupName.all(), function (d) {
-                        return d.value;
-                    })) * 100, 2) + "%)";
-                });
-        chartName.renderlet(function(chart){
-             
-            chart.selectAll("g.row").call(rowChartTip);
-            chart.selectAll("g.row").on("mouseover", rowChartTip.show)
-                    .on("mouseleave", rowChartTip.hide);
-        });
-        
+            
 };
 function plotBoxPlotChart(chartName,widthSize,heightSize,marginsTop,marginsRight,marginsBottom,marginsLeft,yAxisLabelName,dimensionName,groupName){
         chartName.width(widthSize)
