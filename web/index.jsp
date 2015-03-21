@@ -82,6 +82,7 @@
         <!--for drawing-->
         <!--for tooltip-->
         <script src="Libraries/d3.tip.v0.6.3.js"></script>
+        <script src='https://raw.githubusercontent.com/mbostock/d3/master/lib/colorbrewer/colorbrewer.js'></script>
         <!--Custom Function-->
         <script src="Scripts/Upload/svy21.js"></script>
         <script src="Scripts/Maps/mapGeneration.js"></script>
@@ -190,6 +191,12 @@
                 left: 15px;
             }
             #dc-histogram{
+                float: left;
+                position: relative;
+                top: 0px;
+                left: 15px;
+            }
+            #dc-sizeHistogram{
                 float: left;
                 position: relative;
                 top: 0px;
@@ -558,8 +565,9 @@
                                             <div id='dc-dateVolume-chart'>
                                                 <h6>
                                                     <font><strong>Monthly Transaction Filter Volume</strong></font>
-
+                                                    <h7>[Slide to filter dates]</h7>
                                                 </h6>
+                                               
                                             </div>
                                         </div>
 
@@ -731,7 +739,20 @@
                                         <div class="row">
 
                                             <div id="dc-histogram">
-                                                <h6><strong>Psf Histogram</strong></h6>
+                                                <h6><strong>Psf Histogram</strong> 
+                                                    <h7>[Slide to filter psf]</h7>
+                                                </h6>
+                                                
+                                            </div>
+
+                                        </div>
+                                        <div class="row">
+
+                                            <div id="dc-sizeHistogram">
+                                                <h6><strong>Sqm Histogram</strong>
+                                                    <h7>[Slide to filter sqm]</h7>
+                                                </h6>
+                                                 
                                             </div>
 
                                         </div>
@@ -772,8 +793,7 @@
                                                     <th>Date</th>
                                                     <th>Size</th>
                                                     <th>Price</th>
-                                                    <th>Postal District</th>
-                                                    <th>Postal Sector</th>
+                                                    <th>Region</th>
                                                 </tr>
                                             </thead>
 

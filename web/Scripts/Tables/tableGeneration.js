@@ -30,10 +30,7 @@ function plotDataTable(tableName,widthSize,heightSize,dimensionName,tableSize){
                     return "$"+d.price;
                 },
                 function(d) {
-                   return d.postalDistrict;
-                },
-                function(d) {
-                   return d.postalSector;
+                   return (d.planningRegion).substring(0,(d.planningRegion).lastIndexOf(" "));
                 }
                 ])
                 .sortBy(function(d) {

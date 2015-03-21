@@ -8,7 +8,8 @@ function generateMapAndCharts(geoJsonData){
     stackedDateVolumeBarChart = dc.barChart("#dc-stackDateVolume-chart");
     dataTable = dc.dataTable("#dc-table-graph");
     dataTable.on("postRender", function(chart){reinit(chart)}).on("postRedraw", function(chart){reinit(chart)});
-   
+    sizeHistogram = dc.barChart("#dc-sizeHistogram");     
+
     var cv = new SVY21();
     
     //Charts
@@ -148,6 +149,12 @@ function generateMapAndCharts(geoJsonData){
     var psfGroup = psfDimension.group(function (d) {
         return Math.ceil(d / 100) * 100;
     });
+    var sizeDimension = facts.dimension(function (d) {
+        return d.areasqm;
+    });
+    var sizeGroup = sizeDimension.group(function (d) {
+        return Math.ceil(d / 10) * 10;
+    });
     var priceDimension = facts.dimension(function (d) {
         return d.price;
     });
@@ -163,12 +170,12 @@ function generateMapAndCharts(geoJsonData){
      var timeEnd1 = performance.now();
      alert('It took ' + (timeEnd1 - timeStart1) + ' ms.for the dimensions and groups..');
     function plotTimeChart(){
-        plotTimeBarChart(dateVolumeBarChart,dateDimension,dateGroup,1050,102,20,5,getMinDate(geoJsonData),getMaxDate(geoJsonData),"%b %y");
+        plotTimeBarChart(dateVolumeBarChart,dateDimension,dateGroup,1000,102,20,5,getMinDate(geoJsonData),getMaxDate(geoJsonData),"%b %y","Volume",10,0,20,50);
         filterMap(dateVolumeBarChart,propertyDimension);
         alert("In Time Chart");
     }
     function plotStackTimeChart(){
-        plotStackedTimeBarChart(stackedDateVolumeBarChart,dateVolumeBarChart,dateDimension,apartmentGroup,condoGroup,detachGroup,ecGroup,sdGroup,terraceGroup,550,152,30,5,getMinDate(geoJsonData),getMaxDate(geoJsonData),"%b %y");
+        plotStackedTimeBarChart(stackedDateVolumeBarChart,dateVolumeBarChart,dateDimension,apartmentGroup,condoGroup,detachGroup,ecGroup,sdGroup,terraceGroup,550,152,30,5,getMinDate(geoJsonData),getMaxDate(geoJsonData),"%b %y",10,0,40,50,"Volume");
         var f1 = getFilters(dateVolumeBarChart);
         //applyFilter(stackedDateVolumeBarChart,f1);
     }
@@ -287,8 +294,12 @@ function generateMapAndCharts(geoJsonData){
         plotBoxPlotChart(boxPlotChart,780,220,10,0,20,75,"Psf $",propertyDimension,boxPlotPriceGroup);
     }
     function plotPsfHistogram(){
-        plotHistogramChart(histogram,600,160,psfDimension,psfGroup,10,0,20,40,getMinPsf(geoJsonData),getMaxPsf(geoJsonData),10,50,5,"Psf $");
+        plotHistogramChart(histogram,550,160,psfDimension,psfGroup,10,0,40,40,getMinPsf(geoJsonData),getMaxPsf(geoJsonData),10,50,5,"Psf $","Volume");
         filterMap(histogram,propertyDimension);
+    }
+    function plotSizeHistogram(){
+         plotHistogramChart(sizeHistogram ,550,160,sizeDimension,sizeGroup,10,0,40,40,getMinSize(geoJsonData),getMaxSize(geoJsonData),10,60,5,"Sqm","Volume");
+         filterMap(sizeHistogram,propertyDimension);
     }
     function plotPsmHistogram(){
         plotHistogramChart(histogram,320,160,psmDimension,psmGroup,0,0,40,40,getMinPsm(geoJsonData),getMaxPsm(geoJsonData),10,50,5,"Psm $");
@@ -336,6 +347,7 @@ function generateMapAndCharts(geoJsonData){
     plotTable();
     plotPsfLineChart();
     plotPsfHistogram();
+    plotSizeHistogram();
     rangeChartForTimeSeries(dateVolumeBarChart,compositeControlChart, stackedDateVolumeBarChart); 
     plotMapLayers(propertyDimension);
     var b = performance.now();

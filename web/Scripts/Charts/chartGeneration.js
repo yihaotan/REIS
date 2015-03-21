@@ -1,11 +1,13 @@
-function plotTimeBarChart(chartName,dimensionName,groupName,widthSize,heightSize,gapSize,tickNumber,minDate,maxDate,timeFormat){
+function plotTimeBarChart(chartName,dimensionName,groupName,widthSize,heightSize,gapSize,tickNumber,minDate,maxDate,timeFormat,yAxisLabelName,top,right,bottom,left){
     chartName.width(widthSize)
+             .margins({top: top, right: right, bottom: bottom, left: left}) 
              .height(heightSize)
              .dimension(dimensionName)
              .group(groupName)
              .centerBar(true)
              .elasticY(true)
              .gap(gapSize)
+             .yAxisLabel(yAxisLabelName)
              .x(d3.time.scale().domain([minDate, maxDate]))
              .round(d3.time.month.round)
              .xUnits(d3.time.months)
@@ -13,21 +15,24 @@ function plotTimeBarChart(chartName,dimensionName,groupName,widthSize,heightSize
      
      chartName.yAxis().ticks(tickNumber);
 }
-function plotStackedTimeBarChart(chartName,rangeChartName,dimensionName,groupName,stackGroupName1,stackGroupName2,stackGroupName3,stackGroupName4,stackGroupName5,widthSize,heightSize,gapSize,tickNumber,minDate,maxDate,timeFormat){
+function plotStackedTimeBarChart(chartName,rangeChartName,dimensionName,groupName,stackGroupName1,stackGroupName2,stackGroupName3,stackGroupName4,stackGroupName5,widthSize,heightSize,gapSize,tickNumber,minDate,maxDate,timeFormat,top,right,bottom,left,yAxisLabelName){
         chartName.width(widthSize)
+             .margins({top: top, right: right, bottom: bottom, left: left})
             .height(heightSize)
             .dimension(dimensionName)
             .centerBar(true)
             .elasticY(true)
             .elasticX(false)
             .gap(gapSize)
+            .yAxisLabel(yAxisLabelName)
             .brushOn(false)
-            .group(groupName)
-            .stack(stackGroupName1,"")
-            .stack(stackGroupName2)
-            .stack(stackGroupName3)
-            .stack(stackGroupName4)
-            .stack(stackGroupName5)
+            .group(groupName,"Apartment")
+            .stack(stackGroupName1,"Condominium")
+            .stack(stackGroupName2,"Detached")
+            .stack(stackGroupName3,"E.Condominium")
+            .stack(stackGroupName4,"Semi-Detached")
+            .stack(stackGroupName5,"Terrace")
+            .legend(dc.legend().x(15).y(140).itemWidth(95).legendWidth(600).horizontal(true))
             .renderlet(function (chart) {
                 chart.selectAll("g.rect.stack").attr("fill", function (d) {
                     return getColors(d.key);
@@ -91,7 +96,7 @@ function plotRowChart(chartName,dimensionName,groupName,widthSize,heightSize,gap
                 .gap(gapSize)
                 .ordering(function(d){return -d.value;})
                 .elasticX(true)
-                .colors(d3.scale.category10())
+                //.colors(d3.scale.category10())
                 .fixedBarHeight(20)
                 .labelOffsetX(-5)
                 .label(function(d){
@@ -173,7 +178,7 @@ function plotCompositeChart(compositeChartName,dimensionName,widthSize,heightSiz
             
          compositeChartName.yAxis().ticks(tickNumber);
 }
-function plotHistogramChart(histogramName,widthSize,heightSize,dimensionName,groupName,marginsTop,marginsRight,marginsBottom,marginsLeft,minRange,maxRange,clipPaddingSize,xUnitsSize,tickNumber,xAxisLabelName){
+function plotHistogramChart(histogramName,widthSize,heightSize,dimensionName,groupName,marginsTop,marginsRight,marginsBottom,marginsLeft,minRange,maxRange,clipPaddingSize,xUnitsSize,tickNumber,xAxisLabelName,yAxisLabelName){
          histogramName.width(widthSize)
             .height(heightSize)
             .dimension(dimensionName)
@@ -181,7 +186,12 @@ function plotHistogramChart(histogramName,widthSize,heightSize,dimensionName,gro
             .margins({top: marginsTop, right: marginsRight, bottom: marginsBottom, left: marginsLeft})
             .x(d3.scale.linear().domain([minRange,maxRange]).range([0,10]))
             .xAxisLabel(xAxisLabelName)
-            .colors("green")
+            .colors(['rgb(247,252,253)','rgb(229,245,249)','rgb(204,236,230)','rgb(153,216,201)','rgb(102,194,164)','rgb(65,174,118)','rgb(35,139,69)','rgb(0,109,44)','rgb(0,68,27)'])
+            .colorDomain([-500, 500])
+            .colorAccessor(function(d){
+                return d.value;
+            })
+           .yAxisLabel(yAxisLabelName)
             .round(Math.ceil)
             .centerBar(true)
             .clipPadding(clipPaddingSize)
