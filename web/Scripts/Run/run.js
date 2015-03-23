@@ -3,5 +3,5 @@ function generateAll(geoJsonData){
     var c = performance.now();
     dc.renderAll();
     var d = performance.now();
-    alert('It took ' + (d - c) + ' ms to render all the graphs');
+    //alert('It took ' + (d - c) + ' ms to render all the graphs');
 }
