@@ -28,11 +28,12 @@
         <link rel="stylesheet" href="Css/jquery.sidr.light.css" type="text/css">
         <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css"  type="text/css">
         <link rel="stylesheet" href="Css/leaflet.draw.css" type="text/css">
-
+        <link type="text/css" href="d3-Leafletlib/leaflet.markercluster.css" rel="stylesheet"/>
+        <link type="text/css" href="d3-Leafletlib/leaflet.css" rel="stylesheet"/>
 
         <!--Unknown-->
-        <script src="http://maps.google.com/maps/api/js?v=3&sensor=false"></script>  
-        
+        <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=false"></script>
+
         <!--Unknown-->
         <script src="Libraries/d3.v3.min.js" type="text/javascript"></script>
         <script src="Libraries/crossfilter.js" type='text/javascript'></script>
@@ -118,6 +119,12 @@
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/metisMenu/1.1.3/metisMenu.min.css">
         <link rel="stylesheet" href="//cdn.datatables.net/plug-ins/3cfcc339e89/integration/bootstrap/3/dataTables.bootstrap.css">
 
+
+        <!--for data binding-->
+        <!--Optional-->
+        <script type="text/javascript" src="d3-Leafletlib/leaflet.markercluster.js"></script>
+
+        <script type="text/javascript" src="d3-Leafletlib/dc.leaflet.js"></script>
 
 
 
@@ -212,7 +219,7 @@
                 position: relative;
                 max-width: 100%;
             }
-           #dc-table-graph tbody td {
+            #dc-table-graph tbody td {
                 font-size: 11.5px;
 
             }
@@ -260,6 +267,25 @@
                 margin: -1px 0 0 0;
                 top: 100%;
                 left: 0;
+            }
+
+            #holder {
+                width:850px;
+                margin:20px auto;
+            }
+            #holder>div {
+                padding:30px 0;
+                clear:both;
+            }
+            .map1{
+                width:600px;
+                height:400px;
+            }
+
+            #map-canvas {
+                height: 100%;
+                margin: 0px;
+                padding: 0px;
             }
 
 
@@ -417,7 +443,7 @@
 
             </div><!-- /#top -->
 
-            
+
 
             <div id="left">
 
@@ -567,7 +593,7 @@
                                                     <font><strong>Monthly Transaction Filter Volume</strong></font>
                                                     <h7>[Slide to filter dates]</h7>
                                                 </h6>
-                                               
+
                                             </div>
                                         </div>
 
@@ -616,17 +642,17 @@
                                                     <button type="button" class="btn btn-danger btn-xs" id="pie1" aria-label="Left Align">
                                                         <span class="glyphicon glyphicon-adjust" aria-hidden="true"></span>
                                                     </button>
-                                                     <h7>[Click to filter property]</h7>
-                                                     <span>
+                                                    <h7>[Click to filter property]</h7>
+                                                    <span>
                                                         <!-- <a class='filter' style='display:none;'> Filters: </a> -->
                                                         <a class="reset"
                                                            href="javascript:propertyVolumePieChart.filterAll();propertyVolumeRowChart;dc.redrawAll();"
                                                            style="display: none;">
                                                             reset
                                                         </a>
-                                                        
+
                                                     </span>
-                                                   </h6>
+                                                </h6>
                                             </div>
                                         </div>
 
@@ -642,7 +668,7 @@
                                                     </button>
                                                     <h7>[Click to filter sales]</h7>
                                                     <span>
-                                                       <!-- <a class='filter' style='display:none;'> Filters: </a> -->
+                                                        <!-- <a class='filter' style='display:none;'> Filters: </a> -->
                                                         <a class="reset"
                                                            href="javascript:propertySaleVolumePieChart.filterAll();propertySaleVolumeRowChart.filterAll();dc.redrawAll();"
                                                            style="display: none;">
@@ -664,7 +690,7 @@
                                                     </button>
                                                     <h7>[Click to filter tenure]</h7>
                                                     <span>
-                                                       <!-- <a class='filter' style='display:none;'> Filters: </a> -->
+                                                        <!-- <a class='filter' style='display:none;'> Filters: </a> -->
                                                         <a class="reset"
                                                            href="javascript:propertyTenureVolumePieChart.filterAll();propertyTenureVolumeRowChart.filterAll();dc.redrawAll();"
                                                            style="display: none;">
@@ -674,8 +700,8 @@
                                                 </h6>
                                             </div> 
                                         </div>
-                                        
-                                         <!-- Region Volume Chart -->
+
+                                        <!-- Region Volume Chart -->
                                         <div class="row">
                                             <div id='dc-propertyRegionVolume-chart'>
                                                 <h6><strong>Region Type</strong>
@@ -687,7 +713,7 @@
                                                     </button>
                                                     <h7>[Click to filter region]</h7>
                                                     <span>
-                                                       <!-- <a class='filter' style='display:none;'> Filters: </a> -->
+                                                        <!-- <a class='filter' style='display:none;'> Filters: </a> -->
                                                         <a class="reset"
                                                            href="javascript:propertyRegionVolumePieChart.filterAll();propertyRegionVolumeRowChart.filterAll();dc.redrawAll();"
                                                            style="display: none;">
@@ -697,8 +723,8 @@
                                                 </h6>
                                             </div> 
                                         </div>
-                                        
-                                        
+
+
                                     </div>
                                 </div>
                             </div>
@@ -716,10 +742,10 @@
                                         <div class="toolbar">
                                             <div class="btn-group">
                                                 <div id="googlestreetviewbtn" class="btn btn-info btn-sm" style="background:#ff3333">
-                                                     Street View
+                                                    Street View
                                                 </div> 
                                                 <div id="resetmap" class="btn btn-info btn-sm">
-                                                     Reset Map
+                                                    Reset Map
                                                 </div> 
                                             </div>
                                             <div class="btn-group">
@@ -730,7 +756,7 @@
                                                     <i class="fa fa-times"></i>
                                                 </a> 
                                             </div>
-                                            
+
                                         </div>
                                     </header>
                                     <!-- Content -->
@@ -742,7 +768,7 @@
                                                 <h6><strong>Psf Histogram</strong> 
                                                     <h7>[Slide to filter psf]</h7>
                                                 </h6>
-                                                
+
                                             </div>
 
                                         </div>
@@ -752,7 +778,7 @@
                                                 <h6><strong>Sqm Histogram</strong>
                                                     <h7>[Slide to filter sqm]</h7>
                                                 </h6>
-                                                 
+
                                             </div>
 
                                         </div>
@@ -760,7 +786,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <!--Begin Datatables-->
                         <div class="row" id="sortable3">
                             <div class="col-lg-12">
@@ -808,7 +834,6 @@
                     </div><!-- /.inner -->
                 </div><!-- /.outer -->
             </div><!-- /#content -->
-
 
 
 
@@ -871,9 +896,9 @@
                 </div>
             </div><!-- /#right -->
         </div><!-- /#wrap -->
-        
-        
-        
+
+
+
         <div id="polygoncharts" class="modal fade">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -883,7 +908,7 @@
                     </div>
                     <div class="modal-body">
                         <p>
-                            
+
                         </p>
                     </div>
                     <div class="modal-footer">
@@ -892,116 +917,129 @@
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
         </div><!-- /.modal --><!-- /#polygon -->
-        
+
         <!-- /#googlestreetview -->
         <div id="googlestreetview" class="modal fade">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         <h4 class="modal-title">Streetview</h4>
                     </div>
                     <div class="modal-body">
+                        <input id="address" type="text" value="">
+                        <input type="button" value="Place marker" onclick="codeAddress()">  
+
+                        <div id="pano" style="position:absolute; left:410px; top: 55px; width: 400px; height: 300px;"></div>
                     </div>
+                    <div id="map-canvas" style="width: 400px; height: 300px" ></div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     </div>
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
         </div><!-- /.modal --><!-- /#googlestreetview -->
-        
-        <footer class="Footer bg-dark dker">
-            <p>2015 &copy; Real Estate Information System</p>
-        </footer><!-- /#footer -->
 
-        <!-- #helpModal -->
-        <div id="helpModal" class="modal fade">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title">Modal title</h4>
-                    </div>
-                    <div class="modal-body">
-                        <p>
-                            This is it!
-                        </p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    </div>
-                </div><!-- /.modal-content -->
-            </div><!-- /.modal-dialog -->
-        </div><!-- /.modal --><!-- /#helpModal -->
-        <!--jQuery -->
-        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/datatables/1.10.4/js/jquery.dataTables.min.js"></script>
-        <script src="//cdn.datatables.net/plug-ins/3cfcc339e89/integration/bootstrap/3/dataTables.bootstrap.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.18.4/js/jquery.tablesorter.min.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
 
-        <!--Bootstrap -->
-        <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
 
-        <!-- MetisMenu -->
-        <script src="//cdnjs.cloudflare.com/ajax/libs/metisMenu/1.1.3/metisMenu.min.js"></script>
+    </div>
 
-        <!-- Screenfull -->
-        <script src="//cdnjs.cloudflare.com/ajax/libs/screenfull.js/2.0.0/screenfull.min.js"></script>
+    <!-- #helpModal -->
+    <div id="helpModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Modal title</h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        This is it!
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal --><!-- /#helpModal -->
 
-        <!-- Metis core scripts -->
-        <script src="assets/js/core.min.js"></script>
 
-        <!-- Metis demo scripts -->
-        <script src="assets/js/app.js"></script>
-        <script type="text/javascript" language="javascript" src="//cdn.datatables.net/1.10.5/js/jquery.dataTables.min.js"></script>
-        <script type="text/javascript" language="javascript" src="//cdn.datatables.net/plug-ins/f2c75b7247b/integration/bootstrap/3/dataTables.bootstrap.js"></script>
-        <script>
+
+    <footer class="Footer bg-dark dker">
+        <p>2015 &copy; Real Estate Information System</p>
+    </footer><!-- /#footer -->
+
+    <!--jQuery -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/datatables/1.10.4/js/jquery.dataTables.min.js"></script>
+    <script src="//cdn.datatables.net/plug-ins/3cfcc339e89/integration/bootstrap/3/dataTables.bootstrap.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.18.4/js/jquery.tablesorter.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+
+    <!--Bootstrap -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
+    <!-- MetisMenu -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/metisMenu/1.1.3/metisMenu.min.js"></script>
+
+    <!-- Screenfull -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/screenfull.js/2.0.0/screenfull.min.js"></script>
+
+    <!-- Metis core scripts -->
+    <script src="assets/js/core.min.js"></script>
+
+    <!-- Metis demo scripts -->
+    <script src="assets/js/app.js"></script>
+    <script type="text/javascript" language="javascript" src="//cdn.datatables.net/1.10.5/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" language="javascript" src="//cdn.datatables.net/plug-ins/f2c75b7247b/integration/bootstrap/3/dataTables.bootstrap.js"></script>
+
+    <script>
             
         $('#resetmap').on('click',function(){map.setView([1.3667,103.8], 11)});
         
         $('#googlestreetviewbtn').on('click',function(){
-        var optionsgooglestreet = {
-                    "backdrop" :true,
-                    "show":true,
-                    "remote":'googlestreetview.html'
-                }
-        $('#googlestreetview').modal(optionsgooglestreet);
+            initializeGoogleMaps();
+            var options = {
+                "backdrop" :true,
+                "show":true
+            }
+            
+             $('#googlestreetview').modal(options);
         })
+        $('#googlestreetview').on('shown.bs.modal', function () {
+        google.maps.event.trigger(googlemap, 'resize');
+        googlemap.setCenter(new google.maps.LatLng(1.3667,103.8));
+    })
         
 
-            //map = L.map('map').setView([1.3667,103.8], 11);
-        </script>
-        <script src="assets/js/style-switcher.min.js"></script>
+        //map = L.map('map').setView([1.3667,103.8], 11);
+    </script>
+    <script src="assets/js/style-switcher.min.js"></script>
+    <!--LINK MODULE-->
+    <script>
 
+        init_function();
+    </script>
+    <%
+        String result = String.valueOf(request.getAttribute("result"));
 
-
-
-
-        <!--LINK MODULE-->
-        <script>
-
-            init_function();
-        </script>
-        <%
-            String result = String.valueOf(request.getAttribute("result"));
-
-            if (!result.equals("null")) {
-        %>
-        <script type="text/javascript">
+        if (!result.equals("null")) {
+    %>
+    <script type="text/javascript">
                         
-            var data = <%=result%>;
-            generateAll(data);
+        var data = <%=result%>;
+        generateAll(data);
             
-        </script>
-        <%
-            }
-        %>
+    </script>
+    <%
+        }
+    %>
 
 
 
 
 
-    </body>
+</body>
 </html>

@@ -22,3 +22,45 @@ function init_function() {
    
 
 }
+
+var geocoder;
+var googlemap;
+function initializeGoogleMaps() {
+    var fenway = new google.maps.LatLng(1.3667,103.8);
+    var mapOptions = {
+        center: fenway,
+        zoom: 11
+    };
+    googlemap = new google.maps.Map(
+        document.getElementById('map-canvas'), mapOptions);
+    var panoramaOptions = {
+        position: fenway,
+        pov: {
+            heading: 34,
+            pitch: 10
+        }
+    };
+    var panorama = new google.maps.StreetViewPanorama(document.getElementById('pano'), panoramaOptions);
+    googlemap.setStreetView(panorama);
+            
+
+
+}
+
+function codeAddress() {
+    geocoder = new google.maps.Geocoder();
+    var address = document.getElementById('address').value;
+    geocoder.geocode( {
+        'address': "Singapore"+ address
+        }, function(results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+            googlemap.setCenter(results[0].geometry.location);
+            var marker = new google.maps.Marker({
+                map: googlemap,
+                position: results[0].geometry.location
+            });
+        } else {
+            alert('Geocode was not successful for the following reason: ' + status);
+        }
+    });
+}
