@@ -413,13 +413,11 @@
                                                     <td>Hawker Centres</td>
                                                     <td>
                                                         <div class="input-group input-group-sm">
-                                                            <!--                                                            <input type="text" class="form-control"  name="hawkerweightageofimportance" placeholder="eg. 1" size="1" data-toggle="tooltip" data-placement="top" title="The greater the number, the more important">-->
-                                                            <select class="form-control">
-                                                                <option>-- Select --</option>
-                                                                <option>Trivial - 1</option>
-                                                                <option>Average - 2</option>
-                                                                <option>Important - 3</option>
-                                                                <option>Extreme - 4</option>
+                                                            <select class="form-control" name="hawkercentre_select">
+                                                                <option value="1">Trivial - 1</option>
+                                                                <option value="2" selected>Average - 2</option>
+                                                                <option value="3">Important - 3</option>
+                                                                <option value="4">Extreme - 4</option>
                                                             </select>
                                                         </div>
                                                     </td>
@@ -429,7 +427,12 @@
                                                     <td>Child Care</td>
                                                     <td>
                                                         <div class="input-group input-group-sm">
-                                                            <input type="text" class="form-control"  name="childcareweightageofimportance" placeholder="eg. 1" size="1" data-toggle="tooltip" data-placement="top" title="The greater the number, the more important">
+                                                            <select class="form-control" name="childcare_select">
+                                                                <option value="1">Trivial - 1</option>
+                                                                <option value="2" selected>Average - 2</option>
+                                                                <option value="3">Important - 3</option>
+                                                                <option value="4">Extreme - 4</option>
+                                                            </select>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -438,7 +441,12 @@
                                                     <td>CHAS Clinics</td>
                                                     <td>
                                                         <div class="input-group input-group-sm">
-                                                            <input type="text" class="form-control"  name="clinicweightageofimportance" placeholder="eg. 1" size="1" data-toggle="tooltip" data-placement="top" title="The greater the number, the more important">
+                                                            <select class="form-control" name="chasclinic_select">
+                                                                <option value="1">Trivial - 1</option>
+                                                                <option value="2" selected>Average - 2</option>
+                                                                <option value="3">Important - 3</option>
+                                                                <option value="4">Extreme - 4</option>
+                                                            </select>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -719,6 +727,10 @@
 
         </script>
         <%            String result = String.valueOf(request.getAttribute("accessibility_result"));
+                        String total_80 = String.valueOf(request.getAttribute("total_80"));
+                        String total_60 = String.valueOf(request.getAttribute("total_60"));
+                        String total_40 = String.valueOf(request.getAttribute("total_40"));
+                        String total_20 = String.valueOf(request.getAttribute("total_20"));
 
             if (!result.equals("null")) {
                 //int num_facility = Integer.parseInt(String.valueOf(request.getAttribute("num_facility")));
@@ -726,8 +738,12 @@
         <script type="text/javascript">
 
             var data = <%=result%>;
+            var total_80 = <%=total_80%>;
+            var total_60 = <%=total_60%>;
+            var total_40 = <%=total_40%>;
+            var total_20 = <%=total_20%>;
 
-            generateAccessibilty(data);
+            generateAccessibilty(data, total_80, total_60, total_40, total_20);
 
         </script>
         <%

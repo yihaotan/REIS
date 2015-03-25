@@ -42,12 +42,11 @@ public class ACServlet extends HttpServlet {
         try {
             /* TODO output your page here. You may use following sample code. */
             
+            // CHECK OR NOT?
             String[] facility_list = request.getParameterValues("facility");
-            
             int hawkercentre_check = 0;
             int childcare_check = 0;
             int chasclinic_check = 0;
-            
             for (int p = 0; p < facility_list.length; p++) {
                 String facility_name = facility_list[p];
                 if (facility_name.equals("hawkercentre")) {
@@ -61,63 +60,71 @@ public class ACServlet extends HttpServlet {
                 }
             }
             
-            String num_hawkercentre_str = request.getParameter("num_hawkercentre");
-            String num_childcare_str = request.getParameter("num_childcare");
-            String num_chasclinic_str = request.getParameter("num_chasclinic");
+            // IF CHECK, HOW MANY?
+//            String num_hawkercentre_str = String.valueOf(request.getParameter("num_hawkercentre"));
+//            String num_childcare_str = String.valueOf(request.getParameter("num_childcare"));
+//            String num_chasclinic_str = String.valueOf(request.getParameter("num_chasclinic"));
+//
+//            int num_hawkercentre = 1;
+//            if (!num_hawkercentre_str.equals("null")) {
+//                num_hawkercentre = Integer.parseInt(num_hawkercentre_str);
+//            }
+//            int num_childcare = 1;
+//            if (!num_childcare_str.equals("null")) {
+//                num_childcare = Integer.parseInt(num_childcare_str);
+//            }
+//            int num_chasclinic = 1;
+//            if (!num_chasclinic_str.equals("null")) {
+//                num_chasclinic = Integer.parseInt(num_chasclinic_str);
+//            }
+//            int[] num_list = new int[3];
+//            num_list[0] = num_hawkercentre;
+//            num_list[1] = num_childcare;
+//            num_list[2] = num_chasclinic;
             
+            // IMPORTANCE / WEIGHT
+            String hawkercentre_weight = String.valueOf(request.getParameter("hawkercentre_select"));
+            String childcare_weight = String.valueOf(request.getParameter("childcare_select"));
+            String chasclinic_weight = String.valueOf(request.getParameter("chasclinic_select"));
             
+            System.out.println(hawkercentre_weight);
+            System.out.println(childcare_weight);
+            System.out.println(chasclinic_weight);
             
-            int num_hawkercentre = 3;
-            int num_hawkercentre_placerholder = 0;
-            if (!num_hawkercentre_str.equals("null")) {
-                num_hawkercentre = Integer.parseInt(num_hawkercentre_str);
-                num_hawkercentre_placerholder = Integer.parseInt(num_hawkercentre_str);
-            }
-            
-            int num_childcare = 3;
-            int num_childcare_placerholder = 0;
-            if (!num_childcare_str.equals("null")) {
-                num_childcare = Integer.parseInt(num_childcare_str);
-                num_childcare_placerholder = Integer.parseInt(num_childcare_str);
-            }
-            
-            int num_chasclinic = 3;
-            int num_chasclinic_placerholder = 0;
-            if (!num_chasclinic_str.equals("null")) {
-                num_chasclinic = Integer.parseInt(num_chasclinic_str);
-                num_chasclinic_placerholder = Integer.parseInt(num_chasclinic_str);
-            }
-            
-            int[] num_list = new int[3];
-            num_list[0] = num_hawkercentre;
-            num_list[1] = num_childcare;
-            num_list[2] = num_chasclinic;
-            
+            // REAL STUFF
             HexagonDAO hdao = new HexagonDAO();
             
             // retrieve all hexagons
-            ArrayList<Hexagon> result = new ArrayList<Hexagon>();
-            result = hdao.retrieve(facility_list, num_list);
-            
+            ArrayList<Hexagon> result = hdao.retrieve(facility_list);
             // pretty print and convert to string
             JsonArray hexagonList = hdao.toJSON(result, facility_list);
+            // get score distribution threshold
+            double total_80 = hdao.return_80();
+            double total_60 = hdao.return_60();
+            double total_40 = hdao.return_40();
+            double total_20 = hdao.return_20();
+            // pretty print string
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
             String json = gson.toJson(hexagonList);
             
+            System.out.println(total_80);
+            System.out.println(total_60);
+            System.out.println(total_40);
+            System.out.println(total_20);
+            
+            // SEND RESULT BACK
             request.setAttribute("accessibility_result", json);
-            request.setAttribute("num_facility", facility_list.length);
-            
-            
             request.setAttribute("hawkercentre_check", hawkercentre_check);
             request.setAttribute("childcare_check", childcare_check);
             request.setAttribute("chasclinic_check", chasclinic_check);
             
-            request.setAttribute("num_hawkercentre", num_hawkercentre_placerholder);
-            request.setAttribute("num_childcare", num_childcare_placerholder);
-            request.setAttribute("num_chasclinic", num_chasclinic_placerholder);
+            // ALSO, INCLUDE THRESHOLD VALUES FOR COLOUR SCHEME
+            request.setAttribute("total_80", total_80);
+            request.setAttribute("total_60", total_60);
+            request.setAttribute("total_40", total_40);
+            request.setAttribute("total_20", total_20);
             
-            
-            
+            // SEND
             RequestDispatcher rd = request.getRequestDispatcher("Accessibility.jsp");
             rd.forward(request, response);
             
@@ -125,11 +132,9 @@ public class ACServlet extends HttpServlet {
             
             // Send error (if any) back to homepage
             String error = "Error!";
-            System.out.println();
 //            request.setAttribute("error", error);
 //            RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
 //            rd.forward(request, response);
-            
         } finally {
             out.close();
         }

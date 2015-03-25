@@ -32,6 +32,7 @@ public class HexagonDAO {
     double [] all_hawkercentre_distance;
     double [] all_childcare_distance;
     double [] all_chasclinic_distance;
+    double [] all_score;
     
     Percentile percentile = new Percentile();
     
@@ -50,6 +51,11 @@ public class HexagonDAO {
     double chasclinic_60;
     double chasclinic_80;
     
+    double total_20;
+    double total_40;
+    double total_60;
+    double total_80;
+    
     // constructor
     /**
      * Create an empty TransactionDAO
@@ -64,7 +70,7 @@ public class HexagonDAO {
      *
      * @return an ArrayList of Transaction
      */
-    public ArrayList<Hexagon> retrieve(String[] facility_list, int[] num_list) {
+    public ArrayList<Hexagon> retrieve(String[] facility_list) {
         Connection conn = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -125,21 +131,21 @@ public class HexagonDAO {
                     select_list += "     AVG(hawkercentre_distance) as hawkercentre, ";
                     from_list += "     hawkercentre_table,";
                     where_list += " AND grid_centroid.gid = hawkercentre_table.grid_id"
-                            + " AND hawkercentre_row_number <= " + num_list[0];
+                            + " AND hawkercentre_row_number <= " + "1";
                 }
                 if (facility_name.equals("childcare")) {
                     base_table += childcare_table + ",";
                     select_list += "     AVG(childcare_distance) as childcare, ";
                     from_list += "     childcare_table,";
                     where_list += " AND grid_centroid.gid = childcare_table.grid_id "
-                            + " AND childcare_row_number <= " + num_list[1];
+                            + " AND childcare_row_number <= " + "1";
                 }
                 if (facility_name.equals("chasclinic")) {
                     base_table += chasclinic_table + ",";
                     select_list += "     AVG(chasclinic_distance) as chasclinic, ";
                     from_list += "     chasclinic_table,";
                     where_list += " AND grid_centroid.gid = chasclinic_table.grid_id "
-                            + " AND chasclinic_row_number <= " + num_list[2];
+                            + " AND chasclinic_row_number <= " + "1";
                 }
             }
 
@@ -160,17 +166,11 @@ public class HexagonDAO {
             rs = ps.executeQuery();
             
             grid_size = 1859;
-            
             all_hawkercentre_distance = new double[grid_size];
             all_childcare_distance = new double[grid_size];
             all_chasclinic_distance = new double[grid_size];
-            
             int counter = 0;
-            
             while (rs.next()) {
-                
-                // counter
-                
                 
                 //Retrieve by column name
                 int id = rs.getInt("point");
@@ -183,19 +183,16 @@ public class HexagonDAO {
                     if (facility_name.equals("hawkercentre")) {
                         double hawkercentre = rs.getDouble("hawkercentre");
                         hm.put("hawkercentre", hawkercentre);
-                        //all_hawkercentre_distance.add(hawkercentre);
                         all_hawkercentre_distance[counter] = hawkercentre;
                     }
                     if (facility_name.equals("childcare")) {
                         double childcare = rs.getDouble("childcare");
                         hm.put("childcare", childcare);
-                        //all_childcare_distance.add(childcare);
                         all_childcare_distance[counter] = childcare;
                     }
                     if (facility_name.equals("chasclinic")) {
                         double chasclinic = rs.getDouble("chasclinic");
                         hm.put("chasclinic", chasclinic);
-                        //all_chasclinic_distance.add(chasclinic);
                         all_chasclinic_distance[counter] = chasclinic;
                     }
                 }
@@ -227,7 +224,9 @@ public class HexagonDAO {
     public JsonArray toJSON(ArrayList<Hexagon> result, String[] facility_list) {
 
         JsonArray resultArray = new JsonArray();
-
+        
+        all_score = new double[grid_size];
+        
         for (int i = 0; i < result.size(); i++) {
 
             // add properties
@@ -252,6 +251,7 @@ public class HexagonDAO {
             }
 
             double accessibility_score = calculate_accessbility(hawkercentre, childcare, chasclinic);
+            all_score[i] = accessibility_score;
             properties.addProperty("grid_id", result.get(i).get_id());
             properties.addProperty("density", accessibility_score);
 //            properties.addProperty("hawkercentre", hawkercentre);
@@ -275,15 +275,14 @@ public class HexagonDAO {
 
         }
         
+        score_threshold();
+        
         return resultArray;
 
     }
 
     public double calculate_accessbility(double hawkercentre, double childcare, double chasclinic) {
         
-        
-        
-       
         int hawkercentre_score = -1;
         int childcare_score = -1;
         int chasclinic_score = -1;
@@ -293,13 +292,13 @@ public class HexagonDAO {
         if (hawkercentre != -1) {
             total_score += 5;
             
-            if (hawkercentre >= hawkercentre_80) {
+            if (hawkercentre > hawkercentre_80) {
                 hawkercentre_score = 5;
-            } else if (hawkercentre >= hawkercentre_60) {
+            } else if (hawkercentre > hawkercentre_60) {
                 hawkercentre_score = 4;
-            } else if (hawkercentre >= hawkercentre_40) {
+            } else if (hawkercentre > hawkercentre_40) {
                 hawkercentre_score = 3;
-            } else if (hawkercentre >= hawkercentre_20) {
+            } else if (hawkercentre > hawkercentre_20) {
                 hawkercentre_score = 2;
             } else {
                 hawkercentre_score = 1;
@@ -309,13 +308,13 @@ public class HexagonDAO {
         if (childcare != -1) {
             total_score += 5;
             
-            if (childcare >= childcare_80) {
+            if (childcare > childcare_80) {
                 childcare_score = 5;
-            } else if (childcare >= childcare_60) {
+            } else if (childcare > childcare_60) {
                 childcare_score = 4;
-            } else if (childcare >= childcare_40) {
+            } else if (childcare > childcare_40) {
                 childcare_score = 3;
-            }  else if (childcare >= childcare_20) {
+            }  else if (childcare > childcare_20) {
                 childcare_score = 2;
             } else {
                 childcare_score = 1;
@@ -325,13 +324,13 @@ public class HexagonDAO {
         if (chasclinic != -1) {
             total_score += 5;
             
-            if (chasclinic >= chasclinic_80) {
+            if (chasclinic > chasclinic_80) {
                 chasclinic_score = 5;
-            } else if (chasclinic >= chasclinic_60) {
+            } else if (chasclinic > chasclinic_60) {
                 chasclinic_score = 4;
-            } else if (chasclinic >= chasclinic_40) {
+            } else if (chasclinic > chasclinic_40) {
                 chasclinic_score = 3;
-            }  else if (chasclinic >= chasclinic_20) {
+            }  else if (chasclinic > chasclinic_20) {
                 chasclinic_score = 2;
             } else {
                 chasclinic_score = 1;
@@ -349,8 +348,11 @@ public class HexagonDAO {
         if (chasclinic_score != -1) {
             result += chasclinic_score;
         }
-
+        
         return result / total_score;
+        
+        
+        
     }
     
     public void populate_threshold() {
@@ -370,6 +372,31 @@ public class HexagonDAO {
         chasclinic_20 = percentile.evaluate(all_chasclinic_distance, 20.0);
         
         System.out.println("Percentile calculation completed!");
+    }
+    
+    public void score_threshold() {
+        total_80 = percentile.evaluate(all_score, 80.0);
+        total_60 = percentile.evaluate(all_score, 60.0);
+        total_40 = percentile.evaluate(all_score, 40.0);
+        total_20 = percentile.evaluate(all_score, 20.0);
+        
+        System.out.println("Distribution of all scores studied!");
+    }
+    
+    public double return_80() {
+        return total_80;
+    }
+    
+    public double return_60() {
+        return total_60;
+    }
+    
+    public double return_40() {
+        return total_40;
+    }
+    
+    public double return_20() {
+        return total_20;
     }
 
 }

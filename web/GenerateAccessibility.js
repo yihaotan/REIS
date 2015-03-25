@@ -1,9 +1,15 @@
+var perc_80;
+var perc_60;
+var perc_40;
+var perc_20;
 
-
-
-
-function generateAccessibilty(data) {
-
+function generateAccessibilty(data, total_80, total_60, total_40, total_20) {
+    
+    perc_80 = total_80;
+    perc_60 = total_60;
+    perc_40 = total_40;
+    perc_20 = total_20;
+    
     addLegend();
     L.geoJson(data, {style: style, 
                     onEachFeature: onEachFeature}
@@ -14,10 +20,10 @@ function generateAccessibilty(data) {
 }
 function getColor(d) {
 
-    return d > 0.8 ? "#00FF00" :
-            d > 0.6 ? "#CCFF00" :
-            d > 0.4 ? "#FFFF00" :
-            d > 0.2 ? "#FF9900" :
+    return d > perc_80 ? "#00FF00" :
+            d > perc_60 ? "#CCFF00" :
+            d > perc_40 ? "#FFFF00" :
+            d > perc_20 ? "#FF9900" :
             "#FF0000";
 
 }
@@ -36,7 +42,10 @@ function addLegend() {
     legend.onAdd = function (map) {
 
         var div = L.DomUtil.create('div', 'info legend'),
-                grades = [0, 0.2, 0.4, 0.6, 0.8],
+                grades = [0, Math.round(perc_20 * 100) / 100, 
+            Math.round(perc_40 * 100) / 100, 
+            Math.round(perc_60 * 100) / 100, 
+            Math.round(perc_80 * 100) / 100],
                 //grades = scale,
                 labels = [];
 
@@ -59,8 +68,12 @@ function onEachFeature(feature, layer) {
     layer.on({
 //        mouseover: highlightFeature,
 //        mouseout: resetHighlight,
-//        click: zoomToFeature
+        click: onFeatureClick
     });
+}
+
+function onFeatureClick() {
+    alert("adsfsdafds");
 }
 
 function googlegeocode(postalcode) {
