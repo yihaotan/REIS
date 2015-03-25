@@ -6,12 +6,12 @@ function generateMapAndCharts(geoJsonData){
     compositeControlChart = dc.compositeChart("#dc-control-chart"); //change html
     histogram = dc.barChart("#dc-histogram");
     stackedDateVolumeBarChart = dc.barChart("#dc-stackDateVolume-chart");
-    dataTable = dc.dataTable("#dc-table-graph");
-    dataTable.on("postRender", function(chart){
+    //dataTable = dc.dataTable("#dc-table-graph");
+    /*dataTable.on("postRender", function(chart){
         reinit(chart)
     }).on("postRedraw", function(chart){
         reinit(chart)
-    });
+    });*/
     sizeHistogram = dc.barChart("#dc-sizeHistogram");     
 
     var cv = new SVY21();
@@ -371,12 +371,12 @@ function generateMapAndCharts(geoJsonData){
     plotSaleVolumeRow();
     plotTenureVolumeRow();
     plotRegionVolumeRow();
-    plotTable();
+    //plotTable();
     plotPsfLineChart();
     plotPsfHistogram();
     plotSizeHistogram();
     rangeChartForTimeSeries(dateVolumeBarChart,compositeControlChart, stackedDateVolumeBarChart); 
-    plotMapLayers(propertyDimension);
+    //plotMapLayers(propertyDimension);
     var b = performance.now();
     //alert('It took ' + (b - a) + ' ms for all the plot methods');
     //jQuery
