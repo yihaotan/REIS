@@ -336,7 +336,11 @@
                     <div class="inner bg-light lter">
                         <div class="row">
                             <div class="col-lg-4 ">
+
                                 <div class="box">
+
+
+
                                     <!-- Header -->
                                     <header>
                                         <div class="icons">
@@ -359,11 +363,11 @@
                                         String hawkercentre_check_num = String.valueOf(request.getAttribute("hawkercentre_check"));
                                         String childcare_check_num = String.valueOf(request.getAttribute("childcare_check"));
                                         String chasclinic_check_num = String.valueOf(request.getAttribute("chasclinic_check"));
-                                        
+
                                         String hawkercentre_check = "";
                                         String childcare_check = "";
                                         String chasclinic_check = "";
-                                        
+
                                         if (hawkercentre_check_num.equals("1")) {
                                             hawkercentre_check = "checked";
                                         }
@@ -373,61 +377,98 @@
                                         if (chasclinic_check_num.equals("1")) {
                                             chasclinic_check = "checked";
                                         }
-                                        
+
                                         // now, number of facilities
-                                        String num_hawkercentre = String.valueOf(request.getAttribute("num_hawkercentre"));
-                                        String num_childcare = String.valueOf(request.getAttribute("num_childcare"));
-                                        String num_chasclinic = String.valueOf(request.getAttribute("num_chasclinic"));
-                                        
-                                        if (num_hawkercentre.equals("null")) {
-                                            num_hawkercentre = "0";
-                                        }
-                                        if (num_childcare.equals("null")) {
-                                            num_childcare = "0";
-                                        }
-                                        if (num_chasclinic.equals("null")) {
-                                            num_chasclinic = "0";
-                                        }
-                                     
+//                                        String num_hawkercentre = String.valueOf(request.getAttribute("num_hawkercentre"));
+//                                        String num_childcare = String.valueOf(request.getAttribute("num_childcare"));
+//                                        String num_chasclinic = String.valueOf(request.getAttribute("num_chasclinic"));
+//                                        
+//                                        if (num_hawkercentre.equals("null")) {
+//                                            num_hawkercentre = "0";
+//                                        }
+//                                        if (num_childcare.equals("null")) {
+//                                            num_childcare = "0";
+//                                        }
+//                                        if (num_chasclinic.equals("null")) {
+//                                            num_chasclinic = "0";
+//                                        }
 
                                     %>
-
                                     <!-- Accessibility -->
                                     <form id="inputs" class="body collapse in" action="ACServlet">
-                                        <div id="hawkers" class="body collapse in">
-                                            <label>
-                                                <input type="checkbox" name="facility" value="hawkercentre" <%=hawkercentre_check%>> Hawker centres
-                                            </label>  
-                                            <div class="input-group"  style="position:relative; float:right">
-                                                <label>Importance</label><input type="text" class="form-control"  name="hawkerweightageofimportance" placeholder="eg. 1" size="1" data-toggle="tooltip" data-placement="top" title="The greater the number, the more important">
-                                            </div>   
-                                            <div class="input-group">
-                                                <input type="text" class="form-control" name="num_hawkercentre" value=<%=num_hawkercentre%> placeholder="eg. 1" size="4" data-toggle="tooltip" data-placement="right" title="No. of hawker centres">
-                                            </div>
-                                        </div>
-                                        <div id="childcare" class="body collapse in">
-                                            <label>
-                                                <input type="checkbox"  name="facility" value="childcare" <%=childcare_check%>> Child care
-                                            </label> 
-                                            <div class="input-group" style="position:relative; float:right">
-                                                <label>Importance</label><input type="text" class="form-control"  name="childcareweightageofimportance" placeholder="eg. 1" size="1" data-toggle="tooltip" data-placement="top" title="The greater the number, the more important">
-                                            </div>   
-                                            <div class="input-group">
-                                                <input type="text" class="form-control" name="num_childcare" value=<%=num_childcare%> placeholder="eg. 1" size="4" data-toggle="tooltip" data-placement="right" title="No. of child care centres">
-                                            </div>
-                                        </div>
-                                        <div id="clinic" class="body collapse in">
-                                            <label>
-                                                <input type="checkbox" name="facility"  value="chasclinic" <%=chasclinic_check%>> Clinics
-                                            </label>  
-                                            <div class="input-group" style="position:relative; float:right">  
-                                                <label>Importance</label><input type="text" class="form-control"  name="clinicweightageofimportance" placeholder="eg. 1" size="1" data-toggle="tooltip" data-placement="top" title="The greater the number, the more important">
-                                            </div>
+                                        <table class="table table-condensed responsive-table">
+                                            <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>Facility</th>
+                                                    <th>Weight</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
 
-                                            <div class="input-group">
-                                                <input type="text" class="form-control" value=<%=num_chasclinic%> name="num_chasclinic" placeholder="eg. 1" size="4" data-toggle="tooltip" data-placement="right" title="No. of clinics">
-                                            </div>
+
+
+                                                <tr>
+                                                    <td><input type="checkbox" name="facility" value="hawkercentre" <%=hawkercentre_check%>></td>
+                                                    <td>Hawker Centres</td>
+                                                    <td>
+                                                        <div class="input-group input-group-sm">
+                                                            <!--                                                            <input type="text" class="form-control"  name="hawkerweightageofimportance" placeholder="eg. 1" size="1" data-toggle="tooltip" data-placement="top" title="The greater the number, the more important">-->
+                                                            <select class="form-control">
+                                                                <option>-- Select --</option>
+                                                                <option>Trivial - 1</option>
+                                                                <option>Average - 2</option>
+                                                                <option>Important - 3</option>
+                                                                <option>Extreme - 4</option>
+                                                            </select>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><input type="checkbox"  name="facility" value="childcare" <%=childcare_check%>></td>
+                                                    <td>Child Care</td>
+                                                    <td>
+                                                        <div class="input-group input-group-sm">
+                                                            <input type="text" class="form-control"  name="childcareweightageofimportance" placeholder="eg. 1" size="1" data-toggle="tooltip" data-placement="top" title="The greater the number, the more important">
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><input type="checkbox" name="facility"  value="chasclinic" <%=chasclinic_check%>></td>
+                                                    <td>CHAS Clinics</td>
+                                                    <td>
+                                                        <div class="input-group input-group-sm">
+                                                            <input type="text" class="form-control"  name="clinicweightageofimportance" placeholder="eg. 1" size="1" data-toggle="tooltip" data-placement="top" title="The greater the number, the more important">
+                                                        </div>
+                                                    </td>
+                                                </tr>
+
+
+                                            </tbody>
+                                        </table>
+
+
+
+                                        <!--
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" name="num_hawkercentre" value=1 placeholder="eg. 1" size="4" data-toggle="tooltip" data-placement="right" title="No. of hawker centres">
                                         </div>
+                                        -->
+
+
+                                        <!--
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" name="num_childcare" value=1 placeholder="eg. 1" size="4" data-toggle="tooltip" data-placement="right" title="No. of child care centres">
+                                        </div>
+                                        -->
+
+                                        <!--
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" value=1 name="num_chasclinic" placeholder="eg. 1" size="4" data-toggle="tooltip" data-placement="right" title="No. of clinics">
+                                        </div>
+                                        -->
+
+
                                         <div id="submit_button" class="body collapse in">
                                             <div id="submit">
                                                 <button type="submit" class="btn btn-info">Submit</button>
@@ -681,7 +722,7 @@
 
             if (!result.equals("null")) {
                 //int num_facility = Integer.parseInt(String.valueOf(request.getAttribute("num_facility")));
-        %>
+%>
         <script type="text/javascript">
 
             var data = <%=result%>;

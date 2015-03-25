@@ -5,23 +5,17 @@
  */
 package entity;
 
-import net.qxcg.svy21.*;
-
+import org.apache.commons.math3.stat.descriptive.rank.Percentile;
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonElement;
-import com.google.gson.JsonPrimitive;
-import java.io.IOException;
 import java.sql.Connection;
 import java.util.ArrayList;
-import java.util.List;
 import connection.ConnectionManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Collections;
 import java.util.*;
 
 /**
@@ -32,7 +26,30 @@ public class HexagonDAO {
 
     private ArrayList<Hexagon> hexagonList;
     private final String TABLE = "REALIS_2013";
-
+  
+    int grid_size;
+    
+    double [] all_hawkercentre_distance;
+    double [] all_childcare_distance;
+    double [] all_chasclinic_distance;
+    
+    Percentile percentile = new Percentile();
+    
+    double hawkercentre_20;
+    double hawkercentre_40;
+    double hawkercentre_60;
+    double hawkercentre_80;
+    
+    double childcare_20;
+    double childcare_40;
+    double childcare_60;
+    double childcare_80;
+    
+    double chasclinic_20;
+    double chasclinic_40;
+    double chasclinic_60;
+    double chasclinic_80;
+    
     // constructor
     /**
      * Create an empty TransactionDAO
@@ -141,8 +158,20 @@ public class HexagonDAO {
 
             ps = conn.prepareStatement(sql);
             rs = ps.executeQuery();
-
+            
+            grid_size = 1859;
+            
+            all_hawkercentre_distance = new double[grid_size];
+            all_childcare_distance = new double[grid_size];
+            all_chasclinic_distance = new double[grid_size];
+            
+            int counter = 0;
+            
             while (rs.next()) {
+                
+                // counter
+                
+                
                 //Retrieve by column name
                 int id = rs.getInt("point");
                 String geojson = rs.getString("geojson");
@@ -154,20 +183,27 @@ public class HexagonDAO {
                     if (facility_name.equals("hawkercentre")) {
                         double hawkercentre = rs.getDouble("hawkercentre");
                         hm.put("hawkercentre", hawkercentre);
+                        //all_hawkercentre_distance.add(hawkercentre);
+                        all_hawkercentre_distance[counter] = hawkercentre;
                     }
                     if (facility_name.equals("childcare")) {
                         double childcare = rs.getDouble("childcare");
                         hm.put("childcare", childcare);
+                        //all_childcare_distance.add(childcare);
+                        all_childcare_distance[counter] = childcare;
                     }
                     if (facility_name.equals("chasclinic")) {
                         double chasclinic = rs.getDouble("chasclinic");
                         hm.put("chasclinic", chasclinic);
+                        //all_chasclinic_distance.add(chasclinic);
+                        all_chasclinic_distance[counter] = chasclinic;
                     }
                 }
 
                 Hexagon h = new Hexagon(id, hm, geojson);
 
                 hexagonList.add(h);
+                counter = counter + 1;
             }
 
         } catch (SQLException e) {
@@ -175,6 +211,10 @@ public class HexagonDAO {
         } finally {
             ConnectionManager.close(conn, ps, rs);
         }
+        
+        // populate all percentile threshold values
+        populate_threshold();
+        
         return hexagonList;
     }
 
@@ -234,48 +274,72 @@ public class HexagonDAO {
             resultArray.add(record);
 
         }
-
+        
         return resultArray;
 
     }
 
     public double calculate_accessbility(double hawkercentre, double childcare, double chasclinic) {
-
+        
+        
+        
+       
         int hawkercentre_score = -1;
         int childcare_score = -1;
         int chasclinic_score = -1;
-        
+
         int total_score = 0;
 
         if (hawkercentre != -1) {
             total_score += 5;
-            if (hawkercentre > 500) {
+            
+            if (hawkercentre >= hawkercentre_80) {
+                hawkercentre_score = 5;
+            } else if (hawkercentre >= hawkercentre_60) {
+                hawkercentre_score = 4;
+            } else if (hawkercentre >= hawkercentre_40) {
+                hawkercentre_score = 3;
+            } else if (hawkercentre >= hawkercentre_20) {
                 hawkercentre_score = 2;
             } else {
-                hawkercentre_score = 5;
+                hawkercentre_score = 1;
             }
         }
 
         if (childcare != -1) {
             total_score += 5;
-            if (childcare > 500) {
+            
+            if (childcare >= childcare_80) {
+                childcare_score = 5;
+            } else if (childcare >= childcare_60) {
+                childcare_score = 4;
+            } else if (childcare >= childcare_40) {
+                childcare_score = 3;
+            }  else if (childcare >= childcare_20) {
                 childcare_score = 2;
             } else {
-                childcare_score = 5;
-            }
+                childcare_score = 1;
+            } 
         }
 
         if (chasclinic != -1) {
             total_score += 5;
-            if (chasclinic > 500) {
+            
+            if (chasclinic >= chasclinic_80) {
+                chasclinic_score = 5;
+            } else if (chasclinic >= chasclinic_60) {
+                chasclinic_score = 4;
+            } else if (chasclinic >= chasclinic_40) {
+                chasclinic_score = 3;
+            }  else if (chasclinic >= chasclinic_20) {
                 chasclinic_score = 2;
             } else {
-                chasclinic_score = 5;
-            }
+                chasclinic_score = 1;
+            } 
         }
-        
+
         double result = 0;
-        
+
         if (hawkercentre_score != -1) {
             result += hawkercentre_score;
         }
@@ -287,6 +351,25 @@ public class HexagonDAO {
         }
 
         return result / total_score;
+    }
+    
+    public void populate_threshold() {
+        hawkercentre_80 = percentile.evaluate(all_hawkercentre_distance, 80.0);
+        hawkercentre_60 = percentile.evaluate(all_hawkercentre_distance, 60.0);
+        hawkercentre_40 = percentile.evaluate(all_hawkercentre_distance, 40.0);
+        hawkercentre_20 = percentile.evaluate(all_hawkercentre_distance, 20.0);
+        
+        childcare_80 = percentile.evaluate(all_childcare_distance, 80.0);
+        childcare_60 = percentile.evaluate(all_childcare_distance, 60.0);
+        childcare_40 = percentile.evaluate(all_childcare_distance, 40.0);
+        childcare_20 = percentile.evaluate(all_childcare_distance, 20.0);
+        
+        chasclinic_80 = percentile.evaluate(all_chasclinic_distance, 80.0);
+        chasclinic_60 = percentile.evaluate(all_chasclinic_distance, 60.0);
+        chasclinic_40 = percentile.evaluate(all_chasclinic_distance, 40.0);
+        chasclinic_20 = percentile.evaluate(all_chasclinic_distance, 20.0);
+        
+        System.out.println("Percentile calculation completed!");
     }
 
 }
