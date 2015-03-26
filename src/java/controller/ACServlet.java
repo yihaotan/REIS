@@ -83,13 +83,18 @@ public class ACServlet extends HttpServlet {
 //            num_list[2] = num_chasclinic;
             
             // IMPORTANCE / WEIGHT
-            String hawkercentre_weight = String.valueOf(request.getParameter("hawkercentre_select"));
-            String childcare_weight = String.valueOf(request.getParameter("childcare_select"));
-            String chasclinic_weight = String.valueOf(request.getParameter("chasclinic_select"));
+            int hawkercentre_weight = Integer.parseInt(String.valueOf(request.getParameter("hawkercentre_select")));
+            int childcare_weight = Integer.parseInt(String.valueOf(request.getParameter("childcare_select")));
+            int chasclinic_weight = Integer.parseInt(String.valueOf(request.getParameter("chasclinic_select")));
             
             System.out.println(hawkercentre_weight);
             System.out.println(childcare_weight);
             System.out.println(chasclinic_weight);
+            
+            int[] weight_list = new int[3];
+            weight_list[0] = hawkercentre_weight;
+            weight_list[1] = childcare_weight;
+            weight_list[2] = chasclinic_weight;
             
             // REAL STUFF
             HexagonDAO hdao = new HexagonDAO();
@@ -97,7 +102,7 @@ public class ACServlet extends HttpServlet {
             // retrieve all hexagons
             ArrayList<Hexagon> result = hdao.retrieve(facility_list);
             // pretty print and convert to string
-            JsonArray hexagonList = hdao.toJSON(result, facility_list);
+            JsonArray hexagonList = hdao.toJSON(result, facility_list, weight_list);
             // get score distribution threshold
             double total_80 = hdao.return_80();
             double total_60 = hdao.return_60();
