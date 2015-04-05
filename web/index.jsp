@@ -361,20 +361,12 @@
                                 <li> 
                                     <a href="Accessibility.jsp">Accessibility</a>  
                                 </li>
-
-                                <!--Drop down might not work due to library conflict-->
-                                <li class='dropdown '>
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                        Dropdown
-                                        <b class="caret"></b>
-                                    </a> 
-                                    <ul class="dropdown-menu">
-                                        <li> <a href="#">A</a>  </li>
-                                        <li> <a href="#">B</a>  </li>
-                                        <li> <a href="#">C</a>  </li>
-                                        <li> <a href="#">D</a>  </li>
-                                    </ul>
+                                
+                                <!-- placeholder for accessibility module, if possible -->
+                                <li> 
+                                    <a href="ProjectComparison.jsp">Project Comparison</a>  
                                 </li>
+
                             </ul><!-- /.nav -->
                         </div>
                     </div><!-- /.container-fluid -->
@@ -1019,7 +1011,6 @@
     <script src="assets/js/style-switcher.min.js"></script>
     <!--LINK MODULE-->
     <script>
-
         init_function();
     </script>
     <%

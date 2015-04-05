@@ -51,7 +51,33 @@
 
         <!-- Generate Hexagon for accessibility-->
         <script src="GenerateAccessibility.js"></script>
-
+        <!--for drawing-->
+        <script src="Libraries/Leaflet.draw1.js"></script>
+        <script src="Libraries/Toolbar.js"></script>
+        <script src="Libraries/Tooltip.js"></script>
+        <script src="Libraries/ext/GeometryUtil.js"></script>
+        <script src="Libraries/ext/LatLngUtil.js"></script>
+        <script src="Libraries/ext/LineUtil.Intersect.js"></script>
+        <script src="Libraries/ext/Polygon.Intersect.js"></script>
+        <script src="Libraries/ext/Polyline.Intersect.js"></script>
+        <script src="Libraries/draw/DrawToolbar1.js"></script>
+        <script src="Libraries/draw/handler/Draw.Feature.js"></script>
+        <script src="Libraries/draw/handler/Draw.SimpleShape.js"></script>
+        <script src="Libraries/draw/handler/Draw.Polyline.js"></script>
+        <script src="Libraries/draw/handler/Draw.Circle.js"></script>
+        <script src="Libraries/draw/handler/Draw.Marker.js"></script>
+        <script src="Libraries/draw/handler/Draw.Polygon.js"></script>
+        <script src="Libraries/draw/handler/Draw.Rectangle.js"></script>
+        <script src="Libraries/edit/EditToolbar.js"></script>
+        <script src="Libraries/edit/handler/EditToolbar.Edit.js"></script>
+        <script src="Libraries/edit/handler/EditToolbar.Delete.js"></script>
+        <script src="Libraries/Control.Draw.js"></script>
+        <script src="Libraries/edit/handler/Edit.Poly.js"></script>
+        <script src="Libraries/edit/handler/Edit.SimpleShape.js"></script>
+        <script src="Libraries/edit/handler/Edit.Circle.js"></script>
+        <script src="Libraries/edit/handler/Edit.Rectangle.js"></script>
+        <script src="Libraries/edit/handler/Edit.Marker.js"></script>
+        <!--for drawing-->
 
         <!--Custom Function-->
         <script src="Scripts/Upload/svy21.js"></script>
@@ -62,6 +88,7 @@
 
 
         <script src="Scripts/Tables/tableGeneration.js"></script>
+
 
 
 
@@ -115,6 +142,7 @@
                 margin-right: 8px;
                 opacity: 0.7;
             }
+
         </style>
 
 
@@ -187,14 +215,13 @@
                                 </li>
 
                                 <!-- placeholder for accessibility module, if possible -->
-                                <li class="active"> 
-                                    <a href="#">Accessibility</a>  
-                                </li>
-                                
                                 <li> 
-                                    <a href="ProjectComparison.jsp">Project Comparison</a>  
+                                    <a href="Accessibility.jsp">Accessibility</a>  
                                 </li>
-                                
+
+                                <li class="active"> 
+                                    <a href="#">Project Comparison</a>  
+                                </li>
                             </ul><!-- /.nav -->
                         </div>
                     </div><!-- /.container-fluid -->
@@ -329,153 +356,6 @@
                             <div class="col-lg-4 ">
 
                                 <div class="box">
-
-
-
-                                    <!-- Header -->
-                                    <header>
-                                        <div class="icons">
-                                            <i class="glyphicon glyphicon-check"></i>
-                                        </div>
-                                        <h5>Input Fields</h5>
-                                        <div class="toolbar">
-                                            <div class="btn-group">
-                                                <a href="#inputs" data-toggle="collapse" class="btn btn-sm btn-default minimize-box">
-                                                    <i class="fa fa-angle-up"></i>
-                                                </a> 
-                                                <a class="btn btn-danger btn-sm close-box">
-                                                    <i class="fa fa-times"></i>
-                                                </a> 
-                                            </div>
-                                        </div>
-                                    </header>
-
-                                    <%
-                                        String hawkercentre_check_num = String.valueOf(request.getAttribute("hawkercentre_check"));
-                                        String childcare_check_num = String.valueOf(request.getAttribute("childcare_check"));
-                                        String chasclinic_check_num = String.valueOf(request.getAttribute("chasclinic_check"));
-
-                                        String hawkercentre_check = "";
-                                        String childcare_check = "";
-                                        String chasclinic_check = "";
-
-                                        if (hawkercentre_check_num.equals("1")) {
-                                            hawkercentre_check = "checked";
-                                        }
-                                        if (childcare_check_num.equals("1")) {
-                                            childcare_check = "checked";
-                                        }
-                                        if (chasclinic_check_num.equals("1")) {
-                                            chasclinic_check = "checked";
-                                        }
-
-                                    %>
-                                    <!-- Accessibility -->
-                                    <form id="inputs" class="body collapse in" action="ACServlet">
-                                        <table class="table table-condensed responsive-table">
-                                            <thead>
-                                                <tr>
-                                                    <th>#</th>
-                                                    <th>Facility</th>
-                                                    <th>Weight</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-
-
-
-                                                <tr>
-                                                    <td><input type="checkbox" name="facility" value="hawkercentre" <%=hawkercentre_check%>></td>
-                                                    <td>Hawker Centres</td>
-                                                    <td>
-                                                        <div class="input-group input-group-sm">
-                                                            <select class="form-control" name="hawkercentre_select">
-                                                                <option value="1">Trivial - 1</option>
-                                                                <option value="2" selected>Average - 2</option>
-                                                                <option value="3">Important - 3</option>
-                                                                <option value="4">Extreme - 4</option>
-                                                            </select>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><input type="checkbox"  name="facility" value="childcare" <%=childcare_check%>></td>
-                                                    <td>Child Care</td>
-                                                    <td>
-                                                        <div class="input-group input-group-sm">
-                                                            <select class="form-control" name="childcare_select">
-                                                                <option value="1">Trivial - 1</option>
-                                                                <option value="2" selected>Average - 2</option>
-                                                                <option value="3">Important - 3</option>
-                                                                <option value="4">Extreme - 4</option>
-                                                            </select>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><input type="checkbox" name="facility"  value="chasclinic" <%=chasclinic_check%>></td>
-                                                    <td>CHAS Clinics</td>
-                                                    <td>
-                                                        <div class="input-group input-group-sm">
-                                                            <select class="form-control" name="chasclinic_select">
-                                                                <option value="1">Trivial - 1</option>
-                                                                <option value="2" selected>Average - 2</option>
-                                                                <option value="3">Important - 3</option>
-                                                                <option value="4">Extreme - 4</option>
-                                                            </select>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-
-
-                                            </tbody>
-                                        </table>
-
-
-                                        <div id="submit_button" class="body collapse in">
-                                            <div id="submit">
-                                                <button type="submit" class="btn btn-info">Submit</button>
-                                            </div>
-                                        </div>
-                                    </form>
-
-                                </div><!-- box -->
-                            </div><!-- col -->
-                            <!-- Lower Pane for Map -->
-                            <div class="col-lg-8 ">
-                                <div class="box">
-                                    <!-- Header -->
-                                    <header>
-                                        <div class="icons">
-                                            <i class="fa fa-globe"></i>
-                                        </div>
-                                        <h5>Geospatial View</h5>
-                                        <div class="toolbar">
-                                            <div class="btn-group">
-                                                <a href="#mapView" data-toggle="collapse" class="btn btn-sm btn-default minimize-box">
-                                                    <i class="fa fa-angle-up"></i>
-                                                </a> 
-                                                <a class="btn btn-danger btn-sm close-box">
-                                                    <i class="fa fa-times"></i>
-                                                </a> 
-                                            </div>
-                                        </div>
-                                    </header>
-                                    <!-- Content -->
-                                    <div id="mapView" class="body collapse in">
-                                        <div id="map"></div>
-                                    </div>
-                                </div>
-                            </div><!-- /map -->
-                        </div> <!-- row -->
-
-                    </div><!-- /.inner -->
-                </div><!-- /.outer -->
-                <div class="outer">
-                    <div class="inner bg-light lter">
-                        <div class="row">
-                            <div class="col-lg-4 ">
-                                <div class="box">
                                     <!-- Header -->
                                     <header>
                                         <div class="icons">
@@ -494,13 +374,21 @@
                                         </div>
                                     </header>
 
+
                                     <!-- For Table -->
                                     <form id="inputsAnalysis" class="body collapse in">
-                                        <div id="New Project" class="body collapse in">
-                                            <div class="input-group">
-                                                <label>Enter postal code of new project</label><input type="text" class="form-control"  name="Enterpostalcode" placeholder="e.g 309233" size="2" data-toggle="tooltip" data-placement="bottom" title="Find out the location of the ">
-                                            </div>   
-                                        </div>
+                                        <div class="input-group">
+                                            <div class="input-group-btn">
+                                                <button type="button" id="selectway" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Select Method <span class="caret"></span></button>
+                                                <ul class="dropdown-menu" role="menu">
+                                                    <li><a href="#" name="postal">Postal Code</a></li>
+                                                    <li><a href="#" name="marker">Map Marker</a></li>
+
+                                                </ul>
+                                            </div><!-- /btn-group -->
+                                            <input type="text" id="latlng" class="form-control" aria-label="...">
+                                        </div><!-- /input-group -->
+
 
                                         <div id="NumofProjects" class="body collapse in">
                                             <div class="input-group">
@@ -508,9 +396,9 @@
                                             </div>   
                                         </div>
 
-                                        <div id="submit" style="position:relative; float:right">
-                                            <button type="submit" class="btn btn-default">Submit</button>
-                                        </div>
+
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+
                                     </form>
 
                                 </div><!-- box -->
@@ -523,15 +411,36 @@
                                         <div class="icons">
                                             <i class="fa fa-globe"></i>
                                         </div>
+                                        <h5>Geospatial View</h5>
+                                        <div class="toolbar">
+                                            <div class="btn-group">
+                                                <a href="#mapView" data-toggle="collapse" class="btn btn-sm btn-default minimize-box">
+                                                    <i class="fa fa-angle-up"></i>
+                                                </a> 
+
+                                            </div>
+                                        </div>
+                                    </header>
+                                    <!-- Content -->
+                                    <div id="mapView" class="body collapse in">
+                                        <div id="map"></div>
+                                    </div>
+
+
+                                </div><!--box-->
+                                <div class="box">
+                                    <!-- Header -->
+                                    <header>
+                                        <div class="icons">
+                                            <i class="fa fa-globe"></i>
+                                        </div>
                                         <h5>Table</h5>
                                         <div class="toolbar">
                                             <div class="btn-group">
                                                 <a href="#AnalysisTable" data-toggle="collapse" class="btn btn-sm btn-default minimize-box">
                                                     <i class="fa fa-angle-up"></i>
                                                 </a> 
-                                                <a class="btn btn-danger btn-sm close-box">
-                                                    <i class="fa fa-times"></i>
-                                                </a> 
+
                                             </div>
                                         </div>
                                     </header>
@@ -552,7 +461,7 @@
                                         </table>
                                     </div>
                                 </div><!-- box -->
-                            </div><!-- col -->
+                            </div><!-- /col -->
                         </div> <!-- row -->
 
                     </div><!-- /.inner -->
@@ -563,147 +472,110 @@
 
 
 
-            <div id="right" class="bg-light lter">
-                <div class="alert alert-danger">
-                    <button type="button" class="close" data-dismiss="alert">&times;</button>
-                    <strong>Warning!</strong>  Best check yo self, you're not looking too good.
-                </div>
 
-                <!-- .well well-small -->
-                <div class="well well-small dark">
-                    <ul class="list-unstyled">
-                        <li>Visitor <span class="inlinesparkline pull-right">1,4,4,7,5,9,10</span> 
-                        </li>
-                        <li>Online Visitor <span class="dynamicsparkline pull-right">Loading..</span> 
-                        </li>
-                        <li>Popularity <span class="dynamicbar pull-right">Loading..</span> 
-                        </li>
-                        <li>New Users <span class="inlinebar pull-right">1,3,4,5,3,5</span> 
-                        </li>
-                    </ul>
-                </div><!-- /.well well-small -->
+            <footer class="Footer bg-dark dker">
+                <p>2015 &copy; Real Estate Information System</p>
+            </footer><!-- /#footer -->
 
-                <!-- .well well-small -->
-                <div class="well well-small dark">
-                    <button class="btn btn-block">Default</button>
-                    <button class="btn btn-primary btn-block">Primary</button>
-                    <button class="btn btn-info btn-block">Info</button>
-                    <button class="btn btn-success btn-block">Success</button>
-                    <button class="btn btn-danger btn-block">Danger</button>
-                    <button class="btn btn-warning btn-block">Warning</button>
-                    <button class="btn btn-inverse btn-block">Inverse</button>
-                    <button class="btn btn-metis-1 btn-block">btn-metis-1</button>
-                    <button class="btn btn-metis-2 btn-block">btn-metis-2</button>
-                    <button class="btn btn-metis-3 btn-block">btn-metis-3</button>
-                    <button class="btn btn-metis-4 btn-block">btn-metis-4</button>
-                    <button class="btn btn-metis-5 btn-block">btn-metis-5</button>
-                    <button class="btn btn-metis-6 btn-block">btn-metis-6</button>
-                </div><!-- /.well well-small -->
+            <!-- #helpModal -->
+            <div id="helpModal" class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title">Modal title</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>
+                                This is it!
+                            </p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal --><!-- /#helpModal -->
 
-                <!-- .well well-small -->
-                <div class="well well-small dark">
-                    <span>Default</span> <span class="pull-right"><small>20%</small> </span> 
-                    <div class="progress xs">
-                        <div class="progress-bar progress-bar-info" style="width: 20%"></div>
-                    </div>
-                    <span>Success</span> <span class="pull-right"><small>40%</small> </span> 
-                    <div class="progress xs">
-                        <div class="progress-bar progress-bar-success" style="width: 40%"></div>
-                    </div>
-                    <span>warning</span> <span class="pull-right"><small>60%</small> </span> 
-                    <div class="progress xs">
-                        <div class="progress-bar progress-bar-warning" style="width: 60%"></div>
-                    </div>
-                    <span>Danger</span> <span class="pull-right"><small>80%</small> </span> 
-                    <div class="progress xs">
-                        <div class="progress-bar progress-bar-danger" style="width: 80%"></div>
-                    </div>
-                </div>
-            </div><!-- /#right -->
-        </div><!-- /#wrap -->
-        <footer class="Footer bg-dark dker">
-            <p>2015 &copy; Real Estate Information System</p>
-        </footer><!-- /#footer -->
+            <!--jQuery -->
+            <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+            <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+            <script src="//cdnjs.cloudflare.com/ajax/libs/datatables/1.10.4/js/jquery.dataTables.min.js"></script>
+            <script src="//cdn.datatables.net/plug-ins/3cfcc339e89/integration/bootstrap/3/dataTables.bootstrap.js"></script>
+            <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.18.4/js/jquery.tablesorter.min.js"></script>
+            <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
 
-        <!-- #helpModal -->
-        <div id="helpModal" class="modal fade">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title">Modal title</h4>
-                    </div>
-                    <div class="modal-body">
-                        <p>
-                            This is it!
-                        </p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    </div>
-                </div><!-- /.modal-content -->
-            </div><!-- /.modal-dialog -->
-        </div><!-- /.modal --><!-- /#helpModal -->
+            <!--Bootstrap -->
+            <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
 
-        <!--jQuery -->
-        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/datatables/1.10.4/js/jquery.dataTables.min.js"></script>
-        <script src="//cdn.datatables.net/plug-ins/3cfcc339e89/integration/bootstrap/3/dataTables.bootstrap.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.18.4/js/jquery.tablesorter.min.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+            <!-- MetisMenu -->
+            <script src="//cdnjs.cloudflare.com/ajax/libs/metisMenu/1.1.3/metisMenu.min.js"></script>
 
-        <!--Bootstrap -->
-        <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
+            <!-- Screenfull -->
+            <script src="//cdnjs.cloudflare.com/ajax/libs/screenfull.js/2.0.0/screenfull.min.js"></script>
 
-        <!-- MetisMenu -->
-        <script src="//cdnjs.cloudflare.com/ajax/libs/metisMenu/1.1.3/metisMenu.min.js"></script>
+            <!-- Metis core scripts -->
+            <script src="assets/js/core.min.js"></script>
 
-        <!-- Screenfull -->
-        <script src="//cdnjs.cloudflare.com/ajax/libs/screenfull.js/2.0.0/screenfull.min.js"></script>
-
-        <!-- Metis core scripts -->
-        <script src="assets/js/core.min.js"></script>
-
-        <!-- Metis demo scripts -->
-        <script src="assets/js/app.js"></script>
-        <script type="text/javascript" language="javascript" src="//cdn.datatables.net/1.10.5/js/jquery.dataTables.min.js"></script>
-        <script type="text/javascript" language="javascript" src="//cdn.datatables.net/plug-ins/f2c75b7247b/integration/bootstrap/3/dataTables.bootstrap.js"></script>
+            <!-- Metis demo scripts -->
+            <script src="assets/js/app.js"></script>
+            <script type="text/javascript" language="javascript" src="//cdn.datatables.net/1.10.5/js/jquery.dataTables.min.js"></script>
+            <script type="text/javascript" language="javascript" src="//cdn.datatables.net/plug-ins/f2c75b7247b/integration/bootstrap/3/dataTables.bootstrap.js"></script>
 
 
-        <script src="assets/js/style-switcher.min.js"></script>
-        <!--LINK MODULE-->
-        <script src="Libraries/hexbin.js"></script>
+            <script src="assets/js/style-switcher.min.js"></script>
+            <!--LINK MODULE-->
+            <script src="Libraries/hexbin.js"></script>
 
-        <script src="Libraries/d3-leaflet.js"></script>
-        <script>
-            init_function();
+            <script src="Libraries/d3-leaflet.js"></script>
+            <script>
+                var value;
+                init_function();
+                var drawnItems = L.featureGroup().addTo(map);
+                map.addControl(new L.Control.Draw({
+                    edit: {
+                        featureGroup: drawnItems
+                    }
+                }));
+                map.on('draw:created', function (event) {
+                    var layer = event.layer;
+                    layer.on('click', function () {
+                        if(event.layerType=='circle'){
+                            var circlecenter= layer.getLatLng();
+                            var circleradius=layer.getRadius();
+                            var pointswithincircle=getpointswithincircle(filtereddata,circlecenter,circleradius);
+                        }
+
+                        else if(event.layerType=='polygon'){
+                            var options = {
+                                "backdrop" :true,
+                                "show":true
+                            }
+                            var pointswithinpolygon=getpointswithinpolygon(filtereddata,layer.getLatLngs());
+                            $('#polygoncharts').modal(options);
+                        }else if(event.layerType=='marker'){
+                            var marker= layer.getLatLng();
+                            document.getElementById("latlng").value = marker.lat+","+marker.lng;
+                        }
+                    });
+                    drawnItems.addLayer(layer);
+        
+                });
+              
+                $(function(){
+
+                    $(".dropdown-menu li a").click(function(){
+
+                        $("#selectway").text($(this).text()).append('<span class="caret"></span>');
+                        $("#btn").val($(this).text());
+
+                    });
+
+                });
+            </script>
 
 
-        </script>
-        <%            String result = String.valueOf(request.getAttribute("accessibility_result"));
-                        String total_80 = String.valueOf(request.getAttribute("total_80"));
-                        String total_60 = String.valueOf(request.getAttribute("total_60"));
-                        String total_40 = String.valueOf(request.getAttribute("total_40"));
-                        String total_20 = String.valueOf(request.getAttribute("total_20"));
 
-            if (!result.equals("null")) {
-                //int num_facility = Integer.parseInt(String.valueOf(request.getAttribute("num_facility")));
-%>
-        <script type="text/javascript">
-
-            var data = <%=result%>;
-            var total_80 = <%=total_80%>;
-            var total_60 = <%=total_60%>;
-            var total_40 = <%=total_40%>;
-            var total_20 = <%=total_20%>;
-
-            generateAccessibilty(data, total_80, total_60, total_40, total_20);
-
-        </script>
-        <%
-            }
-        %>
 
 
 
