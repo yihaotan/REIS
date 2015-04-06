@@ -10,7 +10,6 @@ import entity.Hexagon;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
-import entity.Transaction;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -112,16 +111,14 @@ public class ACServlet extends HttpServlet {
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
             String json = gson.toJson(hexagonList);
             
-            System.out.println(total_80);
-            System.out.println(total_60);
-            System.out.println(total_40);
-            System.out.println(total_20);
-            
             // SEND RESULT BACK
             request.setAttribute("accessibility_result", json);
             request.setAttribute("hawkercentre_check", hawkercentre_check);
             request.setAttribute("childcare_check", childcare_check);
             request.setAttribute("chasclinic_check", chasclinic_check);
+            request.setAttribute("hawkercentre_weight", hawkercentre_weight);
+            request.setAttribute("childcare_weight", childcare_weight);
+            request.setAttribute("chasclinic_weight", chasclinic_weight);
             
             // ALSO, INCLUDE THRESHOLD VALUES FOR COLOUR SCHEME
             request.setAttribute("total_80", total_80);

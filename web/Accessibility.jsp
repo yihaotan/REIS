@@ -274,38 +274,41 @@
 
                         <!--The Legendary Data Retrieval Bar-->
                         <%
-                            String planning_area = String.valueOf(request.getAttribute("planning_area"));
-                            String start_price = String.valueOf(request.getAttribute("start_price"));
-                            String end_price = String.valueOf(request.getAttribute("end_price"));
-                            String start_size = String.valueOf(request.getAttribute("start_size"));
-                            String end_size = String.valueOf(request.getAttribute("end_size"));
+                            //String planning_area = String.valueOf(request.getAttribute("planning_area"));
+                            //String start_price = String.valueOf(request.getAttribute("start_price"));
+                            //String end_price = String.valueOf(request.getAttribute("end_price"));
+                            //String start_size = String.valueOf(request.getAttribute("start_size"));
+                            //String end_size = String.valueOf(request.getAttribute("end_size"));
 
-                            if (planning_area.equals("null")) {
-                                planning_area = "";
-                                start_price = "";
-                                end_price = "";
-                                start_size = "";
-                                end_size = "";
-                            }
+                            //if (planning_area.equals("null")) {
+                                //planning_area = "";
+                                //start_price = "";
+                                //end_price = "";
+                                //start_size = "";
+                                //end_size = "";
+                            //}
 
                         %>
+                        
+                        <!--
                         <form class="navbar-form" action="DBServlet"> 
 
 
                             <div class="form-group">
 
-                                <input type="text" class="form-control" name="planning_area" placeholder="Property Type" size="11" value='<%=planning_area%>' >
+                                <input type="text" class="form-control" name="planning_area" placeholder="Property Type" size="11" value='' >
 
                                 <div class="input-group">
-                                    <input type="text" class="form-control" name="start_price" placeholder="Sale Type" size="7" value='<%=start_price%>' >
+                                    <input type="text" class="form-control" name="start_price" placeholder="Sale Type" size="7" value='' >
                                 </div>
                                 <div class="input-group">
-                                    <input type="text" class="form-control" name="end_price" placeholder="Tenure" size="5" value='<%=end_price%>' >
+                                    <input type="text" class="form-control" name="end_price" placeholder="Tenure" size="5" value='' >
                                 </div>
 
                                 <button type="submit" class="btn btn-primary">Submit</button>
                             </div>
                         </form>
+                        -->
 
 
                     </div><!-- /.main-bar -->
@@ -413,6 +416,7 @@
 
 
                                     <%
+                                        // CHECK OR NOT
                                         String hawkercentre_check_num = String.valueOf(request.getAttribute("hawkercentre_check"));
                                         String childcare_check_num = String.valueOf(request.getAttribute("childcare_check"));
                                         String chasclinic_check_num = String.valueOf(request.getAttribute("chasclinic_check"));
@@ -430,6 +434,57 @@
                                         if (chasclinic_check_num.equals("1")) {
                                             chasclinic_check = "checked";
                                         }
+                                        
+                                        // HOW IMPORTANT
+                                        String hawkercentre_weight = String.valueOf(request.getAttribute("hawkercentre_weight"));
+                                        String childcare_weight = String.valueOf(request.getAttribute("childcare_weight"));
+                                        String chasclinic_weight = String.valueOf(request.getAttribute("chasclinic_weight"));
+                                        
+                                        String hawkercentre_1 = "";
+                                        String hawkercentre_2 = "";
+                                        String hawkercentre_3 = "";
+                                        String hawkercentre_4 = "";
+                                        
+                                        String childcare_1 = "";
+                                        String childcare_2 = "";
+                                        String childcare_3 = "";
+                                        String childcare_4 = "";
+                                        
+                                        String chasclinic_1 = "";
+                                        String chasclinic_2 = "";
+                                        String chasclinic_3 = "";
+                                        String chasclinic_4 = "";
+                                        
+                                        if (hawkercentre_weight.equals("1")) {
+                                            hawkercentre_1 = "selected";
+                                        } else if (hawkercentre_weight.equals("2")) {
+                                            hawkercentre_2 = "selected";
+                                        } else if (hawkercentre_weight.equals("3")) {
+                                            hawkercentre_3 = "selected";
+                                        } else if (hawkercentre_weight.equals("4")) {
+                                            hawkercentre_4 = "selected";
+                                        } 
+                                        
+                                        if (childcare_weight.equals("1")) {
+                                            childcare_1 = "selected";
+                                        } else if (childcare_weight.equals("2")) {
+                                            childcare_2 = "selected";
+                                        } else if (childcare_weight.equals("3")) {
+                                            childcare_3 = "selected";
+                                        } else if (childcare_weight.equals("4")) {
+                                            childcare_4 = "selected";
+                                        } 
+                                        
+                                        if (chasclinic_weight.equals("1")) {
+                                            chasclinic_1 = "selected";
+                                        } else if (chasclinic_weight.equals("2")) {
+                                            chasclinic_2 = "selected";
+                                        } else if (chasclinic_weight.equals("3")) {
+                                            chasclinic_3 = "selected";
+                                        } else if (chasclinic_weight.equals("4")) {
+                                            chasclinic_4 = "selected";
+                                        } 
+                                        
 
                                     %>
                                     <!-- Accessibility -->
@@ -452,10 +507,10 @@
                                                     <td>
                                                         <div class="input-group input-group-sm">
                                                             <select class="form-control" name="hawkercentre_select">
-                                                                <option value="1">Trivial - 1</option>
-                                                                <option value="2" selected>Average - 2</option>
-                                                                <option value="3">Important - 3</option>
-                                                                <option value="4">Extreme - 4</option>
+                                                                <option value="1" <%=hawkercentre_1%>>Trivial - 1</option>
+                                                                <option value="2" <%=hawkercentre_2%>>Average - 2</option>
+                                                                <option value="3" <%=hawkercentre_3%>>Important - 3</option>
+                                                                <option value="4" <%=hawkercentre_4%>>Extreme - 4</option>
                                                             </select>
                                                         </div>
                                                     </td>
@@ -466,10 +521,10 @@
                                                     <td>
                                                         <div class="input-group input-group-sm">
                                                             <select class="form-control" name="childcare_select">
-                                                                <option value="1">Trivial - 1</option>
-                                                                <option value="2" selected>Average - 2</option>
-                                                                <option value="3">Important - 3</option>
-                                                                <option value="4">Extreme - 4</option>
+                                                                <option value="1" <%=childcare_1%>>Trivial - 1</option>
+                                                                <option value="2" <%=childcare_2%>>Average - 2</option>
+                                                                <option value="3" <%=childcare_3%>>Important - 3</option>
+                                                                <option value="4" <%=childcare_4%>>Extreme - 4</option>
                                                             </select>
                                                         </div>
                                                     </td>
@@ -480,10 +535,10 @@
                                                     <td>
                                                         <div class="input-group input-group-sm">
                                                             <select class="form-control" name="chasclinic_select">
-                                                                <option value="1">Trivial - 1</option>
-                                                                <option value="2" selected>Average - 2</option>
-                                                                <option value="3">Important - 3</option>
-                                                                <option value="4">Extreme - 4</option>
+                                                                <option value="1" <%=chasclinic_1%>>Trivial - 1</option>
+                                                                <option value="2" <%=chasclinic_2%>>Average - 2</option>
+                                                                <option value="3" <%=chasclinic_3%>>Important - 3</option>
+                                                                <option value="4" <%=chasclinic_4%>>Extreme - 4</option>
                                                             </select>
                                                         </div>
                                                     </td>
@@ -535,93 +590,8 @@
 
                     </div><!-- /.inner -->
                 </div><!-- /.outer -->
-                <div class="outer">
-                    <div class="inner bg-light lter">
-
-                        <div class="row">
-                            <div class="col-lg-4 ">
-                                <div class="box">
-                                    <!-- Header -->
-                                    <header>
-                                        <div class="icons">
-                                            <i class="glyphicon glyphicon-tasks"></i>
-                                        </div>
-                                        <h5>Analyze a new project</h5>
-                                        <div class="toolbar">
-                                            <div class="btn-group">
-                                                <a href="#inputsAnalysis" data-toggle="collapse" class="btn btn-sm btn-default minimize-box">
-                                                    <i class="fa fa-angle-up"></i>
-                                                </a> 
-                                                <a class="btn btn-danger btn-sm close-box">
-                                                    <i class="fa fa-times"></i>
-                                                </a> 
-                                            </div>
-                                        </div>
-                                    </header>
-
-                                    <!-- For Table -->
-                                    <form id="inputsAnalysis" class="body collapse in">
-                                        <div id="New Project" class="body collapse in">
-                                            <div class="input-group">
-                                                <label>Enter postal code of new project</label><input type="text" class="form-control"  name="Enterpostalcode" placeholder="e.g 309233" size="2" data-toggle="tooltip" data-placement="bottom" title="Find out the location of the ">
-                                            </div>   
-                                        </div>
-
-                                        <div id="NumofProjects" class="body collapse in">
-                                            <div class="input-group">
-                                                <label>Number of projects to compare with</label><input type="text" class="form-control"  name="Enternumofprojects" placeholder="e.g 3" size="2" data-toggle="tooltip" data-placement="bottom" title="We will find the nearby projects for you">
-                                            </div>   
-                                        </div>
-
-                                        <div id="submit" style="position:relative; float:right">
-                                            <button type="submit" class="btn btn-default">Submit</button>
-                                        </div>
-                                    </form>
-
-                                </div><!-- box -->
-                            </div><!-- col -->
-                            <!-- Lower Pane for Map -->
-                            <div class="col-lg-8 ">
-                                <div class="box">
-                                    <!-- Header -->
-                                    <header>
-                                        <div class="icons">
-                                            <i class="fa fa-globe"></i>
-                                        </div>
-                                        <h5>Table</h5>
-                                        <div class="toolbar">
-                                            <div class="btn-group">
-                                                <a href="#AnalysisTable" data-toggle="collapse" class="btn btn-sm btn-default minimize-box">
-                                                    <i class="fa fa-angle-up"></i>
-                                                </a> 
-                                                <a class="btn btn-danger btn-sm close-box">
-                                                    <i class="fa fa-times"></i>
-                                                </a> 
-                                            </div>
-                                        </div>
-                                    </header>
-                                    <!-- Content -->
-                                    <div id="AnalysisTable" class="body collapse in">
-                                        <table id="dc-table-graph" class="table table-bordered table-condensed table-hover table-striped">
-                                            <thead>
-                                                <tr>
-                                                    <th>Project Name</th>
-                                                    <th>Median Price</th>
-                                                    <th>Dist from new project</th>
-                                                    <th>No. of transactions</th>
-                                                    <th>Size</th>
-                                                    <th>Price</th>
-                                                    <th>Area</th>
-                                                </tr>
-                                            </thead>
-                                        </table>
-                                    </div>
-                                </div><!-- box -->
-                            </div><!-- col -->
-                        </div> <!-- row -->
-
-                    </div><!-- /.inner -->
-                </div><!-- /.outer -->
+                
+                
             </div><!-- /#content -->
 
 

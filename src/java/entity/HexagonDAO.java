@@ -249,14 +249,19 @@ public class HexagonDAO {
                     chasclinic = (Double) hm.get("chasclinic");
                 }
             }
-
-            double accessibility_score = calculate_accessbility(hawkercentre, childcare, chasclinic, weight_list);
+            
+            double hawkercentre_score = calculate_hawkercentre(hawkercentre);
+            double childcare_score = calculate_hawkercentre(childcare);
+            double chasclinic_score = calculate_hawkercentre(chasclinic);
+            
+            double accessibility_score = calculate_accessbility(hawkercentre_score, childcare_score, chasclinic_score, weight_list);
+            
             all_score[i] = accessibility_score;
             properties.addProperty("grid_id", result.get(i).get_id());
             properties.addProperty("density", accessibility_score);
-//            properties.addProperty("hawkercentre", hawkercentre);
-//            properties.addProperty("childcare", childcare);
-//            properties.addProperty("chasclinic", chasclinic);
+            properties.addProperty("hawkercentre_score", hawkercentre_score);
+            properties.addProperty("childcare_score", childcare_score);
+            properties.addProperty("chasclinic_score", chasclinic_score);
 
             // add coordinates
             String geojson_str = result.get(i).get_geojson();
@@ -280,18 +285,12 @@ public class HexagonDAO {
         return resultArray;
 
     }
-
-    public double calculate_accessbility(double hawkercentre, double childcare, double chasclinic, int[] weight_list) {
+    
+    public double calculate_hawkercentre(double hawkercentre) {
         
-        int hawkercentre_score = -1;
-        int childcare_score = -1;
-        int chasclinic_score = -1;
-
-        int total_score = 0;
+        double hawkercentre_score = -1;
 
         if (hawkercentre != -1) {
-            total_score += 5;
-            
             if (hawkercentre <= hawkercentre_80) {
                 hawkercentre_score = 5;
             } else if (hawkercentre <= hawkercentre_60) {
@@ -304,10 +303,16 @@ public class HexagonDAO {
                 hawkercentre_score = 1;
             }
         }
+        
+        return hawkercentre_score;  
+        
+    }
+    
+    public double calculate_childcare(double childcare) {
+        
+        double childcare_score = -1;
 
         if (childcare != -1) {
-            total_score += 5;
-            
             if (childcare <= childcare_80) {
                 childcare_score = 5;
             } else if (childcare <= childcare_60) {
@@ -320,10 +325,16 @@ public class HexagonDAO {
                 childcare_score = 1;
             } 
         }
+        
+        return childcare_score;  
+        
+    }
+    
+    public double calculate_chasclinic(double chasclinic) {
+        
+        double chasclinic_score = -1;
 
         if (chasclinic != -1) {
-            total_score += 5;
-            
             if (chasclinic <= chasclinic_80) {
                 chasclinic_score = 5;
             } else if (chasclinic <= chasclinic_60) {
@@ -336,22 +347,32 @@ public class HexagonDAO {
                 chasclinic_score = 1;
             } 
         }
+        
+        return chasclinic_score;  
+        
+    }
 
+    public double calculate_accessbility(double hawkercentre_score, double childcare_score, double chasclinic_score, int[] weight_list) {
+        
+        double total_score = 0;
         double result = 0;
-
+        
         if (hawkercentre_score != -1) {
-            result += hawkercentre_score;
+            total_score += 5 * weight_list[0];  
+            result += hawkercentre_score * weight_list[0]; 
         }
+
         if (childcare_score != -1) {
-            result += childcare_score;
+            total_score += 5 * weight_list[1];  
+            result += childcare_score * weight_list[1];  
         }
+
         if (chasclinic_score != -1) {
-            result += chasclinic_score;
+            total_score += 5 * weight_list[2];
+            result += chasclinic_score * weight_list[2];
         }
         
         return result / total_score;
-        
-        
         
     }
     
@@ -360,11 +381,6 @@ public class HexagonDAO {
         hawkercentre_60 = percentile.evaluate(all_hawkercentre_distance, 40.0);
         hawkercentre_40 = percentile.evaluate(all_hawkercentre_distance, 60.0);
         hawkercentre_20 = percentile.evaluate(all_hawkercentre_distance, 80.0);
-        
-//        System.out.println("80: " + hawkercentre_80);
-//        System.out.println("60: " + hawkercentre_60);
-//        System.out.println("40: " + hawkercentre_40);
-//        System.out.println("20: " + hawkercentre_20);
         
         childcare_80 = percentile.evaluate(all_childcare_distance, 20.0);
         childcare_60 = percentile.evaluate(all_childcare_distance, 40.0);
