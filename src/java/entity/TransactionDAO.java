@@ -115,10 +115,19 @@ public class TransactionDAO {
         try {
             conn = ConnectionManager.getConnection();
             sql = "SELECT * FROM " + TABLE + " WHERE " + 
-                    "(PLANNING_A = '"+planning_area+"') AND "
-                    + "(TRANSACTED BETWEEN "+" AND "+") AND "
-                    + "(AREA_SQM BETWEEN "+" AND "+")"
-                    +";";
+                    "(PLANNING_A = '"+planning_area+"');";
+                    //+ "(TRANSACTED BETWEEN "+" AND "+") AND "
+                    //+ "(AREA_SQM BETWEEN "+" AND "+")"
+                    //+";";
+            
+            if (planning_area.equals("ccr")) {
+                sql += "";
+            } else if (planning_area.equals("rcr")) {
+                sql += "";
+            } else if (planning_area.equals("ocr")) {
+                sql += "";
+            }
+            
             ps = conn.prepareStatement(sql);
             rs = ps.executeQuery();
 

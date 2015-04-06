@@ -361,7 +361,7 @@
                                 <li> 
                                     <a href="Accessibility.jsp">Accessibility</a>  
                                 </li>
-                                
+
                                 <!-- placeholder for accessibility module, if possible -->
                                 <li> 
                                     <a href="ProjectComparison.jsp">Project Comparison</a>  
@@ -406,9 +406,21 @@
 
                             <div class="form-group">
 
-                                <input type="text" class="form-control" name="planning_area" placeholder="Planning Area" size="10" value='<%=planning_area%>' >
+                                <div class="input-group input-group">
+                                    <select class="form-control" name="region_select">
+                                        <option value="ccr">Core Central Region (CCR)</option>
+                                        <option value="rcr" selected>Rest of Central Region (RCR)</option>
+                                        <option value="ocr">Outside Central Region (OCR)</option>
+                                        <option value="Clementi">Clementi</option>
+                                    </select>
+                                </div>
+
                                 
                                 <!--
+                                
+                                <input type="text" class="form-control" name="planning_area" placeholder="Planning Area" size="10" value='' >
+
+                                
                                 <div class="input-group">
                                     <span class="input-group-addon">$</span>
                                     <input type="text" class="form-control" name="start_price" placeholder="Start Price" size="8" value='' >
@@ -990,30 +1002,32 @@
     <script type="text/javascript" language="javascript" src="//cdn.datatables.net/plug-ins/f2c75b7247b/integration/bootstrap/3/dataTables.bootstrap.js"></script>
 
     <script>
-            
-        $('#resetmap').on('click',function(){map.setView([1.3667,103.8], 11)});
-        
-        $('#googlestreetviewbtn').on('click',function(){
-            initializeGoogleMaps();
-            var options = {
-                "backdrop" :true,
-                "show":true
-            }
-            
-             $('#googlestreetview').modal(options);
-        })
-        $('#googlestreetview').on('shown.bs.modal', function () {
-        google.maps.event.trigger(googlemap, 'resize');
-        googlemap.setCenter(new google.maps.LatLng(1.3667,103.8));
-    })
-        
 
-        //map = L.map('map').setView([1.3667,103.8], 11);
+            $('#resetmap').on('click', function () {
+                map.setView([1.3667, 103.8], 11)
+            });
+
+            $('#googlestreetviewbtn').on('click', function () {
+                initializeGoogleMaps();
+                var options = {
+                    "backdrop": true,
+                    "show": true
+                }
+
+                $('#googlestreetview').modal(options);
+            })
+            $('#googlestreetview').on('shown.bs.modal', function () {
+                google.maps.event.trigger(googlemap, 'resize');
+                googlemap.setCenter(new google.maps.LatLng(1.3667, 103.8));
+            })
+
+
+            //map = L.map('map').setView([1.3667,103.8], 11);
     </script>
     <script src="assets/js/style-switcher.min.js"></script>
     <!--LINK MODULE-->
     <script>
-        init_function();
+            init_function();
     </script>
     <%
         String result = String.valueOf(request.getAttribute("result"));
@@ -1021,10 +1035,10 @@
         if (!result.equals("null")) {
     %>
     <script type="text/javascript">
-                        
+
         var data = <%=result%>;
         generateAll(data);
-            
+
     </script>
     <%
         }

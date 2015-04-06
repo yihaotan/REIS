@@ -43,7 +43,7 @@ public class DBServlet extends HttpServlet {
         try {
             
             // Retrieve parameters first
-            String planning_area = request.getParameter("planning_area");
+            String planning_area = request.getParameter("region_select");
             //int start_price = Integer.parseInt(request.getParameter("start_price"));
             //int end_price = Integer.parseInt(request.getParameter("end_price"));
             //int start_size = Integer.parseInt(request.getParameter("start_size"));
