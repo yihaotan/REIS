@@ -376,7 +376,7 @@
 
 
                                     <!-- For Table -->
-                                    <form id="inputsAnalysis" class="body collapse in">
+                                    <form id="inputsAnalysis" class="body collapse in" action="PCServlet">
                                         <div class="input-group">
                                             <div class="input-group-btn">
                                                 <button type="button" id="selectway" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Select Method <span class="caret"></span></button>
@@ -392,7 +392,8 @@
 
                                         <div id="NumofProjects" class="body collapse in">
                                             <div class="input-group">
-                                                <label>Number of projects to compare with</label><input type="text" class="form-control"  name="Enternumofprojects" placeholder="e.g 3" size="2" data-toggle="tooltip" data-placement="bottom" title="We will find the nearby projects for you">
+                                                <label>Number of projects to compare with</label>
+                                                <input type="text" class="form-control" id="number_of_projects" name="number_of_projects" placeholder="e.g 3" size="2" data-toggle="tooltip" data-placement="bottom" title="We will find the nearby projects for you">
                                             </div>   
                                         </div>
 

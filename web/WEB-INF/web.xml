@@ -10,6 +10,10 @@
         <servlet-name>ACServlet</servlet-name>
         <servlet-class>controller.ACServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>PCServlet</servlet-name>
+        <servlet-class>controller.PCServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>DBServlet</servlet-name>
         <url-pattern>/DBServlet</url-pattern>
@@ -17,6 +21,10 @@
     <servlet-mapping>
         <servlet-name>ACServlet</servlet-name>
         <url-pattern>/ACServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PCServlet</servlet-name>
+        <url-pattern>/PCServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout> -1 </session-timeout>

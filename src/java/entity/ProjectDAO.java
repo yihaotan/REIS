@@ -55,10 +55,10 @@ public class ProjectDAO {
                     + " property_type, "
                     + " type_of_sale, "
                     + " tenure, "
-                    + " SUM(no_of_unit) AS total_unit, "
+                    + " SUM(no_of_unit) AS total_units, "
                     + " AVG(distance) AS distance, "
                     + " MEDIAN(unit_price) AS median_price_psf, "
-                    + " ST_AsGeoJson(geom) AS geojson "
+                    + " ST_AsGeoJson(ST_Transform(geom, 4326)) AS geojson "
                     + " FROM  "
                     + " ( "
                     + " SELECT point.project_na AS project_name, "
@@ -106,6 +106,8 @@ public class ProjectDAO {
             ConnectionManager.close(conn, ps, rs);
         }
         
+        System.out.println("projectList has " + projectList.size() + "records");
+        
         return projectList;
     }
 
@@ -130,7 +132,16 @@ public class ProjectDAO {
             record.addProperty("total_units", result.get(i).get_total_units());
             record.addProperty("distance", result.get(i).get_distance());
             record.addProperty("median_price_psf", result.get(i).get_median_price_psf());
-            record.addProperty("geojson", result.get(i).get_geojson());
+            
+            // add coordinates
+            String geojson_str = result.get(i).get_geojson();
+            Gson gson = new Gson();
+            JsonElement je = gson.fromJson(geojson_str, JsonElement.class);
+            JsonObject jo = je.getAsJsonObject();
+            
+            
+            
+            record.add("geojson", jo);
 
             // append to resultArray
             resultArray.add(record);
