@@ -44,10 +44,10 @@ public class DBServlet extends HttpServlet {
             
             // Retrieve parameters first
             String planning_area = request.getParameter("planning_area");
-            int start_price = Integer.parseInt(request.getParameter("start_price"));
-            int end_price = Integer.parseInt(request.getParameter("end_price"));
-            int start_size = Integer.parseInt(request.getParameter("start_size"));
-            int end_size = Integer.parseInt(request.getParameter("end_size"));
+            //int start_price = Integer.parseInt(request.getParameter("start_price"));
+            //int end_price = Integer.parseInt(request.getParameter("end_price"));
+            //int start_size = Integer.parseInt(request.getParameter("start_size"));
+            //int end_size = Integer.parseInt(request.getParameter("end_size"));
             
             // Access DAO to retrieve data
             TransactionDAO tdao = new TransactionDAO();
@@ -58,9 +58,7 @@ public class DBServlet extends HttpServlet {
                 result = tdao.retrieveAll();
             } else {
                 result = tdao.retrieveByCriteria(
-                    planning_area, 
-                    start_price, end_price, 
-                    start_size, end_size);
+                    planning_area);
             }
              
             // Convert to JSON
@@ -71,10 +69,10 @@ public class DBServlet extends HttpServlet {
             // Send json (string) back to homepage
             request.setAttribute("result", json);
             request.setAttribute("planning_area", planning_area);
-            request.setAttribute("start_price", start_price);
-            request.setAttribute("end_price", end_price);
-            request.setAttribute("start_size", start_size);
-            request.setAttribute("end_size", end_size);
+            //request.setAttribute("start_price", start_price);
+            //request.setAttribute("end_price", end_price);
+            //request.setAttribute("start_size", start_size);
+            //request.setAttribute("end_size", end_size);
                     
             
             RequestDispatcher rd = request.getRequestDispatcher("index.jsp");

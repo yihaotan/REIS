@@ -407,23 +407,25 @@
                             <div class="form-group">
 
                                 <input type="text" class="form-control" name="planning_area" placeholder="Planning Area" size="10" value='<%=planning_area%>' >
-
+                                
+                                <!--
                                 <div class="input-group">
                                     <span class="input-group-addon">$</span>
-                                    <input type="text" class="form-control" name="start_price" placeholder="Start Price" size="8" value='<%=start_price%>' >
+                                    <input type="text" class="form-control" name="start_price" placeholder="Start Price" size="8" value='' >
                                 </div>
                                 <div class="input-group">
                                     <span class="input-group-addon">$</span>
-                                    <input type="text" class="form-control" name="end_price" placeholder="End Price" size="7" value='<%=end_price%>' >
+                                    <input type="text" class="form-control" name="end_price" placeholder="End Price" size="7" value='' >
                                 </div>
                                 <div class="input-group">
                                     <span class="input-group-addon">Size</span>
-                                    <input type="text" class="form-control" name="start_size" placeholder="Start Size" size="7" value='<%=start_size%>' >
+                                    <input type="text" class="form-control" name="start_size" placeholder="Start Size" size="7" value='' >
                                 </div>
                                 <div class="input-group">
                                     <span class="input-group-addon">Size</span>
-                                    <input type="text" class="form-control" name="end_size" placeholder="End Size" size="6" value='<%=end_size%>' >
+                                    <input type="text" class="form-control" name="end_size" placeholder="End Size" size="6" value='' >
                                 </div>
+                                -->
                                 <button type="submit" class="btn btn-primary">Submit</button>
                             </div>
                         </form>

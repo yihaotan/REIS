@@ -105,9 +105,7 @@ public class TransactionDAO {
      * @return an ArrayList of Transaction
      */
     public ArrayList<Transaction> retrieveByCriteria(
-            String planning_area, 
-            int start_price, int end_price, 
-            int start_size, int end_size
+            String planning_area
     ) {
         Connection conn = null;
         PreparedStatement ps = null;
@@ -118,8 +116,8 @@ public class TransactionDAO {
             conn = ConnectionManager.getConnection();
             sql = "SELECT * FROM " + TABLE + " WHERE " + 
                     "(PLANNING_A = '"+planning_area+"') AND "
-                    + "(TRANSACTED BETWEEN "+start_price+" AND "+end_price+") AND "
-                    + "(AREA_SQM BETWEEN "+start_size+" AND "+end_size+")"
+                    + "(TRANSACTED BETWEEN "+" AND "+") AND "
+                    + "(AREA_SQM BETWEEN "+" AND "+")"
                     +";";
             ps = conn.prepareStatement(sql);
             rs = ps.executeQuery();
