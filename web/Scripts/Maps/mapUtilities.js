@@ -1,4 +1,3 @@
-
 function filterMap(chartName,dimensionName){
     chartName.on('filtered',function(){
         var properties = dimensionName.top(Infinity);
@@ -6,6 +5,7 @@ function filterMap(chartName,dimensionName){
         heatmapVolume.clearLayers();
         heatmapPrice.clearLayers();
         criteriastolayers(properties);
+        refreshTable(plotTable(dimensionName),dimensionName);
     });
 
 }

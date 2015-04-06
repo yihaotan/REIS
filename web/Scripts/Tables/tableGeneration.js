@@ -38,3 +38,19 @@ function plotDataTable(tableName,widthSize,heightSize,dimensionName,tableSize){
                 })
                 .order(d3.ascending);
 }
+
+function plotTable(dimensionName){
+    var dynaTable = $('#dc-table-graph').dynatable({
+                features: {
+                    pushState: false
+                }, 
+                dataset: {
+                            records: dimensionName.top(Infinity),
+                            perPageDefault: 10,
+                            perPageOptions: [10, 20, 50, 100]
+                  }
+    }).data('dynatable');
+    return dynaTable;
+}
+
+

@@ -220,7 +220,7 @@ function generateMapAndCharts(geoJsonData){
     function plotTimeChart(){
         plotTimeBarChart(dateVolumeBarChart,dateDimension,dateGroup,1000,102,20,5,getMinDate(geoJsonData),getMaxDate(geoJsonData),"%b %y","Volume",10,0,20,50);
         filterMap(dateVolumeBarChart,propertyDimension);
-        refreshTable();
+        
     }
     function plotStackTimeChart(){
         plotStackedTimeBarChart(stackedDateVolumeBarChart,dateVolumeBarChart,dateDimension,apartmentGroup,condoGroup,detachGroup,ecGroup,sdGroup,terraceGroup,550,152,30,5,getMinDate(geoJsonData),getMaxDate(geoJsonData),"%b %y",10,0,40,50,"Volume");
@@ -234,7 +234,7 @@ function generateMapAndCharts(geoJsonData){
             plotPieChart(propertyVolumePieChart,propertyVolumeDimension,propertyVolumeGroup,300,160,80,20,220,3,"property");
             applyFilter(propertyVolumePieChart, f1);
             filterMap(propertyVolumePieChart,propertyDimension);
-            refreshTable();
+            
         /*}else{
             propertyVolumePieChart = dc.pieChart("#dc-propertyVolume-chart");
             plotPieChart(propertyVolumePieChart,propertyVolumeDimension,propertyVolumeGroup,300,160,80,20,220,3,"property");
@@ -381,36 +381,16 @@ function generateMapAndCharts(geoJsonData){
         plotCompositeChart(compositeControlChart,dateDimension,400,122,10,0,40,60,"Psf $",getMinDate(geoJsonData),getMaxDate(geoJsonData),dateVolumeBarChart,compose1,compose2,compose3,"%b %y",5);
         //filterMap(compositeControlChart,propertyDimension);
     }
-  function plotTable(){
-        plotDataTable(dataTable,500,600,dateDimension,300000);
+  //function plotTable(){
+        //plotDataTable(dataTable,500,600,dateDimension,300000);
         
-  }
-  
-    filtereddata = propertyDimension.top(Infinity);
-    var dynaTable = $('#dc-table-graph').dynatable({
-                features: {
-                    pushState: false
-                }, 
-                dataset: {
-                            records: propertyDimension.top(Infinity),
-                            perPageDefault: 10,
-                            perPageOptions: [10, 20, 50, 100]
-                  }
-    }).data('dynatable');
+  //}
+  filtereddata = propertyDimension.top(Infinity);
+  var dynaTable = plotTable(propertyDimension);
+  refreshTable(dynaTable,propertyDimension); 
     
-    function refreshTable() {
-            dc.events.trigger(function () {
-                dynaTable.settings.dataset.originalRecords = propertyDimension.top(Infinity);
-                dynaTable.process();
-                alert("Test");
-            });
-    };
-   
-    refreshTable();
   
- 
-   
-   dc.dataCount(".dc-data-count")
+ dc.dataCount(".dc-data-count")
             .dimension(facts)
             .group(all);
    
@@ -420,6 +400,7 @@ function generateMapAndCharts(geoJsonData){
     plotSaleVolumeRow();
     plotTenureVolumeRow();
     plotRegionVolumeRow();
+    
     //plotTable();
     plotPsfLineChart();
     plotPsfHistogram();

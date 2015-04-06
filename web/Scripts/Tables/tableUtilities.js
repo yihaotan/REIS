@@ -10,3 +10,12 @@
         // Reinit the jQuery dataTable
         $(chart_anchor_id).dataTable({});
     };
+
+function refreshTable(tableName,dimensionName){
+    
+     dc.events.trigger(function () {
+                tableName.settings.dataset.originalRecords = dimensionName.top(Infinity);
+                tableName.process();
+                
+    });
+}
