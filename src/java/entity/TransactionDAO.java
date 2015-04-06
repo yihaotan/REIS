@@ -114,19 +114,25 @@ public class TransactionDAO {
 
         try {
             conn = ConnectionManager.getConnection();
-            sql = "SELECT * FROM " + TABLE + " WHERE " + 
-                    "(PLANNING_A = '"+planning_area+"');";
+            sql = "SELECT * FROM " + TABLE + " WHERE "; 
+                    //"(PLANNING_A = '"+planning_area+"') AND ";
                     //+ "(TRANSACTED BETWEEN "+" AND "+") AND "
                     //+ "(AREA_SQM BETWEEN "+" AND "+")"
                     //+";";
             
             if (planning_area.equals("ccr")) {
-                sql += "";
+                // must be "OR"
+                sql += " postal_sec IN (9, 10, 11) OR "
+                        + " planning_a IN ('Downtown Core', 'Sentosa') ";
             } else if (planning_area.equals("rcr")) {
-                sql += "";
+                sql += " planning_r = 'Central Region' AND "
+                        + " postal_sec NOT IN (9, 10, 11) AND" 
+                        + " planning_a NOT IN ('Downtown Core', 'Sentosa') ";
             } else if (planning_area.equals("ocr")) {
-                sql += "";
+                sql += " planning_r != 'Central Region' ";
             }
+            
+            sql += " ; ";
             
             ps = conn.prepareStatement(sql);
             rs = ps.executeQuery();
