@@ -5,10 +5,10 @@
         <title>New REALIS</title>
 
         <!--IE Compatibility modes-->
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
 
         <!--Mobile first-->
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
 
 
 
@@ -28,10 +28,11 @@
         <link rel="stylesheet" href="Css/jquery.sidr.light.css" type="text/css">
         <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css"  type="text/css">
         <link rel="stylesheet" href="Css/leaflet.draw.css" type="text/css">
+        <link rel="stylesheet" href="Css/jquery.dynatable.css" type="text/css">
         <!--Unknown-->
         <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
         <script src="http://maps.google.com/maps/api/js?v=3&sensor=false"></script>  
-
+        
         <!--Unknown-->
         <script src="http://d3js.org/d3.v3.min.js" type="text/javascript"></script>
         <script src="Libraries/crossfilter.js" type='text/javascript'></script>
@@ -463,18 +464,24 @@
                                     </header>
                                     <!-- Content -->
                                     <div id="AnalysisTable" class="body collapse in">
-                                        <table id="dc-table-graph" class="table table-bordered table-condensed table-hover table-striped">
+                                        <table id="magic-table" class="table table-bordered table-condensed table-hover table-striped">
                                             <thead>
-                                                <tr>
-                                                    <th>Project Name</th>
-                                                    <th>Median Price</th>
-                                                    <th>Dist from new project</th>
-                                                    <th>No. of transactions</th>
-                                                    <th>Size</th>
-                                                    <th>Price</th>
-                                                    <th>Area</th>
-                                                </tr>
-                                            </thead>
+                                                
+                                                    <th data-dynatable-column="project_name">Project Name</th>
+                                                    <th data-dynatable-column="property_type">Property Type</th>
+                                                    <th data-dynatable-column="type_of_sale">Type of Sale</th>
+                                                    <th data-dynatable-column="tenure">Tenure</th>
+                                                    <th data-dynatable-column="total_units">Total Units</th>
+                                                    <th data-dynatable-column="distance">Distance</th>
+                                                    <th data-dynatable-column="median_price_ps">Median Price</th>
+                                            </thead>      
+                                                   
+                                                <tbody>
+                                            
+                                           
+                                                </tbody>
+                                               
+                                            
                                         </table>
                                     </div>
                                 </div><!-- box -->
@@ -516,6 +523,7 @@
 
             <!--jQuery -->
             <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+            <script src="Libraries/jquery.dynatable.js"></script>
             <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
             <script src="//cdnjs.cloudflare.com/ajax/libs/datatables/1.10.4/js/jquery.dataTables.min.js"></script>
             <script src="//cdn.datatables.net/plug-ins/3cfcc339e89/integration/bootstrap/3/dataTables.bootstrap.js"></script>
@@ -599,7 +607,17 @@
             <script type="text/javascript">
 
                 var data = <%=result%>;
-
+                if( $('#magic-table').length ){
+                    alert("magic");
+                }        
+                $('#magic-table').dynatable({
+                    dataset: {
+                            records: data
+                    }
+                 });
+                //alert(data[0].project_name);
+                //alert(data.length);
+                
             </script>
             <%
                 }
