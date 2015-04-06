@@ -122,11 +122,11 @@ public class TransactionDAO {
             
             if (planning_area.equals("ccr")) {
                 // must be "OR"
-                sql += " postal_sec IN (9, 10, 11) OR "
+                sql += " postal_dis IN (9, 10, 11) OR "
                         + " planning_a IN ('Downtown Core', 'Sentosa') ";
             } else if (planning_area.equals("rcr")) {
                 sql += " planning_r = 'Central Region' AND "
-                        + " postal_sec NOT IN (9, 10, 11) AND" 
+                        + " postal_dis NOT IN (9, 10, 11) AND" 
                         + " planning_a NOT IN ('Downtown Core', 'Sentosa') ";
             } else if (planning_area.equals("ocr")) {
                 sql += " planning_r != 'Central Region' ";

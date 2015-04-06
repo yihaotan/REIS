@@ -411,7 +411,6 @@
                                         <option value="ccr">Core Central Region (CCR)</option>
                                         <option value="rcr" selected>Rest of Central Region (RCR)</option>
                                         <option value="ocr">Outside Central Region (OCR)</option>
-                                        <option value="Clementi">Clementi</option>
                                     </select>
                                 </div>
 
