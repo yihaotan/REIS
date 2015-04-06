@@ -40,30 +40,46 @@ public class PCServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
         try {
             /* TODO output your page here. You may use following sample code. */
-            
+
             int number_of_projects = Integer.parseInt(String.valueOf(request.getParameter("number_of_projects")));
-            
+
+            String latlng = String.valueOf(request.getParameter("latlng"));
+
+            String lat = "";
+            String lon = "";
+
+            if (!latlng.equals("null")) {
+                int position = latlng.indexOf(",");
+                lat = latlng.substring(0, position);
+                lon = latlng.substring(position + 1, latlng.length());
+            } else {
+                request.setAttribute("error_msg", "Please select a point on map!");
+                RequestDispatcher rd = request.getRequestDispatcher("ProjectComparison.jsp");
+                rd.forward(request, response);
+            }
+
             // REAL STUFF
             ProjectDAO pdao = new ProjectDAO();
-            
+
             // retrieve top 5 projects
-            ArrayList<Project> result = pdao.retrieve(number_of_projects);
+            ArrayList<Project> result = pdao.retrieve(number_of_projects, lat, lon);
             // pretty print and convert to string
             JsonArray projectList = pdao.toJSON(result, number_of_projects);
             // pretty print string
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
             String json = gson.toJson(projectList);
-            
+
             // SEND RESULT BACK
             request.setAttribute("project_comparison_result", json);
             request.setAttribute("return_num", number_of_projects);
-            
+            request.setAttribute("latlng", latlng);
+
             // SEND
             RequestDispatcher rd = request.getRequestDispatcher("ProjectComparison.jsp");
             rd.forward(request, response);
-            
-            } catch (Exception e) {
-            
+
+        } catch (Exception e) {
+
             // Send error (if any) back to homepage
             String error = "Error!";
 //            request.setAttribute("error", error);

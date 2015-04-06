@@ -32,7 +32,7 @@
         <!--Unknown-->
         <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
         <script src="http://maps.google.com/maps/api/js?v=3&sensor=false"></script>  
-        
+
         <!--Unknown-->
         <script src="http://d3js.org/d3.v3.min.js" type="text/javascript"></script>
         <script src="Libraries/crossfilter.js" type='text/javascript'></script>
@@ -378,12 +378,18 @@
 
                                     <%
                                         String number_of_projects = String.valueOf(request.getAttribute("return_num"));
-                                        
+
                                         int num = 0;
-                                        
+
                                         if (!number_of_projects.equals("null")) {
                                             num = Integer.parseInt(number_of_projects);
-                                            
+                                        }
+
+                                        String latlng_placeholder = "";
+
+                                        String latlng = String.valueOf(request.getAttribute("latlng"));
+                                        if (!latlng.equals("null")) {
+                                            latlng_placeholder = latlng;
                                         }
 
                                     %>
@@ -399,7 +405,7 @@
 
                                                 </ul>
                                             </div><!-- /btn-group -->
-                                            <input type="text" id="latlng" class="form-control" aria-label="...">
+                                            <input type="text" id="latlng" name="latlng" class="form-control" aria-label="..." value='<%=latlng_placeholder%>'>
                                         </div><!-- /input-group -->
 
 
@@ -446,6 +452,13 @@
 
 
                                 </div><!--box-->
+
+                            </div><!-- /col -->
+                        </div> <!-- row -->
+
+
+                        <div class='row'>
+                            <div class="col-lg-12 ">
                                 <div class="box">
                                     <!-- Header -->
                                     <header>
@@ -476,18 +489,18 @@
                                                     <th data-dynatable-column="median_price_ps" data-dynatable-sorts>Median Price</th>
                                                 </tr>
                                             </thead>      
-                                                   
-                                                <tbody>
-                                            
-                                           
-                                                </tbody>
-                                               
-                                            
+
+                                            <tbody>
+
+
+                                            </tbody>
+
+
                                         </table>
                                     </div>
                                 </div><!-- box -->
-                            </div><!-- /col -->
-                        </div> <!-- row -->
+                            </div>
+                        </div>
 
                     </div><!-- /.inner -->
                 </div><!-- /.outer -->
@@ -608,17 +621,17 @@
             <script type="text/javascript">
 
                 var data = <%=result%>;
-                if( $('#magic-table').length ){
-                    alert("magic");
-                }        
+                if ($('#magic-table').length) {
+                    //alert("magic");
+                }
                 $('#magic-table').dynatable({
                     dataset: {
-                            records: data
+                        records: data
                     }
-                 });
+                });
                 //alert(data[0].project_name);
                 //alert(data.length);
-                
+
             </script>
             <%
                 }

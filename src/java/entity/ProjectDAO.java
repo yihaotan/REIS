@@ -40,7 +40,7 @@ public class ProjectDAO {
      *
      * @return an ArrayList of Transaction
      */
-    public ArrayList<Project> retrieve(int number_of_projects) {
+    public ArrayList<Project> retrieve(int number_of_projects, String lat, String lon) {
         Connection conn = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -68,7 +68,7 @@ public class ProjectDAO {
                     + " point.type_of_sa AS type_of_sale, "
                     + " point.tenure AS tenure, "
                     + " point.unit_price AS unit_price, "
-                    + " ST_Distance(point.geom, ST_GeomFromText('POINT(28936.23577 28703.85964)', 3414)) AS distance, "
+                    + " ST_Distance(point.geom, ST_Transform(ST_GeomFromText('POINT( " + lon + " " + lat + " )', 4326), 3414)) AS distance,  "
                     + " point.geom AS geom "
                     + " FROM realis_2013 as point "
                     + " ORDER BY distance ASC "
