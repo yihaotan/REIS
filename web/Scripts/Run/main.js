@@ -400,8 +400,6 @@ function generateMapAndCharts(geoJsonData){
     plotSaleVolumeRow();
     plotTenureVolumeRow();
     plotRegionVolumeRow();
-    
-    //plotTable();
     plotPsfLineChart();
     plotPsfHistogram();
     plotSizeHistogram();

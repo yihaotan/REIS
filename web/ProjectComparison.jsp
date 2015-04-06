@@ -467,13 +467,13 @@
                                         <table id="magic-table" class="table table-bordered table-condensed table-hover table-striped">
                                             <thead>
                                                 <tr>
-                                                    <th data-dynatable-column="project_name">Project Name</th>
-                                                    <th data-dynatable-column="property_type">Property Type</th>
-                                                    <th data-dynatable-column="type_of_sale">Type of Sale</th>
-                                                    <th data-dynatable-column="tenure">Tenure</th>
-                                                    <th data-dynatable-column="total_units">Total Units</th>
-                                                    <th data-dynatable-column="distance">Distance</th>
-                                                    <th data-dynatable-column="median_price_ps">Median Price</th>
+                                                    <th data-dynatable-column="project_name" data-dynatable-sorts>Project Name</th>
+                                                    <th data-dynatable-column="property_type" data-dynatable-sorts>Property Type</th>
+                                                    <th data-dynatable-column="type_of_sale" data-dynatable-sorts>Type of Sale</th>
+                                                    <th data-dynatable-column="tenure" data-dynatable-sorts>Tenure</th>
+                                                    <th data-dynatable-column="total_units" data-dynatable-sorts>Total Units</th>
+                                                    <th data-dynatable-column="distance" data-dynatable-sorts>Distance</th>
+                                                    <th data-dynatable-column="median_price_ps" data-dynatable-sorts>Median Price</th>
                                                 </tr>
                                             </thead>      
                                                    
