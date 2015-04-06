@@ -166,7 +166,8 @@
             .interaction.label {
                 position: absolute;
                 font-size: 11px;
-                text-shadow: 0 1px 0 #FFF, 0 -1px 0 #FFF, 1px 0 #FFF, -1px 0 #FFF;
+                stroke:#000000;
+                //text-shadow: 0 1px 0 #FFF, 0 -1px 0 #FFF, 1px 0 #FFF, -1px 0 #FFF;
             }
             .interaction.circle {
                 fill: #444;
@@ -770,7 +771,23 @@
 
 
         <script>
-
+            var data = [
+                {
+                    "Distillery": "Le Me",
+                    "Body": 2,
+                    "Sweetness": 4,
+                    "Smoky": 5,
+                    "Medicinal": 4,
+                    "Tobacco": 5,
+                    "Honey": 4,
+                    "Spicy": 5,
+                    "Winey": 4,
+                    "Nutty": 3,
+                    "Malty": 4,
+                    "Fruity": 4,
+                    "Floral": 1
+                }
+            ];
             var margin = {
                 top: 32,
                 right: 50,
@@ -784,55 +801,55 @@
             var scale = d3.scale.linear()
                     .domain([0, 4])
                     .range([0, 100])
-            d3.csv('whiskies.csv')
-                    .row(function (d) {
-                        d.Body = +d.Body;
-                        d.Sweetness = +d.Sweetness;
-                        d.Smoky = +d.Smoky;
-                        d.Medicinal = +d.Medicinal;
-                        d.Tobacco = +d.Tobacco;
-                        d.Honey = +d.Honey;
-                        d.Spicy = +d.Spicy;
-                        d.Winey = +d.Winey;
-                        d.Nutty = +d.Nutty;
-                        d.Malty = +d.Malty;
-                        d.Fruity = +d.Fruity;
-                        d.Floral = +d.Floral;
-                        return d;
-                    })
-                    .get(function (error, rows) {
-                        var star = d3.starPlot()
-                                .width(width)
-                                .properties([
-                                    'Body',
-                                    'Sweetness',
-                                    'Smoky',
-                                    'Honey',
-                                    'Spicy',
-                                    'Nutty',
-                                    'Malty',
-                                    'Fruity',
-                                    'Floral'
-                                ])
-                                .scales(scale)
-                                .labels([
-                                    'Body',
-                                    'Sweetness',
-                                    'Smoky',
-                                    'Honey',
-                                    'Spicy',
-                                    'Nutty',
-                                    'Malty',
-                                    'Fruity',
-                                    'Floral'
+            
+           
+            var star = d3.starPlot()
+                           .width(width)
+                           .properties([
+                            'Body',
+                            'Sweetness',
+                            'Smoky',
+                            'Honey',
+                            'Spicy',
+                            'Nutty',
+                             'Malty',
+                             'Fruity',
+                             'Floral'
+                             ])
+                             .scales(scale)
+                             .labels([
+                                'Body',
+                                'Sweetness',
+                                 'Smoky',
+                                'Honey',
+                                 'Spicy',
+                                 'Nutty',
+                                 'Malty',
+                                 'Fruity',
+                                  'Floral'
                                 ])
                                 .title(function (d) {
-                                    return d.Distillery;
+                                    return "Apple";
                                 })
                                 .margin(margin)
-                                .labelMargin(labelMargin)
-                        rows.forEach(function (d, i) {
-                            star.includeLabels(i % 4 === 0 ? true : false);
+                                .labelMargin(labelMargin);
+                        
+             data.forEach(function(d,i){
+                
+                d.Body = +d.Body;
+                d.Sweetness = +d.Sweetness;
+                d.Smoky = +d.Smoky;
+                d.Medicinal = +d.Medicinal;
+                d.Tobacco = +d.Tobacco;
+                d.Honey = +d.Honey;
+                d.Spicy = +d.Spicy;
+                d.Winey = +d.Winey;
+                d.Nutty = +d.Nutty;
+                d.Malty = +d.Malty;
+                d.Fruity = +d.Fruity;
+                d.Floral = +d.Floral;
+                
+                star.includeLabels(i % 4 === 0 ? true : false);
 
                             var wrapper = d3.select('#target').append('div')
                                     .attr('class', 'wrapper')
@@ -859,16 +876,20 @@
 
                             svg.selectAll('.star-interaction')
                                     .on('mouseover', function (d) {
+                                        
+                
+                
                                         svg.selectAll('.star-label')
-                                                .style('display', 'none')
+                                                .style('display', 'none');
 
                                         interaction
                                                 .style('display', 'block')
+                                               
 
                                         circle
                                                 .attr('cx', d.x)
                                                 .attr('cy', d.y)
-
+                                        
                                         $interactionLabel = $(interactionLabel.node());
                                         interactionLabel
                                                 .text(d.key + ': ' + d.datum[d.key])
@@ -882,8 +903,12 @@
                                         svg.selectAll('.star-label')
                                                 .style('display', 'block')
                                     })
-                        });
-                    });
+                
+                
+            });
+            
+            
+           
 
         </script>
 
