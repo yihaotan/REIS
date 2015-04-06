@@ -15,7 +15,7 @@ function plotTimeBarChart(chartName,dimensionName,groupName,widthSize,heightSize
      
      chartName.yAxis().ticks(tickNumber);
 }
-function plotStackedTimeBarChart(chartName,rangeChartName,dimensionName,groupName,stackGroupName1,stackGroupName2,stackGroupName3,stackGroupName4,stackGroupName5,widthSize,heightSize,gapSize,tickNumber,minDate,maxDate,timeFormat,top,right,bottom,left,yAxisLabelName){
+function plotStackedTimeBarChart(chartName,dimensionName,groupName,stackGroupName1,stackGroupName2,stackGroupName3,stackGroupName4,stackGroupName5,widthSize,heightSize,gapSize,minDate,maxDate,timeFormat,top,right,bottom,left,yAxisLabelName){
         chartName.width(widthSize)
              .margins({top: top, right: right, bottom: bottom, left: left})
             .height(heightSize)
@@ -24,28 +24,27 @@ function plotStackedTimeBarChart(chartName,rangeChartName,dimensionName,groupNam
             .elasticY(true)
             .elasticX(false)
             .gap(gapSize)
+            .centerBar(true)
             .yAxisLabel(yAxisLabelName)
-            .brushOn(false)
             .group(groupName,"Apartment")
             .stack(stackGroupName1,"Condominium")
             .stack(stackGroupName2,"Detached")
             .stack(stackGroupName3,"E.Condominium")
             .stack(stackGroupName4,"Semi-Detached")
             .stack(stackGroupName5,"Terrace")
-            .legend(dc.legend().x(15).y(140).itemWidth(95).legendWidth(600).horizontal(true))
+            .legend(dc.legend().x(250).y(110).itemWidth(95).legendWidth(600).horizontal(true))
             .renderlet(function (chart) {
                 chart.selectAll("g.rect.stack").attr("fill", function (d) {
                     return getColors(d.key);
                 });
             })
             .x(d3.time.scale().domain([minDate, maxDate]))
-            .rangeChart(rangeChartName)
             .round(d3.time.month.round)
             .xUnits(d3.time.months)
             .xAxis().tickFormat(d3.time.format(timeFormat))
-            .ticks(tickNumber);
+         
     
-      chartName.yAxis().ticks(tickNumber);
+      
 }
 function plotPieChart(chartName,dimensionName,groupName,widthSize,heightSize,radiusSize,innerRadiusSize,centrePoint,legendX,chartType){
     var pieChartTip = d3.tip()
@@ -166,10 +165,11 @@ function plotCompositeChart(compositeChartName,dimensionName,widthSize,heightSiz
             .yAxisLabel(yAxisLabelName)
             .x(d3.time.scale().domain([minDate,maxDate]))
             .elasticY(true)
+            .yAxisPadding(500)
             .round(d3.time.month.round)
             .xUnits(d3.time.months)
             .brushOn(false)
-            .legend(dc.legend().x(140).y(140).itemWidth(100).legendWidth(600).horizontal(true))
+            .legend(dc.legend().x(400).y(110).itemWidth(95).legendWidth(600).horizontal(true))
             .rangeChart(rangeChartName)
             .shareTitle(false)
             .compose([compose1,compose2,compose3])

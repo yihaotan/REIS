@@ -586,11 +586,7 @@
 
                                         <!-- Zoom In Stacked Chart -->
                                         <div class="row">
-                                            <div id='dc-stackDateVolume-chart'>
-                                                <h6>
-                                                    <font><strong>Monthly Transaction Volume</strong></font>
-                                                </h6>
-                                            </div>
+                                            
 
                                             <div id='dc-control-chart'>
                                                 <h6>
@@ -600,7 +596,7 @@
                                         </div>
                                         <!-- Daily Volume Chart -->
                                         <div class="row">
-                                            <div id='dc-dateVolume-chart'>
+                                            <div id='dc-stackDateVolume-chart'>
                                                 <h6>
                                                     <font><strong>Monthly Transaction Filter Volume</strong></font>
                                                     <h7>[Slide to filter dates]</h7>

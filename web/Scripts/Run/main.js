@@ -79,13 +79,11 @@ function generatePolygonCharts(filtereddata){
 
 function generateMapAndCharts(geoJsonData){
 
-    dateVolumeBarChart = dc.barChart("#dc-dateVolume-chart");
+    //dateVolumeBarChart = dc.barChart("#dc-dateVolume-chart");
     compositeControlChart = dc.compositeChart("#dc-control-chart"); //change html
     histogram = dc.barChart("#dc-histogram");
     stackedDateVolumeBarChart = dc.barChart("#dc-stackDateVolume-chart");
     sizeHistogram = dc.barChart("#dc-sizeHistogram");  
-    //dataTable = dc.dataTable("#dc-table-graph");
-    //dataTable.on("postRender", function(chart){reinit(chart)}).on("postRedraw", function(chart){reinit(chart)});
     //boxPlotChart = dc.boxPlot("#dc-psfBoxPlot-chart");   
     //seriesChart = dc.seriesChart("#dc-series");
     
@@ -217,15 +215,15 @@ function generateMapAndCharts(geoJsonData){
     var psmGroup = psmDimension.group(function (d) {
         return Math.ceil(d / 1000) * 1000;
     });
-    function plotTimeChart(){
+    /*function plotTimeChart(){
         plotTimeBarChart(dateVolumeBarChart,dateDimension,dateGroup,1000,102,20,5,getMinDate(geoJsonData),getMaxDate(geoJsonData),"%b %y","Volume",10,0,20,50);
         filterMap(dateVolumeBarChart,propertyDimension);
         
-    }
+    }*/
     function plotStackTimeChart(){
-        plotStackedTimeBarChart(stackedDateVolumeBarChart,dateVolumeBarChart,dateDimension,apartmentGroup,condoGroup,detachGroup,ecGroup,sdGroup,terraceGroup,550,152,30,5,getMinDate(geoJsonData),getMaxDate(geoJsonData),"%b %y",10,0,40,50,"Volume");
-        var f1 = getFilters(dateVolumeBarChart);
-        //applyFilter(stackedDateVolumeBarChart,f1);
+        plotStackedTimeBarChart(stackedDateVolumeBarChart,dateDimension,apartmentGroup,condoGroup,detachGroup,ecGroup,sdGroup,terraceGroup,1000,122,20,getMinDate(geoJsonData),getMaxDate(geoJsonData),"%b %y",10,0,40,60,"Volume");
+        filterMap(stackedDateVolumeBarChart,propertyDimension);
+        
     }
     function plotPropertyVolumePie() {
        //if (typeof propertyVolumeRowChart !== 'undefined'){
@@ -364,21 +362,21 @@ function generateMapAndCharts(geoJsonData){
         compose1 = plotLineChart(compositeControlChart,dateDimension,datePsfGroup,"Min Psf",3,"#bdd7e7","min",dateFormat);
         compose2 = plotLineChart(compositeControlChart,dateDimension,datePsfGroup,"Median Psf",3,"#08519c","median",dateFormat);
         compose3 = plotLineChart(compositeControlChart,dateDimension,datePsfGroup,"Max Psf",3,"#bdd7e7","max",dateFormat);
-        plotCompositeChart(compositeControlChart,dateDimension,450,152,10,0,40,50,"Psf $",getMinDate(geoJsonData),getMaxDate(geoJsonData),dateVolumeBarChart,compose1,compose2,compose3,"%b %y",5);
+        plotCompositeChart(compositeControlChart,dateDimension,1000,122,20,5,40,60,"Psf $",getMinDate(geoJsonData),getMaxDate(geoJsonData),stackedDateVolumeBarChart,compose1,compose2,compose3,"%b %y",5);
         filterMap(compositeControlChart,propertyDimension);
     }; 
     function plotPsmLineChart(){
         compose1 = plotLineChart(compositeControlChart,dateDimension,datePsmGroup,"Min Psm",5,"green","min",dateFormat);
         compose2 = plotLineChart(compositeControlChart,dateDimension,datePs,Group,"Median Psm",5,"blue","median",dateFormat);
         compose3 = plotLineChart(compositeControlChart,dateDimension,datePsmGroup,"Max Psm",5,"red","max",dateFormat);
-        plotCompositeChart(compositeControlChart,dateDimension,400,122,10,0,40,60,"Psm $",getMinDate(geoJsonData),getMaxDate(geoJsonData),dateVolumeBarChart,compose1,compose2,compose3,"%b %y",5);
+        plotCompositeChart(compositeControlChart,dateDimension,400,122,10,0,40,60,"Psm $",getMinDate(geoJsonData),getMaxDate(geoJsonData),stackedDateVolumeBarChart,compose1,compose2,compose3,"%b %y",5);
         //filterMap(compositeControlChart,propertyDimension);
     }
     function plotPriceLineChart(){
         compose1 = plotLineChart(compositeControlChart,dateDimension,datePriceGroup,"Min Psf",5,"green","min",dateFormat);
         compose2 = plotLineChart(compositeControlChart,dateDimension,datePriceGroup,"Median Psf",5,"blue","median",dateFormat);
         compose3 = plotLineChart(compositeControlChart,dateDimension,datePriceGroup,"Max Psf",5,"red","max",dateFormat);
-        plotCompositeChart(compositeControlChart,dateDimension,400,122,10,0,40,60,"Psf $",getMinDate(geoJsonData),getMaxDate(geoJsonData),dateVolumeBarChart,compose1,compose2,compose3,"%b %y",5);
+        plotCompositeChart(compositeControlChart,dateDimension,400,122,10,0,40,60,"Psf $",getMinDate(geoJsonData),getMaxDate(geoJsonData),stackedDateVolumeBarChart,compose1,compose2,compose3,"%b %y",5);
         //filterMap(compositeControlChart,propertyDimension);
     }
   //function plotTable(){
@@ -394,7 +392,7 @@ function generateMapAndCharts(geoJsonData){
             .dimension(facts)
             .group(all);
    
-    plotTimeChart();
+    //plotTimeChart();
     plotStackTimeChart();
     plotPropertyVolumeRow();
     plotSaleVolumeRow();
@@ -403,7 +401,7 @@ function generateMapAndCharts(geoJsonData){
     plotPsfLineChart();
     plotPsfHistogram();
     plotSizeHistogram();
-    rangeChartForTimeSeries(dateVolumeBarChart,compositeControlChart, stackedDateVolumeBarChart); 
+    //rangeChartForTimeSeries(dateVolumeBarChart,compositeControlChart, stackedDateVolumeBarChart); 
     plotMapLayers(propertyDimension);
     //jQuery
        $("#dc-psfBoxPlot-chart").on('change', function () {
