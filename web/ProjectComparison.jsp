@@ -375,6 +375,18 @@
                                     </header>
 
 
+                                    <%
+                                        String number_of_projects = String.valueOf(request.getAttribute("return_num"));
+                                        
+                                        int num = 0;
+                                        
+                                        if (!number_of_projects.equals("null")) {
+                                            num = Integer.parseInt(number_of_projects);
+                                            
+                                        }
+
+                                    %>
+
                                     <!-- For Table -->
                                     <form id="inputsAnalysis" class="body collapse in" action="PCServlet">
                                         <div class="input-group">
@@ -393,7 +405,11 @@
                                         <div id="NumofProjects" class="body collapse in">
                                             <div class="input-group">
                                                 <label>Number of projects to compare with</label>
-                                                <input type="text" class="form-control" id="number_of_projects" name="number_of_projects" placeholder="e.g 3" size="2" data-toggle="tooltip" data-placement="bottom" title="We will find the nearby projects for you">
+                                                <input type="text" class="form-control" name="number_of_projects" 
+                                                       placeholder="e.g 3" size="2" data-toggle="tooltip" data-placement="bottom" 
+                                                       title="We will find the nearby projects for you"
+                                                       value='<%=num%>'
+                                                       >
                                             </div>   
                                         </div>
 
@@ -541,31 +557,31 @@
                 map.on('draw:created', function (event) {
                     var layer = event.layer;
                     layer.on('click', function () {
-                        if(event.layerType=='circle'){
-                            var circlecenter= layer.getLatLng();
-                            var circleradius=layer.getRadius();
-                            var pointswithincircle=getpointswithincircle(filtereddata,circlecenter,circleradius);
+                        if (event.layerType == 'circle') {
+                            var circlecenter = layer.getLatLng();
+                            var circleradius = layer.getRadius();
+                            var pointswithincircle = getpointswithincircle(filtereddata, circlecenter, circleradius);
                         }
 
-                        else if(event.layerType=='polygon'){
+                        else if (event.layerType == 'polygon') {
                             var options = {
-                                "backdrop" :true,
-                                "show":true
+                                "backdrop": true,
+                                "show": true
                             }
-                            var pointswithinpolygon=getpointswithinpolygon(filtereddata,layer.getLatLngs());
+                            var pointswithinpolygon = getpointswithinpolygon(filtereddata, layer.getLatLngs());
                             $('#polygoncharts').modal(options);
-                        }else if(event.layerType=='marker'){
-                            var marker= layer.getLatLng();
-                            document.getElementById("latlng").value = marker.lat+","+marker.lng;
+                        } else if (event.layerType == 'marker') {
+                            var marker = layer.getLatLng();
+                            document.getElementById("latlng").value = marker.lat + "," + marker.lng;
                         }
                     });
                     drawnItems.addLayer(layer);
-        
-                });
-              
-                $(function(){
 
-                    $(".dropdown-menu li a").click(function(){
+                });
+
+                $(function () {
+
+                    $(".dropdown-menu li a").click(function () {
 
                         $("#selectway").text($(this).text()).append('<span class="caret"></span>');
                         $("#btn").val($(this).text());
@@ -574,6 +590,20 @@
 
                 });
             </script>
+
+
+            <%                String result = String.valueOf(request.getAttribute("project_comparison_result"));
+
+                if (!result.equals("null")) {
+            %>
+            <script type="text/javascript">
+
+                var data = <%=result%>;
+
+            </script>
+            <%
+                }
+            %>
 
 
 

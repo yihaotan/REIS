@@ -106,7 +106,7 @@ public class ProjectDAO {
             ConnectionManager.close(conn, ps, rs);
         }
         
-        System.out.println("projectList has " + projectList.size() + "records");
+        System.out.println("projectList now has " + projectList.size() + " records");
         
         return projectList;
     }

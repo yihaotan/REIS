@@ -54,10 +54,9 @@ public class PCServlet extends HttpServlet {
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
             String json = gson.toJson(projectList);
             
-            System.out.println(json);
-            
             // SEND RESULT BACK
             request.setAttribute("project_comparison_result", json);
+            request.setAttribute("return_num", number_of_projects);
             
             // SEND
             RequestDispatcher rd = request.getRequestDispatcher("ProjectComparison.jsp");
