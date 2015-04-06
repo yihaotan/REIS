@@ -66,11 +66,8 @@ function generateCircleCharts(filtereddata){
         return d.price;
     });
     
-    
-    
-    
-    
 }
+
 function generatePolygonCharts(filtereddata){
     
     loadData(filtereddata);
@@ -223,6 +220,7 @@ function generateMapAndCharts(geoJsonData){
     function plotTimeChart(){
         plotTimeBarChart(dateVolumeBarChart,dateDimension,dateGroup,1000,102,20,5,getMinDate(geoJsonData),getMaxDate(geoJsonData),"%b %y","Volume",10,0,20,50);
         filterMap(dateVolumeBarChart,propertyDimension);
+        refreshTable();
     }
     function plotStackTimeChart(){
         plotStackedTimeBarChart(stackedDateVolumeBarChart,dateVolumeBarChart,dateDimension,apartmentGroup,condoGroup,detachGroup,ecGroup,sdGroup,terraceGroup,550,152,30,5,getMinDate(geoJsonData),getMaxDate(geoJsonData),"%b %y",10,0,40,50,"Volume");
@@ -236,6 +234,7 @@ function generateMapAndCharts(geoJsonData){
             plotPieChart(propertyVolumePieChart,propertyVolumeDimension,propertyVolumeGroup,300,160,80,20,220,3,"property");
             applyFilter(propertyVolumePieChart, f1);
             filterMap(propertyVolumePieChart,propertyDimension);
+            refreshTable();
         /*}else{
             propertyVolumePieChart = dc.pieChart("#dc-propertyVolume-chart");
             plotPieChart(propertyVolumePieChart,propertyVolumeDimension,propertyVolumeGroup,300,160,80,20,220,3,"property");
@@ -249,6 +248,7 @@ function generateMapAndCharts(geoJsonData){
             plotRowChart(propertyVolumeRowChart,propertyVolumeDimension,propertyVolumeGroup,300,180,3,5,5,"property",0,0,20,80);
             applyFilter(propertyVolumeRowChart, f2);
             filterMap(propertyVolumeRowChart,propertyDimension);
+            
            
         } else {
             propertyVolumeRowChart = dc.rowChart("#dc-propertyVolume-chart");
@@ -386,7 +386,29 @@ function generateMapAndCharts(geoJsonData){
         
   }
   
-   filtereddata = propertyDimension.top(Infinity);
+    filtereddata = propertyDimension.top(Infinity);
+    var dynaTable = $('#dc-table-graph').dynatable({
+                features: {
+                    pushState: false
+                }, 
+                dataset: {
+                            records: propertyDimension.top(Infinity),
+                            perPageDefault: 10,
+                            perPageOptions: [10, 20, 50, 100]
+                  }
+    }).data('dynatable');
+    
+    function refreshTable() {
+            dc.events.trigger(function () {
+                dynaTable.settings.dataset.originalRecords = propertyDimension.top(Infinity);
+                dynaTable.process();
+                alert("Test");
+            });
+    };
+   
+    refreshTable();
+  
+ 
    
    dc.dataCount(".dc-data-count")
             .dimension(facts)

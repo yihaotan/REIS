@@ -38,4 +38,3 @@ function plotDataTable(tableName,widthSize,heightSize,dimensionName,tableSize){
                 })
                 .order(d3.ascending);
 }
-

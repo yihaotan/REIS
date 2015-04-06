@@ -30,7 +30,7 @@
         <link rel="stylesheet" href="Css/leaflet.draw.css" type="text/css">
         <link type="text/css" href="d3-Leafletlib/leaflet.markercluster.css" rel="stylesheet"/>
         <link type="text/css" href="d3-Leafletlib/leaflet.css" rel="stylesheet"/>
-
+        <link type="text/css" href="Css/jquery.dynatable.css" rel="stylesheet"/>
         <!--Unknown-->
         <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=false"></script>
 
@@ -804,7 +804,7 @@
 
                                         <div class="toolbar">
                                             <div class="btn-group">
-                                                <a href="#dynamicTable" data-toggle="collapse" class="btn btn-sm btn-default minimize-box">
+                                                <a href="#magicTable" data-toggle="collapse" class="btn btn-sm btn-default minimize-box">
                                                     <i class="fa fa-angle-up"></i>
                                                 </a> 
                                                 <a class="btn btn-danger btn-sm close-box">
@@ -813,20 +813,27 @@
                                             </div>
                                         </div>
                                     </header>
-                                    <div id="dynamicTable" class="body collapse in">
+                                    <div id="magicTable" class="body collapse in">
                                         <table id="dc-table-graph" class="table table-bordered table-condensed table-hover table-striped">
-                                            <thead>
-                                                <tr>
-                                                    <th>Project Name</th>
-                                                    <th>Property Type</th>
-                                                    <th>Sale Type</th>
-                                                    <th>Address</th>
-                                                    <th>Date</th>
-                                                    <th>Size</th>
-                                                    <th>Price</th>
-                                                    <th>Region</th>
+                                           <thead>
+                                               <tr>
+                                                    <th data-dynatable-column="projectName" data-dynatable-sorts>Project Name</th>
+                                                    <th data-dynatable-column="propertyType" data-dynatable-sorts>Property Type</th>
+                                                    <th data-dynatable-column="sale" data-dynatable-sorts>Sale Type</th>
+                                                    <th data-dynatable-column="address" data-dynatable-sorts>Address</th>
+                                                    <th data-dynatable-column= "date" data-dynatable-sorts>Date</th>
+                                                    <th data-dynatable-column="areasqm" data-dynatable-sorts>Size (sqm)</th>
+                                                    <th data-dynatable-column="price" data-dynatable-sorts>Price ($)</th>
+                                                    <th data-dynatable-column="planningRegion" data-dynatable-sorts>Region</th>
                                                 </tr>
-                                            </thead>
+                                            </thead>  
+                                            
+                                            <tbody>
+                                            
+                                           
+                                             </tbody>
+                                            
+                                            
 
                                         </table>
                                     </div>
@@ -982,7 +989,10 @@
     <script src="//cdn.datatables.net/plug-ins/3cfcc339e89/integration/bootstrap/3/dataTables.bootstrap.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.18.4/js/jquery.tablesorter.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
-
+    
+    <script src="Libraries/jquery.dynatable.js"></script>
+    
+    
     <!--Bootstrap -->
     <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
 
