@@ -206,3 +206,4 @@ function plotHistogramChart(histogramName,widthSize,heightSize,dimensionName,gro
 function plotScatterPlotChart(){
     
 }
+
