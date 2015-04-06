@@ -408,9 +408,9 @@
                                             </div>
                                         </div>
                                     </header>
-                                    
                                     <div id='target'></div>
-                                    
+
+
                                     <%
                                         String hawkercentre_check_num = String.valueOf(request.getAttribute("hawkercentre_check"));
                                         String childcare_check_num = String.valueOf(request.getAttribute("childcare_check"));
@@ -499,6 +499,8 @@
                                             </div>
                                         </div>
                                     </form>
+
+                                    
 
                                 </div><!-- box -->
                             </div><!-- col -->
@@ -753,7 +755,6 @@
                 //int num_facility = Integer.parseInt(String.valueOf(request.getAttribute("num_facility")));
 %>
         <script type="text/javascript">
-
             var data = <%=result%>;
             var total_80 = <%=total_80%>;
             var total_60 = <%=total_60%>;
@@ -783,7 +784,6 @@
             var scale = d3.scale.linear()
                     .domain([0, 4])
                     .range([0, 100])
-
             d3.csv('whiskies.csv')
                     .row(function (d) {
                         d.Body = +d.Body;
@@ -831,7 +831,6 @@
                                 })
                                 .margin(margin)
                                 .labelMargin(labelMargin)
-
                         rows.forEach(function (d, i) {
                             star.includeLabels(i % 4 === 0 ? true : false);
 
@@ -887,7 +886,7 @@
                     });
 
         </script>
-        
+
 
 
 
