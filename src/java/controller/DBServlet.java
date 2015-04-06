@@ -43,7 +43,7 @@ public class DBServlet extends HttpServlet {
         try {
             
             // Retrieve parameters first
-            String planning_area = request.getParameter("region_select");
+            String region_select = request.getParameter("region_select");
             //int start_price = Integer.parseInt(request.getParameter("start_price"));
             //int end_price = Integer.parseInt(request.getParameter("end_price"));
             //int start_size = Integer.parseInt(request.getParameter("start_size"));
@@ -54,11 +54,11 @@ public class DBServlet extends HttpServlet {
             
             ArrayList<Transaction> result = new ArrayList<Transaction>();
             
-            if (planning_area.equals("All")) {
+            if (region_select.equals("All")) {
                 result = tdao.retrieveAll();
             } else {
                 result = tdao.retrieveByCriteria(
-                    planning_area);
+                    region_select);
             }
              
             // Convert to JSON
@@ -68,7 +68,7 @@ public class DBServlet extends HttpServlet {
             
             // Send json (string) back to homepage
             request.setAttribute("result", json);
-            request.setAttribute("planning_area", planning_area);
+            request.setAttribute("region_select", region_select);
             //request.setAttribute("start_price", start_price);
             //request.setAttribute("end_price", end_price);
             //request.setAttribute("start_size", start_size);

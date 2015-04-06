@@ -97,7 +97,7 @@ public class TransactionDAO {
         }
         return transactionList;
     }
-    
+
     // retrieve records for a particular planning area
     /**
      * retrieve by planning area
@@ -105,7 +105,7 @@ public class TransactionDAO {
      * @return an ArrayList of Transaction
      */
     public ArrayList<Transaction> retrieveByCriteria(
-            String planning_area
+            String region_select
     ) {
         Connection conn = null;
         PreparedStatement ps = null;
@@ -114,26 +114,28 @@ public class TransactionDAO {
 
         try {
             conn = ConnectionManager.getConnection();
-            sql = "SELECT * FROM " + TABLE + " WHERE "; 
+            sql = "SELECT * FROM " + TABLE;
                     //"(PLANNING_A = '"+planning_area+"') AND ";
-                    //+ "(TRANSACTED BETWEEN "+" AND "+") AND "
-                    //+ "(AREA_SQM BETWEEN "+" AND "+")"
-                    //+";";
-            
-            if (planning_area.equals("ccr")) {
-                // must be "OR"
-                sql += " postal_dis IN (9, 10, 11) OR "
-                        + " planning_a IN ('Downtown Core', 'Sentosa') ";
-            } else if (planning_area.equals("rcr")) {
-                sql += " planning_r = 'Central Region' AND "
-                        + " postal_dis NOT IN (9, 10, 11) AND" 
-                        + " planning_a NOT IN ('Downtown Core', 'Sentosa') ";
-            } else if (planning_area.equals("ocr")) {
-                sql += " planning_r != 'Central Region' ";
+            //+ "(TRANSACTED BETWEEN "+" AND "+") AND "
+            //+ "(AREA_SQM BETWEEN "+" AND "+")"
+            //+";";
+            if (!region_select.equals("all")) {
+                sql += " where ";
+                if (region_select.equals("ccr")) {
+                    // must be "OR"
+                    sql += " postal_dis IN (9, 10, 11) OR "
+                            + " planning_a IN ('Downtown Core', 'Sentosa') ";
+                } else if (region_select.equals("rcr")) {
+                    sql += " planning_r = 'Central Region' AND "
+                            + " postal_dis NOT IN (9, 10, 11) AND"
+                            + " planning_a NOT IN ('Downtown Core', 'Sentosa') ";
+                } else if (region_select.equals("ocr")) {
+                    sql += " planning_r != 'Central Region' ";
+                }
             }
-            
+
             sql += " ; ";
-            
+
             ps = conn.prepareStatement(sql);
             rs = ps.executeQuery();
 
@@ -158,6 +160,7 @@ public class TransactionDAO {
                 int postal_sector = rs.getInt("POSTAL_SEC");
                 int postal_code = rs.getInt("POSTAL_COD");
                 String planning_region = rs.getString("PLANNING_R");
+                String planning_area = rs.getString("PLANNING_A");
                 float x = rs.getFloat("X");
                 float y = rs.getFloat("Y");
 
@@ -177,7 +180,7 @@ public class TransactionDAO {
         }
         return transactionList;
     }
-    
+
     // return Json of all Transaction
     /**
      * return Json of all Transaction
@@ -187,9 +190,9 @@ public class TransactionDAO {
     public JsonArray toJSON(ArrayList<Transaction> result) {
 
         JsonArray resultArray = new JsonArray();
-        
+
         for (int i = 0; i < result.size(); i++) {
-            
+
             // add properties
             JsonObject properties = new JsonObject();
             properties.addProperty("REC_NO", result.get(i).get_rec_no());
@@ -214,7 +217,7 @@ public class TransactionDAO {
             properties.addProperty("PLANNING_AREA", result.get(i).get_planning_area());
             properties.addProperty("X", result.get(i).get_x());
             properties.addProperty("Y", result.get(i).get_y());
-            
+
             // add coordinates
             JsonArray coordinates = new JsonArray();
             JsonObject lat = new JsonObject();
@@ -223,34 +226,26 @@ public class TransactionDAO {
             lon.addProperty("lon", result.get(i).get_y());
             coordinates.add(lat);
             coordinates.add(lon);
-            
+
             // add geometry
             JsonObject geometry = new JsonObject();
             geometry.addProperty("type", "Point");
             geometry.add("coordinates", coordinates);
-            
+
             // add everything into one record
             JsonObject record = new JsonObject();
             record.addProperty("type", "Feature");
             record.addProperty("popupContent", "Hello!");
             record.add("properties", properties);
             record.add("geometry", geometry);
-            
+
             // append to resultArray
             resultArray.add(record);
         }
-        
+
         return resultArray;
-        
+
     }
-    
+
     // placeholder for more methods
-    
-    
-    
-    
-    
-    
-    
-    
 }

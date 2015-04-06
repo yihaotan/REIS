@@ -386,19 +386,25 @@
 
                         <!--The Legendary Data Retrieval Bar-->
                         <%
-                            String planning_area = String.valueOf(request.getAttribute("planning_area"));
-                            String start_price = String.valueOf(request.getAttribute("start_price"));
-                            String end_price = String.valueOf(request.getAttribute("end_price"));
-                            String start_size = String.valueOf(request.getAttribute("start_size"));
-                            String end_size = String.valueOf(request.getAttribute("end_size"));
-
-                            if (planning_area.equals("null")) {
-                                planning_area = "";
-                                start_price = "";
-                                end_price = "";
-                                start_size = "";
-                                end_size = "";
+                            String region_select = String.valueOf(request.getAttribute("region_select"));
+                            
+                            String ccr_string = "";
+                            String rcr_string = "";
+                            String ocr_string = "";
+                            String all_string = "";
+                            
+                            if (region_select.equals("null")) {
+                                ccr_string = "selected";
+                            } else if (region_select.equals("ccr")) {
+                                ccr_string = "selected";
+                            } else if (region_select.equals("rcr")) {
+                                rcr_string = "selected";
+                            } else if (region_select.equals("ocr")) {
+                                ocr_string = "selected";
+                            } else if (region_select.equals("all")) {
+                                all_string = "selected";
                             }
+                            
 
                         %>
                         <form class="navbar-form" action="DBServlet"> 
@@ -408,9 +414,10 @@
 
                                 <div class="input-group input-group">
                                     <select class="form-control" name="region_select">
-                                        <option value="ccr">Core Central Region (CCR)</option>
-                                        <option value="rcr" selected>Rest of Central Region (RCR)</option>
-                                        <option value="ocr">Outside Central Region (OCR)</option>
+                                        <option value="ccr" <%=ccr_string%>>Core Central Region (CCR)</option>
+                                        <option value="rcr" <%=rcr_string%>>Rest of Central Region (RCR)</option>
+                                        <option value="ocr" <%=ocr_string%>>Outside Central Region (OCR)</option>
+                                        <option value="all" <%=all_string%>>All Transaction Records</option>
                                     </select>
                                 </div>
 
