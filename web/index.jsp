@@ -445,8 +445,34 @@
                                 </div>
                                 -->
                                 <button type="submit" class="btn btn-primary">Submit</button>
+                                 <a href="javascript:dc.filterAll(); dc.renderAll();" class="btn btn-warning btn-line">
+                                        <i class="glyphicon glyphicon-zoom-in"></i> Reset
+                                  </a>
                             </div>
+                                  
                         </form>
+                    
+                           <div class="dc-data-count" id='count-table' >
+                                            <div class="stat_text">
+                                                <span>
+                                                    <strong>
+                                                        <i class="glyphicon glyphicon-zoom-in"></i> 
+                                                        You have selected
+                                                        <span class="filter-count">0</span>
+                                                        out of 
+                                                        <span class="total-count">0</span>
+                                                        records   
+                                                    </strong>
+                                                </span>
+                                                
+                                            </div>
+                                        </div>  
+                                
+                                        
+                                    
+                                    
+                      
+                           
 
 
                     </div><!-- /.main-bar -->
