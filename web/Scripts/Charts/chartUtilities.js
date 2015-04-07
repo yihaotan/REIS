@@ -48,16 +48,16 @@ function getMinPsm(data){
     return minPsm;
 }
 function getMaxSize(data){
-    var minAreaSqm=d3.max(data,function(d){
-        return d.areasqm;
-    });
-    return minAreaSqm;
-}
-function getMinSize(data){
-    var maxAreaSqm =d3.min(data,function(d){
+    var maxAreaSqm=d3.max(data,function(d){
         return d.areasqm;
     });
     return maxAreaSqm;
+}
+function getMinSize(data){
+    var minAreaSqm =d3.min(data,function(d){
+        return d.areasqm;
+    });
+    return minAreaSqm;
 }
 function parseDate(dateStr) {
     var format = d3.time.format("%d/%m/%Y");

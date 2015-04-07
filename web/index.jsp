@@ -556,67 +556,64 @@
                                 </ul>
                             </div>
                         </div>
-
-
-                        <!-- Row for Time Series -->
-                        <div class="row" id="sortable" >
-                            <div class="col-lg-12">
+                        <div class="row">
+                        <div class="col-lg-12 " id="sortable2">
                                 <div class="box">
-
-                                    <!-- Header for Time Series -->
+                                    <!-- Header -->
                                     <header>
                                         <div class="icons">
-                                            <i class="fa fa-calendar-o"></i>
+                                            <i class="fa fa-globe"></i>
                                         </div>
-                                        <h5>Time Series</h5>
+                                        <h5>Geospatial View</h5>
                                         <div class="toolbar">
                                             <div class="btn-group">
-                                                <a href="#dateVolume" data-toggle="collapse" class="btn btn-sm btn-default minimize-box">
+                                                <div id="googlestreetviewbtn" class="btn btn-info btn-sm" style="background:#ff3333">
+                                                    Street View
+                                                </div> 
+                                                <div id="resetmap" class="btn btn-info btn-sm">
+                                                    Reset Map
+                                                </div> 
+                                            </div>
+                                            <div class="btn-group">
+                                                <a href="#mapView" data-toggle="collapse" class="btn btn-sm btn-default minimize-box">
                                                     <i class="fa fa-angle-up"></i>
                                                 </a> 
                                                 <a class="btn btn-danger btn-sm close-box">
                                                     <i class="fa fa-times"></i>
                                                 </a> 
                                             </div>
+
                                         </div>
                                     </header>
-
-                                    <!-- Content for Time Series -->
-                                    <div id="dateVolume" class="body collapse in">
-
-                                        <!-- Zoom In Stacked Chart -->
+                                    <!-- Content -->
+                                    <div id="mapView" class="body collapse in">
+                                        <div id="map"></div>
                                         <div class="row">
-                                            
 
-                                            <div id='dc-control-chart'>
-                                                <h6>
-                                                    <font><strong>Monthly Psf</strong></font>
-                                                </h6>
-                                            </div>
-                                        </div>
-                                        <!-- Daily Volume Chart -->
-                                        <div class="row">
-                                            <div id='dc-stackDateVolume-chart'>
-                                                <h6>
-                                                    <font><strong>Monthly Transaction Filter Volume</strong></font>
-                                                    <h7>[Slide to filter dates]</h7>
+                                            <div id="dc-histogram">
+                                                <h6><strong>Psf Histogram</strong> 
+                                                    <h7>[Slide to filter psf]</h7>
                                                 </h6>
 
                                             </div>
+
+                                        
+
+                                            <div id="dc-sizeHistogram">
+                                                <h6><strong>Sqm Histogram</strong>
+                                                    <h7>[Slide to filter sqm]</h7>
+                                                </h6>
+
+                                            </div>
+
                                         </div>
-
-
-                                    </div>         
-
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-
-
-
-                        <!-- Left Pane for Basic Charts-->
+                    </div>
+                         <!-- Left Pane for Basic Charts-->
                         <div class="row" id="sortable1">
-                            <div class="col-lg-4 ">
+                            <div class="col-lg-12 ">
                                 <div class="box">
 
                                     <!-- Header -->
@@ -662,11 +659,8 @@
                                                     </span>
                                                 </h6>
                                             </div>
-                                        </div>
-
-                                        <!-- Sale Volume Chart -->
-                                        <div class="row">
-                                            <div id='dc-propertySaleVolume-chart'>
+                                            
+                                             <div id='dc-propertySaleVolume-chart'>
                                                 <h6><strong>Sales Type</strong>
                                                     <button type="button" class="btn btn-primary btn-xs" id="bar2" aria-label="Left Align">
                                                         <span class="glyphicon glyphicon-signal" aria-hidden="true"></span>
@@ -685,9 +679,7 @@
                                                     </span>
                                                 </h6>
                                             </div>
-                                        </div>
-                                        <!-- Tenure Volume Chart -->
-                                        <div class="row">
+                                            
                                             <div id='dc-propertyTenureVolume-chart'>
                                                 <h6><strong>Tenure Type</strong>
                                                     <button type="button" class="btn btn-primary btn-xs" id="bar3" aria-label="Left Align">
@@ -706,11 +698,8 @@
                                                         </a>
                                                     </span>
                                                 </h6>
-                                            </div> 
-                                        </div>
-
-                                        <!-- Region Volume Chart -->
-                                        <div class="row">
+                                            </div>
+                                            
                                             <div id='dc-propertyRegionVolume-chart'>
                                                 <h6><strong>Region Type</strong>
                                                     <button type="button" class="btn btn-primary btn-xs" id="bar4" aria-label="Left Align">
@@ -730,7 +719,16 @@
                                                     </span>
                                                 </h6>
                                             </div> 
+                                            
                                         </div>
+
+                                        <!-- Sale Volume Chart -->
+                                       
+                                        <!-- Tenure Volume Chart -->
+                                        
+
+                                        <!-- Region Volume Chart -->
+                                        
 
 
                                     </div>
@@ -739,61 +737,110 @@
 
 
                             <!-- Lower Pane for Map -->
-                            <div class="col-lg-7 " id="sortable2">
+                            
+                        </div>
+
+                        <!-- Row for Time Series -->
+                        <div class="row" id="sortable" >
+                            <div class="col-lg-5">
                                 <div class="box">
-                                    <!-- Header -->
+
+                                    <!-- Header for Time Series -->
                                     <header>
                                         <div class="icons">
-                                            <i class="fa fa-globe"></i>
+                                            <i class="fa fa-calendar-o"></i>
                                         </div>
-                                        <h5>Geospatial View</h5>
+                                        <h5>Time Series</h5>
                                         <div class="toolbar">
                                             <div class="btn-group">
-                                                <div id="googlestreetviewbtn" class="btn btn-info btn-sm" style="background:#ff3333">
-                                                    Street View
-                                                </div> 
-                                                <div id="resetmap" class="btn btn-info btn-sm">
-                                                    Reset Map
-                                                </div> 
-                                            </div>
-                                            <div class="btn-group">
-                                                <a href="#mapView" data-toggle="collapse" class="btn btn-sm btn-default minimize-box">
+                                                <a href="#dateVolume" data-toggle="collapse" class="btn btn-sm btn-default minimize-box">
                                                     <i class="fa fa-angle-up"></i>
                                                 </a> 
                                                 <a class="btn btn-danger btn-sm close-box">
                                                     <i class="fa fa-times"></i>
                                                 </a> 
                                             </div>
-
                                         </div>
                                     </header>
-                                    <!-- Content -->
-                                    <div id="mapView" class="body collapse in">
-                                        <div id="map"></div>
-                                        <div class="row">
 
-                                            <div id="dc-histogram">
-                                                <h6><strong>Psf Histogram</strong> 
-                                                    <h7>[Slide to filter psf]</h7>
+                                    <!-- Content for Time Series -->
+                                    <div id="dateVolume" class="body collapse in">
+
+                                        <!-- Zoom In Stacked Chart -->
+                                        <div class="row">
+                                            
+
+                                            <div id='dc-control-chart'>
+                                                <h6>
+                                                    <font><strong>Monthly Psf</strong></font>
+                                                </h6>
+                                            </div>
+                                       
+                                        <!-- Daily Volume Chart -->
+                                       
+                                            
+                                        </div>
+
+
+                                    </div>         
+
+                                </div>
+                            </div>
+                            <div class="col-lg-7">
+                                <div class="box">
+
+                                    <!-- Header for Time Series -->
+                                    <header>
+                                        <div class="icons">
+                                            <i class="fa fa-calendar-o"></i>
+                                        </div>
+                                        <h5>Time Series</h5>
+                                        <div class="toolbar">
+                                            <div class="btn-group">
+                                                <a href="#dateVolume1" data-toggle="collapse" class="btn btn-sm btn-default minimize-box">
+                                                    <i class="fa fa-angle-up"></i>
+                                                </a> 
+                                                <a class="btn btn-danger btn-sm close-box">
+                                                    <i class="fa fa-times"></i>
+                                                </a> 
+                                            </div>
+                                        </div>
+                                    </header>
+
+                                    <!-- Content for Time Series -->
+                                    <div id="dateVolume1" class="body collapse in">
+
+                                        <!-- Zoom In Stacked Chart -->
+                                        <div class="row">
+                                            
+
+                                            <div id='dc-stackDateVolume-chart'>
+                                                <h6>
+                                                    <font><strong>Monthly Transaction Filter Volume</strong></font>
+                                                    <h7>[Slide to filter dates]</h7>
                                                 </h6>
 
                                             </div>
-
+                                       
+                                        <!-- Daily Volume Chart -->
+                                       
+                                            
                                         </div>
-                                        <div class="row">
 
-                                            <div id="dc-sizeHistogram">
-                                                <h6><strong>Sqm Histogram</strong>
-                                                    <h7>[Slide to filter sqm]</h7>
-                                                </h6>
 
-                                            </div>
+                                    </div>         
 
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
+                        
+                        
+                        
+                        
+
+
+
+                       
 
                         <!--Begin Datatables-->
                         <div class="row" id="sortable3">
