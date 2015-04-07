@@ -486,7 +486,7 @@
                                                     <th data-dynatable-column="tenure" data-dynatable-sorts>Tenure</th>
                                                     <th data-dynatable-column="total_units" data-dynatable-sorts>Total Units</th>
                                                     <th data-dynatable-column="distance" data-dynatable-sorts>Distance</th>
-                                                    <th data-dynatable-column="median_price_ps" data-dynatable-sorts>Median Price</th>
+                                                    <th data-dynatable-column="median_price_psf" data-dynatable-sorts>Median Price</th>
                                                 </tr>
                                             </thead>      
 
