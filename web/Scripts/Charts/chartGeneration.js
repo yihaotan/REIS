@@ -31,7 +31,7 @@ function plotStackedTimeBarChart(chartName,dimensionName,groupName,stackGroupNam
             .stack(stackGroupName3,"E.Condominium")
             .stack(stackGroupName4,"Semi-Detached")
             .stack(stackGroupName5,"Terrace")
-            .legend(dc.legend().x(0).y(110).itemWidth(100).legendWidth(700).horizontal(true))
+            .legend(dc.legend().x(45).y(110).itemWidth(100).legendWidth(700).horizontal(true))
             .renderlet(function (chart) {
                 chart.selectAll("g.rect.stack").attr("fill", function (d) {
                     return getColors(d.key);

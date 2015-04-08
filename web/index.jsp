@@ -439,10 +439,12 @@
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col-lg-3 col-md-6">
+                                        
                                     <form class="navbar-form" action="DBServlet"> 
                                         
                                     
                                         <div class="input-group input-group" style="float:left">
+                                           
                                             <select class="form-control" name="region_select">
                                                 <option value="ccr" <%=ccr_string%>>Core Central Region (CCR)</option>
                                                 <option value="rcr" <%=rcr_string%>>Rest of Central Region (RCR)</option>
@@ -451,7 +453,7 @@
                                             </select>
                                         </div>
                                         <button type="submit" class="btn btn-primary">Submit</button>
-                                        
+                                       
                                     </form>
                                 
                                     </div>
@@ -494,7 +496,7 @@
                                     <!-- Header -->
                                     <header>
                                         <div class="icons">
-                                            <i class="fa fa-globe"></i>
+                                            <i class="fa fa-dollar"></i>
                                         </div>
                                         <h5>Price and Size View</h5>
                                         <div class="toolbar">
