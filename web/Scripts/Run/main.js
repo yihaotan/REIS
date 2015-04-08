@@ -6,9 +6,9 @@ function loadData(geoJsonData){
      geoJsonData.forEach(function (d) {
         d.projectName = d.properties.PROJECT_NAME;
         d.address = d.properties.ADDRESS;
-        d.units = d.properties.NO_OF_UNIT;
-        d.areasqm = +d.properties.AREA_SQM;
-        d.price = +d.properties.TRANSACTED_PRICE;
+        d.units = d.properties.NO_OF_UNITS;
+        d.areasqm = +d.properties.AREA_SQM / d.units;
+        d.price = +d.properties.TRANSACTED_PRICE / d.units;
         d.psm = +d.properties.UNIT_PRICE_PSM;
         d.psf = +d.properties.UNIT_PRICE_PSF;
         d.date = parseDate(d.properties.CONTRACT_DATE);
@@ -344,19 +344,19 @@ function generateMapAndCharts(geoJsonData){
         plotBoxPlotChart(boxPlotChart,780,220,10,0,20,75,"Psf $",propertyDimension,boxPlotPriceGroup);
     }
 
-    var minPsf = psfDimension.bottom(1)[0].psf;
-    var maxPsf = psfDimension.top(1)[0].psf;
+    //var minPsf = psfDimension.bottom(1)[0].psf;
+    //var maxPsf = psfDimension.top(1)[0].psf;
  
-    alert(minPsf);
-    alert(maxPsf);
+    //alert(minPsf);
+    //alert(maxPsf);
     
-   
     var minSize = sizeDimension.bottom(1)[0].areasqm;
     var maxSize = sizeDimension.top(1)[0].areasqm;
     
     alert(minSize);
     alert(maxSize);
-   alert("Test");
+   
+    alert("gg");
     
     function plotPsfHistogram(){
         plotHistogramChart(histogram,500,170,psfDimension,psfGroup,10,0,40,40,getMinPsf(geoJsonData),getMaxPsf(geoJsonData),0,50,5,"Psf $","Volume");
@@ -364,7 +364,7 @@ function generateMapAndCharts(geoJsonData){
     }
     
     function plotSizeHistogram(){
-         plotHistogramChart(sizeHistogram ,500,170,sizeDimension,sizeGroup,10,0,40,40,getMinSize(geoJsonData),getMaxSize(geoJsonData),0,60,5,"Sqm","Volume");
+         plotHistogramChart(sizeHistogram ,500,170,sizeDimension,sizeGroup,10,0,40,40,getMinSize(geoJsonData),520,0,50,5,"Sqm","Volume");
          filterMap(sizeHistogram,propertyDimension);
     }
     /*function plotPsmHistogram(){

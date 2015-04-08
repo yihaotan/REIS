@@ -194,7 +194,7 @@ function plotHistogramChart(histogramName,widthSize,heightSize,dimensionName,gro
             .dimension(dimensionName)
             .group(groupName)
             .margins({top: marginsTop, right: marginsRight, bottom: marginsBottom, left: marginsLeft})
-            .x(d3.scale.linear().domain([minRange,maxRange]))
+            .x(d3.scale.linear().domain([minRange, maxRange]))
             .xAxisLabel(xAxisLabelName)
             .colors(['rgb(247,252,253)','rgb(229,245,249)','rgb(204,236,230)','rgb(153,216,201)','rgb(102,194,164)','rgb(65,174,118)','rgb(35,139,69)','rgb(0,109,44)','rgb(0,68,27)'])
             .colorDomain([-500, 500])
@@ -207,7 +207,6 @@ function plotHistogramChart(histogramName,widthSize,heightSize,dimensionName,gro
             .clipPadding(clipPaddingSize)
             .xUnits(function(){return xUnitsSize;})
             .elasticY(true)
-            .elasticX(true)
             .xAxis()
             .ticks(tickNumber);
         
