@@ -46,6 +46,9 @@ public class ACServlet extends HttpServlet {
             int hawkercentre_check = 0;
             int childcare_check = 0;
             int chasclinic_check = 0;
+            int mrtstation_check = 0;
+            int primaryschool_check = 0;
+            int shoppingcentre_check = 0;
             for (int p = 0; p < facility_list.length; p++) {
                 String facility_name = facility_list[p];
                 if (facility_name.equals("hawkercentre")) {
@@ -56,6 +59,15 @@ public class ACServlet extends HttpServlet {
                 }
                 if (facility_name.equals("chasclinic")) {
                     chasclinic_check = 1;
+                }
+                if (facility_name.equals("mrtstation")) {
+                    mrtstation_check = 1;
+                }
+                if (facility_name.equals("primaryschool")) {
+                    primaryschool_check = 1;
+                }
+                if (facility_name.equals("shoppingcentre")) {
+                    shoppingcentre_check = 1;
                 }
             }
             
@@ -85,15 +97,17 @@ public class ACServlet extends HttpServlet {
             int hawkercentre_weight = Integer.parseInt(String.valueOf(request.getParameter("hawkercentre_select")));
             int childcare_weight = Integer.parseInt(String.valueOf(request.getParameter("childcare_select")));
             int chasclinic_weight = Integer.parseInt(String.valueOf(request.getParameter("chasclinic_select")));
+            int mrtstation_weight = Integer.parseInt(String.valueOf(request.getParameter("mrtstation_select")));
+            int primaryschool_weight = Integer.parseInt(String.valueOf(request.getParameter("primaryschool_select")));
+            int shoppingcentre_weight = Integer.parseInt(String.valueOf(request.getParameter("shoppingcentre_select")));
             
-            System.out.println(hawkercentre_weight);
-            System.out.println(childcare_weight);
-            System.out.println(chasclinic_weight);
-            
-            int[] weight_list = new int[3];
+            int[] weight_list = new int[6];
             weight_list[0] = hawkercentre_weight;
             weight_list[1] = childcare_weight;
             weight_list[2] = chasclinic_weight;
+            weight_list[3] = mrtstation_weight;
+            weight_list[4] = primaryschool_weight;
+            weight_list[5] = shoppingcentre_weight;
             
             // REAL STUFF
             HexagonDAO hdao = new HexagonDAO();
@@ -113,12 +127,20 @@ public class ACServlet extends HttpServlet {
             
             // SEND RESULT BACK
             request.setAttribute("accessibility_result", json);
+            
             request.setAttribute("hawkercentre_check", hawkercentre_check);
             request.setAttribute("childcare_check", childcare_check);
             request.setAttribute("chasclinic_check", chasclinic_check);
+            request.setAttribute("mrtstation_check", mrtstation_check);
+            request.setAttribute("primaryschool_check", primaryschool_check);
+            request.setAttribute("shoppingcentre_check", shoppingcentre_check);
+            
             request.setAttribute("hawkercentre_weight", hawkercentre_weight);
             request.setAttribute("childcare_weight", childcare_weight);
             request.setAttribute("chasclinic_weight", chasclinic_weight);
+            request.setAttribute("mrtstation_weight", mrtstation_weight);
+            request.setAttribute("primaryschool_weight", primaryschool_weight);
+            request.setAttribute("shoppingcentre_weight", shoppingcentre_weight);
             
             // ALSO, INCLUDE THRESHOLD VALUES FOR COLOUR SCHEME
             request.setAttribute("total_80", total_80);

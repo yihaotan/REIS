@@ -87,9 +87,14 @@ function starplot(feature) {
             "Overall": feature.properties.density,
             "Result": feature.properties.result,
             "Full": feature.properties.full_mark,
+            
             "Hawkercentre": feature.properties.hawkercentre_score,
             "Childcare": feature.properties.childcare_score,
-            "Chasclinics": feature.properties.chasclinic_score
+            "Chasclinic": feature.properties.chasclinic_score, 
+            
+            "Mrtstation": feature.properties.mrtstation_score, 
+            "Primaryschool": feature.properties.primaryschool_score, 
+            "Shoppingcentre": feature.properties.shoppingcentre_score
         }
     ];
     var margin = {
@@ -112,13 +117,19 @@ function starplot(feature) {
             .properties([
                 'Hawkercentre',
                 'Childcare',
-                'Chasclinics'
+                'Chasclinic', 
+                'Mrtstation',
+                'Primaryschool',
+                'Shoppingcentre'
             ])
             .scales(scale)
             .labels([
                 'Hawkercentre',
                 'Childcare',
-                'Chasclinics'
+                'Chasclinic', 
+                'Mrtstation',
+                'Primaryschool',
+                'Shoppingcentre'
             ])
             .title(function (d) {
                 return "Score: " + d.Result + " / " + d.Full + " = " + d3.round(d.Overall, 2);
@@ -133,8 +144,17 @@ function starplot(feature) {
         if (d.Childcare === -1) {
             d.Childcare = 0;
         }
-        if (d.Chasclinics === -1) {
-            d.Chasclinics = 0;
+        if (d.Chasclinic === -1) {
+            d.Chasclinic = 0;
+        }
+        if (d.Mrtstation === -1) {
+            d.Mrtstation = 0;
+        }
+        if (d.Primaryschool === -1) {
+            d.Primaryschool = 0;
+        }
+        if (d.Shoppingcentre === -1) {
+            d.Shoppingcentre = 0;
         }
 
         star.includeLabels(i % 4 === 0 ? true : false);

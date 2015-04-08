@@ -263,12 +263,12 @@
                 <!-- Second Row Control for Search/Retrieval -->
                 <header class="head">
 
-                    <!--Not really a search bar-->
-                    <div class="search-bar">
+                    <!--Left part: Not really a search bar-->
+<!--                    <div class="search-bar">
                         <h3 style="float: right;">
                             <i class="fa fa-filter"></i> &nbsp;Filtering By
                         </h3>
-                    </div><!-- /.search-bar -->
+                    </div> /.search-bar -->
 
                     <div class="main-bar">
 
@@ -335,10 +335,16 @@
                                         String hawkercentre_check_num = String.valueOf(request.getAttribute("hawkercentre_check"));
                                         String childcare_check_num = String.valueOf(request.getAttribute("childcare_check"));
                                         String chasclinic_check_num = String.valueOf(request.getAttribute("chasclinic_check"));
-
+                                        String mrtstation_check_num = String.valueOf(request.getAttribute("mrtstation_check"));
+                                        String primaryschool_check_num = String.valueOf(request.getAttribute("primaryschool_check"));
+                                        String shoppingcentre_check_num = String.valueOf(request.getAttribute("shoppingcentre_check"));
+                                        
                                         String hawkercentre_check = "";
                                         String childcare_check = "";
                                         String chasclinic_check = "";
+                                        String mrtstation_check = "";
+                                        String primaryschool_check = "";
+                                        String shoppingcentre_check = "";
 
                                         if (hawkercentre_check_num.equals("1")) {
                                             hawkercentre_check = "checked";
@@ -349,12 +355,25 @@
                                         if (chasclinic_check_num.equals("1")) {
                                             chasclinic_check = "checked";
                                         }
+                                        if (mrtstation_check_num.equals("1")) {
+                                            mrtstation_check = "checked";
+                                        }
+                                        if (primaryschool_check_num.equals("1")) {
+                                            primaryschool_check = "checked";
+                                        }
+                                        if (shoppingcentre_check_num.equals("1")) {
+                                            shoppingcentre_check = "checked";
+                                        }
 
                                         // HOW IMPORTANT
                                         String hawkercentre_weight = String.valueOf(request.getAttribute("hawkercentre_weight"));
                                         String childcare_weight = String.valueOf(request.getAttribute("childcare_weight"));
                                         String chasclinic_weight = String.valueOf(request.getAttribute("chasclinic_weight"));
-
+                                        String mrtstation_weight = String.valueOf(request.getAttribute("mrtstation_weight"));
+                                        String primaryschool_weight = String.valueOf(request.getAttribute("primaryschool_weight"));
+                                        String shoppingcentre_weight = String.valueOf(request.getAttribute("shoppingcentre_weight"));
+                                        
+                                        
                                         String hawkercentre_1 = "";
                                         String hawkercentre_2 = "";
                                         String hawkercentre_3 = "";
@@ -369,6 +388,21 @@
                                         String chasclinic_2 = "";
                                         String chasclinic_3 = "";
                                         String chasclinic_4 = "";
+                                        
+                                        String mrtstation_1 = "";
+                                        String mrtstation_2 = "";
+                                        String mrtstation_3 = "";
+                                        String mrtstation_4 = "";
+                                        
+                                        String primaryschool_1 = "";
+                                        String primaryschool_2 = "";
+                                        String primaryschool_3 = "";
+                                        String primaryschool_4 = "";
+                                        
+                                        String shoppingcentre_1 = "";
+                                        String shoppingcentre_2 = "";
+                                        String shoppingcentre_3 = "";
+                                        String shoppingcentre_4 = "";
 
                                         if (hawkercentre_weight.equals("1")) {
                                             hawkercentre_1 = "selected";
@@ -399,6 +433,43 @@
                                         } else if (chasclinic_weight.equals("4")) {
                                             chasclinic_4 = "selected";
                                         }
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        if (mrtstation_weight.equals("1")) {
+                                            mrtstation_1 = "selected";
+                                        } else if (mrtstation_weight.equals("2")) {
+                                            mrtstation_2 = "selected";
+                                        } else if (mrtstation_weight.equals("3")) {
+                                            mrtstation_3 = "selected";
+                                        } else if (mrtstation_weight.equals("4")) {
+                                            mrtstation_4 = "selected";
+                                        }
+                                        
+                                        if (primaryschool_weight.equals("1")) {
+                                            primaryschool_1 = "selected";
+                                        } else if (primaryschool_weight.equals("2")) {
+                                            primaryschool_2 = "selected";
+                                        } else if (primaryschool_weight.equals("3")) {
+                                            primaryschool_3 = "selected";
+                                        } else if (primaryschool_weight.equals("4")) {
+                                            primaryschool_4 = "selected";
+                                        }
+                                        
+                                        if (shoppingcentre_weight.equals("1")) {
+                                            shoppingcentre_1 = "selected";
+                                        } else if (shoppingcentre_weight.equals("2")) {
+                                            shoppingcentre_2 = "selected";
+                                        } else if (shoppingcentre_weight.equals("3")) {
+                                            shoppingcentre_3 = "selected";
+                                        } else if (shoppingcentre_weight.equals("4")) {
+                                            shoppingcentre_4 = "selected";
+                                        }
+                                        
 
 
                                     %>
@@ -454,6 +525,53 @@
                                                                 <option value="2" <%=chasclinic_2%>>Average - 2</option>
                                                                 <option value="3" <%=chasclinic_3%>>Important - 3</option>
                                                                 <option value="4" <%=chasclinic_4%>>Extreme - 4</option>
+                                                            </select>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                
+                                                
+                                                <!-- New Facilities -->
+                                                <tr>
+                                                    <td><input type="checkbox" name="facility"  value="mrtstation" <%=mrtstation_check%>></td>
+                                                    <td>MRT Stations</td>
+                                                    <td>
+                                                        <div class="input-group input-group-sm">
+                                                            <select class="form-control" name="mrtstation_select">
+                                                                <option value="1" <%=mrtstation_1%>>Trivial - 1</option>
+                                                                <option value="2" <%=mrtstation_2%>>Average - 2</option>
+                                                                <option value="3" <%=mrtstation_3%>>Important - 3</option>
+                                                                <option value="4" <%=mrtstation_4%>>Extreme - 4</option>
+                                                            </select>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                
+                                                <tr>
+                                                    <td><input type="checkbox" name="facility"  value="primaryschool" <%=primaryschool_check%>></td>
+                                                    <td>Primary Schools</td>
+                                                    <td>
+                                                        <div class="input-group input-group-sm">
+                                                            <select class="form-control" name="primaryschool_select">
+                                                                <option value="1" <%=primaryschool_1%>>Trivial - 1</option>
+                                                                <option value="2" <%=primaryschool_2%>>Average - 2</option>
+                                                                <option value="3" <%=primaryschool_3%>>Important - 3</option>
+                                                                <option value="4" <%=primaryschool_4%>>Extreme - 4</option>
+                                                            </select>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                
+                                                <tr>
+                                                    <td><input type="checkbox" name="facility"  value="shoppingcentre" <%=shoppingcentre_check%>></td>
+                                                    <td>Shopping Centres</td>
+                                                    <td>
+                                                        <div class="input-group input-group-sm">
+                                                            <select class="form-control" name="shoppingcentre_select">
+                                                                <option value="1" <%=shoppingcentre_1%>>Trivial - 1</option>
+                                                                <option value="2" <%=shoppingcentre_2%>>Average - 2</option>
+                                                                <option value="3" <%=shoppingcentre_3%>>Important - 3</option>
+                                                                <option value="4" <%=shoppingcentre_4%>>Extreme - 4</option>
                                                             </select>
                                                         </div>
                                                     </td>

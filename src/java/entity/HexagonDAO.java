@@ -27,11 +27,14 @@ public class HexagonDAO {
     private ArrayList<Hexagon> hexagonList;
     private final String TABLE = "REALIS_2013";
   
-    int grid_size;
+    int grid_size = 1859;
     
     double [] all_hawkercentre_distance;
     double [] all_childcare_distance;
     double [] all_chasclinic_distance;
+    double [] all_mrtstation_distance;
+    double [] all_primaryschool_distance;
+    double [] all_shoppingcentre_distance;
     double [] all_score;
     
     Percentile percentile = new Percentile();
@@ -50,6 +53,21 @@ public class HexagonDAO {
     double chasclinic_40;
     double chasclinic_60;
     double chasclinic_80;
+    
+    double mrtstation_20;
+    double mrtstation_40;
+    double mrtstation_60;
+    double mrtstation_80;
+    
+    double primaryschool_20;
+    double primaryschool_40;
+    double primaryschool_60;
+    double primaryschool_80;
+    
+    double shoppingcentre_20;
+    double shoppingcentre_40;
+    double shoppingcentre_60;
+    double shoppingcentre_80;
     
     double total_20;
     double total_40;
@@ -79,7 +97,7 @@ public class HexagonDAO {
         try {
             conn = ConnectionManager.getConnection();
 
-            // 3 tables query
+            // 6, instead of 3 tables query
             String hawkercentre_table
                     = " hawkercentre_table AS ("
                     + " SELECT grid_centroid.gid as grid_id, "
@@ -110,6 +128,40 @@ public class HexagonDAO {
                     + "                         ) AS chasclinic_row_number"
                     + " FROM grid_centroid, chasclinic"
                     + " ) ";
+            
+            
+            // afdsfsadfsafdsf
+            String mrtstation_table
+                    = " mrtstation_table AS ("
+                    + " SELECT grid_centroid.gid as grid_id,  "
+                    + "       mrtstation.gid,  "
+                    + "       ST_Distance(grid_centroid.geom, mrtstation.geom) as mrtstation_distance, "
+                    + "       ROW_NUMBER() OVER (PARTITION BY grid_centroid.gid "
+                    + "                          ORDER BY ST_Distance(grid_centroid.geom, mrtstation.geom) ASC"
+                    + "                         ) AS mrtstation_row_number"
+                    + " FROM grid_centroid, mrtstation"
+                    + " ) ";
+            String primaryschool_table
+                    = " primaryschool_table AS ("
+                    + " SELECT grid_centroid.gid as grid_id,  "
+                    + "       primaryschool.gid,  "
+                    + "       ST_Distance(grid_centroid.geom, primaryschool.geom) as primaryschool_distance, "
+                    + "       ROW_NUMBER() OVER (PARTITION BY grid_centroid.gid "
+                    + "                          ORDER BY ST_Distance(grid_centroid.geom, primaryschool.geom) ASC"
+                    + "                         ) AS primaryschool_row_number"
+                    + " FROM grid_centroid, primaryschool"
+                    + " ) ";
+            String shoppingcentre_table
+                    = " shoppingcentre_table AS ("
+                    + " SELECT grid_centroid.gid as grid_id,  "
+                    + "       shoppingcentre.gid,  "
+                    + "       ST_Distance(grid_centroid.geom, shoppingcentre.geom) as shoppingcentre_distance, "
+                    + "       ROW_NUMBER() OVER (PARTITION BY grid_centroid.gid "
+                    + "                          ORDER BY ST_Distance(grid_centroid.geom, shoppingcentre.geom) ASC"
+                    + "                         ) AS shoppingcentre_row_number"
+                    + " FROM grid_centroid, shoppingcentre"
+                    + " ) ";
+            
 
             String base_table = "WITH ";
 
@@ -147,6 +199,27 @@ public class HexagonDAO {
                     where_list += " AND grid_centroid.gid = chasclinic_table.grid_id "
                             + " AND chasclinic_row_number <= " + "1";
                 }
+                if (facility_name.equals("mrtstation")) {
+                    base_table += mrtstation_table + ",";
+                    select_list += "     AVG(mrtstation_distance) as mrtstation, ";
+                    from_list += "     mrtstation_table,";
+                    where_list += " AND grid_centroid.gid = mrtstation_table.grid_id "
+                            + " AND mrtstation_row_number <= " + "1";
+                }
+                if (facility_name.equals("primaryschool")) {
+                    base_table += primaryschool_table + ",";
+                    select_list += "     AVG(primaryschool_distance) as primaryschool, ";
+                    from_list += "     primaryschool_table,";
+                    where_list += " AND grid_centroid.gid = primaryschool_table.grid_id "
+                            + " AND primaryschool_row_number <= " + "1";
+                }
+                if (facility_name.equals("shoppingcentre")) {
+                    base_table += shoppingcentre_table + ",";
+                    select_list += "     AVG(shoppingcentre_distance) as shoppingcentre, ";
+                    from_list += "     shoppingcentre_table,";
+                    where_list += " AND grid_centroid.gid = shoppingcentre_table.grid_id "
+                            + " AND shoppingcentre_row_number <= " + "1";
+                }
             }
 
             base_table = base_table.substring(0, base_table.length() - 1);
@@ -165,10 +238,13 @@ public class HexagonDAO {
             ps = conn.prepareStatement(sql);
             rs = ps.executeQuery();
             
-            grid_size = 1859;
             all_hawkercentre_distance = new double[grid_size];
             all_childcare_distance = new double[grid_size];
             all_chasclinic_distance = new double[grid_size];
+            all_mrtstation_distance = new double[grid_size];
+            all_primaryschool_distance = new double[grid_size];
+            all_shoppingcentre_distance = new double[grid_size];
+            
             int counter = 0;
             while (rs.next()) {
                 
@@ -194,6 +270,21 @@ public class HexagonDAO {
                         double chasclinic = rs.getDouble("chasclinic");
                         hm.put("chasclinic", chasclinic);
                         all_chasclinic_distance[counter] = chasclinic;
+                    }
+                    if (facility_name.equals("mrtstation")) {
+                        double mrtstation = rs.getDouble("mrtstation");
+                        hm.put("mrtstation", mrtstation);
+                        all_mrtstation_distance[counter] = mrtstation;
+                    }
+                    if (facility_name.equals("primaryschool")) {
+                        double primaryschool = rs.getDouble("primaryschool");
+                        hm.put("primaryschool", primaryschool);
+                        all_primaryschool_distance[counter] = primaryschool;
+                    }
+                    if (facility_name.equals("shoppingcentre")) {
+                        double shoppingcentre = rs.getDouble("shoppingcentre");
+                        hm.put("shoppingcentre", shoppingcentre);
+                        all_shoppingcentre_distance[counter] = shoppingcentre;
                     }
                 }
 
@@ -236,6 +327,9 @@ public class HexagonDAO {
             double hawkercentre = -1;
             double childcare = -1;
             double chasclinic = -1;
+            double mrtstation = -1;
+            double primaryschool = -1;
+            double shoppingcentre = -1;
 
             for (int p = 0; p < facility_list.length; p++) {
                 String facility_name = facility_list[p];
@@ -248,13 +342,28 @@ public class HexagonDAO {
                 if (facility_name.equals("chasclinic")) {
                     chasclinic = (Double) hm.get("chasclinic");
                 }
+                if (facility_name.equals("mrtstation")) {
+                    mrtstation = (Double) hm.get("mrtstation");
+                }
+                if (facility_name.equals("primaryschool")) {
+                    primaryschool = (Double) hm.get("primaryschool");
+                }
+                if (facility_name.equals("shoppingcentre")) {
+                    shoppingcentre = (Double) hm.get("shoppingcentre");
+                }
             }
             
             double hawkercentre_score = calculate_hawkercentre(hawkercentre);
-            double childcare_score = calculate_hawkercentre(childcare);
-            double chasclinic_score = calculate_hawkercentre(chasclinic);
+            double childcare_score = calculate_childcare(childcare);
+            double chasclinic_score = calculate_chasclinic(chasclinic);
+            double mrtstation_score = calculate_mrtstation(mrtstation);
+            double primaryschool_score = calculate_primaryschool(primaryschool);
+            double shoppingcentre_score = calculate_shoppingcentre(shoppingcentre);
+            // here
             
-            double[] array = calculate_accessbility(hawkercentre_score, childcare_score, chasclinic_score, weight_list);
+            double[] array = calculate_accessbility(hawkercentre_score, childcare_score, chasclinic_score, 
+                                                    mrtstation_score, primaryschool_score, shoppingcentre_score,
+                                                    weight_list);
             
             double accessibility_score = array[0] / array[1];
             
@@ -263,9 +372,13 @@ public class HexagonDAO {
             properties.addProperty("density", accessibility_score);
             properties.addProperty("result", array[0]);
             properties.addProperty("full_mark", array[1]);
+            
             properties.addProperty("hawkercentre_score", hawkercentre_score);
             properties.addProperty("childcare_score", childcare_score);
             properties.addProperty("chasclinic_score", chasclinic_score);
+            properties.addProperty("mrtstation_score", mrtstation_score);
+            properties.addProperty("primaryschool_score", primaryschool_score);
+            properties.addProperty("shoppingcentre_score", shoppingcentre_score);
 
             // add coordinates
             String geojson_str = result.get(i).get_geojson();
@@ -355,8 +468,76 @@ public class HexagonDAO {
         return chasclinic_score;  
         
     }
+    
+    public double calculate_mrtstation(double mrtstation) {
+        
+        double mrtstation_score = -1;
 
-    public double[] calculate_accessbility(double hawkercentre_score, double childcare_score, double chasclinic_score, int[] weight_list) {
+        if (mrtstation != -1) {
+            if (mrtstation <= mrtstation_80) {
+                mrtstation_score = 5;
+            } else if (mrtstation <= mrtstation_60) {
+                mrtstation_score = 4;
+            } else if (mrtstation <= mrtstation_40) {
+                mrtstation_score = 3;
+            }  else if (mrtstation <= mrtstation_20) {
+                mrtstation_score = 2;
+            } else {
+                mrtstation_score = 1;
+            } 
+        }
+        
+        return mrtstation_score;  
+        
+    }
+    
+    public double calculate_primaryschool(double primaryschool) {
+        
+        double primaryschool_score = -1;
+
+        if (primaryschool != -1) {
+            if (primaryschool <= primaryschool_80) {
+                primaryschool_score = 5;
+            } else if (primaryschool <= primaryschool_60) {
+                primaryschool_score = 4;
+            } else if (primaryschool <= primaryschool_40) {
+                primaryschool_score = 3;
+            }  else if (primaryschool <= primaryschool_20) {
+                primaryschool_score = 2;
+            } else {
+                primaryschool_score = 1;
+            } 
+        }
+        
+        return primaryschool_score;  
+        
+    }
+    
+    public double calculate_shoppingcentre(double shoppingcentre) {
+        
+        double shoppingcentre_score = -1;
+
+        if (shoppingcentre != -1) {
+            if (shoppingcentre <= shoppingcentre_80) {
+                shoppingcentre_score = 5;
+            } else if (shoppingcentre <= shoppingcentre_60) {
+                shoppingcentre_score = 4;
+            } else if (shoppingcentre <= shoppingcentre_40) {
+                shoppingcentre_score = 3;
+            }  else if (shoppingcentre <= shoppingcentre_20) {
+                shoppingcentre_score = 2;
+            } else {
+                shoppingcentre_score = 1;
+            } 
+        }
+        
+        return shoppingcentre_score;  
+        
+    }
+
+    public double[] calculate_accessbility(double hawkercentre_score, double childcare_score, double chasclinic_score, 
+                                            double mrtstation_score, double primaryschool_score, double shoppingcentre_score,
+                                            int[] weight_list) {
         
         double[] array = new double[2];
         double total_score = 0;
@@ -366,15 +547,25 @@ public class HexagonDAO {
             total_score += 5 * weight_list[0];  
             result += hawkercentre_score * weight_list[0]; 
         }
-
         if (childcare_score != -1) {
             total_score += 5 * weight_list[1];  
             result += childcare_score * weight_list[1];  
         }
-
         if (chasclinic_score != -1) {
             total_score += 5 * weight_list[2];
             result += chasclinic_score * weight_list[2];
+        }
+        if (mrtstation_score != -1) {
+            total_score += 5 * weight_list[3];
+            result += mrtstation_score * weight_list[3];
+        }
+        if (primaryschool_score != -1) {
+            total_score += 5 * weight_list[4];
+            result += primaryschool_score * weight_list[4];
+        }
+        if (shoppingcentre_score != -1) {
+            total_score += 5 * weight_list[5];
+            result += shoppingcentre_score * weight_list[5];
         }
         
         array[0] = result;
@@ -399,6 +590,21 @@ public class HexagonDAO {
         chasclinic_60 = percentile.evaluate(all_chasclinic_distance, 40.0);
         chasclinic_40 = percentile.evaluate(all_chasclinic_distance, 60.0);
         chasclinic_20 = percentile.evaluate(all_chasclinic_distance, 80.0);
+        
+        mrtstation_80 = percentile.evaluate(all_mrtstation_distance, 20.0);
+        mrtstation_60 = percentile.evaluate(all_mrtstation_distance, 40.0);
+        mrtstation_40 = percentile.evaluate(all_mrtstation_distance, 60.0);
+        mrtstation_20 = percentile.evaluate(all_mrtstation_distance, 80.0);
+        
+        primaryschool_80 = percentile.evaluate(all_primaryschool_distance, 20.0);
+        primaryschool_60 = percentile.evaluate(all_primaryschool_distance, 40.0);
+        primaryschool_40 = percentile.evaluate(all_primaryschool_distance, 60.0);
+        primaryschool_20 = percentile.evaluate(all_primaryschool_distance, 80.0);
+        
+        shoppingcentre_80 = percentile.evaluate(all_shoppingcentre_distance, 20.0);
+        shoppingcentre_60 = percentile.evaluate(all_shoppingcentre_distance, 40.0);
+        shoppingcentre_40 = percentile.evaluate(all_shoppingcentre_distance, 60.0);
+        shoppingcentre_20 = percentile.evaluate(all_shoppingcentre_distance, 80.0);
         
         System.out.println("Percentile calculation completed!");
     }
