@@ -229,9 +229,9 @@
                             </div>
 
                             <div class="btn-group">
-                                <a data-placement="bottom" data-original-title="Show / Hide Left" data-toggle="tooltip" class="btn btn-primary btn-sm toggle-left" id="menu-toggle">
-                                    <i class="fa fa-bars"></i>
-                                </a> 
+                                <!--                                <a data-placement="bottom" data-original-title="Show / Hide Left" data-toggle="tooltip" class="btn btn-primary btn-sm toggle-left" id="menu-toggle">
+                                                                    <i class="fa fa-bars"></i>
+                                                                </a> -->
                                 <a data-placement="bottom" data-original-title="Show / Hide Right" data-toggle="tooltip" class="btn btn-default btn-sm toggle-right"> <span class="glyphicon glyphicon-hand-right"></span>  </a> 
                             </div>
 
@@ -281,34 +281,14 @@
                             //String end_size = String.valueOf(request.getAttribute("end_size"));
 
                             //if (planning_area.equals("null")) {
-                                //planning_area = "";
-                                //start_price = "";
-                                //end_price = "";
-                                //start_size = "";
-                                //end_size = "";
+                            //planning_area = "";
+                            //start_price = "";
+                            //end_price = "";
+                            //start_size = "";
+                            //end_size = "";
                             //}
 
                         %>
-                        
-                        <!--
-                        <form class="navbar-form" action="DBServlet"> 
-
-
-                            <div class="form-group">
-
-                                <input type="text" class="form-control" name="planning_area" placeholder="Property Type" size="11" value='' >
-
-                                <div class="input-group">
-                                    <input type="text" class="form-control" name="start_price" placeholder="Sale Type" size="7" value='' >
-                                </div>
-                                <div class="input-group">
-                                    <input type="text" class="form-control" name="end_price" placeholder="Tenure" size="5" value='' >
-                                </div>
-
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                            </div>
-                        </form>
-                        -->
 
 
                     </div><!-- /.main-bar -->
@@ -345,14 +325,13 @@
                                             </div>
                                         </div>
                                     </header>
-                                    
+
                                     <div id='home'>
                                         <div id='target'></div>
                                     </div>
 
 
-                                    <%
-                                        // CHECK OR NOT
+                                    <%                                        // CHECK OR NOT
                                         String hawkercentre_check_num = String.valueOf(request.getAttribute("hawkercentre_check"));
                                         String childcare_check_num = String.valueOf(request.getAttribute("childcare_check"));
                                         String chasclinic_check_num = String.valueOf(request.getAttribute("chasclinic_check"));
@@ -370,27 +349,27 @@
                                         if (chasclinic_check_num.equals("1")) {
                                             chasclinic_check = "checked";
                                         }
-                                        
+
                                         // HOW IMPORTANT
                                         String hawkercentre_weight = String.valueOf(request.getAttribute("hawkercentre_weight"));
                                         String childcare_weight = String.valueOf(request.getAttribute("childcare_weight"));
                                         String chasclinic_weight = String.valueOf(request.getAttribute("chasclinic_weight"));
-                                        
+
                                         String hawkercentre_1 = "";
                                         String hawkercentre_2 = "";
                                         String hawkercentre_3 = "";
                                         String hawkercentre_4 = "";
-                                        
+
                                         String childcare_1 = "";
                                         String childcare_2 = "";
                                         String childcare_3 = "";
                                         String childcare_4 = "";
-                                        
+
                                         String chasclinic_1 = "";
                                         String chasclinic_2 = "";
                                         String chasclinic_3 = "";
                                         String chasclinic_4 = "";
-                                        
+
                                         if (hawkercentre_weight.equals("1")) {
                                             hawkercentre_1 = "selected";
                                         } else if (hawkercentre_weight.equals("2")) {
@@ -399,8 +378,8 @@
                                             hawkercentre_3 = "selected";
                                         } else if (hawkercentre_weight.equals("4")) {
                                             hawkercentre_4 = "selected";
-                                        } 
-                                        
+                                        }
+
                                         if (childcare_weight.equals("1")) {
                                             childcare_1 = "selected";
                                         } else if (childcare_weight.equals("2")) {
@@ -409,8 +388,8 @@
                                             childcare_3 = "selected";
                                         } else if (childcare_weight.equals("4")) {
                                             childcare_4 = "selected";
-                                        } 
-                                        
+                                        }
+
                                         if (chasclinic_weight.equals("1")) {
                                             chasclinic_1 = "selected";
                                         } else if (chasclinic_weight.equals("2")) {
@@ -419,8 +398,8 @@
                                             chasclinic_3 = "selected";
                                         } else if (chasclinic_weight.equals("4")) {
                                             chasclinic_4 = "selected";
-                                        } 
-                                        
+                                        }
+
 
                                     %>
                                     <!-- Accessibility -->
@@ -492,7 +471,7 @@
                                         </div>
                                     </form>
 
-                                    
+
 
                                 </div><!-- box -->
                             </div><!-- col -->
@@ -526,8 +505,8 @@
 
                     </div><!-- /.inner -->
                 </div><!-- /.outer -->
-                
-                
+
+
             </div><!-- /#content -->
 
 
@@ -660,7 +639,7 @@
 
             if (!result.equals("null")) {
                 //int num_facility = Integer.parseInt(String.valueOf(request.getAttribute("num_facility")));
-%>
+        %>
         <script type="text/javascript">
             var data = <%=result%>;
             var total_80 = <%=total_80%>;

@@ -340,9 +340,9 @@
                             </div>
 
                             <div class="btn-group">
-                                <a data-placement="bottom" data-original-title="Show / Hide Left" data-toggle="tooltip" class="btn btn-primary btn-sm toggle-left" id="menu-toggle">
+<!--                                <a data-placement="bottom" data-original-title="Show / Hide Left" data-toggle="tooltip" class="btn btn-primary btn-sm toggle-left" id="menu-toggle">
                                     <i class="fa fa-bars"></i>
-                                </a> 
+                                </a> -->
                                 <a data-placement="bottom" data-original-title="Show / Hide Right" data-toggle="tooltip" class="btn btn-default btn-sm toggle-right"> <span class="glyphicon glyphicon-hand-right"></span>  </a> 
                             </div>
 

@@ -198,9 +198,9 @@
                             </div>
 
                             <div class="btn-group">
-                                <a data-placement="bottom" data-original-title="Show / Hide Left" data-toggle="tooltip" class="btn btn-primary btn-sm toggle-left" id="menu-toggle">
-                                    <i class="fa fa-bars"></i>
-                                </a> 
+                                <!--                                <a data-placement="bottom" data-original-title="Show / Hide Left" data-toggle="tooltip" class="btn btn-primary btn-sm toggle-left" id="menu-toggle">
+                                                                    <i class="fa fa-bars"></i>
+                                                                </a> -->
                                 <a data-placement="bottom" data-original-title="Show / Hide Right" data-toggle="tooltip" class="btn btn-default btn-sm toggle-right"> <span class="glyphicon glyphicon-hand-right"></span>  </a> 
                             </div>
 
@@ -282,7 +282,7 @@
 
             </div><!-- /#top -->
 
-            
+
 
 
             <!-- The Real Stuff Here -->
@@ -470,108 +470,168 @@
                     </div><!-- /.modal-content -->
                 </div><!-- /.modal-dialog -->
             </div><!-- /.modal --><!-- /#helpModal -->
+            
+            <div id="right" class="bg-light lter">
+                <div class="alert alert-danger">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <strong>Warning!</strong>  Best check yo self, you're not looking too good.
+                </div>
 
-            <!--jQuery -->
-            <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-            <script src="Libraries/jquery.dynatable.js"></script>
-            <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
-            <script src="//cdnjs.cloudflare.com/ajax/libs/datatables/1.10.4/js/jquery.dataTables.min.js"></script>
-            <script src="//cdn.datatables.net/plug-ins/3cfcc339e89/integration/bootstrap/3/dataTables.bootstrap.js"></script>
-            <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.18.4/js/jquery.tablesorter.min.js"></script>
-            <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+                <!-- .well well-small -->
+                <div class="well well-small dark">
+                    <ul class="list-unstyled">
+                        <li>Visitor <span class="inlinesparkline pull-right">1,4,4,7,5,9,10</span> 
+                        </li>
+                        <li>Online Visitor <span class="dynamicsparkline pull-right">Loading..</span> 
+                        </li>
+                        <li>Popularity <span class="dynamicbar pull-right">Loading..</span> 
+                        </li>
+                        <li>New Users <span class="inlinebar pull-right">1,3,4,5,3,5</span> 
+                        </li>
+                    </ul>
+                </div><!-- /.well well-small -->
 
-            <!--Bootstrap -->
-            <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
+                <!-- .well well-small -->
+                <div class="well well-small dark">
+                    <button class="btn btn-block">Default</button>
+                    <button class="btn btn-primary btn-block">Primary</button>
+                    <button class="btn btn-info btn-block">Info</button>
+                    <button class="btn btn-success btn-block">Success</button>
+                    <button class="btn btn-danger btn-block">Danger</button>
+                    <button class="btn btn-warning btn-block">Warning</button>
+                    <button class="btn btn-inverse btn-block">Inverse</button>
+                    <button class="btn btn-metis-1 btn-block">btn-metis-1</button>
+                    <button class="btn btn-metis-2 btn-block">btn-metis-2</button>
+                    <button class="btn btn-metis-3 btn-block">btn-metis-3</button>
+                    <button class="btn btn-metis-4 btn-block">btn-metis-4</button>
+                    <button class="btn btn-metis-5 btn-block">btn-metis-5</button>
+                    <button class="btn btn-metis-6 btn-block">btn-metis-6</button>
+                </div><!-- /.well well-small -->
 
-            <!-- MetisMenu -->
-            <script src="//cdnjs.cloudflare.com/ajax/libs/metisMenu/1.1.3/metisMenu.min.js"></script>
+                <!-- .well well-small -->
+                <div class="well well-small dark">
+                    <span>Default</span> <span class="pull-right"><small>20%</small> </span> 
+                    <div class="progress xs">
+                        <div class="progress-bar progress-bar-info" style="width: 20%"></div>
+                    </div>
+                    <span>Success</span> <span class="pull-right"><small>40%</small> </span> 
+                    <div class="progress xs">
+                        <div class="progress-bar progress-bar-success" style="width: 40%"></div>
+                    </div>
+                    <span>warning</span> <span class="pull-right"><small>60%</small> </span> 
+                    <div class="progress xs">
+                        <div class="progress-bar progress-bar-warning" style="width: 60%"></div>
+                    </div>
+                    <span>Danger</span> <span class="pull-right"><small>80%</small> </span> 
+                    <div class="progress xs">
+                        <div class="progress-bar progress-bar-danger" style="width: 80%"></div>
+                    </div>
+                </div>
+            </div><!-- /#right -->
+            
+        </div>
 
-            <!-- Screenfull -->
-            <script src="//cdnjs.cloudflare.com/ajax/libs/screenfull.js/2.0.0/screenfull.min.js"></script>
+        <!--jQuery -->
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script src="Libraries/jquery.dynatable.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/datatables/1.10.4/js/jquery.dataTables.min.js"></script>
+        <script src="//cdn.datatables.net/plug-ins/3cfcc339e89/integration/bootstrap/3/dataTables.bootstrap.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.18.4/js/jquery.tablesorter.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
 
-            <!-- Metis core scripts -->
-            <script src="assets/js/core.min.js"></script>
+        <!--Bootstrap -->
+        <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
 
-            <!-- Metis demo scripts -->
-            <script src="assets/js/app.js"></script>
-            <script type="text/javascript" language="javascript" src="//cdn.datatables.net/1.10.5/js/jquery.dataTables.min.js"></script>
-            <script type="text/javascript" language="javascript" src="//cdn.datatables.net/plug-ins/f2c75b7247b/integration/bootstrap/3/dataTables.bootstrap.js"></script>
+        <!-- MetisMenu -->
+        <script src="//cdnjs.cloudflare.com/ajax/libs/metisMenu/1.1.3/metisMenu.min.js"></script>
 
+        <!-- Screenfull -->
+        <script src="//cdnjs.cloudflare.com/ajax/libs/screenfull.js/2.0.0/screenfull.min.js"></script>
 
-            <script src="assets/js/style-switcher.min.js"></script>
-            <!--LINK MODULE-->
-            <script src="Libraries/hexbin.js"></script>
+        <!-- Metis core scripts -->
+        <script src="assets/js/core.min.js"></script>
 
-            <script src="Libraries/d3-leaflet.js"></script>
-            <script>
-                var value;
-                init_function();
-                var drawnItems = L.featureGroup().addTo(map);
-                map.addControl(new L.Control.Draw({
-                    edit: {
-                        featureGroup: drawnItems
-                    }
-                }));
-                map.on('draw:created', function (event) {
-                    var layer = event.layer;
-                    layer.on('click', function () {
-                        if (event.layerType == 'circle') {
-                            var circlecenter = layer.getLatLng();
-                            var circleradius = layer.getRadius();
-                            var pointswithincircle = getpointswithincircle(filtereddata, circlecenter, circleradius);
-                        }
-
-                        else if (event.layerType == 'polygon') {
-                            var options = {
-                                "backdrop": true,
-                                "show": true
-                            }
-                            var pointswithinpolygon = getpointswithinpolygon(filtereddata, layer.getLatLngs());
-                            $('#polygoncharts').modal(options);
-                        } else if (event.layerType == 'marker') {
-                            var marker = layer.getLatLng();
-                            document.getElementById("latlng").value = marker.lat + "," + marker.lng;
-                        }
-                    });
-                    drawnItems.addLayer(layer);
-
-                });
-
-                $(function () {
-
-                    $(".dropdown-menu li a").click(function () {
-
-                        $("#selectway").text($(this).text()).append('<span class="caret"></span>');
-                        $("#btn").val($(this).text());
-
-                    });
-
-                });
-            </script>
+        <!-- Metis demo scripts -->
+        <script src="assets/js/app.js"></script>
+        <script type="text/javascript" language="javascript" src="//cdn.datatables.net/1.10.5/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" language="javascript" src="//cdn.datatables.net/plug-ins/f2c75b7247b/integration/bootstrap/3/dataTables.bootstrap.js"></script>
 
 
-            <%                String result = String.valueOf(request.getAttribute("project_comparison_result"));
+        <script src="assets/js/style-switcher.min.js"></script>
+        <!--LINK MODULE-->
+        <script src="Libraries/hexbin.js"></script>
 
-                if (!result.equals("null")) {
-            %>
-            <script type="text/javascript">
-
-                var data = <%=result%>;
-                if ($('#magic-table').length) {
-                    //alert("magic");
+        <script src="Libraries/d3-leaflet.js"></script>
+        <script>
+            var value;
+            init_function();
+            var drawnItems = L.featureGroup().addTo(map);
+            map.addControl(new L.Control.Draw({
+                edit: {
+                    featureGroup: drawnItems
                 }
-                $('#magic-table').dynatable({
-                    dataset: {
-                        records: data
+            }));
+            map.on('draw:created', function (event) {
+                var layer = event.layer;
+                layer.on('click', function () {
+                    if (event.layerType == 'circle') {
+                        var circlecenter = layer.getLatLng();
+                        var circleradius = layer.getRadius();
+                        var pointswithincircle = getpointswithincircle(filtereddata, circlecenter, circleradius);
+                    }
+
+                    else if (event.layerType == 'polygon') {
+                        var options = {
+                            "backdrop": true,
+                            "show": true
+                        }
+                        var pointswithinpolygon = getpointswithinpolygon(filtereddata, layer.getLatLngs());
+                        $('#polygoncharts').modal(options);
+                    } else if (event.layerType == 'marker') {
+                        var marker = layer.getLatLng();
+                        document.getElementById("latlng").value = marker.lat + "," + marker.lng;
                     }
                 });
-                //alert(data[0].project_name);
-                //alert(data.length);
+                drawnItems.addLayer(layer);
 
-            </script>
-            <%
+            });
+
+            $(function () {
+
+                $(".dropdown-menu li a").click(function () {
+
+                    $("#selectway").text($(this).text()).append('<span class="caret"></span>');
+                    $("#btn").val($(this).text());
+
+                });
+
+            });
+        </script>
+
+
+        <%                String result = String.valueOf(request.getAttribute("project_comparison_result"));
+
+            if (!result.equals("null")) {
+        %>
+        <script type="text/javascript">
+
+            var data = <%=result%>;
+            if ($('#magic-table').length) {
+                //alert("magic");
+            }
+            $('#magic-table').dynatable({
+                dataset: {
+                    records: data
                 }
-            %>
+            });
+            //alert(data[0].project_name);
+            //alert(data.length);
+
+        </script>
+        <%
+            }
+        %>
 
 
 
