@@ -406,24 +406,7 @@
 
 
                         %>
-                        <form class="navbar-form" action="DBServlet"> 
-                            
-
-                            <div class="form-group">
-
-                                <div class="input-group input-group">
-                                    <select class="form-control" name="region_select">
-                                        <option value="ccr" <%=ccr_string%>>Core Central Region (CCR)</option>
-                                        <option value="rcr" <%=rcr_string%>>Rest of Central Region (RCR)</option>
-                                        <option value="ocr" <%=ocr_string%>>Outside Central Region (OCR)</option>
-                                        <option value="all" <%=all_string%>>All Transaction Records</option>
-                                    </select>
-                                </div>
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                                
-                            </div>
-
-                        </form>
+                        
 
                         
 
@@ -446,10 +429,34 @@
 
                         <!-- Row for Data Count -->
                         <div class="row">
-                            <div class="text-center">
-                                <ul class="stats_box">
-                                    <li>
-                                        <div class="dc-data-count" id='count-table' >
+                            
+                            
+                                
+                                    
+                                        
+                            
+
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-6">
+                                    <form class="navbar-form" action="DBServlet"> 
+                                        
+                                    
+                                        <div class="input-group input-group" style="float:left">
+                                            <select class="form-control" name="region_select">
+                                                <option value="ccr" <%=ccr_string%>>Core Central Region (CCR)</option>
+                                                <option value="rcr" <%=rcr_string%>>Rest of Central Region (RCR)</option>
+                                                <option value="ocr" <%=ocr_string%>>Outside Central Region (OCR)</option>
+                                                <option value="all" <%=all_string%>>All Transaction Records</option>
+                                            </select>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                        
+                                    </form>
+                                
+                                    </div>
+                                 <div class="col-lg-3 col-md-6">
+                                   <div class="dc-data-count" id='count-table' style="margin-top:10px" >
                                             <div class="stat_text">
                                                 <span>
                                                     <strong>
@@ -461,14 +468,25 @@
                                                         records   
                                                     </strong>
                                                 </span>
+                                                 <a href="javascript:dc.filterAll(); dc.renderAll();" class="btn btn-warning btn-line">
+                                        <i class="glyphicon glyphicon-zoom-in"></i> Reset
+                                                </a> 
                                             </div>
                                         </div>
-                                    </li>
-                                    <a href="javascript:dc.filterAll(); dc.renderAll();" class="btn btn-warning btn-line">
-                                        <i class="glyphicon glyphicon-zoom-in"></i> Reset
-                                    </a> 
-                                </ul>
+                                </div>
+                                </div>
+                                    
                             </div>
+
+                        
+                                
+                                
+                            
+                                        
+                                 
+                                     
+                              
+                            
                         </div>
                         <div class="row">
                             <div class="col-lg-5 " id="sortable2">
@@ -498,9 +516,19 @@
                                         <div class="row">
 
                                             <div id="dc-histogram">
-                                                <h6><strong>Psf Histogram</strong> 
-                                                    <h7>[Slide to filter psf]</h7>
+                                                
+                                                <h6><strong>Price Histogram</strong> 
+                                                    
+                                                    
+                                                    <button type="button" class="btn btn-primary btn-xs" id="hist1" aria-label="Left Align">
+                                                        <span>Psf</span>
+                                                    </button>
+                                                    <button type="button" class="btn btn-danger btn-xs" id="hist2" aria-label="Left Align">
+                                                        <span>Psm</span>
+                                                    </button>
+                                                    <h7>[Slide to filter price]</h7>
                                                 </h6>
+                                                
 
                                             </div>
 
@@ -508,8 +536,8 @@
                                         
                                         <div class="row">
                                             <div id="dc-sizeHistogram">
-                                                <h6><strong>Sqm Histogram</strong>
-                                                    <h7>[Slide to filter sqm]</h7>
+                                                <h6><strong>Size Histogram</strong>
+                                                    <h7>[Slide to filter size]</h7>
                                                 </h6>
 
                                             </div>
@@ -581,7 +609,7 @@
                                     <div id="basicCharts" class="body collapse in">
                                         <div class="row">
                                             <!-- Property Volume Chart -->
-
+                                            <div class="col-lg-3 col-md-6">
                                             <div id='dc-propertyVolume-chart'>
                                                 <h6><strong>Property Type</strong>
                                                     <button type="button" class="btn btn-primary btn-xs" id="bar1" aria-label="Left Align">
@@ -602,7 +630,8 @@
                                                     </span>
                                                 </h6>
                                             </div>
-
+                                            </div>
+                                            <div class="col-lg-3 col-md-6">
                                             <div id='dc-propertySaleVolume-chart'>
                                                 <h6><strong>Sales Type</strong>
                                                     <button type="button" class="btn btn-primary btn-xs" id="bar2" aria-label="Left Align">
@@ -622,7 +651,8 @@
                                                     </span>
                                                 </h6>
                                             </div>
-
+                                            </div>
+                                            <div class="col-lg-3 col-md-6">
                                             <div id='dc-propertyTenureVolume-chart'>
                                                 <h6><strong>Tenure Type</strong>
                                                     <button type="button" class="btn btn-primary btn-xs" id="bar3" aria-label="Left Align">
@@ -642,7 +672,8 @@
                                                     </span>
                                                 </h6>
                                             </div>
-
+                                            </div>
+                                            <div class="col-lg-3 col-md-6">
                                             <div id='dc-propertyRegionVolume-chart'>
                                                 <h6><strong>Region Type</strong>
                                                     <button type="button" class="btn btn-primary btn-xs" id="bar4" aria-label="Left Align">
@@ -662,7 +693,7 @@
                                                     </span>
                                                 </h6>
                                             </div> 
-
+                                            </div>
                                         </div>
 
                                         <!-- Sale Volume Chart -->

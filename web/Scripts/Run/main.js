@@ -245,14 +245,14 @@ function generateMapAndCharts(geoJsonData){
         if (typeof propertyVolumePieChart !== 'undefined') {
             var f2 = getFilters(propertyVolumePieChart);
             propertyVolumeRowChart = dc.rowChart("#dc-propertyVolume-chart");
-            plotRowChart(propertyVolumeRowChart,propertyVolumeDimension,propertyVolumeGroup,300,180,3,5,5,"property",0,10,20,80);
+            plotRowChart(propertyVolumeRowChart,propertyVolumeDimension,propertyVolumeGroup,280,180,3,5,5,"property",0,10,20,80);
             applyFilter(propertyVolumeRowChart, f2);
             filterMap(propertyVolumeRowChart,propertyDimension);
             
            
         } else {
             propertyVolumeRowChart = dc.rowChart("#dc-propertyVolume-chart");
-            plotRowChart(propertyVolumeRowChart,propertyVolumeDimension,propertyVolumeGroup,300,180,3,5,5,"property",0,10,20,80);
+            plotRowChart(propertyVolumeRowChart,propertyVolumeDimension,propertyVolumeGroup,280,180,3,5,5,"property",0,10,20,80);
             filterMap(propertyVolumeRowChart,propertyDimension);
         }
     }
@@ -260,7 +260,7 @@ function generateMapAndCharts(geoJsonData){
       //if (typeof propertySaleVolumeRowChart !== 'undefined' ){
             var f1 = getFilters(propertySaleVolumeRowChart);
             propertySaleVolumePieChart = dc.pieChart("#dc-propertySaleVolume-chart");
-            plotPieChart(propertySaleVolumePieChart,salesDimension,salesGroup,300,160,80,20,220,3,"sales");
+            plotPieChart(propertySaleVolumePieChart,salesDimension,salesGroup,300,160,80,20,160,3,"sales");
             applyFilter(propertySaleVolumePieChart, f1);
             filterMap(propertySaleVolumePieChart,propertyDimension);
         /*}else{
@@ -273,12 +273,12 @@ function generateMapAndCharts(geoJsonData){
         if (typeof propertySaleVolumePieChart !== 'undefined') {
             var f2 = getFilters(propertySaleVolumePieChart);
             propertySaleVolumeRowChart = dc.rowChart("#dc-propertySaleVolume-chart");
-            plotRowChart(propertySaleVolumeRowChart,salesDimension,salesGroup,300,180,3,5,5,"sales",0,10,20,80);
+            plotRowChart(propertySaleVolumeRowChart,salesDimension,salesGroup,280,180,3,5,5,"sales",0,10,20,80);
             applyFilter(propertySaleVolumeRowChart, f2);
             filterMap(propertySaleVolumeRowChart,propertyDimension);
         } else {
             propertySaleVolumeRowChart = dc.rowChart("#dc-propertySaleVolume-chart");
-            plotRowChart(propertySaleVolumeRowChart,salesDimension,salesGroup,300,180,3,5,5,"sales",0,10,20,80);
+            plotRowChart(propertySaleVolumeRowChart,salesDimension,salesGroup,280,180,3,5,5,"sales",0,10,20,80);
             filterMap(propertySaleVolumeRowChart,propertyDimension);
         }
     }
@@ -286,7 +286,7 @@ function generateMapAndCharts(geoJsonData){
         //if (typeof propertyTenureVolumeRowChart !== 'undefined'){
             var f1 = getFilters(propertyTenureVolumeRowChart);
             propertyTenureVolumePieChart = dc.pieChart("#dc-propertyTenureVolume-chart");
-            plotPieChart(propertyTenureVolumePieChart,tenureDimension,tenureGroup,300,160,80,20,220,3,"tenure");
+            plotPieChart(propertyTenureVolumePieChart,tenureDimension,tenureGroup,300,160,80,20,180,3,"tenure");
             applyFilter(propertyTenureVolumePieChart, f1);
             filterMap(propertyTenureVolumePieChart,propertyDimension);
         /*}else{
@@ -299,12 +299,12 @@ function generateMapAndCharts(geoJsonData){
         if (typeof propertyTenureVolumePieChart !== 'undefined') {
             var f2 = getFilters(propertyTenureVolumePieChart);
             propertyTenureVolumeRowChart = dc.rowChart("#dc-propertyTenureVolume-chart");
-            plotRowChart(propertyTenureVolumeRowChart,tenureDimension,tenureGroup,300,180,3,5,5,"tenure",0,10,20,80);
+            plotRowChart(propertyTenureVolumeRowChart,tenureDimension,tenureGroup,280,180,3,5,5,"tenure",0,10,20,80);
             applyFilter(propertyTenureVolumeRowChart, f2);
             filterMap(propertyTenureVolumeRowChart,propertyDimension);
         } else {
             propertyTenureVolumeRowChart = dc.rowChart("#dc-propertyTenureVolume-chart");
-            plotRowChart(propertyTenureVolumeRowChart,tenureDimension,tenureGroup,300,180,3,5,5,"tenure",0,10,20,80);
+            plotRowChart(propertyTenureVolumeRowChart,tenureDimension,tenureGroup,280,180,3,5,5,"tenure",0,10,20,80);
             filterMap(propertyTenureVolumeRowChart,propertyDimension);
         }
     }
@@ -312,12 +312,12 @@ function generateMapAndCharts(geoJsonData){
         if (typeof propertyRegionVolumePieChart !== 'undefined') {
             var f2 = getFilters(propertyRegionVolumePieChart);
             propertyRegionVolumeRowChart = dc.rowChart("#dc-propertyRegionVolume-chart");
-            plotRowChart(propertyRegionVolumeRowChart,regionDimension,regionGroup,300,180,3,5,5,"region",0,0,20,80);
+            plotRowChart(propertyRegionVolumeRowChart,regionDimension,regionGroup,280,180,3,5,5,"region",0,0,20,80);
             applyFilter(propertyRegionVolumeRowChart, f2);
             filterMap(propertyRegionVolumeRowChart,regionDimension);
         } else {
             propertyRegionVolumeRowChart = dc.rowChart("#dc-propertyRegionVolume-chart");
-            plotRowChart(propertyRegionVolumeRowChart,regionDimension,regionGroup,300,180,3,5,5,"region",0,0,20,80);
+            plotRowChart(propertyRegionVolumeRowChart,regionDimension,regionGroup,280,180,3,5,5,"region",0,0,20,80);
             filterMap(propertyRegionVolumeRowChart,regionDimension);
         }
     }
@@ -325,7 +325,7 @@ function generateMapAndCharts(geoJsonData){
          //if (typeof propertyRegionVolumeRowChart !== 'undefined'){
             var f1 = getFilters(propertyRegionVolumeRowChart);
             propertyRegionVolumePieChart = dc.pieChart("#dc-propertyRegionVolume-chart");
-            plotPieChart(propertyRegionVolumePieChart,regionDimension,regionGroup,300,160,80,20,220,3,"region");
+            plotPieChart(propertyRegionVolumePieChart,regionDimension,regionGroup,300,160,80,20,190,3,"region");
             applyFilter(propertyRegionVolumePieChart, f1);
             filterMap(propertyRegionVolumePieChart,regionDimension);
         /*}else{
@@ -353,13 +353,10 @@ function generateMapAndCharts(geoJsonData){
     var minSize = sizeDimension.bottom(1)[0].areasqm;
     var maxSize = sizeDimension.top(1)[0].areasqm;
     
-    alert(minSize);
-    alert(maxSize);
    
-    alert("gg");
     
     function plotPsfHistogram(){
-        plotHistogramChart(histogram,500,170,psfDimension,psfGroup,10,0,40,40,getMinPsf(geoJsonData),getMaxPsf(geoJsonData),0,50,5,"Psf $","Volume");
+        plotHistogramChart(histogram,500,170,psfDimension,psfGroup,10,0,50,60,getMinPsf(geoJsonData),getMaxPsf(geoJsonData),0,50,5,"Psf $","Volume");
         filterMap(histogram,propertyDimension);
     }
     
@@ -367,11 +364,11 @@ function generateMapAndCharts(geoJsonData){
          plotHistogramChart(sizeHistogram ,500,170,sizeDimension,sizeGroup,10,0,40,40,getMinSize(geoJsonData),520,0,50,5,"Sqm","Volume");
          filterMap(sizeHistogram,propertyDimension);
     }
-    /*function plotPsmHistogram(){
-        plotHistogramChart(histogram,320,160,psmDimension,psmGroup,0,0,40,40,getMinPsm(geoJsonData),getMaxPsm(geoJsonData),10,50,5,"Psm $");
-        //filterMap(histogram,propertyDimension);
+    function plotPsmHistogram(){
+        plotHistogramChart(histogram,500,170,psmDimension,psmGroup,10,0,50,60,getMinPsm(geoJsonData),getMaxPsm(geoJsonData),0,50,5,"Psm $","Volume");
+        filterMap(histogram,propertyDimension);
     }
-    function plotPriceHistogram(){
+    /*function plotPriceHistogram(){
         plotHistogramChart(histogram,300,80,priceDimension,priceGroup,0,0,40,40,getMinPrice(geoJsonData),getMaxPrice(geoJsonData),10,1000,5,"Price $");
         //filterMap(histogram,propertyDimension);
     };*/
@@ -409,7 +406,7 @@ function generateMapAndCharts(geoJsonData){
             .dimension(facts)
             .group(all);
    
-    //plotTimeChart();
+  
     plotStackTimeChart();
     plotPropertyVolumeRow();
     plotSaleVolumeRow();
@@ -417,8 +414,7 @@ function generateMapAndCharts(geoJsonData){
     plotRegionVolumeRow();
     plotPsfLineChart();
     plotPsfHistogram();
-    plotSizeHistogram();
-    //rangeChartForTimeSeries(dateVolumeBarChart,compositeControlChart, stackedDateVolumeBarChart); 
+    plotSizeHistogram(); 
     plotMapLayers(propertyDimension);
     //jQuery
        $("#dc-psfBoxPlot-chart").on('change', function () {
@@ -437,6 +433,19 @@ function generateMapAndCharts(geoJsonData){
                 plotPsmBoxPlot();
                 plotPsmLineChart();
             }
+            dc.renderAll();
+        });
+        $("#hist1").prop("disabled", true);
+        $("#hist1").on("click", function () {
+            $(this).prop('disabled', true);
+            $("#hist2").prop('disabled', false);
+            plotPsfHistogram();
+            dc.renderAll();
+        });
+         $("#hist2").on("click", function () {
+            $(this).prop('disabled', true);
+            $("#hist1").prop('disabled', false);
+            plotPsmHistogram();
             dc.renderAll();
         });
         $("#bar1").prop("disabled", true);
