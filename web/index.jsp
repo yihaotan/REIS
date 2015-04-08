@@ -377,9 +377,7 @@
 
                     <!--Not really a search bar-->
                     <div class="search-bar">
-                        <h3 style="float: right;">
-                            <i class="fa fa-filter"></i> &nbsp;Filtering By
-                        </h3>
+                        
                     </div><!-- /.search-bar -->
 
                     <div class="main-bar">
@@ -387,12 +385,12 @@
                         <!--The Legendary Data Retrieval Bar-->
                         <%
                             String region_select = String.valueOf(request.getAttribute("region_select"));
-                            
+
                             String ccr_string = "";
                             String rcr_string = "";
                             String ocr_string = "";
                             String all_string = "";
-                            
+
                             if (region_select.equals("null")) {
                                 ccr_string = "selected";
                             } else if (region_select.equals("ccr")) {
@@ -404,7 +402,7 @@
                             } else if (region_select.equals("all")) {
                                 all_string = "selected";
                             }
-                            
+
 
                         %>
                         <form class="navbar-form" action="DBServlet"> 
@@ -420,59 +418,35 @@
                                         <option value="all" <%=all_string%>>All Transaction Records</option>
                                     </select>
                                 </div>
-
-                                
-                                <!--
-                                
-                                <input type="text" class="form-control" name="planning_area" placeholder="Planning Area" size="10" value='' >
-
-                                
-                                <div class="input-group">
-                                    <span class="input-group-addon">$</span>
-                                    <input type="text" class="form-control" name="start_price" placeholder="Start Price" size="8" value='' >
-                                </div>
-                                <div class="input-group">
-                                    <span class="input-group-addon">$</span>
-                                    <input type="text" class="form-control" name="end_price" placeholder="End Price" size="7" value='' >
-                                </div>
-                                <div class="input-group">
-                                    <span class="input-group-addon">Size</span>
-                                    <input type="text" class="form-control" name="start_size" placeholder="Start Size" size="7" value='' >
-                                </div>
-                                <div class="input-group">
-                                    <span class="input-group-addon">Size</span>
-                                    <input type="text" class="form-control" name="end_size" placeholder="End Size" size="6" value='' >
-                                </div>
-                                -->
                                 <button type="submit" class="btn btn-primary">Submit</button>
-                                 <a href="javascript:dc.filterAll(); dc.renderAll();" class="btn btn-warning btn-line">
-                                        <i class="glyphicon glyphicon-zoom-in"></i> Reset
-                                  </a>
+                                <a href="javascript:dc.filterAll(); dc.renderAll();" class="btn btn-warning btn-line">
+                                    <i class="glyphicon glyphicon-zoom-in"></i> Reset
+                                </a>
                             </div>
-                                  
+
                         </form>
-                    
-                           <div class="dc-data-count" id='count-table' >
-                                            <div class="stat_text">
-                                                <span>
-                                                    <strong>
-                                                        <i class="glyphicon glyphicon-zoom-in"></i> 
-                                                        You have selected
-                                                        <span class="filter-count">0</span>
-                                                        out of 
-                                                        <span class="total-count">0</span>
-                                                        records   
-                                                    </strong>
-                                                </span>
-                                                
-                                            </div>
-                                        </div>  
-                                
-                                        
-                                    
-                                    
-                      
-                           
+
+                        <div class="dc-data-count" id='count-table' >
+                            <div class="stat_text">
+                                <span>
+                                    <strong>
+                                        <i class="glyphicon glyphicon-zoom-in"></i> 
+                                        You have selected
+                                        <span class="filter-count">0</span>
+                                        out of 
+                                        <span class="total-count">0</span>
+                                        records   
+                                    </strong>
+                                </span>
+
+                            </div>
+                        </div>  
+
+
+
+
+
+
 
 
                     </div><!-- /.main-bar -->
@@ -480,76 +454,6 @@
                 </header><!-- /.head -->
 
             </div><!-- /#top -->
-
-
-
-            <div id="left">
-
-                <!-- User Profile Here -->
-                <div class="media user-media bg-dark dker">
-                    <div class="user-media-toggleHover">
-                        <span class="fa fa-user"></span> 
-                    </div>
-                    <div class="user-wrapper bg-dark">
-                        <a class="user-link" href="#">
-                            <img class="media-object img-thumbnail user-img" alt="User Picture" src="assets/img/amy.jpg">
-                            <span class="label label-danger user-label">99</span> 
-                        </a> 
-                        <div class="media-body">
-                            <h5 class="media-heading">Amy Ng</h5>
-                            <ul class="list-unstyled user-info">
-                                <li> <a href="#">Property Analyst</a>  </li>
-                                <li>Last Login :
-                                    <br>
-                                    <small>
-                                        <i class="fa fa-calendar"></i>&nbsp;4 Mar 16:32</small> 
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- #menu -->
-                <ul id="menu" class="bg-blue dker">
-                    <li class="nav-header">Please select a module</li>
-                    <li class="nav-divider"></li>
-
-                    <li class="active">
-                        <a href="#">
-                            <i class="fa fa-dashboard"></i>
-                            <span class="link-title">
-                                &nbsp;Dashboard
-                            </span> 
-                        </a> 
-                    </li>
-
-                    <li>
-                        <a href="Accessibility.jsp">
-                            <i class="fa fa-automobile"></i>
-                            <span class="link-title">
-                                &nbsp;Accessibility
-                            </span>  
-                        </a> 
-                    </li>
-
-
-                    <!-- Lower Part of Menu-->
-                    <li class="nav-divider"></li>
-
-                    <li>
-                        <a href="login.html">
-                            <i class="fa fa-sign-in"></i>
-                            <span class="link-title">
-                                &nbsp;Login Page
-                            </span> 
-                        </a> 
-                    </li>
-
-
-
-                </ul><!-- /#menu -->
-            </div><!-- /#left -->
-
 
             <!-- The Real Stuff Here -->
             <div id="content">
@@ -583,7 +487,7 @@
                             </div>
                         </div>
                         <div class="row">
-                        <div class="col-lg-12 " id="sortable2">
+                            <div class="col-lg-12 " id="sortable2">
                                 <div class="box">
                                     <!-- Header -->
                                     <header>
@@ -623,7 +527,7 @@
 
                                             </div>
 
-                                        
+
 
                                             <div id="dc-sizeHistogram">
                                                 <h6><strong>Sqm Histogram</strong>
@@ -636,8 +540,8 @@
                                     </div>
                                 </div>
                             </div>
-                    </div>
-                         <!-- Left Pane for Basic Charts-->
+                        </div>
+                        <!-- Left Pane for Basic Charts-->
                         <div class="row" id="sortable1">
                             <div class="col-lg-12 ">
                                 <div class="box">
@@ -685,8 +589,8 @@
                                                     </span>
                                                 </h6>
                                             </div>
-                                            
-                                             <div id='dc-propertySaleVolume-chart'>
+
+                                            <div id='dc-propertySaleVolume-chart'>
                                                 <h6><strong>Sales Type</strong>
                                                     <button type="button" class="btn btn-primary btn-xs" id="bar2" aria-label="Left Align">
                                                         <span class="glyphicon glyphicon-signal" aria-hidden="true"></span>
@@ -705,7 +609,7 @@
                                                     </span>
                                                 </h6>
                                             </div>
-                                            
+
                                             <div id='dc-propertyTenureVolume-chart'>
                                                 <h6><strong>Tenure Type</strong>
                                                     <button type="button" class="btn btn-primary btn-xs" id="bar3" aria-label="Left Align">
@@ -725,7 +629,7 @@
                                                     </span>
                                                 </h6>
                                             </div>
-                                            
+
                                             <div id='dc-propertyRegionVolume-chart'>
                                                 <h6><strong>Region Type</strong>
                                                     <button type="button" class="btn btn-primary btn-xs" id="bar4" aria-label="Left Align">
@@ -745,16 +649,16 @@
                                                     </span>
                                                 </h6>
                                             </div> 
-                                            
+
                                         </div>
 
                                         <!-- Sale Volume Chart -->
-                                       
+
                                         <!-- Tenure Volume Chart -->
-                                        
+
 
                                         <!-- Region Volume Chart -->
-                                        
+
 
 
                                     </div>
@@ -763,7 +667,7 @@
 
 
                             <!-- Lower Pane for Map -->
-                            
+
                         </div>
 
                         <!-- Row for Time Series -->
@@ -794,17 +698,17 @@
 
                                         <!-- Zoom In Stacked Chart -->
                                         <div class="row">
-                                            
+
 
                                             <div id='dc-control-chart'>
                                                 <h6>
                                                     <font><strong>Monthly Psf</strong></font>
                                                 </h6>
                                             </div>
-                                       
-                                        <!-- Daily Volume Chart -->
-                                       
-                                            
+
+                                            <!-- Daily Volume Chart -->
+
+
                                         </div>
 
 
@@ -838,7 +742,7 @@
 
                                         <!-- Zoom In Stacked Chart -->
                                         <div class="row">
-                                            
+
 
                                             <div id='dc-stackDateVolume-chart'>
                                                 <h6>
@@ -847,10 +751,10 @@
                                                 </h6>
 
                                             </div>
-                                       
-                                        <!-- Daily Volume Chart -->
-                                       
-                                            
+
+                                            <!-- Daily Volume Chart -->
+
+
                                         </div>
 
 
@@ -859,14 +763,14 @@
                                 </div>
                             </div>
                         </div>
-                        
-                        
-                        
-                        
 
 
 
-                       
+
+
+
+
+
 
                         <!--Begin Datatables-->
                         <div class="row" id="sortable3">
@@ -891,8 +795,8 @@
                                     </header>
                                     <div id="magicTable" class="body collapse in">
                                         <table id="dc-table-graph" class="table table-bordered table-condensed table-hover table-striped">
-                                           <thead>
-                                               <tr>
+                                            <thead>
+                                                <tr>
                                                     <th data-dynatable-column="projectName" data-dynatable-sorts>Project Name</th>
                                                     <th data-dynatable-column="propertyType" data-dynatable-sorts>Property Type</th>
                                                     <th data-dynatable-column="sale" data-dynatable-sorts>Sale Type</th>
@@ -903,13 +807,13 @@
                                                     <th data-dynatable-column="planningRegion" data-dynatable-sorts>Region</th>
                                                 </tr>
                                             </thead>  
-                                            
+
                                             <tbody>
-                                            
-                                           
-                                             </tbody>
-                                            
-                                            
+
+
+                                            </tbody>
+
+
 
                                         </table>
                                     </div>
@@ -1065,10 +969,10 @@
     <script src="//cdn.datatables.net/plug-ins/3cfcc339e89/integration/bootstrap/3/dataTables.bootstrap.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.18.4/js/jquery.tablesorter.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
-    
+
     <script src="Libraries/jquery.dynatable.js"></script>
-    
-    
+
+
     <!--Bootstrap -->
     <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
 
