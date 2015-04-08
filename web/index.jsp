@@ -406,7 +406,7 @@
 
                         %>
                         <form class="navbar-form" action="DBServlet"> 
-
+                            
 
                             <div class="form-group">
 
@@ -419,29 +419,12 @@
                                     </select>
                                 </div>
                                 <button type="submit" class="btn btn-primary">Submit</button>
-                                <a href="javascript:dc.filterAll(); dc.renderAll();" class="btn btn-warning btn-line">
-                                    <i class="glyphicon glyphicon-zoom-in"></i> Reset
-                                </a>
+                                
                             </div>
 
                         </form>
 
-                        <div class="dc-data-count" id='count-table' >
-                            <div class="stat_text">
-                                <span>
-                                    <strong>
-                                        <i class="glyphicon glyphicon-zoom-in"></i> 
-                                        You have selected
-                                        <span class="filter-count">0</span>
-                                        out of 
-                                        <span class="total-count">0</span>
-                                        records   
-                                    </strong>
-                                </span>
-
-                            </div>
-                        </div>  
-
+                        
 
 
 
@@ -487,7 +470,54 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-lg-12 " id="sortable2">
+                            <div class="col-lg-5 " id="sortable2">
+                                <div class="box">
+                                    <!-- Header -->
+                                    <header>
+                                        <div class="icons">
+                                            <i class="fa fa-globe"></i>
+                                        </div>
+                                        <h5>Price and Size View</h5>
+                                        <div class="toolbar">
+                                            
+                                            <div class="btn-group">
+                                                <a href="#SizeAndPriceView" data-toggle="collapse" class="btn btn-sm btn-default minimize-box">
+                                                    <i class="fa fa-angle-up"></i>
+                                                </a> 
+                                                <a class="btn btn-danger btn-sm close-box">
+                                                    <i class="fa fa-times"></i>
+                                                </a> 
+                                            </div>
+
+                                        </div>
+                                    </header>
+                                    <!-- Content -->
+                                    <div id="SizeAndPriceView" class="body collapse in">
+                                        
+                                        <div class="row">
+
+                                            <div id="dc-histogram">
+                                                <h6><strong>Psf Histogram</strong> 
+                                                    <h7>[Slide to filter psf]</h7>
+                                                </h6>
+
+                                            </div>
+
+                                        </div>
+                                        
+                                        <div class="row">
+                                            <div id="dc-sizeHistogram">
+                                                <h6><strong>Sqm Histogram</strong>
+                                                    <h7>[Slide to filter sqm]</h7>
+                                                </h6>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                             <div class="col-lg-7 " id="sortable2">
                                 <div class="box">
                                     <!-- Header -->
                                     <header>
@@ -518,25 +548,7 @@
                                     <!-- Content -->
                                     <div id="mapView" class="body collapse in">
                                         <div id="map"></div>
-                                        <div class="row">
-
-                                            <div id="dc-histogram">
-                                                <h6><strong>Psf Histogram</strong> 
-                                                    <h7>[Slide to filter psf]</h7>
-                                                </h6>
-
-                                            </div>
-
-
-
-                                            <div id="dc-sizeHistogram">
-                                                <h6><strong>Sqm Histogram</strong>
-                                                    <h7>[Slide to filter sqm]</h7>
-                                                </h6>
-
-                                            </div>
-
-                                        </div>
+                                        
                                     </div>
                                 </div>
                             </div>
