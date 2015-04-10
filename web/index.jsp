@@ -426,24 +426,28 @@
                                     <div class="col-lg-3 col-md-6">
                                         
                                     <form class="navbar-form" action="DBServlet"> 
-                                        
-                                    
+                                        <strong>Select Region:</strong>
+                                       
                                         <div class="input-group input-group" style="float:left">
-                                           
+                                          
                                             <select class="form-control" name="region_select">
                                                 <option value="ccr" <%=ccr_string%>>Core Central Region (CCR)</option>
                                                 <option value="rcr" <%=rcr_string%>>Rest of Central Region (RCR)</option>
                                                 <option value="ocr" <%=ocr_string%>>Outside Central Region (OCR)</option>
                                                 <option value="all" <%=all_string%>>All Transaction Records</option>
                                             </select>
+                                            
+                                             <button type="submit" class="btn btn-primary">Submit</button>
                                         </div>
-                                        <button type="submit" class="btn btn-primary">Submit</button>
-                                       
+                                          
+                                        
+                                            
+                                        
                                     </form>
                                 
                                     </div>
-                                 <div class="col-lg-3 col-md-6">
-                                   <div class="dc-data-count" id='count-table' style="margin-top:10px" >
+                                    <div class="col-lg-3 col-md-6">
+                                        <div class="dc-data-count" id='count-table' style="margin-top:30px; margin-left:30px" >
                                             <div class="stat_text">
                                                 <span>
                                                     <strong>
@@ -456,24 +460,15 @@
                                                     </strong>
                                                 </span>
                                                  <a href="javascript:dc.filterAll(); dc.renderAll();" class="btn btn-warning btn-line">
-                                        <i class="glyphicon glyphicon-zoom-in"></i> Reset
+                                                    <i class="glyphicon glyphicon-zoom-in"></i> Reset
                                                 </a> 
                                             </div>
                                         </div>
-                                </div>
+                                    </div>
                                 </div>
                                     
                             </div>
 
-                        
-                                
-                                
-                            
-                                        
-                                 
-                                     
-                              
-                            
                         </div>
                         <div class="row">
                             <div class="col-lg-5 " id="sortable2">
