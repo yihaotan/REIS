@@ -330,22 +330,7 @@
                             </div>
 
                             <!-- Deleted One Button Group Here -->
-
-                            <div class="btn-group">
-                                <a href="login.html" data-toggle="tooltip" data-original-title="Logout" data-placement="bottom" class="btn btn-metis-1 btn-sm">
-                                    <i class="fa fa-power-off"></i>
-                                </a>
-                                <a data-toggle="modal" data-original-title="Help" data-placement="bottom" class="btn btn-default btn-sm" href="#helpModal">
-                                    <i class="fa fa-question"></i>
-                                </a>
-                            </div>
-
-                            <div class="btn-group">
-<!--                                <a data-placement="bottom" data-original-title="Show / Hide Left" data-toggle="tooltip" class="btn btn-primary btn-sm toggle-left" id="menu-toggle">
-                                    <i class="fa fa-bars"></i>
-                                </a> -->
-                                <a data-placement="bottom" data-original-title="Show / Hide Right" data-toggle="tooltip" class="btn btn-default btn-sm toggle-right"> <span class="glyphicon glyphicon-hand-right"></span>  </a> 
-                            </div>
+                            
 
                         </div>
 
@@ -644,7 +629,7 @@
                                                     <span>
                                                         <!-- <a class='filter' style='display:none;'> Filters: </a> -->
                                                         <a class="reset"
-                                                           href="javascript:propertyVolumePieChart.filterAll();propertyVolumeRowChart;dc.redrawAll();"
+                                                           href="javascript:propertyVolumePieChart.filterAll();propertyVolumeRowChart.filterAll();dc.redrawAll();"
                                                            style="display: none;">
                                                             reset
                                                         </a>

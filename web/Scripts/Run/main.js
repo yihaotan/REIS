@@ -347,16 +347,19 @@ function generateMapAndCharts(geoJsonData){
     function plotPsfHistogram(){
         plotHistogramChart(histogram,500,170,psfDimension,psfGroup,10,0,50,60,getMinPsf(geoJsonData),getMaxPsf(geoJsonData),0,50,5,"Psf $","Volume");
         filterMap(histogram,propertyDimension);
+        //dc.redrawAll();
         
     }
     function plotSizeHistogram(){
          plotHistogramChart(sizeHistogram ,500,170,sizeDimension,sizeGroup,10,0,40,40,getMinSize(geoJsonData),520,0,50,5,"Sqm","Volume");
          filterMap(sizeHistogram,propertyDimension);
+         //dc.redrawAll();
          
     }
     function plotPsmHistogram(){
         plotHistogramChart(histogram,500,170,psmDimension,psmGroup,10,0,50,60,getMinPsm(geoJsonData),getMaxPsm(geoJsonData),0,50,5,"Psm $","Volume");
         filterMap(histogram,propertyDimension);
+        //dc.redrawAll();
     }
     /*function plotPriceHistogram(){
         plotHistogramChart(histogram,300,80,priceDimension,priceGroup,0,0,40,40,getMinPrice(geoJsonData),getMaxPrice(geoJsonData),10,1000,5,"Price $");
