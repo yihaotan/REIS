@@ -493,6 +493,7 @@
                         <div class="row">
                             <div class="col-lg-5 " id="sortable2">
                                 <div class="box">
+                                    
                                     <!-- Header -->
                                     <header>
                                         <div class="icons">
@@ -529,6 +530,16 @@
                                                         <span>Psm</span>
                                                     </button>
                                                     <h7>[Slide to filter price]</h7>
+                                                     <span>
+                                                        <!-- <a class='filter' style='display:none;'> Filters: </a> -->
+                                                        <a class="reset"
+                                                           href="javascript:histogram.filterAll();dc.redrawAll();"
+                                                           style="display: none;">
+                                                            reset
+                                                        </a>
+
+                                                    </span>
+                                                    
                                                 </h6>
                                                 
 
@@ -540,6 +551,15 @@
                                             <div id="dc-sizeHistogram">
                                                 <h6><strong>Size Histogram</strong>
                                                     <h7>[Slide to filter size]</h7>
+                                                     <span>
+                                                        <!-- <a class='filter' style='display:none;'> Filters: </a> -->
+                                                        <a class="reset"
+                                                           href="javascript:sizeHistogram.filterAll();dc.redrawAll();"
+                                                           style="display: none;">
+                                                            reset
+                                                        </a>
+
+                                                    </span>
                                                 </h6>
 
                                             </div>
