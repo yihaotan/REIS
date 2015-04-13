@@ -54,7 +54,7 @@ public class DBServlet extends HttpServlet {
             
             ArrayList<Transaction> result = new ArrayList<Transaction>();
             
-            if (region_select.equals("All")) {
+            if (region_select.equals("all")) {
                 result = tdao.retrieveAll();
             } else {
                 result = tdao.retrieveByCriteria(
