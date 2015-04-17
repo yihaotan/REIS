@@ -188,21 +188,7 @@
 
                             <!-- Deleted One Button Group Here -->
 
-                            <div class="btn-group">
-                                <a href="login.html" data-toggle="tooltip" data-original-title="Logout" data-placement="bottom" class="btn btn-metis-1 btn-sm">
-                                    <i class="fa fa-power-off"></i>
-                                </a>
-                                <a data-toggle="modal" data-original-title="Help" data-placement="bottom" class="btn btn-default btn-sm" href="#helpModal">
-                                    <i class="fa fa-question"></i>
-                                </a>
-                            </div>
-
-                            <div class="btn-group">
-                                <!--                                <a data-placement="bottom" data-original-title="Show / Hide Left" data-toggle="tooltip" class="btn btn-primary btn-sm toggle-left" id="menu-toggle">
-                                                                    <i class="fa fa-bars"></i>
-                                                                </a> -->
-                                <a data-placement="bottom" data-original-title="Show / Hide Right" data-toggle="tooltip" class="btn btn-default btn-sm toggle-right"> <span class="glyphicon glyphicon-hand-right"></span>  </a> 
-                            </div>
+                            
 
                         </div>
 
@@ -232,48 +218,12 @@
                 <header class="head">
 
                     <!--Not really a search bar-->
-                    <div class="search-bar">
-                        <h3 style="float: right;">
-                            <i class="fa fa-filter"></i> &nbsp;Filtering By
-                        </h3>
-                    </div><!-- /.search-bar -->
+                    
 
                     <div class="main-bar">
 
-                        <!--The Legendary Data Retrieval Bar-->
-                        <%
-                            String planning_area = String.valueOf(request.getAttribute("planning_area"));
-                            String start_price = String.valueOf(request.getAttribute("start_price"));
-                            String end_price = String.valueOf(request.getAttribute("end_price"));
-                            String start_size = String.valueOf(request.getAttribute("start_size"));
-                            String end_size = String.valueOf(request.getAttribute("end_size"));
-
-                            if (planning_area.equals("null")) {
-                                planning_area = "";
-                                start_price = "";
-                                end_price = "";
-                                start_size = "";
-                                end_size = "";
-                            }
-
-                        %>
-                        <form class="navbar-form" action="DBServlet"> 
-
-
-                            <div class="form-group">
-
-                                <input type="text" class="form-control" name="planning_area" placeholder="Property Type" size="11" value='<%=planning_area%>' >
-
-                                <div class="input-group">
-                                    <input type="text" class="form-control" name="start_price" placeholder="Sale Type" size="7" value='<%=start_price%>' >
-                                </div>
-                                <div class="input-group">
-                                    <input type="text" class="form-control" name="end_price" placeholder="Tenure" size="5" value='<%=end_price%>' >
-                                </div>
-
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                            </div>
-                        </form>
+                       
+                        
 
 
                     </div><!-- /.main-bar -->
@@ -302,7 +252,7 @@
                                         <div class="toolbar">
                                             <div class="btn-group">
                                                 <a href="#inputsAnalysis" data-toggle="collapse" class="btn btn-sm btn-default minimize-box">
-                                                    <i class="fa fa-angle-up"></i>
+                                                    <i class="fa fa-minus"></i>
                                                 </a> 
                                                 <a class="btn btn-danger btn-sm close-box">
                                                     <i class="fa fa-times"></i>
@@ -375,7 +325,7 @@
                                         <div class="toolbar">
                                             <div class="btn-group">
                                                 <a href="#mapView" data-toggle="collapse" class="btn btn-sm btn-default minimize-box">
-                                                    <i class="fa fa-angle-up"></i>
+                                                    <i class="fa fa-minus"></i>
                                                 </a> 
 
                                             </div>
@@ -405,7 +355,7 @@
                                         <div class="toolbar">
                                             <div class="btn-group">
                                                 <a href="#AnalysisTable" data-toggle="collapse" class="btn btn-sm btn-default minimize-box">
-                                                    <i class="fa fa-angle-up"></i>
+                                                    <i class="fa fa-minus"></i>
                                                 </a> 
 
                                             </div>
@@ -558,7 +508,7 @@
         <script type="text/javascript" language="javascript" src="//cdn.datatables.net/plug-ins/f2c75b7247b/integration/bootstrap/3/dataTables.bootstrap.js"></script>
 
 
-        <script src="assets/js/style-switcher.min.js"></script>
+        
         <!--LINK MODULE-->
         <script src="Libraries/hexbin.js"></script>
 

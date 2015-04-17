@@ -1059,9 +1059,10 @@
 
             //map = L.map('map').setView([1.3667,103.8], 11);
     </script>
-    <script src="assets/js/style-switcher.min.js"></script>
+   
     <!--LINK MODULE-->
     <script>
+            
             init_function();
     </script>
     <%

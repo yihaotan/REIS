@@ -219,21 +219,9 @@
 
                             <!-- Deleted One Button Group Here -->
 
-                            <div class="btn-group">
-                                <a href="login.html" data-toggle="tooltip" data-original-title="Logout" data-placement="bottom" class="btn btn-metis-1 btn-sm">
-                                    <i class="fa fa-power-off"></i>
-                                </a>
-                                <a data-toggle="modal" data-original-title="Help" data-placement="bottom" class="btn btn-default btn-sm" href="#helpModal">
-                                    <i class="fa fa-question"></i>
-                                </a>
-                            </div>
+                            
 
-                            <div class="btn-group">
-                                <!--                                <a data-placement="bottom" data-original-title="Show / Hide Left" data-toggle="tooltip" class="btn btn-primary btn-sm toggle-left" id="menu-toggle">
-                                                                    <i class="fa fa-bars"></i>
-                                                                </a> -->
-                                <a data-placement="bottom" data-original-title="Show / Hide Right" data-toggle="tooltip" class="btn btn-default btn-sm toggle-right"> <span class="glyphicon glyphicon-hand-right"></span>  </a> 
-                            </div>
+                           
 
                         </div>
 
@@ -317,7 +305,7 @@
                                         <div class="toolbar">
                                             <div class="btn-group">
                                                 <a href="#inputs" data-toggle="collapse" class="btn btn-sm btn-default minimize-box">
-                                                    <i class="fa fa-angle-up"></i>
+                                                    <i class="fa fa-minus"></i>
                                                 </a> 
                                                 <a class="btn btn-danger btn-sm close-box">
                                                     <i class="fa fa-times"></i>
@@ -584,7 +572,7 @@
 
                                         <div id="submit_button" class="body collapse in">
                                             <div id="submit">
-                                                <button type="submit" class="btn btn-info">Submit</button>
+                                                <button type="submit" class="btn btn-primary">Submit</button>
                                             </div>
                                         </div>
                                     </form>
@@ -605,7 +593,7 @@
                                         <div class="toolbar">
                                             <div class="btn-group">
                                                 <a href="#mapView" data-toggle="collapse" class="btn btn-sm btn-default minimize-box">
-                                                    <i class="fa fa-angle-up"></i>
+                                                    <i class="fa fa-minus"></i>
                                                 </a> 
                                                 <a class="btn btn-danger btn-sm close-box">
                                                     <i class="fa fa-times"></i>
@@ -739,7 +727,7 @@
         <script type="text/javascript" language="javascript" src="//cdn.datatables.net/plug-ins/f2c75b7247b/integration/bootstrap/3/dataTables.bootstrap.js"></script>
 
 
-        <script src="assets/js/style-switcher.min.js"></script>
+      
         <!--LINK MODULE-->
         <script src="Libraries/hexbin.js"></script>
 
