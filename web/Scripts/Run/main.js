@@ -395,7 +395,7 @@ function generateMapAndCharts(geoJsonData){
   refreshTable(dynaTable,propertyDimension);
     
   
- dc.dataCount(".dc-data-count")
+  dc.dataCount(".dc-data-count")
             .dimension(facts)
             .group(all);
    
@@ -409,7 +409,12 @@ function generateMapAndCharts(geoJsonData){
     plotPsfHistogram();
     plotSizeHistogram(); 
     plotMapLayers(propertyDimension);
+    
+    
+    
     //jQuery
+     
+    
        $("#dc-psfBoxPlot-chart").on('change', function () {
             var text = $('#dc-psfBoxPlot-chart .selectpicker option:selected').text();
             if (text === "Psf") {

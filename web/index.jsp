@@ -13,15 +13,12 @@
 
 
 
-        <!--        <link rel="stylesheet" href="Css/flat-ui.min.css" type="text/css">-->
+
         <link rel="stylesheet" href="Css/iThing.css" type="text/css">
-        <!--        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" type="text/css">
-                <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css" type="text/css">-->
         <link rel='stylesheet' href='Css/dc.css' type='text/css'>
         <link rel='stylesheet' href='Css/bootstrap-select.css' type='text/css'>
         <link rel="stylesheet" href="Css/LeafletStyleSheet.css" type="text/css">
         <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-        <!--        <link rel="stylesheet" href="Css/jquery-ui.css" type="text/css">-->
         <link rel="stylesheet" href="Css/L.Control.Opencagesearch.css" type="text/css">
         <link rel="stylesheet" href="Css/button1.css" type="text/css">
         <link rel="stylesheet" href="Css/jquery.slidepanel.css" type="text/css">
@@ -37,8 +34,9 @@
         <!--Unknown-->
         <script src="Libraries/d3.v3.min.js" type="text/javascript"></script>
         <script src="Libraries/crossfilter.js" type='text/javascript'></script>
-        <!--        <script src='Libraries/jquery.js' type='text/javascript'></script>
-                <script src="Libraries/bootstrap.min.js" type='text/javascript' ></script>-->
+        <!-- <script src="Libraries/jquery-1.8.3.js"></script> -->
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script src="Libraries/jquery-ui-1.9.2.custom.js"></script>      
         <script src="Libraries/leaflet.js" type='text/javascript'></script>
         <script src="Libraries/leaflet-src.js" type='text/javascript'></script>
         <script src="Libraries/Googlemap.js" type='text/javascript'></script>
@@ -48,9 +46,6 @@
         <script src="Libraries/leaflet-heatmap.js" type='text/javascript'></script>
         <script src='Libraries/dc.js' type='text/javascript'></script>  
         <script src="Libraries/L.Control.Opencagesearch.js" type='text/javascript'></script>
-        <script src="Libraries/jquery.slidepanel.js" type="text/javascript"></script>
-        <script src="Libraries/jquery.sidr.min.js" type="text/javascript"></script>
-        <!--        <script src="Libraries/modernizr.js" type="text/javascript"></script> -->
         <script src="Libraries/reductio.js" type="text/javascript"></script> 
         <script src="Libraries/Mergesort.js" type="text/javascript"></script>
         <script src="Libraries/jQEditRangeSlider-min.js" type="text/javascript"></script>
@@ -101,7 +96,7 @@
 
         <!-- Jquery -->
 
-        <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+
         <script src="https://gist.githubusercontent.com/paulirish/5438650/raw/23f6dedc7e65da4d0eb9606d1675c3ce0f33099b/performance.now()-polyfill.js"></script>
         <!--PriceSlider-->
 
@@ -330,7 +325,7 @@
                             </div>
 
                             <!-- Deleted One Button Group Here -->
-                            
+
 
                         </div>
 
@@ -353,6 +348,8 @@
                                     <a href="ProjectComparison.jsp">Project Comparison</a>  
                                 </li>
 
+                                
+
                             </ul><!-- /.nav -->
                         </div>
                     </div><!-- /.container-fluid -->
@@ -362,9 +359,7 @@
                 <header class="head">
 
                     <!--Not really a search bar-->
-                    <div class="search-bar">
-                        
-                    </div><!-- /.search-bar -->
+                    
 
                     <div class="main-bar">
 
@@ -391,9 +386,27 @@
 
 
                         %>
-                        
 
                         
+                           <div class="dc-data-count" id='count-table' >
+                                           
+                                                <span>
+                                                    <strong>
+                                                        <i class="glyphicon glyphicon-zoom-in"></i> 
+                                                        You have selected
+                                                        <span class="filter-count" style="color:goldenrod">0</span>
+                                                        out of 
+                                                        <span class="total-count" style="color:goldenrod">0</span>
+                                                        records   
+                                                    </strong>
+                                                </span>
+                                                
+                                            
+                                            
+                                        </div>
+                        
+                        
+
 
 
 
@@ -411,69 +424,57 @@
             <div id="content">
                 <div class="outer">
                     <div class="inner bg-light lter">
-
                         <!-- Row for Data Count -->
                         <div class="row">
-                            
-                            
-                                
-                                    
-                                        
-                            
 
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col-lg-3 col-md-6">
-                                        
-                                    <form class="navbar-form" action="DBServlet"> 
-                                        <strong>Select Region:</strong>
-                                       
-                                        <div class="input-group input-group" style="float:left">
-                                          
-                                            <select class="form-control" name="region_select">
-                                                <option value="ccr" <%=ccr_string%>>Core Central Region (CCR)</option>
-                                                <option value="rcr" <%=rcr_string%>>Rest of Central Region (RCR)</option>
-                                                <option value="ocr" <%=ocr_string%>>Outside Central Region (OCR)</option>
-                                                <option value="all" <%=all_string%>>All Transaction Records</option>
-                                            </select>
-                                            
-                                             <button type="submit" class="btn btn-primary">Submit</button>
-                                        </div>
-                                          
-                                        
-                                            
-                                        
-                                    </form>
-                                
+
+                                        <form class="navbar-form" action="DBServlet"> 
+                                            <strong>Select Region:</strong>
+
+                                            <div class="input-group input-group" style="float:left">
+
+                                                <select class="form-control" name="region_select">
+                                                    <option value="ccr" <%=ccr_string%>>Core Central Region (CCR)</option>
+                                                    <option value="rcr" <%=rcr_string%>>Rest of Central Region (RCR)</option>
+                                                    <option value="ocr" <%=ocr_string%>>Outside Central Region (OCR)</option>
+                                                    <option value="all" <%=all_string%>>All Transaction Records</option>
+                                                </select>
+
+                                                <button type="submit" class="btn btn-primary">Submit</button>
+                                            </div>
+                                        </form>
+
                                     </div>
                                     <div class="col-lg-3 col-md-6">
-                                        <div class="dc-data-count" id='count-table' style="margin-top:30px; margin-left:30px" >
-                                            <div class="stat_text">
-                                                <span>
-                                                    <strong>
-                                                        <i class="glyphicon glyphicon-zoom-in"></i> 
-                                                        You have selected
-                                                        <span class="filter-count">0</span>
-                                                        out of 
-                                                        <span class="total-count">0</span>
-                                                        records   
-                                                    </strong>
-                                                </span>
-                                                 <a href="javascript:dc.filterAll(); dc.renderAll();" class="btn btn-warning btn-line">
-                                                    <i class="glyphicon glyphicon-zoom-in"></i> Reset
-                                                </a> 
-                                            </div>
-                                        </div>
+                                        <div id="slider">
+                                            <script>
+                                                  $("#slider").editRangeSlider({});
+                                            </script>
+                                        </div>           
                                     </div>
-                                </div>
+                                    <div class="col-lg-3 col-md-6">
+                                   
+                                                <a href="javascript:dc.filterAll(); dc.renderAll();" class="btn btn-warning btn-line">
+                                                <i class="glyphicon glyphicon-zoom-in"></i> Reset
+                                                </a>
+                                             
+                                    </div>
+                                    <!-- Slider -->
                                     
+
+
+                                </div>
+
                             </div>
 
                         </div>
                         <div class="row">
                             <div class="col-lg-5 " id="sortable2">
                                 <div class="box">
-                                    
+
                                     <!-- Header -->
                                     <header>
                                         <div class="icons">
@@ -481,7 +482,7 @@
                                         </div>
                                         <h5>Price and Size View</h5>
                                         <div class="toolbar">
-                                            
+
                                             <div class="btn-group">
                                                 <a href="#SizeAndPriceView" data-toggle="collapse" class="btn btn-sm btn-default minimize-box">
                                                     <i class="fa fa-minus"></i>
@@ -495,14 +496,14 @@
                                     </header>
                                     <!-- Content -->
                                     <div id="SizeAndPriceView" class="body collapse in">
-                                        
+
                                         <div class="row">
 
                                             <div id="dc-histogram">
-                                                
+
                                                 <h6><strong>Price Histogram</strong> 
-                                                    
-                                                    
+
+
                                                     <button type="button" class="btn btn-primary btn-xs" id="hist1" aria-label="Left Align">
                                                         <span>Psf</span>
                                                     </button>
@@ -510,7 +511,7 @@
                                                         <span>Psm</span>
                                                     </button>
                                                     <h7>[Slide to filter price]</h7>
-                                                     <span>
+                                                    <span>
                                                         <!-- <a class='filter' style='display:none;'> Filters: </a> -->
                                                         <a class="reset"
                                                            href="javascript:histogram.filterAll();dc.redrawAll();"
@@ -519,19 +520,19 @@
                                                         </a>
 
                                                     </span>
-                                                    
+
                                                 </h6>
-                                                
+
 
                                             </div>
 
                                         </div>
-                                        
+
                                         <div class="row">
                                             <div id="dc-sizeHistogram">
                                                 <h6><strong>Size Histogram</strong>
                                                     <h7>[Slide to filter size]</h7>
-                                                     <span>
+                                                    <span>
                                                         <!-- <a class='filter' style='display:none;'> Filters: </a> -->
                                                         <a class="reset"
                                                            href="javascript:sizeHistogram.filterAll();dc.redrawAll();"
@@ -548,7 +549,7 @@
                                     </div>
                                 </div>
                             </div>
-                             <div class="col-lg-7 " id="sortable2">
+                            <div class="col-lg-7 " id="sortable2">
                                 <div class="box">
                                     <!-- Header -->
                                     <header>
@@ -579,7 +580,7 @@
                                     <!-- Content -->
                                     <div id="mapView" class="body collapse in">
                                         <div id="map"></div>
-                                        
+
                                     </div>
                                 </div>
                             </div>
@@ -612,98 +613,98 @@
                                         <div class="row">
                                             <!-- Property Volume Chart -->
                                             <div class="col-lg-3 col-md-6">
-                                            <div id='dc-propertyVolume-chart'>
-                                                <h6><strong>Property Type</strong>
-                                                    <button type="button" class="btn btn-primary btn-xs" id="bar1" aria-label="Left Align">
-                                                        <span class="glyphicon glyphicon-signal" aria-hidden="true"></span>
-                                                    </button>
-                                                    <button type="button" class="btn btn-danger btn-xs" id="pie1" aria-label="Left Align">
-                                                        <span class="glyphicon glyphicon-adjust" aria-hidden="true"></span>
-                                                    </button>
-                                                    <h7>[Click to filter property]</h7>
-                                                    <span>
-                                                        <!-- <a class='filter' style='display:none;'> Filters: </a> -->
-                                                        <a class="reset"
-                                                           href="javascript:propertyVolumePieChart.filterAll();propertyVolumeRowChart.filterAll();dc.redrawAll();"
-                                                           style="display: none;">
-                                                            reset
-                                                        </a>
+                                                <div id='dc-propertyVolume-chart'>
+                                                    <h6><strong>Property Type</strong>
+                                                        <button type="button" class="btn btn-primary btn-xs" id="bar1" aria-label="Left Align">
+                                                            <span class="glyphicon glyphicon-signal" aria-hidden="true"></span>
+                                                        </button>
+                                                        <button type="button" class="btn btn-danger btn-xs" id="pie1" aria-label="Left Align">
+                                                            <span class="glyphicon glyphicon-adjust" aria-hidden="true"></span>
+                                                        </button>
+                                                        <h7>[Click to filter property]</h7>
+                                                        <span>
+                                                            <!-- <a class='filter' style='display:none;'> Filters: </a> -->
+                                                            <a class="reset"
+                                                               href="javascript:propertyVolumePieChart.filterAll();propertyVolumeRowChart.filterAll();dc.redrawAll();"
+                                                               style="display: none;">
+                                                                reset
+                                                            </a>
 
-                                                    </span>
-                                                </h6>
-                                            </div>
-                                            </div>
-                                            <div class="col-lg-3 col-md-6">
-                                            <div id='dc-propertySaleVolume-chart'>
-                                                <h6><strong>Sales Type</strong>
-                                                    <button type="button" class="btn btn-primary btn-xs" id="bar2" aria-label="Left Align">
-                                                        <span class="glyphicon glyphicon-signal" aria-hidden="true"></span>
-                                                    </button>
-                                                    <button type="button" class="btn btn-danger btn-xs" id="pie2" aria-label="Left Align">
-                                                        <span class="glyphicon glyphicon-adjust" aria-hidden="true"></span>
-                                                    </button>
-                                                    <h7>[Click to filter sales]</h7>
-                                                    <span>
-                                                        <!-- <a class='filter' style='display:none;'> Filters: </a> -->
-                                                        <a class="reset"
-                                                           href="javascript:propertySaleVolumePieChart.filterAll();propertySaleVolumeRowChart.filterAll();dc.redrawAll();"
-                                                           style="display: none;">
-                                                            reset
-                                                        </a>
-                                                    </span>
-                                                </h6>
-                                            </div>
+                                                        </span>
+                                                    </h6>
+                                                </div>
                                             </div>
                                             <div class="col-lg-3 col-md-6">
-                                            <div id='dc-propertyTenureVolume-chart'>
-                                                <h6><strong>Tenure Type</strong>
-                                                    <button type="button" class="btn btn-primary btn-xs" id="bar3" aria-label="Left Align">
-                                                        <span class="glyphicon glyphicon-signal" aria-hidden="true"></span>
-                                                    </button>
-                                                    <button type="button" class="btn btn-danger btn-xs" id="pie3" aria-label="Left Align">
-                                                        <span class="glyphicon glyphicon-adjust" aria-hidden="true"></span>
-                                                    </button>
-                                                    <h7>[Click to filter tenure]</h7>
-                                                    <span>
-                                                        <!-- <a class='filter' style='display:none;'> Filters: </a> -->
-                                                        <a class="reset"
-                                                           href="javascript:propertyTenureVolumePieChart.filterAll();propertyTenureVolumeRowChart.filterAll();dc.redrawAll();"
-                                                           style="display: none;">
-                                                            reset
-                                                        </a>
-                                                    </span>
-                                                </h6>
-                                            </div>
+                                                <div id='dc-propertySaleVolume-chart'>  <!-- Sale Volume Chart -->
+                                                    <h6><strong>Sales Type</strong>
+                                                        <button type="button" class="btn btn-primary btn-xs" id="bar2" aria-label="Left Align">
+                                                            <span class="glyphicon glyphicon-signal" aria-hidden="true"></span>
+                                                        </button>
+                                                        <button type="button" class="btn btn-danger btn-xs" id="pie2" aria-label="Left Align">
+                                                            <span class="glyphicon glyphicon-adjust" aria-hidden="true"></span>
+                                                        </button>
+                                                        <h7>[Click to filter sales]</h7>
+                                                        <span>
+                                                            <!-- <a class='filter' style='display:none;'> Filters: </a> -->
+                                                            <a class="reset"
+                                                               href="javascript:propertySaleVolumePieChart.filterAll();propertySaleVolumeRowChart.filterAll();dc.redrawAll();"
+                                                               style="display: none;">
+                                                                reset
+                                                            </a>
+                                                        </span>
+                                                    </h6>
+                                                </div>
                                             </div>
                                             <div class="col-lg-3 col-md-6">
-                                            <div id='dc-propertyRegionVolume-chart'>
-                                                <h6><strong>Region Type</strong>
-                                                    <button type="button" class="btn btn-primary btn-xs" id="bar4" aria-label="Left Align">
-                                                        <span class="glyphicon glyphicon-signal" aria-hidden="true"></span>
-                                                    </button>
-                                                    <button type="button" class="btn btn-danger btn-xs" id="pie4" aria-label="Left Align">
-                                                        <span class="glyphicon glyphicon-adjust" aria-hidden="true"></span>
-                                                    </button>
-                                                    <h7>[Click to filter region]</h7>
-                                                    <span>
-                                                        <!-- <a class='filter' style='display:none;'> Filters: </a> -->
-                                                        <a class="reset"
-                                                           href="javascript:propertyRegionVolumePieChart.filterAll();propertyRegionVolumeRowChart.filterAll();dc.redrawAll();"
-                                                           style="display: none;">
-                                                            reset
-                                                        </a>
-                                                    </span>
-                                                </h6>
-                                            </div> 
+                                                <div id='dc-propertyTenureVolume-chart'>  <!-- Tenure Volume Chart -->
+                                                    <h6><strong>Tenure Type</strong>
+                                                        <button type="button" class="btn btn-primary btn-xs" id="bar3" aria-label="Left Align">
+                                                            <span class="glyphicon glyphicon-signal" aria-hidden="true"></span>
+                                                        </button>
+                                                        <button type="button" class="btn btn-danger btn-xs" id="pie3" aria-label="Left Align">
+                                                            <span class="glyphicon glyphicon-adjust" aria-hidden="true"></span>
+                                                        </button>
+                                                        <h7>[Click to filter tenure]</h7>
+                                                        <span>
+                                                            <!-- <a class='filter' style='display:none;'> Filters: </a> -->
+                                                            <a class="reset"
+                                                               href="javascript:propertyTenureVolumePieChart.filterAll();propertyTenureVolumeRowChart.filterAll();dc.redrawAll();"
+                                                               style="display: none;">
+                                                                reset
+                                                            </a>
+                                                        </span>
+                                                    </h6>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3 col-md-6">
+                                                <div id='dc-propertyRegionVolume-chart'>  <!-- Region Volume Chart -->
+                                                    <h6><strong>Region Type</strong>
+                                                        <button type="button" class="btn btn-primary btn-xs" id="bar4" aria-label="Left Align">
+                                                            <span class="glyphicon glyphicon-signal" aria-hidden="true"></span>
+                                                        </button>
+                                                        <button type="button" class="btn btn-danger btn-xs" id="pie4" aria-label="Left Align">
+                                                            <span class="glyphicon glyphicon-adjust" aria-hidden="true"></span>
+                                                        </button>
+                                                        <h7>[Click to filter region]</h7>
+                                                        <span>
+                                                            <!-- <a class='filter' style='display:none;'> Filters: </a> -->
+                                                            <a class="reset"
+                                                               href="javascript:propertyRegionVolumePieChart.filterAll();propertyRegionVolumeRowChart.filterAll();dc.redrawAll();"
+                                                               style="display: none;">
+                                                                reset
+                                                            </a>
+                                                        </span>
+                                                    </h6>
+                                                </div> 
                                             </div>
                                         </div>
 
-                                        <!-- Sale Volume Chart -->
+                                       
 
-                                        <!-- Tenure Volume Chart -->
+                                      
 
 
-                                        <!-- Region Volume Chart -->
+                                       
 
 
 
@@ -798,7 +799,7 @@
 
                                             </div>
 
-                                            <!-- Daily Volume Chart -->
+                                            
 
 
                                         </div>
@@ -862,77 +863,17 @@
 
 
                                         </table>
-                                    </div>
+                                    </div> <!--End Datatables-->
                                 </div>
                             </div>
                         </div><!-- /.row -->
 
-                        <!--End Datatables-->
+                        
 
                     </div><!-- /.inner -->
                 </div><!-- /.outer -->
             </div><!-- /#content -->
 
-
-
-
-            <div id="right" class="bg-light lter">
-                <div class="alert alert-danger">
-                    <button type="button" class="close" data-dismiss="alert">&times;</button>
-                    <strong>Warning!</strong>  Best check yo self, you're not looking too good.
-                </div>
-
-                <!-- .well well-small -->
-                <div class="well well-small dark">
-                    <ul class="list-unstyled">
-                        <li>Visitor <span class="inlinesparkline pull-right">1,4,4,7,5,9,10</span> 
-                        </li>
-                        <li>Online Visitor <span class="dynamicsparkline pull-right">Loading..</span> 
-                        </li>
-                        <li>Popularity <span class="dynamicbar pull-right">Loading..</span> 
-                        </li>
-                        <li>New Users <span class="inlinebar pull-right">1,3,4,5,3,5</span> 
-                        </li>
-                    </ul>
-                </div><!-- /.well well-small -->
-
-                <!-- .well well-small -->
-                <div class="well well-small dark">
-                    <button class="btn btn-block">Default</button>
-                    <button class="btn btn-primary btn-block">Primary</button>
-                    <button class="btn btn-info btn-block">Info</button>
-                    <button class="btn btn-success btn-block">Success</button>
-                    <button class="btn btn-danger btn-block">Danger</button>
-                    <button class="btn btn-warning btn-block">Warning</button>
-                    <button class="btn btn-inverse btn-block">Inverse</button>
-                    <button class="btn btn-metis-1 btn-block">btn-metis-1</button>
-                    <button class="btn btn-metis-2 btn-block">btn-metis-2</button>
-                    <button class="btn btn-metis-3 btn-block">btn-metis-3</button>
-                    <button class="btn btn-metis-4 btn-block">btn-metis-4</button>
-                    <button class="btn btn-metis-5 btn-block">btn-metis-5</button>
-                    <button class="btn btn-metis-6 btn-block">btn-metis-6</button>
-                </div><!-- /.well well-small -->
-
-                <!-- .well well-small -->
-                <div class="well well-small dark">
-                    <span>Default</span> <span class="pull-right"><small>20%</small> </span> 
-                    <div class="progress xs">
-                        <div class="progress-bar progress-bar-info" style="width: 20%"></div>
-                    </div>
-                    <span>Success</span> <span class="pull-right"><small>40%</small> </span> 
-                    <div class="progress xs">
-                        <div class="progress-bar progress-bar-success" style="width: 40%"></div>
-                    </div>
-                    <span>warning</span> <span class="pull-right"><small>60%</small> </span> 
-                    <div class="progress xs">
-                        <div class="progress-bar progress-bar-warning" style="width: 60%"></div>
-                    </div>
-                    <span>Danger</span> <span class="pull-right"><small>80%</small> </span> 
-                    <div class="progress xs">
-                        <div class="progress-bar progress-bar-danger" style="width: 80%"></div>
-                    </div>
-                </div>
-            </div><!-- /#right -->
         </div><!-- /#wrap -->
 
 
@@ -1009,12 +950,12 @@
     </footer><!-- /#footer -->
 
     <!--jQuery -->
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+  
+    <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script> 
     <script src="//cdnjs.cloudflare.com/ajax/libs/datatables/1.10.4/js/jquery.dataTables.min.js"></script>
-    <script src="//cdn.datatables.net/plug-ins/3cfcc339e89/integration/bootstrap/3/dataTables.bootstrap.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.18.4/js/jquery.tablesorter.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+    <script src="//cdn.datatables.net/plug-ins/3cfcc339e89/integration/bootstrap/3/dataTables.bootstrap.js"></script> 
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.18.4/js/jquery.tablesorter.min.js"></script> 
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script> -->
 
     <script src="Libraries/jquery.dynatable.js"></script>
 
@@ -1059,11 +1000,11 @@
 
             //map = L.map('map').setView([1.3667,103.8], 11);
     </script>
-   
+
     <!--LINK MODULE-->
     <script>
-            
-            init_function();
+
+        init_function();
     </script>
     <%
         String result = String.valueOf(request.getAttribute("result"));
