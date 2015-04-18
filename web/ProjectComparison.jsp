@@ -1,3 +1,4 @@
+<%@page import="java.util.ArrayList"%>
 <!doctype html>
 <html class="no-js">
     <head>
@@ -11,9 +12,9 @@
         <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
 
 
-
-
-
+        
+        <link rel="stylesheet" href="Css/Leaflet.awesome-markers.css">
+        
         <!--        <link rel="stylesheet" href="Css/flat-ui.min.css" type="text/css">-->
         <link rel="stylesheet" href="Css/iThing.css" type="text/css">
         <!--        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" type="text/css">
@@ -22,6 +23,7 @@
         <link rel='stylesheet' href='Css/bootstrap-select.css' type='text/css'>
         <link rel="stylesheet" href="Css/LeafletStyleSheet.css" type="text/css">
         <!--        <link rel="stylesheet" href="Css/jquery-ui.css" type="text/css">-->
+                <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/1.5.2/css/ionicons.min.css">
         <link rel="stylesheet" href="Css/L.Control.Opencagesearch.css" type="text/css">
         <link rel="stylesheet" href="Css/button1.css" type="text/css">
         <link rel="stylesheet" href="Css/jquery.slidepanel.css" type="text/css">
@@ -29,6 +31,11 @@
         <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css"  type="text/css">
         <link rel="stylesheet" href="Css/leaflet.draw.css" type="text/css">
         <link rel="stylesheet" href="Css/jquery.dynatable.css" type="text/css">
+        
+
+
+        
+        
         <!--Unknown-->
         <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
         <script src="http://maps.google.com/maps/api/js?v=3&sensor=false"></script>  
@@ -49,7 +56,7 @@
         <script src="Libraries/L.Control.Opencagesearch.js" type='text/javascript'></script>
         <script src="Libraries/jquery.slidepanel.js" type="text/javascript"></script>
         <script src="Libraries/jquery.sidr.min.js" type="text/javascript"></script>
-
+        
         <!-- Generate Hexagon for accessibility-->
         <script src="GenerateAccessibility.js"></script>
         <!--for drawing-->
@@ -90,7 +97,7 @@
 
         <script src="Scripts/Tables/tableGeneration.js"></script>
 
-
+        
 
 
         <script src="Scripts/Maps/mapUtilities.js"></script>
@@ -119,8 +126,8 @@
         <!--Modernizr-->
         <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
 
-
-
+        <script src="Libraries/Leaflet.awesome-markers.js"></script>
+        
 
         <style>
             .tooltip-inner {
@@ -188,7 +195,7 @@
 
                             <!-- Deleted One Button Group Here -->
 
-                            
+
 
                         </div>
 
@@ -218,12 +225,12 @@
                 <header class="head">
 
                     <!--Not really a search bar-->
-                    
+
 
                     <div class="main-bar">
 
-                       
-                        
+
+
 
 
                     </div><!-- /.main-bar -->
@@ -263,6 +270,7 @@
 
 
                                     <%
+                                        String[] coor = {};
                                         String number_of_projects = String.valueOf(request.getAttribute("return_num"));
 
                                         int num = 0;
@@ -276,10 +284,11 @@
                                         String latlng = String.valueOf(request.getAttribute("latlng"));
                                         if (!latlng.equals("null")) {
                                             latlng_placeholder = latlng;
+                                            coor = latlng.split(",");
+
                                         }
 
                                     %>
-
                                     <!-- For Table -->
                                     <form id="inputsAnalysis" class="body collapse in" action="PCServlet">
                                         <div class="input-group">
@@ -324,6 +333,12 @@
                                         <h5>Geospatial View</h5>
                                         <div class="toolbar">
                                             <div class="btn-group">
+                                                <div id="clearmap" class="btn btn-info btn-sm" style="background:#ff3333">
+                                                   Clear Map Markers
+                                                </div> 
+                                                <div id="resetmap" class="btn btn-info btn-sm">
+                                                    Reset Map
+                                                </div> 
                                                 <a href="#mapView" data-toggle="collapse" class="btn btn-sm btn-default minimize-box">
                                                     <i class="fa fa-minus"></i>
                                                 </a> 
@@ -420,7 +435,7 @@
                     </div><!-- /.modal-content -->
                 </div><!-- /.modal-dialog -->
             </div><!-- /.modal --><!-- /#helpModal -->
-            
+
             <div id="right" class="bg-light lter">
                 <div class="alert alert-danger">
                     <button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -478,7 +493,7 @@
                     </div>
                 </div>
             </div><!-- /#right -->
-            
+
         </div>
 
         <!--jQuery -->
@@ -508,14 +523,37 @@
         <script type="text/javascript" language="javascript" src="//cdn.datatables.net/plug-ins/f2c75b7247b/integration/bootstrap/3/dataTables.bootstrap.js"></script>
 
 
-        
+
         <!--LINK MODULE-->
         <script src="Libraries/hexbin.js"></script>
 
         <script src="Libraries/d3-leaflet.js"></script>
+
+        
         <script>
+            var markerslayer;
+            $('#resetmap').on('click', function () {
+                map.setView([1.3667, 103.8], 11)
+            });
+            
             var value;
             init_function();
+        </script>
+        <%if (coor.length > 0) {%>                        
+        <script>
+            var lat =<%=coor[0]%>;
+            var lng =<%=coor[1]%>;
+            var redMarker = L.AwesomeMarkers.icon({
+                icon:'home',
+                markerColor: 'red'
+            });
+
+            markerslayer=L.marker([lat,lng], {icon: redMarker}).addTo(map);
+            
+
+        </script>
+        <%}%>
+        <script>
             var drawnItems = L.featureGroup().addTo(map);
             map.addControl(new L.Control.Draw({
                 edit: {
@@ -524,6 +562,10 @@
             }));
             map.on('draw:created', function (event) {
                 var layer = event.layer;
+                if (event.layerType == 'marker') {
+                    var marker = layer.getLatLng();
+                    document.getElementById("latlng").value = marker.lat + "," + marker.lng;
+                }
                 layer.on('click', function () {
                     if (event.layerType == 'circle') {
                         var circlecenter = layer.getLatLng();
@@ -538,19 +580,21 @@
                         }
                         var pointswithinpolygon = getpointswithinpolygon(filtereddata, layer.getLatLngs());
                         $('#polygoncharts').modal(options);
-                    } else if (event.layerType == 'marker') {
-                        var marker = layer.getLatLng();
-                        document.getElementById("latlng").value = marker.lat + "," + marker.lng;
                     }
                 });
                 drawnItems.addLayer(layer);
 
             });
-
+            $('#clearmap').on('click', function () {
+                map.remove();
+                init_function();
+            });
             $(function () {
 
                 $(".dropdown-menu li a").click(function () {
-
+                    if($(this).text()=="Postal Code"){
+                        
+                    }
                     $("#selectway").text($(this).text()).append('<span class="caret"></span>');
                     $("#btn").val($(this).text());
 
@@ -560,13 +604,47 @@
         </script>
 
 
-        <%                String result = String.valueOf(request.getAttribute("project_comparison_result"));
+        <%
+            String result = String.valueOf(request.getAttribute("project_comparison_result"));
 
             if (!result.equals("null")) {
         %>
         <script type="text/javascript">
 
             var data = <%=result%>;
+            
+            var list=[];
+            
+            
+    //Charts
+        data.forEach(function (d) {
+            var pointmarker=[];
+            pointmarker.push(d.project_name);
+            pointmarker.push(d.geojson.coordinates);
+            list.push(pointmarker);
+        });
+        
+        
+        for (var i = 0; i < list.length; i++) {
+            var point=list[i];
+            
+            var projectname=point[0];
+            
+            var lat=point[1][1];
+            
+            var lng=point[1][0];
+            
+            var blueMarker = L.AwesomeMarkers.icon({
+               icon:'home',
+                markerColor: 'blue'
+            });
+
+            L.marker([lat,lng], {icon: blueMarker}).addTo(map).bindPopup(projectname);
+            
+        }   
+        
+
+
             if ($('#magic-table').length) {
                 //alert("magic");
             }

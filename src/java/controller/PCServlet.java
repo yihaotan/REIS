@@ -38,12 +38,13 @@ public class PCServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
+        String latlng="";
         try {
             /* TODO output your page here. You may use following sample code. */
 
             int number_of_projects = Integer.parseInt(String.valueOf(request.getParameter("number_of_projects")));
 
-            String latlng = String.valueOf(request.getParameter("latlng"));
+            latlng = String.valueOf(request.getParameter("latlng"));
 
             String lat = "";
             String lon = "";
@@ -68,6 +69,8 @@ public class PCServlet extends HttpServlet {
             // pretty print string
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
             String json = gson.toJson(projectList);
+            
+            System.out.println(json);
 
             // SEND RESULT BACK
             request.setAttribute("project_comparison_result", json);

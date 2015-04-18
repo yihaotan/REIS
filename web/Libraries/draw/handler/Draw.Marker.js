@@ -71,7 +71,10 @@ L.Draw.Marker = L.Draw.Feature.extend({
 
 		if (!this._marker) {
 			this._marker = new L.Marker(latlng, {
-				icon: this.options.icon,
+				icon: L.AwesomeMarkers.icon({
+                                        icon:'home',
+                                         markerColor: 'red'
+                                     }),
 				zIndexOffset: this.options.zIndexOffset
 			});
 			// Bind to both marker and map to make sure we get the click event.
@@ -96,7 +99,10 @@ L.Draw.Marker = L.Draw.Feature.extend({
 	},
 
 	_fireCreatedEvent: function () {
-		var marker = new L.Marker(this._marker.getLatLng(), { icon: this.options.icon });
+		var marker = new L.Marker(this._marker.getLatLng(), { icon: L.AwesomeMarkers.icon({
+                                        icon:'home',
+                                         markerColor: 'red'
+                                     })});
 		L.Draw.Feature.prototype._fireCreatedEvent.call(this, marker);
 	}
 });
