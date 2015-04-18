@@ -63,11 +63,13 @@ function getMaxPrice(data){
     var minPrice = d3.min(data,function(d){
         return d.price;
     });
+    return minPrice;
 }
 function getMinPrice(data){
     var maxPrice = d3.max(data,function(d){
         return d.price;
     });
+    return maxPrice;
 }
 function parseDate(dateStr) {
     var format = d3.time.format("%d/%m/%Y");

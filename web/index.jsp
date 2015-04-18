@@ -10,15 +10,10 @@
         <!--Mobile first-->
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-
-
-
-
         <link rel="stylesheet" href="Css/iThing.css" type="text/css">
         <link rel='stylesheet' href='Css/dc.css' type='text/css'>
-        <link rel='stylesheet' href='Css/bootstrap-select.css' type='text/css'>
         <link rel="stylesheet" href="Css/LeafletStyleSheet.css" type="text/css">
-        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+        <!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"> -->
         <link rel="stylesheet" href="Css/L.Control.Opencagesearch.css" type="text/css">
         <link rel="stylesheet" href="Css/button1.css" type="text/css">
         <link rel="stylesheet" href="Css/jquery.slidepanel.css" type="text/css">
@@ -348,7 +343,7 @@
                                     <a href="ProjectComparison.jsp">Project Comparison</a>  
                                 </li>
 
-                                
+
 
                             </ul><!-- /.nav -->
                         </div>
@@ -359,7 +354,7 @@
                 <header class="head">
 
                     <!--Not really a search bar-->
-                    
+
 
                     <div class="main-bar">
 
@@ -387,25 +382,27 @@
 
                         %>
 
-                        
-                           <div class="dc-data-count" id='count-table' >
-                                           
-                                                <span>
-                                                    <strong>
-                                                        <i class="glyphicon glyphicon-zoom-in"></i> 
-                                                        You have selected
-                                                        <span class="filter-count" style="color:goldenrod">0</span>
-                                                        out of 
-                                                        <span class="total-count" style="color:goldenrod">0</span>
-                                                        records   
-                                                    </strong>
-                                                </span>
-                                                
-                                            
-                                            
-                                        </div>
-                        
-                        
+
+                        <div class="dc-data-count" id='count-table' >
+
+                            <span>
+                                <strong>
+                                    <i class="glyphicon glyphicon-zoom-in"></i> 
+                                    You have selected
+                                    <span class="filter-count" style="color:goldenrod">0</span>
+                                    out of 
+                                    <span class="total-count" style="color:goldenrod">0</span>
+                                    records   
+                                </strong>
+                            </span>
+
+                            <a href="javascript:dc.filterAll(); dc.renderAll();" class="btn btn-warning btn-xs">
+                                <i class="glyphicon glyphicon-zoom-in"></i> Reset
+                            </a>
+
+                        </div>
+
+
 
 
 
@@ -427,6 +424,17 @@
                         <!-- Row for Data Count -->
                         <div class="row">
 
+                            <div class="col-lg-5 col-md-6">
+                                <div id="slider" >
+                                    <script>
+                                         $("#slider").editRangeSlider({bounds:{min:0 , max:5000000}},{defaultValues:{min: 200000, max: 2000000}});
+        
+                                    </script>
+                                </div>           
+                            </div>
+
+
+
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col-lg-3 col-md-6">
@@ -443,27 +451,38 @@
                                                     <option value="all" <%=all_string%>>All Transaction Records</option>
                                                 </select>
 
-                                                <button type="submit" class="btn btn-primary">Submit</button>
+
                                             </div>
                                         </form>
 
                                     </div>
-                                    <div class="col-lg-3 col-md-6">
-                                        <div id="slider">
-                                            <script>
-                                                  $("#slider").editRangeSlider({});
-                                            </script>
-                                        </div>           
-                                    </div>
-                                    <div class="col-lg-3 col-md-6">
-                                   
-                                                <a href="javascript:dc.filterAll(); dc.renderAll();" class="btn btn-warning btn-line">
-                                                <i class="glyphicon glyphicon-zoom-in"></i> Reset
-                                                </a>
-                                             
-                                    </div>
+
+                                    <div class="col-lg-2 col-md-6">
+
+                                        <form class="navbar-form" action="DBServlet"> 
+                                            <strong>Select Area:</strong>
+
+                                            <div class="input-group input-group" style="float:left">
+
+                                                <select class="form-control" name="region_select">
+                                                    <option value="ccr" <%=ccr_string%>>Core Central Region (CCR)</option>
+                                                    <option value="rcr" <%=rcr_string%>>Rest of Central Region (RCR)</option>
+                                                    <option value="ocr" <%=ocr_string%>>Outside Central Region (OCR)</option>
+                                                    <option value="all" <%=all_string%>>All Transaction Records</option>
+                                                </select>
+
+                                                <button type="submit" class="btn btn-primary">Submit</button>
+                                            </div>
+                                        </form>
+
+                                    </div>            
+
+
+
+
+
                                     <!-- Slider -->
-                                    
+
 
 
                                 </div>
@@ -699,12 +718,12 @@
                                             </div>
                                         </div>
 
-                                       
-
-                                      
 
 
-                                       
+
+
+
+
 
 
 
@@ -799,7 +818,7 @@
 
                                             </div>
 
-                                            
+
 
 
                                         </div>
@@ -868,7 +887,7 @@
                             </div>
                         </div><!-- /.row -->
 
-                        
+
 
                     </div><!-- /.inner -->
                 </div><!-- /.outer -->
@@ -950,7 +969,7 @@
     </footer><!-- /#footer -->
 
     <!--jQuery -->
-  
+
     <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script> 
     <script src="//cdnjs.cloudflare.com/ajax/libs/datatables/1.10.4/js/jquery.dataTables.min.js"></script>
     <script src="//cdn.datatables.net/plug-ins/3cfcc339e89/integration/bootstrap/3/dataTables.bootstrap.js"></script> 
@@ -1014,12 +1033,19 @@
     <script type="text/javascript">
 
         var data = <%=result%>;
+
+
+        
         generateAll(data);
 
     </script>
     <%
         }
     %>
+
+
+
+
 
 
 
