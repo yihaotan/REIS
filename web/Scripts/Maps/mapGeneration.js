@@ -62,7 +62,7 @@ function codeAddress() {
             googlemap.streetView.setPosition(results[0].geometry.location);
             googlemap.streetView.setVisible(true);
         } else {
-            alert('Geocode was not successful for the following reason: ' + status);
+            alert("The postal code cannot be found");
         }
     });
     

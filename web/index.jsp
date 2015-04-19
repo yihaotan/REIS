@@ -9,14 +9,15 @@
 
         <!--Mobile first-->
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="Css/Leaflet.awesome-markers.css">
-        <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/1.5.2/css/ionicons.min.css">
+
         <link rel="stylesheet" href="Css/iThing.css" type="text/css">
         <link rel='stylesheet' href='Css/dc.css' type='text/css'>
         <link rel="stylesheet" href="Css/LeafletStyleSheet.css" type="text/css">
-        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"> 
+        <!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"> -->
         <link rel="stylesheet" href="Css/L.Control.Opencagesearch.css" type="text/css">
         <link rel="stylesheet" href="Css/button1.css" type="text/css">
+        <link rel="stylesheet" href="Css/jquery.slidepanel.css" type="text/css">
+        <link rel="stylesheet" href="Css/jquery.sidr.light.css" type="text/css">
         <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css"  type="text/css">
         <link rel="stylesheet" href="Css/leaflet.draw.css" type="text/css">
         <link type="text/css" href="d3-Leafletlib/leaflet.markercluster.css" rel="stylesheet"/>
@@ -28,7 +29,7 @@
         <!--Unknown-->
         <script src="Libraries/d3.v3.min.js" type="text/javascript"></script>
         <script src="Libraries/crossfilter.js" type='text/javascript'></script>
-
+        <!-- <script src="Libraries/jquery-1.8.3.js"></script> -->
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
         <script src="Libraries/jquery-ui-1.9.2.custom.js"></script>      
         <script src="Libraries/leaflet.js" type='text/javascript'></script>
@@ -117,9 +118,7 @@
         <script type="text/javascript" src="d3-Leafletlib/dc.leaflet.js"></script>
 
 
-        <!--for multi select-->
-        <script type="text/javascript" src="Libraries/bootstrap-multiselect.js"></script>
-        <link rel="stylesheet" href="Css/bootstrap-multiselect.css" type="text/css"/>   
+
 
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -146,9 +145,9 @@
         <!--Modernizr-->
         <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
 
-        <script src="Libraries/Leaflet.awesome-markers.js"></script>
 
-        
+
+
         <style>
             #map { 
                 position: relative;
@@ -425,21 +424,43 @@
                         <!-- Row for Data Count -->
                         <div class="row">
 
+                            <div class="col-lg-5 col-md-6">
+                                <div id="slider" >
+                                    <script>
+                                         $("#slider").editRangeSlider({bounds:{min:0 , max:5000000}},{defaultValues:{min: 200000, max: 2000000}});
+        
+                                    </script>
+                                </div>           
+                            </div>
+
+
+
                             <div class="form-group">
                                 <div class="row">
-                                    <form class="navbar-form" action="DBServlet">
-                                     <div class="col-lg-5 col-md-6">
-                                        <div id="slider" >
-                                            <script>
-                                        $("#slider").editRangeSlider({bounds: {min: 0, max: 5000000}}, {defaultValues: {min: 200000, max: 2000000}});
+                                    <div class="col-lg-3 col-md-6">
 
-                                            </script>
-                                        </div>           
-                                    </div>   
-                                    <div class="col-lg-3 col-md-8">
-
-                                         
+                                        <form class="navbar-form" action="DBServlet"> 
                                             <strong>Select Region:</strong>
+
+                                            <div class="input-group input-group" style="float:left">
+
+                                                <select class="form-control" name="region_select">
+                                                    <option value="ccr" <%=ccr_string%>>Core Central Region (CCR)</option>
+                                                    <option value="rcr" <%=rcr_string%>>Rest of Central Region (RCR)</option>
+                                                    <option value="ocr" <%=ocr_string%>>Outside Central Region (OCR)</option>
+                                                    <option value="all" <%=all_string%>>All Transaction Records</option>
+                                                </select>
+
+
+                                            </div>
+                                        </form>
+
+                                    </div>
+
+                                    <div class="col-lg-2 col-md-6">
+
+                                        <form class="navbar-form" action="DBServlet"> 
+                                            <strong>Select Area:</strong>
 
                                             <div class="input-group input-group" style="float:left">
 
@@ -452,12 +473,22 @@
 
                                                 <button type="submit" class="btn btn-primary">Submit</button>
                                             </div>
-                                                
-                                         
-                                    </div>
-                                     </form>
+                                        </form>
+
+                                    </div>            
+
+
+
+
+
+                                    <!-- Slider -->
+
+
+
                                 </div>
+
                             </div>
+
                         </div>
                         <div class="row">
                             <div class="col-lg-5 " id="sortable2">
@@ -894,8 +925,8 @@
                         <h4 class="modal-title">Streetview</h4>
                     </div>
                     <div class="modal-body">
-                        <input id="address" type="text" value="">
-                        <input type="button" value="Place marker" onclick="codeAddress()">  
+                        <input id="address" type="text" value="" placeholder="Enter postal code here">
+                        <input type="button" value="View Location" onclick="codeAddress()">  
 
                         <div id="pano" style="position:absolute; left:410px; top: 55px; width: 400px; height: 300px;"></div>
                     </div>
@@ -967,26 +998,26 @@
 
     <script>
 
-                            $('#resetmap').on('click', function () {
-                                map.setView([1.3667, 103.8], 11)
-                            });
+            $('#resetmap').on('click', function () {
+                map.setView([1.3667, 103.8], 11)
+            });
 
-                            $('#googlestreetviewbtn').on('click', function () {
-                                initializeGoogleMaps();
-                                var options = {
-                                    "backdrop": true,
-                                    "show": true
-                                }
+            $('#googlestreetviewbtn').on('click', function () {
+                initializeGoogleMaps();
+                var options = {
+                    "backdrop": true,
+                    "show": true
+                }
 
-                                $('#googlestreetview').modal(options);
-                            })
-                            $('#googlestreetview').on('shown.bs.modal', function () {
-                                google.maps.event.trigger(googlemap, 'resize');
-                                googlemap.setCenter(new google.maps.LatLng(1.3667, 103.8));
-                            })
+                $('#googlestreetview').modal(options);
+            })
+            $('#googlestreetview').on('shown.bs.modal', function () {
+                google.maps.event.trigger(googlemap, 'resize');
+                googlemap.setCenter(new google.maps.LatLng(1.3667, 103.8));
+            })
 
 
-                            //map = L.map('map').setView([1.3667,103.8], 11);
+            //map = L.map('map').setView([1.3667,103.8], 11);
     </script>
 
     <!--LINK MODULE-->
@@ -1004,7 +1035,7 @@
         var data = <%=result%>;
 
 
-
+        
         generateAll(data);
 
     </script>
