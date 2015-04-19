@@ -602,6 +602,37 @@
             $('#clearmap').on('click', function () {
                 map.remove();
                 init_function();
+                var drawnItems = L.featureGroup().addTo(map);
+            map.addControl(new L.Control.Draw({
+                edit: {
+                    featureGroup: drawnItems
+                }
+            }));
+            map.on('draw:created', function (event) {
+                var layer = event.layer;
+                if (event.layerType == 'marker') {
+                    var marker = layer.getLatLng();
+                    document.getElementById("latlng").value = marker.lat + "," + marker.lng;
+                }
+                layer.on('click', function () {
+                    if (event.layerType == 'circle') {
+                        var circlecenter = layer.getLatLng();
+                        var circleradius = layer.getRadius();
+                        var pointswithincircle = getpointswithincircle(filtereddata, circlecenter, circleradius);
+                    }
+
+                    else if (event.layerType == 'polygon') {
+                        var options = {
+                            "backdrop": true,
+                            "show": true
+                        }
+                        var pointswithinpolygon = getpointswithinpolygon(filtereddata, layer.getLatLngs());
+                        $('#polygoncharts').modal(options);
+                    }
+                });
+                drawnItems.addLayer(layer);
+
+            });
             });
             $(function () {
 
