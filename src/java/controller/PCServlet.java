@@ -38,47 +38,50 @@ public class PCServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        String latlng = "";
+
+        String html = " <span class=\"glyphicon glyphicon-exclamation-sign\" aria-hidden=\"true\"></span><span class=\"sr-only\">Error:</span> ";
+
+        String message = "";
+
         try {
             /* TODO output your page here. You may use following sample code. */
 
             boolean error = false;
-            
+
             // Check Lat Lon
-            latlng = String.valueOf(request.getParameter("latlng"));
+            String latlng = String.valueOf(request.getParameter("latlng"));
             String lat = "";
             String lon = "";
-            if (!latlng.equals("null")) {
+            if (!latlng.equals("null") && !latlng.equals("")) {
                 int position = latlng.indexOf(",");
                 lat = latlng.substring(0, position);
                 lon = latlng.substring(position + 1, latlng.length());
             } else {
-                request.setAttribute("error", "Please select a point on map!");
+                message += html + "Please select a point on the map! <br>";
+                request.setAttribute("error", message);
                 error = true;
             }
 
             // Check number of projects
-            int number_of_projects = Integer.parseInt(String.valueOf(request.getParameter("number_of_projects")));
-            if (number_of_projects == 0) {
-                request.setAttribute("error", "Please enter a positive number!");
+            int number_of_projects = 0;
+            try {
+                number_of_projects = Integer.parseInt(String.valueOf(request.getParameter("number_of_projects")));
+            } catch (Exception e) {
+            }
+            if (number_of_projects <= 0) {
+                message += html + "Please enter a positive integer! <br>";
+                request.setAttribute("error", message);
                 error = true;
             }
-            
-            
 
             // If no error
             if (!error) {
-
-                // REAL STUFF
                 ProjectDAO pdao = new ProjectDAO();
                 ArrayList<Project> result = pdao.retrieve(number_of_projects, lat, lon);
                 JsonArray projectList = pdao.toJSON(result, number_of_projects);
                 Gson gson = new GsonBuilder().setPrettyPrinting().create();
                 String json = gson.toJson(projectList);
-
-                // SEND RESULT BACK
                 request.setAttribute("project_comparison_result", json);
-
             }
 
             request.setAttribute("return_num", number_of_projects);
@@ -88,9 +91,6 @@ public class PCServlet extends HttpServlet {
 
         } catch (Exception e) {
             // Send error (if any) back to homepage
-            request.setAttribute("error", "Invalid input!");
-            RequestDispatcher rd = request.getRequestDispatcher("ProjectComparison.jsp");
-            rd.forward(request, response);
         } finally {
             out.close();
         }

@@ -277,8 +277,6 @@
                                     %>
                                     
                                     <div class="alert alert-danger" role="alert" style="margin: 10px;">
-                                        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-                                        <span class="sr-only">Error:</span>
                                         <%=error%>
                                     </div>
 
@@ -316,7 +314,7 @@
 
                                                 </ul>
                                             </div><!-- /btn-group -->
-                                            <input type="text" id="latlng" name="latlng" class="form-control" aria-label="..." value='<%=latlng_placeholder%>'>
+                                            <input type="text" id="latlng" name="latlng" class="form-control" aria-label="..." readonly value='<%=latlng_placeholder%>'>
                                         </div><!-- /input-group -->
 
 
