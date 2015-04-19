@@ -40,9 +40,10 @@ public class ACServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
         try {
             /* TODO output your page here. You may use following sample code. */
-            
+
             // CHECK OR NOT?
             String[] facility_list = request.getParameterValues("facility");
+            System.out.println(facility_list == null);
             int hawkercentre_check = 0;
             int childcare_check = 0;
             int chasclinic_check = 0;
@@ -70,7 +71,7 @@ public class ACServlet extends HttpServlet {
                     shoppingcentre_check = 1;
                 }
             }
-            
+
             // IF CHECK, HOW MANY?
 //            String num_hawkercentre_str = String.valueOf(request.getParameter("num_hawkercentre"));
 //            String num_childcare_str = String.valueOf(request.getParameter("num_childcare"));
@@ -92,7 +93,6 @@ public class ACServlet extends HttpServlet {
 //            num_list[0] = num_hawkercentre;
 //            num_list[1] = num_childcare;
 //            num_list[2] = num_chasclinic;
-            
             // IMPORTANCE / WEIGHT
             int hawkercentre_weight = Integer.parseInt(String.valueOf(request.getParameter("hawkercentre_select")));
             int childcare_weight = Integer.parseInt(String.valueOf(request.getParameter("childcare_select")));
@@ -100,7 +100,7 @@ public class ACServlet extends HttpServlet {
             int mrtstation_weight = Integer.parseInt(String.valueOf(request.getParameter("mrtstation_select")));
             int primaryschool_weight = Integer.parseInt(String.valueOf(request.getParameter("primaryschool_select")));
             int shoppingcentre_weight = Integer.parseInt(String.valueOf(request.getParameter("shoppingcentre_select")));
-            
+
             int[] weight_list = new int[6];
             weight_list[0] = hawkercentre_weight;
             weight_list[1] = childcare_weight;
@@ -108,10 +108,10 @@ public class ACServlet extends HttpServlet {
             weight_list[3] = mrtstation_weight;
             weight_list[4] = primaryschool_weight;
             weight_list[5] = shoppingcentre_weight;
-            
+
             // REAL STUFF
             HexagonDAO hdao = new HexagonDAO();
-            
+
             // retrieve all hexagons
             ArrayList<Hexagon> result = hdao.retrieve(facility_list);
             // pretty print and convert to string
@@ -124,41 +124,40 @@ public class ACServlet extends HttpServlet {
             // pretty print string
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
             String json = gson.toJson(hexagonList);
-            
+
             // SEND RESULT BACK
             request.setAttribute("accessibility_result", json);
-            
+
+            // ALSO, INCLUDE THRESHOLD VALUES FOR COLOUR SCHEME
+            request.setAttribute("total_80", total_80);
+            request.setAttribute("total_60", total_60);
+            request.setAttribute("total_40", total_40);
+            request.setAttribute("total_20", total_20);
+
             request.setAttribute("hawkercentre_check", hawkercentre_check);
             request.setAttribute("childcare_check", childcare_check);
             request.setAttribute("chasclinic_check", chasclinic_check);
             request.setAttribute("mrtstation_check", mrtstation_check);
             request.setAttribute("primaryschool_check", primaryschool_check);
             request.setAttribute("shoppingcentre_check", shoppingcentre_check);
-            
+
             request.setAttribute("hawkercentre_weight", hawkercentre_weight);
             request.setAttribute("childcare_weight", childcare_weight);
             request.setAttribute("chasclinic_weight", chasclinic_weight);
             request.setAttribute("mrtstation_weight", mrtstation_weight);
             request.setAttribute("primaryschool_weight", primaryschool_weight);
             request.setAttribute("shoppingcentre_weight", shoppingcentre_weight);
-            
-            // ALSO, INCLUDE THRESHOLD VALUES FOR COLOUR SCHEME
-            request.setAttribute("total_80", total_80);
-            request.setAttribute("total_60", total_60);
-            request.setAttribute("total_40", total_40);
-            request.setAttribute("total_20", total_20);
-            
+
             // SEND
             RequestDispatcher rd = request.getRequestDispatcher("Accessibility.jsp");
             rd.forward(request, response);
-            
-            } catch (Exception e) {
-            
+
+        } catch (Exception e) {
+
             // Send error (if any) back to homepage
-            String error = "Error!";
-//            request.setAttribute("error", error);
-//            RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
-//            rd.forward(request, response);
+            request.setAttribute("error", "Please select at least one facility!");
+            RequestDispatcher rd = request.getRequestDispatcher("Accessibility.jsp");
+            rd.forward(request, response);
         } finally {
             out.close();
         }

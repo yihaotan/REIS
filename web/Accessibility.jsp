@@ -317,9 +317,26 @@
                                     <div id='home'>
                                         <div id='target'></div>
                                     </div>
+                                    
+                                    <%
+                                        String error = String.valueOf(request.getAttribute("error"));
+                                        
+                                        if (!error.equals("null")) {
+                                            
+                                        
+                                    %>
+                                    
+                                    <div class="alert alert-danger" role="alert" style="margin: 10px;">
+                                        <%=error%>
+                                    </div>
 
 
-                                    <%                                        // CHECK OR NOT
+                                    <%
+                                    
+                                    }
+
+
+                                                                           // CHECK OR NOT
                                         String hawkercentre_check_num = String.valueOf(request.getAttribute("hawkercentre_check"));
                                         String childcare_check_num = String.valueOf(request.getAttribute("childcare_check"));
                                         String chasclinic_check_num = String.valueOf(request.getAttribute("chasclinic_check"));
