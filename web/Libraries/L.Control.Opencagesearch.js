@@ -122,7 +122,11 @@
 				this._map.removeLayer(this._geocodeMarker);
 			}
 
-			this._geocodeMarker = new L.Marker(result.center)
+			this._geocodeMarker = new L.Marker(result.center,{icon:L.AwesomeMarkers.icon({
+                                                                        prefix:'fa',
+                                                                        icon:'star',
+                                                                        markerColor: 'orange'
+                                                                    })})
 				.bindPopup(result.name)
 				.addTo(this._map)
 				.openPopup();

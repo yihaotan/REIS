@@ -383,51 +383,59 @@
 
                         %>
 
-
-                        <div class="dc-data-count" id='count-table' >
-
+                          <h4>
+                        <div class="dc-data-count" id='count-table' style="margin-top:10px">
+                          
                             <span>
+                                
                                 <strong>
-                                    <i class="glyphicon glyphicon-zoom-in"></i> 
+                                    <i class="glyphicon glyphicon-zoom-in" ></i> 
                                     You have selected
                                     <span class="filter-count" style="color:goldenrod">0</span>
                                     out of 
                                     <span class="total-count" style="color:goldenrod">0</span>
                                     records   
                                 </strong>
+                                
                             </span>
-
-                            <a href="javascript:dc.filterAll(); dc.renderAll();" class="btn btn-warning btn-xs">
+                            
+                            <a href="javascript:dc.filterAll(); dc.renderAll();" class="btn btn-warning btn-sm" style="color:#2f0058" >
                                 <i class="glyphicon glyphicon-zoom-in"></i> Reset
                             </a>
-
+                            
                         </div>
-                        <div class="form-group">
+                        </h4>
+                        <div class="row">
+                            <div class="form-group">
                                 <div class="row">
 
-                                    <div class="col-lg-2 col-md-6">
-
+                                    
+                                        
                                         <form class="navbar-form" action="DBServlet"> 
-                                            <strong>Select Area:</strong>
-
-                                            <div class="input-group input-group" style="float:left">
-
+                                            
+                                            
+                                            <div class="col-lg-3 col-md-6 input-group input-group input-sm" style="float:left;margin-top:-40px;margin-left:30px">
+                                                <h5><Strong>Select Area:</Strong></h5>
                                                 <select class="form-control" name="region_select">
                                                     <option value="ccr" <%=ccr_string%>>Core Central Region (CCR)</option>
                                                     <option value="rcr" <%=rcr_string%>>Rest of Central Region (RCR)</option>
                                                     <option value="ocr" <%=ocr_string%>>Outside Central Region (OCR)</option>
                                                     <option value="all" <%=all_string%>>All Transaction Records</option>
                                                 </select>
-
+                                                
+                                            </div>
+                                            <div class="col-lg-3 col-md-6" style="margin-top:0px;margin-left:-10px">
                                                 <button type="submit" class="btn btn-primary">Submit</button>
                                             </div>
                                         </form>
 
-                                    </div>            
+                                              
 
                                 </div>
 
                             </div>
+
+                        </div>
 
                     </div><!-- /.main-bar -->
 
@@ -439,36 +447,7 @@
             <div id="content">
                 <div class="outer">
                     <div class="inner bg-light lter">
-                        <!-- Row for Data Count -->
-                        <div class="row">
-                            <div class="form-group">
-                                <div class="row">
 
-                                    <div class="col-lg-2 col-md-6">
-
-                                        <form class="navbar-form" action="DBServlet"> 
-                                            <strong>Select Area:</strong>
-
-                                            <div class="input-group input-group" style="float:left">
-
-                                                <select class="form-control" name="region_select">
-                                                    <option value="ccr" <%=ccr_string%>>Core Central Region (CCR)</option>
-                                                    <option value="rcr" <%=rcr_string%>>Rest of Central Region (RCR)</option>
-                                                    <option value="ocr" <%=ocr_string%>>Outside Central Region (OCR)</option>
-                                                    <option value="all" <%=all_string%>>All Transaction Records</option>
-                                                </select>
-
-                                                <button type="submit" class="btn btn-primary">Submit</button>
-                                            </div>
-                                        </form>
-
-                                    </div>            
-
-                                </div>
-
-                            </div>
-
-                        </div>
                         <div class="row">
                             <div class="col-lg-5 " id="sortable2">
                                 <div class="box">
@@ -485,7 +464,7 @@
                                                 <a href="#SizeAndPriceView" data-toggle="collapse" class="btn btn-sm btn-default minimize-box">
                                                     <i class="fa fa-minus"></i>
                                                 </a> 
-                                                
+
                                             </div>
 
                                         </div>
@@ -566,7 +545,7 @@
                                                 <a href="#mapView" data-toggle="collapse" class="btn btn-sm btn-default minimize-box">
                                                     <i class="fa fa-minus"></i>
                                                 </a> 
-                                                
+
                                             </div>
 
                                         </div>
@@ -595,7 +574,7 @@
                                                 <a href="#basicCharts" data-toggle="collapse" class="btn btn-sm btn-default minimize-box">
                                                     <i class="fa fa-minus"></i>
                                                 </a> 
-                                                
+
                                             </div>
                                         </div>
                                     </header>
@@ -725,7 +704,7 @@
                                                 <a href="#dateVolume" data-toggle="collapse" class="btn btn-sm btn-default minimize-box">
                                                     <i class="fa fa-minus"></i>
                                                 </a> 
-                                                
+
                                             </div>
                                         </div>
                                     </header>
@@ -767,7 +746,7 @@
                                                 <a href="#dateVolume1" data-toggle="collapse" class="btn btn-sm btn-default minimize-box">
                                                     <i class="fa fa-minus"></i>
                                                 </a> 
-                                                
+
                                             </div>
                                         </div>
                                     </header>
@@ -822,7 +801,7 @@
                                                 <a href="#magicTable" data-toggle="collapse" class="btn btn-sm btn-default minimize-box">
                                                     <i class="fa fa-minus"></i>
                                                 </a> 
-                                                
+
                                             </div>
                                         </div>
                                     </header>
@@ -892,8 +871,8 @@
                         <h4 class="modal-title">Streetview</h4>
                     </div>
                     <div class="modal-body">
-                        <input id="address" type="text" value="">
-                        <input type="button" value="Place marker" onclick="codeAddress()">  
+                        <input id="address" type="text" value="" placeholder="Enter postal code here">
+                        <input type="button" value="View Location" onclick="codeAddress()">  
 
                         <div id="pano" style="position:absolute; left:410px; top: 55px; width: 400px; height: 300px;"></div>
                     </div>
@@ -965,26 +944,26 @@
 
     <script>
 
-            $('#resetmap').on('click', function () {
-                map.setView([1.3667, 103.8], 11)
-            });
+                            $('#resetmap').on('click', function () {
+                                map.setView([1.3667, 103.8], 11)
+                            });
 
-            $('#googlestreetviewbtn').on('click', function () {
-                initializeGoogleMaps();
-                var options = {
-                    "backdrop": true,
-                    "show": true
-                }
+                            $('#googlestreetviewbtn').on('click', function () {
+                                initializeGoogleMaps();
+                                var options = {
+                                    "backdrop": true,
+                                    "show": true
+                                }
 
-                $('#googlestreetview').modal(options);
-            })
-            $('#googlestreetview').on('shown.bs.modal', function () {
-                google.maps.event.trigger(googlemap, 'resize');
-                googlemap.setCenter(new google.maps.LatLng(1.3667, 103.8));
-            })
+                                $('#googlestreetview').modal(options);
+                            })
+                            $('#googlestreetview').on('shown.bs.modal', function () {
+                                google.maps.event.trigger(googlemap, 'resize');
+                                googlemap.setCenter(new google.maps.LatLng(1.3667, 103.8));
+                            })
 
-            
-            //map = L.map('map').setView([1.3667,103.8], 11);
+
+                            //map = L.map('map').setView([1.3667,103.8], 11);
     </script>
 
     <!--LINK MODULE-->
@@ -1002,7 +981,7 @@
         var data = <%=result%>;
 
 
-        
+
         generateAll(data);
 
     </script>
