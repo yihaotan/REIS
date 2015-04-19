@@ -213,9 +213,10 @@
 }
 
 .ui-editRangeSlider-inputValue{
-  width:2em;
+  width:5em;
   text-align:center;
   font-size:15px;
+  color:black;
 }
 
 .ui-rangeSlider .ui-ruler-scale{

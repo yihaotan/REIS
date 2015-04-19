@@ -307,9 +307,7 @@
                                                 <a href="#inputs" data-toggle="collapse" class="btn btn-sm btn-default minimize-box">
                                                     <i class="fa fa-minus"></i>
                                                 </a> 
-                                                <a class="btn btn-danger btn-sm close-box">
-                                                    <i class="fa fa-times"></i>
-                                                </a> 
+                                                
                                             </div>
                                         </div>
                                     </header>
@@ -612,9 +610,7 @@
                                                 <a href="#mapView" data-toggle="collapse" class="btn btn-sm btn-default minimize-box">
                                                     <i class="fa fa-minus"></i>
                                                 </a> 
-                                                <a class="btn btn-danger btn-sm close-box">
-                                                    <i class="fa fa-times"></i>
-                                                </a> 
+                                                
                                             </div>
                                         </div>
                                     </header>

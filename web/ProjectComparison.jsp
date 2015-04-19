@@ -262,9 +262,7 @@
                                                 <a href="#inputsAnalysis" data-toggle="collapse" class="btn btn-sm btn-default minimize-box">
                                                     <i class="fa fa-minus"></i>
                                                 </a> 
-                                                <a class="btn btn-danger btn-sm close-box">
-                                                    <i class="fa fa-times"></i>
-                                                </a> 
+                                               
                                             </div>
                                         </div>
                                     </header>
@@ -576,20 +574,8 @@
                     document.getElementById("latlng").value = marker.lat + "," + marker.lng;
                 }
                 layer.on('click', function () {
-                    if (event.layerType == 'circle') {
-                        var circlecenter = layer.getLatLng();
-                        var circleradius = layer.getRadius();
-                        var pointswithincircle = getpointswithincircle(filtereddata, circlecenter, circleradius);
-                    }
-
-                    else if (event.layerType == 'polygon') {
-                        var options = {
-                            "backdrop": true,
-                            "show": true
-                        }
-                        var pointswithinpolygon = getpointswithinpolygon(filtereddata, layer.getLatLngs());
-                        $('#polygoncharts').modal(options);
-                    }
+                    var marker = layer.getLatLng();
+                    document.getElementById("latlng").value = marker.lat + "," + marker.lng;
                 });
                 drawnItems.addLayer(layer);
 
@@ -610,20 +596,8 @@
                     document.getElementById("latlng").value = marker.lat + "," + marker.lng;
                 }
                 layer.on('click', function () {
-                    if (event.layerType == 'circle') {
-                        var circlecenter = layer.getLatLng();
-                        var circleradius = layer.getRadius();
-                        var pointswithincircle = getpointswithincircle(filtereddata, circlecenter, circleradius);
-                    }
-
-                    else if (event.layerType == 'polygon') {
-                        var options = {
-                            "backdrop": true,
-                            "show": true
-                        }
-                        var pointswithinpolygon = getpointswithinpolygon(filtereddata, layer.getLatLngs());
-                        $('#polygoncharts').modal(options);
-                    }
+                    var marker = layer.getLatLng();
+                    document.getElementById("latlng").value = marker.lat + "," + marker.lng;
                 });
                 drawnItems.addLayer(layer);
 
