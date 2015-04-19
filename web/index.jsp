@@ -811,7 +811,7 @@
                                                 <tr>
                                                     <th data-dynatable-column="projectName" data-dynatable-sorts>Project Name</th>
                                                     <th data-dynatable-column="propertyType" data-dynatable-sorts>Property Type</th>
-                                                    <th data-dynatable-column="sale" data-dynatable-sorts>Sale Type</th>
+                                                    <th data-dynatable-column="sale" data-dynatable-sorts>Sales Type</th>
                                                     <th data-dynatable-column="address" data-dynatable-sorts>Address</th>
                                                     <th data-dynatable-column= "date" data-dynatable-sorts>Date</th>
                                                     <th data-dynatable-column="areasqm" data-dynatable-sorts>Size (sqm)</th>

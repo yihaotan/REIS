@@ -262,27 +262,27 @@
                                                 <a href="#inputsAnalysis" data-toggle="collapse" class="btn btn-sm btn-default minimize-box">
                                                     <i class="fa fa-minus"></i>
                                                 </a> 
-                                               
+
                                             </div>
                                         </div>
                                     </header>
-                                    
+
                                     <%
                                         String error = String.valueOf(request.getAttribute("error"));
-                                        
+
                                         if (!error.equals("null")) {
-                                            
-                                        
+
+
                                     %>
-                                    
+
                                     <div class="alert alert-danger" role="alert" style="margin: 10px;">
                                         <%=error%>
                                     </div>
 
 
                                     <%
-                                    
-                                    }
+
+                                        }
                                         String[] coor = {};
                                         String number_of_projects = String.valueOf(request.getAttribute("return_num"));
 
@@ -302,7 +302,7 @@
                                         }
 
                                     %>
-                                    
+
                                     <!-- For Table -->
                                     <form id="inputsAnalysis" class="body collapse in" action="PCServlet">
                                         <div class="input-group" style="margin-left:10px">
@@ -322,11 +322,11 @@
                                             </div>   
                                         </div>
 
-                                       
+
                                         <button type="submit" class="btn btn-primary">Submit</button>
 
                                     </form>
-                                 
+
                                 </div><!-- box -->
                             </div><!-- col -->
                             <!-- Lower Pane for Map -->
@@ -390,11 +390,11 @@
                                                 <tr>
                                                     <th data-dynatable-column="project_name" data-dynatable-sorts>Project Name</th>
                                                     <th data-dynatable-column="property_type" data-dynatable-sorts>Property Type</th>
-                                                    <th data-dynatable-column="type_of_sale" data-dynatable-sorts>Type of Sale</th>
+                                                    <th data-dynatable-column="type_of_sale" data-dynatable-sorts>Sales Type</th>
                                                     <th data-dynatable-column="tenure" data-dynatable-sorts>Tenure</th>
                                                     <th data-dynatable-column="total_units" data-dynatable-sorts>Total Units</th>
-                                                    <th data-dynatable-column="distance" data-dynatable-sorts>Distance</th>
-                                                    <th data-dynatable-column="median_price_psf" data-dynatable-sorts>Median Price</th>
+                                                    <th data-dynatable-column="distance" data-dynatable-sorts>Distance (m)</th>
+                                                    <th data-dynatable-column="median_price_psf" data-dynatable-sorts>Median Price (psf $)</th>
                                                 </tr>
                                             </thead>      
 
@@ -502,7 +502,7 @@
             </div><!-- /#right -->
 
         </div>
-        
+
         <!--jQuery -->
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
         <script src="Libraries/jquery.dynatable.js"></script>
@@ -584,24 +584,24 @@
                 map.remove();
                 init_function();
                 var drawnItems = L.featureGroup().addTo(map);
-            map.addControl(new L.Control.Draw({
-                edit: {
-                    featureGroup: drawnItems
-                }
-            }));
-            map.on('draw:created', function (event) {
-                var layer = event.layer;
-                if (event.layerType == 'marker') {
-                    var marker = layer.getLatLng();
-                    document.getElementById("latlng").value = marker.lat + "," + marker.lng;
-                }
-                layer.on('click', function () {
-                    var marker = layer.getLatLng();
-                    document.getElementById("latlng").value = marker.lat + "," + marker.lng;
-                });
-                drawnItems.addLayer(layer);
+                map.addControl(new L.Control.Draw({
+                    edit: {
+                        featureGroup: drawnItems
+                    }
+                }));
+                map.on('draw:created', function (event) {
+                    var layer = event.layer;
+                    if (event.layerType == 'marker') {
+                        var marker = layer.getLatLng();
+                        document.getElementById("latlng").value = marker.lat + "," + marker.lng;
+                    }
+                    layer.on('click', function () {
+                        var marker = layer.getLatLng();
+                        document.getElementById("latlng").value = marker.lat + "," + marker.lng;
+                    });
+                    drawnItems.addLayer(layer);
 
-            });
+                });
             });
 
         </script>
@@ -646,18 +646,40 @@
 
             }
 
+            function myAttributeWriter(record) {
+                // `this` is the column object in settings.columns
+                // TODO: automatically convert common types, such as arrays and objects, to string
 
-
-            if ($('#magic-table').length) {
-                //alert("magic");
+                if (this.id === "propertyType") {
+                    if (record[this.id] === "Terrace House") {
+                        return "Terrace";
+                    } else if (record[this.id] === "Executive Condominium") {
+                        return "E.Condominium";
+                    } else if (record[this.id] === "Semi-Detached House") {
+                        return "Semi-Detached";
+                    } else if (record[this.id] === "Detached House") {
+                        return "Detached";
+                    }
+                }else if(this.id==="distance" || this.id==="median_price_psf"){
+                    return (d3.round(record[this.id]));
+                    
+                }
+                return record[this.id];
             }
+            ;
+
+
             $('#magic-table').dynatable({
+                features: {
+                    pushState: false
+                },
                 dataset: {
                     records: data
+                }, writers: {
+                    _attributeWriter: myAttributeWriter
                 }
             });
-            //alert(data[0].project_name);
-            //alert(data.length);
+
 
         </script>
         <%

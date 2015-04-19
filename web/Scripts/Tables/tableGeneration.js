@@ -50,54 +50,12 @@ function plotTable(dimensionName) {
             perPageOptions: [10, 20, 50, 100]
         },writers: {
             
-            _rowWriter: myRowWriter,
+          
             _attributeWriter: myAttributeWriter
         }
     }).data('dynatable');
     return dynaTable;
 }
-
-   
-function myRowWriter(rowIndex, record, columns, cellWriter) {
-    var tr = '';
-
-    // grab the record's attribute for each column
-    for (var i = 0, len = columns.length; i < len; i++) {
-       alert(cellWriter(columns[i], record));
-       tr += cellWriter(columns[i], record);
-      
-    }
-
-    return '<tr>' + tr + '</tr>';
-};
-
-function defaultCellWriter(column, record) {
-    var html = column.attributeWriter(record),
-        td = '<td';
-
-    if (column.hidden || column.textAlign) {
-      td += ' style="';
-
-      // keep cells for hidden column headers hidden
-      if (column.hidden) {
-        td += 'display: none;';
-      }
-
-      // keep cells aligned as their column headers are aligned
-      if (column.textAlign) {
-        td += 'text-align: ' + column.textAlign + ';';
-      }
-
-      td += '"';
-    }
-
-    if (column.cssClass) {
-      td += ' class="' + column.cssClass + '"';
-    }
-
-    return td + '>' + html + '</td>';
-  };
-
 function myAttributeWriter(record) {
     // `this` is the column object in settings.columns
     // TODO: automatically convert common types, such as arrays and objects, to string
@@ -126,7 +84,7 @@ function myAttributeWriter(record) {
         }
     }else if(this.id==="date"){
         return dateFormat(record[this.id]);
-    }else if(this.id==="price"){
+    }else if(this.id==="price" || this.id==="sale"){
         return numberFormat(record[this.id]);
     }
     return record[this.id];
