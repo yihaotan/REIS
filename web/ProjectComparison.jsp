@@ -151,6 +151,7 @@
                 opacity: 0.7;
             }
 
+
         </style>
 
 
@@ -303,18 +304,12 @@
                                         }
 
                                     %>
+                                    
                                     <!-- For Table -->
                                     <form id="inputsAnalysis" class="body collapse in" action="PCServlet">
-                                        <div class="input-group">
-                                            <div class="input-group-btn">
-                                                <button type="button" id="selectway" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Select Method <span class="caret"></span></button>
-                                                <ul class="dropdown-menu" role="menu">
-                                                    <li><a href="#" name="postal">Postal Code</a></li>
-                                                    <li><a href="#" name="marker">Map Marker</a></li>
-
-                                                </ul>
-                                            </div><!-- /btn-group -->
-                                            <input type="text" id="latlng" name="latlng" class="form-control" aria-label="..." readonly value='<%=latlng_placeholder%>'>
+                                        <div class="input-group" style="margin-left:10px">
+                                            <label>New project location:</label>
+                                            <input type="text" id="latlng" name="latlng" class="form-control" aria-label="..." readonly value='<%=latlng_placeholder%>' placeholder="Place a marker on map">
                                         </div><!-- /input-group -->
 
 
@@ -329,11 +324,11 @@
                                             </div>   
                                         </div>
 
-
+                                       
                                         <button type="submit" class="btn btn-primary">Submit</button>
 
                                     </form>
-
+                                 
                                 </div><!-- box -->
                             </div><!-- col -->
                             <!-- Lower Pane for Map -->
@@ -509,7 +504,7 @@
             </div><!-- /#right -->
 
         </div>
-
+        
         <!--jQuery -->
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
         <script src="Libraries/jquery.dynatable.js"></script>
@@ -634,18 +629,7 @@
 
             });
             });
-            $(function () {
 
-                $(".dropdown-menu li a").click(function () {
-                    if ($(this).text() == "Postal Code") {
-
-                    }
-                    $("#selectway").text($(this).text()).append('<span class="caret"></span>');
-                    $("#btn").val($(this).text());
-
-                });
-
-            });
         </script>
 
 

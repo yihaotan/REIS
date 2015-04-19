@@ -9,7 +9,8 @@
 
         <!--Mobile first-->
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
+        <link rel="stylesheet" href="Css/Leaflet.awesome-markers.css">
+        <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/1.5.2/css/ionicons.min.css">
         <link rel="stylesheet" href="Css/iThing.css" type="text/css">
         <link rel='stylesheet' href='Css/dc.css' type='text/css'>
         <link rel="stylesheet" href="Css/LeafletStyleSheet.css" type="text/css">
@@ -145,7 +146,7 @@
         <!--Modernizr-->
         <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
 
-
+        <script src="Libraries/Leaflet.awesome-markers.js"></script>
 
 
         <style>

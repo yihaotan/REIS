@@ -7,7 +7,7 @@ function criteriastolayers(filteredData){
     //Images for markers
     var newsaleexeccondoIcon = L.AwesomeMarkers.icon({
                                                 prefix:'fa',
-                                                icon:'building',
+                                                icon:'home',
                                                 markerColor: 'green'
                                 });
     var subsaleexeccondoIcon = L.AwesomeMarkers.icon({
