@@ -925,8 +925,8 @@
                         <h4 class="modal-title">Streetview</h4>
                     </div>
                     <div class="modal-body">
-                        <input id="address" type="text" value="" placeholder="Enter postal code here">
-                        <input type="button" value="View Location" onclick="codeAddress()">  
+                        <input id="address" type="text" value="">
+                        <input type="button" value="Place marker" onclick="codeAddress()">  
 
                         <div id="pano" style="position:absolute; left:410px; top: 55px; width: 400px; height: 300px;"></div>
                     </div>
