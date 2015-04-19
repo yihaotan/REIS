@@ -5,29 +5,100 @@ var heatmapPrice = new L.LayerGroup();
 function criteriastolayers(filteredData){
 
     //Images for markers
-    var newsaleexeccondoIcon = L.icon({iconUrl: 'Icons/greenexeccondo.png', iconSize: [40, 40]});
-    var subsaleexeccondoIcon = L.icon({iconUrl: 'Icons/blueexeccondo.png', iconSize: [40, 40]});
-    var resaleexeccondoIcon = L.icon({iconUrl: 'Icons/redexeccondo.png', iconSize: [40, 40]});
-
-    var newsalecondoIcon = L.icon({iconUrl: 'Icons/greenCondo.png', iconSize: [40, 40]});
-    var subsalecondoIcon = L.icon({iconUrl: 'Icons/blueCondo.png', iconSize: [40, 40]});
-    var resalecondoIcon = L.icon({iconUrl: 'Icons/redCondo.png', iconSize: [40, 40]});
+    var newsaleexeccondoIcon = L.AwesomeMarkers.icon({
+                                                prefix:'fa',
+                                                icon:'building',
+                                                markerColor: 'green'
+                                });
+    var subsaleexeccondoIcon = L.AwesomeMarkers.icon({
+                                                prefix:'fa',
+                                                icon:'building',
+                                                markerColor: 'blue'
+                                });
+    var resaleexeccondoIcon = L.AwesomeMarkers.icon({
+                                                prefix:'fa',
+                                                icon:'building',
+                                                markerColor: 'red'
+                                });
+    var newsalecondoIcon  = L.AwesomeMarkers.icon({
+                                                prefix:'fa',
+                                                icon:'building',
+                                                markerColor: 'green'
+                                });
+    var subsalecondoIcon = L.AwesomeMarkers.icon({
+                                                prefix:'fa',
+                                                icon:'building',
+                                                markerColor: 'blue'
+                                });
+     var resalecondoIcon= L.AwesomeMarkers.icon({
+                                                prefix:'fa',
+                                                icon:'building',
+                                                markerColor: 'red'
+                                });
     
-    var newsaledetachedIcon = L.icon({iconUrl: 'Icons/greenDetached.png', iconSize: [40, 40]});
-    var subsaledetachedIcon = L.icon({iconUrl: 'Icons/blueDetached.png', iconSize: [40, 40]});
-    var resaledetachedIcon = L.icon({iconUrl: 'Icons/redDetached.png', iconSize: [40, 40]});
+    var newsaledetachedIcon = L.AwesomeMarkers.icon({
+                                                prefix:'fa',
+                                                icon:'home',
+                                                markerColor: 'green'
+                                });
+    var subsaledetachedIcon = L.AwesomeMarkers.icon({
+                                                prefix:'fa',
+                                                icon:'home',
+                                                markerColor: 'blue'
+                                });
+    var resaledetachedIcon = L.AwesomeMarkers.icon({
+                                                prefix:'fa',
+                                                icon:'home',
+                                                markerColor: 'red'
+                                });
 
-    var newsaleapartmentIcon = L.icon({iconUrl: 'Icons/greenApartment.png', iconSize: [40, 40]});
-    var subsaleapartmentIcon = L.icon({iconUrl: 'Icons/blueApartment.png', iconSize: [40, 40]});
-    var resaleapartmentIcon = L.icon({iconUrl: 'Icons/redApartment.png', iconSize: [40, 40]});
+    var newsaleapartmentIcon = L.AwesomeMarkers.icon({
+                                                prefix:'fa',
+                                                icon:'building',
+                                                markerColor: 'green'
+                                });
+    var subsaleapartmentIcon = L.AwesomeMarkers.icon({
+                                                prefix:'fa',
+                                                icon:'building',
+                                                markerColor: 'blue'
+                                });
+    var resaleapartmentIcon = L.AwesomeMarkers.icon({
+                                                prefix:'fa',
+                                                icon:'building',
+                                                markerColor: 'red'
+                                });
 
-    var newsalesemidIcon = L.icon({iconUrl: 'Icons/greensemid.png', iconSize: [40, 40]});
-    var subsalesemidIcon = L.icon({iconUrl: 'Icons/bluesemid.png', iconSize: [40, 40]});
-    var resalesemidIcon = L.icon({iconUrl: 'Icons/redsemid.png', iconSize: [40, 40]});
+    var newsalesemidIcon = L.AwesomeMarkers.icon({
+                                                prefix:'fa',
+                                                icon:'home',
+                                                markerColor: 'green'
+                                });
+    var subsalesemidIcon =L.AwesomeMarkers.icon({
+                                                prefix:'fa',
+                                                icon:'home',
+                                                markerColor: 'blue'
+                                });
+    var resalesemidIcon = L.AwesomeMarkers.icon({
+                                                prefix:'fa',
+                                                icon:'home',
+                                                markerColor: 'red'
+                                });
 
-    var newsaleterraceIcon = L.icon({iconUrl: 'Icons/greenTerrace.png', iconSize: [40, 40]});
-    var subsaleterraceIcon = L.icon({iconUrl: 'Icons/blueTerrace.png', iconSize: [40, 40]});
-    var resaleterraceIcon = L.icon({iconUrl: 'Icons/redTerrace.png', iconSize: [40, 40]});
+    var newsaleterraceIcon =L.AwesomeMarkers.icon({
+                                                prefix:'fa',
+                                                icon:'home',
+                                                markerColor: 'green'
+                                });
+    var subsaleterraceIcon = L.AwesomeMarkers.icon({
+                                                prefix:'fa',
+                                                icon:'home',
+                                                markerColor: 'blue'
+                                });
+    var resaleterraceIcon =L.AwesomeMarkers.icon({
+                                                prefix:'fa',
+                                                icon:'home',
+                                                markerColor: 'red'
+                                });
     
     //initialise cluster for markers
     var criteriaCluster = new PruneClusterForLeaflet();

@@ -59,8 +59,11 @@ function codeAddress() {
                 map: googlemap,
                 position: results[0].geometry.location
             });
+            googlemap.streetView.setPosition(results[0].geometry.location);
+            googlemap.streetView.setVisible(true);
         } else {
             alert('Geocode was not successful for the following reason: ' + status);
         }
     });
+    
 }
