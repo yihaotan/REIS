@@ -76,8 +76,12 @@ function parseDate(dateStr) {
     return format.parse(dateStr);
 }
 function dateFormat(dateStr){
-    var correctFormat = d3.time.format("%b %y");
+    var correctFormat = d3.time.format("%d %b %y");
     return correctFormat(dateStr);
+}
+function numberFormat(number){
+    var commaFormat = d3.format(',');
+    return commaFormat(number); 
 }
 function getFilters(chart) {
     return chart.filters();

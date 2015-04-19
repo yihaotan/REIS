@@ -1,4 +1,4 @@
-function plotDataTable(tableName, widthSize, heightSize, dimensionName, tableSize) {
+/*function plotDataTable(tableName, widthSize, heightSize, dimensionName, tableSize) {
 
     tableName.width(widthSize)
             .height(heightSize)
@@ -37,7 +37,7 @@ function plotDataTable(tableName, widthSize, heightSize, dimensionName, tableSiz
                 return d.price;
             })
             .order(d3.ascending);
-}
+}*/
 
 function plotTable(dimensionName) {
     var dynaTable = $('#dc-table-graph').dynatable({
@@ -48,39 +48,94 @@ function plotTable(dimensionName) {
             records: dimensionName.top(Infinity),
             perPageDefault: 10,
             perPageOptions: [10, 20, 50, 100]
+        },writers: {
+            
+            _rowWriter: myRowWriter,
+            _attributeWriter: myAttributeWriter
         }
     }).data('dynatable');
     return dynaTable;
 }
 
-
-function plotTable2(dimensionName) {
-    
-    function myRowWriter(rowIndex, record, columns, cellWriter) {
-        var tr = '';
+   
+function myRowWriter(rowIndex, record, columns, cellWriter) {
+    var tr = '';
 
     // grab the record's attribute for each column
     for (var i = 0, len = columns.length; i < len; i++) {
-        tr += cellWriter(columns[i], record);
+       alert(cellWriter(columns[i], record));
+       tr += cellWriter(columns[i], record);
+      
     }
 
-        return '<tr data-stuff=' + record.customData + '>' + tr + '</tr>';
-    };
+    return '<tr>' + tr + '</tr>';
+};
 
+function defaultCellWriter(column, record) {
+    var html = column.attributeWriter(record),
+        td = '<td';
 
+    if (column.hidden || column.textAlign) {
+      td += ' style="';
 
-    
-    var dynaTable = $('#dc-table-graph').dynatable({
-        features: {
-            pushState: false
-        },
-        dataset: {
-            records: dimensionName.top(Infinity),
-            perPageDefault: 10,
-            perPageOptions: [10, 20, 50, 100]
-        },writers:{
-            _rowWriter: ulWriter
+      // keep cells for hidden column headers hidden
+      if (column.hidden) {
+        td += 'display: none;';
+      }
+
+      // keep cells aligned as their column headers are aligned
+      if (column.textAlign) {
+        td += 'text-align: ' + column.textAlign + ';';
+      }
+
+      td += '"';
+    }
+
+    if (column.cssClass) {
+      td += ' class="' + column.cssClass + '"';
+    }
+
+    return td + '>' + html + '</td>';
+  };
+
+function myAttributeWriter(record) {
+    // `this` is the column object in settings.columns
+    // TODO: automatically convert common types, such as arrays and objects, to string
+   
+    if(this.id==="propertyType"){
+        if(record[this.id] === "Terrace House"){
+            return "Terrace";
+        }else if(record[this.id] === "Executive Condominium"){
+            return "E.Condominium";
+        }else if(record[this.id] === "Semi-Detached House"){
+            return "Semi-Detached";
+        }else if(record[this.id] === "Detached House"){
+            return "Detached";
         }
-    }).data('dynatable');
-    return dynaTable;
-}
+    }else if(this.id==="planningRegion"){
+        if(record[this.id] === "Central Region"){
+            return "Central";
+        }else if(record[this.id] === "East Region"){
+            return "East";
+        }else if(record[this.id] === "North East Region"){
+            return "North East";
+        }else if(record[this.id] === "West Region"){
+            return "West";
+        }else{
+            return "North";
+        }
+    }else if(this.id==="date"){
+        return dateFormat(record[this.id]);
+    }else if(this.id==="price"){
+        return numberFormat(record[this.id]);
+    }
+    return record[this.id];
+ };
+
+
+
+ 
+
+
+
+
