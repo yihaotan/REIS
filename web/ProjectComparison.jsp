@@ -12,9 +12,9 @@
         <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
 
 
-        
+
         <link rel="stylesheet" href="Css/Leaflet.awesome-markers.css">
-        
+
         <!--        <link rel="stylesheet" href="Css/flat-ui.min.css" type="text/css">-->
         <link rel="stylesheet" href="Css/iThing.css" type="text/css">
         <!--        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" type="text/css">
@@ -23,7 +23,7 @@
         <link rel='stylesheet' href='Css/bootstrap-select.css' type='text/css'>
         <link rel="stylesheet" href="Css/LeafletStyleSheet.css" type="text/css">
         <!--        <link rel="stylesheet" href="Css/jquery-ui.css" type="text/css">-->
-                <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/1.5.2/css/ionicons.min.css">
+        <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/1.5.2/css/ionicons.min.css">
         <link rel="stylesheet" href="Css/L.Control.Opencagesearch.css" type="text/css">
         <link rel="stylesheet" href="Css/button1.css" type="text/css">
         <link rel="stylesheet" href="Css/jquery.slidepanel.css" type="text/css">
@@ -31,11 +31,11 @@
         <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css"  type="text/css">
         <link rel="stylesheet" href="Css/leaflet.draw.css" type="text/css">
         <link rel="stylesheet" href="Css/jquery.dynatable.css" type="text/css">
-        
 
 
-        
-        
+
+
+
         <!--Unknown-->
         <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
         <script src="http://maps.google.com/maps/api/js?v=3&sensor=false"></script>  
@@ -56,7 +56,7 @@
         <script src="Libraries/L.Control.Opencagesearch.js" type='text/javascript'></script>
         <script src="Libraries/jquery.slidepanel.js" type="text/javascript"></script>
         <script src="Libraries/jquery.sidr.min.js" type="text/javascript"></script>
-        
+
         <!-- Generate Hexagon for accessibility-->
         <script src="GenerateAccessibility.js"></script>
         <!--for drawing-->
@@ -97,7 +97,7 @@
 
         <script src="Scripts/Tables/tableGeneration.js"></script>
 
-        
+
 
 
         <script src="Scripts/Maps/mapUtilities.js"></script>
@@ -127,7 +127,7 @@
         <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
 
         <script src="Libraries/Leaflet.awesome-markers.js"></script>
-        
+
 
         <style>
             .tooltip-inner {
@@ -267,9 +267,25 @@
                                             </div>
                                         </div>
                                     </header>
+                                    
+                                    <%
+                                        String error = String.valueOf(request.getAttribute("error"));
+                                        
+                                        if (!error.equals("null")) {
+                                            
+                                        
+                                    %>
+                                    
+                                    <div class="alert alert-danger" role="alert" style="margin: 10px;">
+                                        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                                        <span class="sr-only">Error:</span>
+                                        <%=error%>
+                                    </div>
 
 
                                     <%
+                                    
+                                    }
                                         String[] coor = {};
                                         String number_of_projects = String.valueOf(request.getAttribute("return_num"));
 
@@ -334,7 +350,7 @@
                                         <div class="toolbar">
                                             <div class="btn-group">
                                                 <div id="clearmap" class="btn btn-info btn-sm" style="background:#ff3333">
-                                                   Clear Map Markers
+                                                    Clear Map Markers
                                                 </div> 
                                                 <div id="resetmap" class="btn btn-info btn-sm">
                                                     Reset Map
@@ -529,13 +545,13 @@
 
         <script src="Libraries/d3-leaflet.js"></script>
 
-        
+
         <script>
             var markerslayer;
             $('#resetmap').on('click', function () {
                 map.setView([1.3667, 103.8], 11)
             });
-            
+
             var value;
             init_function();
         </script>
@@ -544,12 +560,12 @@
             var lat =<%=coor[0]%>;
             var lng =<%=coor[1]%>;
             var redMarker = L.AwesomeMarkers.icon({
-                icon:'home',
+                icon: 'home',
                 markerColor: 'red'
             });
 
-            markerslayer=L.marker([lat,lng], {icon: redMarker}).addTo(map);
-            
+            markerslayer = L.marker([lat, lng], {icon: redMarker}).addTo(map);
+
 
         </script>
         <%}%>
@@ -592,8 +608,8 @@
             $(function () {
 
                 $(".dropdown-menu li a").click(function () {
-                    if($(this).text()=="Postal Code"){
-                        
+                    if ($(this).text() == "Postal Code") {
+
                     }
                     $("#selectway").text($(this).text()).append('<span class="caret"></span>');
                     $("#btn").val($(this).text());
@@ -612,37 +628,37 @@
         <script type="text/javascript">
 
             var data = <%=result%>;
-            
-            var list=[];
-            
-            
-    //Charts
-        data.forEach(function (d) {
-            var pointmarker=[];
-            pointmarker.push(d.project_name);
-            pointmarker.push(d.geojson.coordinates);
-            list.push(pointmarker);
-        });
-        
-        
-        for (var i = 0; i < list.length; i++) {
-            var point=list[i];
-            
-            var projectname=point[0];
-            
-            var lat=point[1][1];
-            
-            var lng=point[1][0];
-            
-            var blueMarker = L.AwesomeMarkers.icon({
-               icon:'home',
-                markerColor: 'blue'
+
+            var list = [];
+
+
+            //Charts
+            data.forEach(function (d) {
+                var pointmarker = [];
+                pointmarker.push(d.project_name);
+                pointmarker.push(d.geojson.coordinates);
+                list.push(pointmarker);
             });
 
-            L.marker([lat,lng], {icon: blueMarker}).addTo(map).bindPopup(projectname);
-            
-        }   
-        
+
+            for (var i = 0; i < list.length; i++) {
+                var point = list[i];
+
+                var projectname = point[0];
+
+                var lat = point[1][1];
+
+                var lng = point[1][0];
+
+                var blueMarker = L.AwesomeMarkers.icon({
+                    icon: 'home',
+                    markerColor: 'blue'
+                });
+
+                L.marker([lat, lng], {icon: blueMarker}).addTo(map).bindPopup(projectname);
+
+            }
+
 
 
             if ($('#magic-table').length) {
