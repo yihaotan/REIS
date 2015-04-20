@@ -130,14 +130,18 @@ function plotBoxPlotChart(chartName,widthSize,heightSize,marginsTop,marginsRight
 }
 function plotLineChart(compositeChartName,dimensionName,groupName,legendName,dataPointRadius,colorName,type,dateFormat){
         
-         var rowChartTip = d3.tip()
-                .attr('class', 'd3-tip')
+       
+         var lineChartTip = d3.tip().attr('class', 'd3-tip')
                 .offset([-10, 0])
                 .html(function (d) {
-                    return "<span style='color: #c6dbef'>" + d.key + "</span> : " + (d.value) + " (" + d3.round((d.value / d3.sum(groupName.all(), function (d) {
-                        return d.value;
-                    })) * 100, 2) + "%)";
-                });
+                    if(type === "min"){
+                    return "<span style='color: #c6dbef'>" + dateFormat(d.key) + "</span> : " + (d.value.min)
+                    }else if(type === "median"){
+                        return "<span style='color: #c6dbef'>" + dateFormat(d.key) + "</span> : " + (d.value.median);
+                    }else{
+                        "<span style='color: #c6dbef'>" + dateFormat(d.key) + "</span> : " + (d.value.max);
+                    }
+            });
     
         var compose1 =dc.lineChart(compositeChartName)
             .interpolate('linear')
@@ -156,17 +160,29 @@ function plotLineChart(compositeChartName,dimensionName,groupName,legendName,dat
             })
             .title(function (d) { 
                 if(type === 'min'){
-                    return dateFormat(d.key) +": $"+(d.value.min); 
+                    return dateFormat1(d.key) +": $"+(d.value.min); 
                 }else if(type === 'median'){
-                    return dateFormat(d.key) +": $"+(d.value.median); 
+                    return dateFormat1(d.key) +": $"+(d.value.median); 
                 }else{
-                    return dateFormat(d.key) +": $"+(d.value.max); 
+                    return dateFormat1(d.key) +": $"+(d.value.max); 
                 } 
-            });
+            }).renderTitle(true);
+            //.renderlet(function(chart) {
+                
+                 //chart.selectAll("circle.dot").call(lineChartTip);
+                //chart.selectAll("circle.dot")
+        //correct way, no previous bindings will be removed
+        //(assuming, that there was no binding with the *something* namespace)
+                //.on("mouseover.a", lineChartTip.show)
+                //.on("mouseout.a", lineChartTip.hide);
+            //})
                     
             return compose1;
 }
 function plotCompositeChart(compositeChartName,dimensionName,widthSize,heightSize,marginsTop,marginsRight,marginsBottom,marginsLeft,yAxisLabelName,minDate,maxDate,rangeChartName,compose1,compose2,compose3,timeFormat,tickNumber){
+        
+    
+    
         compositeChartName
             .width(widthSize)
             .height(heightSize)
@@ -182,9 +198,13 @@ function plotCompositeChart(compositeChartName,dimensionName,widthSize,heightSiz
             .legend(dc.legend().x(100).y(110).itemWidth(95).legendWidth(600).horizontal(true))
             .rangeChart(rangeChartName)
             .shareTitle(false)
-            .compose([compose1,compose2,compose3])
+            .renderTitle(true)
+            .compose([compose1
+            ,compose2
+            ,compose3])
             .xAxis().tickFormat(d3.time.format(timeFormat))
             .ticks(tickNumber);
+           
             
          compositeChartName.yAxis().ticks(tickNumber);
 }

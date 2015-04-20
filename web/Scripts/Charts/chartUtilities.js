@@ -91,6 +91,10 @@ function dateFormat(dateStr){
     var correctFormat = d3.time.format("%d %b %y");
     return correctFormat(dateStr);
 }
+function dateFormat1(dateStr){
+    var correctFormat = d3.time.format("%b %y");
+    return correctFormat(dateStr);
+}
 function numberFormat(number){
     var commaFormat = d3.format(',');
     return commaFormat(number); 

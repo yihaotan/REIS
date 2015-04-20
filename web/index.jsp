@@ -416,8 +416,8 @@
                                     <form class="navbar-form" action="DBServlet"> 
 
 
-                                        <div class="col-lg-3 col-md-6 input-group input-group input-sm" style="float:left;margin-top:-40px;margin-left:30px">
-                                            <h5><Strong>Select Area:</Strong></h5>
+                                        <div class="col-lg-2  input-group input-group input-sm" style="float:left;margin-top:-5px;margin-left:30px">
+                                            
                                             <select class="form-control" name="region_select">
                                                 <option value="ccr" <%=ccr_string%>>Core Central Region (CCR)</option>
                                                 <option value="rcr" <%=rcr_string%>>Rest of Central Region (RCR)</option>
