@@ -59,6 +59,18 @@ function getMinSize(data){
     });
     return minAreaSqm;
 }
+function getMaxSqf(data){
+    var maxAreaSqf = d3.max(data,function(d){
+        return d.areasqf;
+    });
+    return maxAreaSqf;
+}
+function getMinSqf(data){
+    var minAreaSqf = d3.min(data,function(d){
+        return d.areasqf;
+    });
+    return minAreaSqf;
+}
 function getMaxPrice(data){
     var minPrice = d3.min(data,function(d){
         return d.price;

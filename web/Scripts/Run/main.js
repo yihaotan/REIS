@@ -8,6 +8,7 @@ function loadData(geoJsonData){
         d.address = d.properties.ADDRESS;
         d.units = d.properties.NO_OF_UNITS;
         d.areasqm = +d.properties.AREA_SQM / d.units;
+        d.areasqf = (10.7639 * d.areasqm);
         d.price = +d.properties.TRANSACTED_PRICE / d.units;
         d.psm = +d.properties.UNIT_PRICE_PSM;
         d.psf = +d.properties.UNIT_PRICE_PSF;
@@ -25,7 +26,7 @@ function loadData(geoJsonData){
         d.lon = resultLatLon.lon;
         d.index = i;
         i++;
-        //alert(d.units);
+        
     });
 }
 function generateCircleCharts(filtereddata){
@@ -205,6 +206,12 @@ function generateMapAndCharts(geoJsonData){
     var sizeGroup = sizeDimension.group(function (d) {
         return Math.ceil(d / 10) * 10;
     });
+    var sqfDimension = facts.dimension(function(d){
+        return d.areasqf;
+    });
+    var sqfGroup = sqfDimension.group(function(d){
+        return Math.ceil(d/100) * 100;
+    });
     var priceDimension = facts.dimension(function (d) {
         return d.price;
     });
@@ -347,15 +354,20 @@ function generateMapAndCharts(geoJsonData){
     function plotPsfHistogram(){
         plotHistogramChart(histogram,500,170,psfDimension,psfGroup,10,0,50,60,getMinPsf(geoJsonData),getMaxPsf(geoJsonData),0,50,5,"Psf $","Volume");
         filterMap(histogram,propertyDimension);
-        //dc.redrawAll();
+        
         
     }
     function plotSizeHistogram(){
-         plotHistogramChart(sizeHistogram ,500,170,sizeDimension,sizeGroup,10,0,40,40,getMinSize(geoJsonData),520,0,50,5,"Sqm","Volume");
+         plotHistogramChart(sizeHistogram ,500,170,sizeDimension,sizeGroup,10,0,40,60,getMinSize(geoJsonData),520,0,50,5,"Sqm","Volume");
          filterMap(sizeHistogram,propertyDimension);
-         //dc.redrawAll();
-         
+            
     }
+    function plotSqfHistogram(){
+         plotHistogramChart(sizeHistogram ,500,170,sqfDimension,sqfGroup,10,0,40,60,getMinSqf(geoJsonData),5000,0,50,5,"Sqf","Volume");
+         filterMap(sizeHistogram,propertyDimension);
+     
+    }
+    
     function plotPsmHistogram(){
         plotHistogramChart(histogram,500,170,psmDimension,psmGroup,10,0,50,60,getMinPsm(geoJsonData),getMaxPsm(geoJsonData),0,50,5,"Psm $","Volume");
         filterMap(histogram,propertyDimension);
@@ -437,14 +449,31 @@ function generateMapAndCharts(geoJsonData){
         $("#hist1").on("click", function () {
             $(this).prop('disabled', true);
             $("#hist2").prop('disabled', false);
+            histogram.filterAll();
             plotPsfHistogram();
             dc.renderAll();
         });
          $("#hist2").on("click", function () {
             $(this).prop('disabled', true);
             $("#hist1").prop('disabled', false);
-            plotPsmHistogram();
+                histogram.filterAll();
+                plotPsmHistogram();
+                dc.renderAll();
+        });
+        $("#hist3").prop("disabled", true);
+        $("#hist3").on("click", function () {
+            $(this).prop('disabled', true);
+            $("#hist4").prop('disabled', false);
+            sizeHistogram.filterAll();
+            plotSizeHistogram();
             dc.renderAll();
+        });
+         $("#hist4").on("click", function () {
+            $(this).prop('disabled', true);
+            $("#hist3").prop('disabled', false);
+                sizeHistogram.filterAll();
+                plotSqfHistogram();
+                dc.renderAll();
         });
         $("#bar1").prop("disabled", true);
         $("#bar2").prop("disabled", true);

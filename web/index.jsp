@@ -516,6 +516,13 @@
                                         <div class="row">
                                             <div id="dc-sizeHistogram">
                                                 <h6><strong>Size Histogram</strong>
+                                                    <button type="button" class="btn btn-primary btn-xs" id="hist3" aria-label="Left Align">
+                                                        <span>Sqf</span>
+                                                    </button>
+                                                    <button type="button" class="btn btn-danger btn-xs" id="hist4" aria-label="Left Align">
+                                                        <span>Sqm</span>
+                                                    </button>
+                                                    
                                                     <h7>[Slide to filter size]</h7>
                                                     <span>
                                                         <!-- <a class='filter' style='display:none;'> Filters: </a> -->
