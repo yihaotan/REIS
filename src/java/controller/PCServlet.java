@@ -73,6 +73,11 @@ public class PCServlet extends HttpServlet {
                 request.setAttribute("error", message);
                 error = true;
             }
+            if (number_of_projects > 100) {
+                message += html + "Number of projects is limited to 100! <br>";
+                request.setAttribute("error", message);
+                error = true;
+            }
 
             // If no error
             if (!error) {

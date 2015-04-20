@@ -295,7 +295,7 @@
                                         String latlng_placeholder = "";
 
                                         String latlng = String.valueOf(request.getAttribute("latlng"));
-                                        if (!latlng.equals("null")) {
+                                        if (!latlng.equals("null") && !latlng.equals("")) {
                                             latlng_placeholder = latlng;
                                             coor = latlng.split(",");
 
@@ -660,9 +660,9 @@
                     } else if (record[this.id] === "Detached House") {
                         return "Detached";
                     }
-                }else if(this.id==="distance" || this.id==="median_price_psf"){
+                } else if (this.id === "distance" || this.id === "median_price_psf") {
                     return (d3.round(record[this.id]));
-                    
+
                 }
                 return record[this.id];
             }
