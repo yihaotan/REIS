@@ -460,19 +460,19 @@ function generateMapAndCharts(geoJsonData){
                 plotPsmHistogram();
                 dc.renderAll();
         });
-        $("#hist3").prop("disabled", true);
+        $("#hist4").prop("disabled", true);
         $("#hist3").on("click", function () {
             $(this).prop('disabled', true);
             $("#hist4").prop('disabled', false);
             sizeHistogram.filterAll();
-            plotSizeHistogram();
+            plotSqfHistogram();
             dc.renderAll();
         });
          $("#hist4").on("click", function () {
             $(this).prop('disabled', true);
             $("#hist3").prop('disabled', false);
                 sizeHistogram.filterAll();
-                plotSqfHistogram();
+                plotSizeHistogram();
                 dc.renderAll();
         });
         $("#bar1").prop("disabled", true);
