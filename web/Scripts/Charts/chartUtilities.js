@@ -113,10 +113,16 @@ colors["Detached House"]='#2ca02c';
 colors["Executive Condominium"]='#d62728';
 colors['Semi-Detached House']='#9467bd';
 colors['Terrace House']="#8c564b";
-colors['99 Yrs']='#fc9272';
-colors['999 Yrs']='#ef3b2c';
-colors['9999 Yrs']='#cb181d';
-colors['Freehold']='#67000d';
+
+//99 yrs '#fc9272'
+// 999 yrs '#ef3b2c'
+// 999 yrs '#cb181d'
+// Freehold '#67000d'
+
+colors['99 Yrs']='#FFA726';
+colors['999 Yrs']='#FB8C00';
+colors['9999 Yrs']='#F57C00';
+colors['Freehold']='#E65100';
 colors['New Sale']='#2ca02c';
 colors['Resale']='#d62728';
 colors['Sub Sale']='#1f77b4';
