@@ -281,6 +281,17 @@
                 margin: 0px;
                 padding: 0px;
             }
+            #dc-ordinal-chart{
+                width: 100%;
+                margin: 0px;
+                padding: 0px;
+            }
+            #dc-ordinal-chart1{
+                width: 100%;
+                margin: 0px;
+                padding: 0px;
+            }
+
 
 
         </style>
@@ -860,24 +871,8 @@
 
 
 
-        <div id="polygoncharts" class="modal fade">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title">Properties comparison</h4>
-                    </div>
-                    <div class="modal-body">
-                        <p>
 
-                        </p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    </div>
-                </div><!-- /.modal-content -->
-            </div><!-- /.modal-dialog -->
-        </div><!-- /.modal --><!-- /#polygon -->
+        
 
         <!-- /#googlestreetview -->
         <div id="googlestreetview" class="modal fade">
@@ -904,6 +899,38 @@
 
 
     </div>
+    <div id="polygoncharts" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">Properties comparison</h4>
+                    </div>
+                    <div class="modal-body" id="dc-ordinal-chart"></div>
+                        
+                    
+                   
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal --><!-- /#polygon -->
+        <div id="circlecharts" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">Properties comparison</h4>
+                    </div>
+                    <div class="modal-body" id="dc-ordinal-chart1"></div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal --><!-- /#polygon -->
 
     <!-- #helpModal -->
     <div id="helpModal" class="modal fade">

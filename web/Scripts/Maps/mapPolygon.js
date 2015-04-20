@@ -3,7 +3,7 @@ function getpointswithinpolygon(filtereddata,polygonpoints){
      for(i=0;i<filtereddata.length;i++){  
         var marker=[filtereddata[i].lat,filtereddata[i].lon];
         if(pointinpolygon(marker,polygonpoints)){
-            pointswithinpolygon.push(marker);
+            pointswithinpolygon.push(filtereddata[i]);
         }
      }
      return pointswithinpolygon;
@@ -32,7 +32,7 @@ function getpointswithincircle(filtereddata,circlecenter,circleradius){
     for(i=0;i<filtereddata.length;i++){
         var marker=L.latLng(filtereddata[i].lat,filtereddata[i].lon);
         if(marker.distanceTo(circlecenter)<=circleradius){
-            pointswithincircle.push(marker);
+            pointswithincircle.push(filtereddata[i]);
             
         }
     }

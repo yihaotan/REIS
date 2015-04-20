@@ -31,16 +31,17 @@ function loadData(geoJsonData){
 }
 function generateCircleCharts(filtereddata){
     
-     propertyRowChart = dc.rowChart('#dc-row-chart');
-    //bar chart 
-     var cv = new SVY21();
+    projectPriceOrdinalChart = dc.barChart('#dc-ordinal-chart1');
+    
+    var cv = new SVY21();
      var i = 0;
-     var indexPropertyName = {};
      filtereddata.forEach(function (d) {
         d.projectName = d.properties.PROJECT_NAME;
         d.address = d.properties.ADDRESS;
-        d.areasqm = +d.properties.AREA_SQM;
-        d.price = +d.properties.TRANSACTED_PRICE;
+        d.units = d.properties.NO_OF_UNITS;
+        d.areasqm = +d.properties.AREA_SQM / d.units;
+        d.areasqf = (10.7639 * d.areasqm);
+        d.price = +d.properties.TRANSACTED_PRICE / d.units;
         d.psm = +d.properties.UNIT_PRICE_PSM;
         d.psf = +d.properties.UNIT_PRICE_PSF;
         d.date = parseDate(d.properties.CONTRACT_DATE);
@@ -57,17 +58,122 @@ function generateCircleCharts(filtereddata){
         d.lon = resultLatLon.lon;
         d.index = i;
         i++;
-        indexPropertyName[i] = d.projectName;
         
     });
     var facts = crossfilter(filtereddata);
     var all = facts.groupAll();
-    var indexDimension = facts.dimension(function(d){
-        return d.index;
+    
+    var propertyName = facts.dimension(function (d) {
+        return d.address;
     });
-    var indexGroup = indexDimension.group().reduceSum(function(d){
-        return d.price;
+    var projectPriceGroup = propertyName.group().reduceSum(function(d){return d.psf;});
+    //magic tooltip
+    var barTip = d3.tip()
+                .attr('class', 'd3-tip')
+                .offset([-10, 0])
+                .html(function (d) {
+                    return "<span style='color: #c6dbef'>" + d.data.key + "</span> : " + numberFormat(d.y)
+
     });
+    //magic graph
+    projectPriceOrdinalChart.width(550)
+                .height(350)
+                .margins({top: 10, right: 10, bottom: 40, left: 70})
+                .dimension(propertyName)
+                .xUnits(dc.units.ordinal)
+                .group(projectPriceGroup)
+                .transitionDuration(10)
+                .xAxisLabel('Property Name') 
+                .yAxisLabel('Price $ psf')
+                .renderHorizontalGridLines(true)
+                .renderTitle(false)
+                .barPadding(0.05)
+                .outerPadding([1])
+                .x(d3.scale.ordinal().domain(filtereddata.map(function (d) {return d.address; })))
+                .elasticY(true)
+                .renderlet(function(chart){
+                    
+                    chart.selectAll(".bar").call(barTip);
+                        chart.selectAll(".bar").on("mouseover", barTip.show)
+                                .on("mouseleave", barTip.hide);
+                    }) 
+                .xAxis().tickFormat();
+        
+        dc.renderAll();
+    
+}
+
+function generatePolyCharts(filtereddata){
+    
+    projectPriceOrdinalChart = dc.barChart('#dc-ordinal-chart');
+    
+    var cv = new SVY21();
+     var i = 0;
+     filtereddata.forEach(function (d) {
+        d.projectName = d.properties.PROJECT_NAME;
+        d.address = d.properties.ADDRESS;
+        d.units = d.properties.NO_OF_UNITS;
+        d.areasqm = +d.properties.AREA_SQM / d.units;
+        d.areasqf = (10.7639 * d.areasqm);
+        d.price = +d.properties.TRANSACTED_PRICE / d.units;
+        d.psm = +d.properties.UNIT_PRICE_PSM;
+        d.psf = +d.properties.UNIT_PRICE_PSF;
+        d.date = parseDate(d.properties.CONTRACT_DATE);
+        d.propertyType = d.properties.PROPERTY_TYPE;
+        d.tenure = d.properties.TENURE;
+        d.sale = d.properties.TYPE_OF_SALE;
+        d.postalDistrict = +d.properties.POSTAL_DISTRICT;
+        d.postalSector = +d.properties.POSTAL_SECTOR;
+        d.postalCode = +d.properties.POSTAL_CODE;
+        d.planningRegion = d.properties.PLANNING_REGION;
+        d.planningArea = d.properties.PLANNING_AREA;
+        var resultLatLon = cv.computeLatLon(d.geometry.coordinates[1].lon, d.geometry.coordinates[0].lat);
+        d.lat = resultLatLon.lat;
+        d.lon = resultLatLon.lon;
+        d.index = i;
+        i++;
+        
+    });
+    var facts = crossfilter(filtereddata);
+    var all = facts.groupAll();
+    
+    var propertyName = facts.dimension(function (d) {
+        return d.address;
+    });
+    var projectPriceGroup = propertyName.group().reduceSum(function(d){return d.psf;});
+    //magic tooltip
+    var barTip = d3.tip()
+                .attr('class', 'd3-tip')
+                .offset([-10, 0])
+                .html(function (d) {
+                    return "<span style='color: #c6dbef'>" + d.data.key + "</span> : " + numberFormat(d.y)
+
+    });
+    //magic graph
+    projectPriceOrdinalChart.width(550)
+                .height(350)
+                .margins({top: 10, right: 10, bottom: 40, left: 70})
+                .dimension(propertyName)
+                .xUnits(dc.units.ordinal)
+                .group(projectPriceGroup)
+                .transitionDuration(10)
+                .xAxisLabel('Property Name') 
+                .yAxisLabel('Price $ psf')
+                .renderHorizontalGridLines(true)
+                .renderTitle(false)
+                .barPadding(0.05)
+                .outerPadding([1])
+                .x(d3.scale.ordinal().domain(filtereddata.map(function (d) {return d.address; })))
+                .elasticY(true)
+                .renderlet(function(chart){
+                    
+                    chart.selectAll(".bar").call(barTip);
+                        chart.selectAll(".bar").on("mouseover", barTip.show)
+                                .on("mouseleave", barTip.hide);
+                    }) 
+                .xAxis().tickFormat();
+        
+        dc.renderAll();
     
 }
 
@@ -76,7 +182,10 @@ function generatePolygonCharts(filtereddata){
     loadData(filtereddata);
     var facts = crossfilter(filtereddata);
     var all = facts.groupAll();
-    
+    var propertyName = facts.dimension(function (d) {
+        return d.propertyName;
+    });
+    var propertyPriceGroup = propertyName.group
 }
 
 

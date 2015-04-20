@@ -45,10 +45,16 @@ function plotMapLayers(dimensionName){
         layer.on('click', function () {
             
             if(event.layerType=='circle'){
-                
+                var options = {
+                    "backdrop" :true,
+                    "show":true
+                }
                 var circlecenter= layer.getLatLng();
                 var circleradius=layer.getRadius();
                 var pointswithincircle=getpointswithincircle(properties,circlecenter,circleradius);
+                
+                generateCircleCharts(pointswithincircle);
+                $('#circlecharts').modal(options);
                
             }
 
@@ -58,6 +64,8 @@ function plotMapLayers(dimensionName){
                     "show":true
                 }
                 var pointswithinpolygon=getpointswithinpolygon(properties,layer.getLatLngs());
+                
+                generatePolyCharts(pointswithinpolygon);
                 $('#polygoncharts').modal(options);
             }
         });
