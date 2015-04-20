@@ -72,25 +72,28 @@ function generateCircleCharts(filtereddata){
                 .attr('class', 'd3-tip')
                 .offset([-10, 0])
                 .html(function (d) {
-                    return "<span style='color: #c6dbef'>" + d.data.key + "</span> : " + numberFormat(d.y)
+                    return "<span style='color: #c6dbef'>" + d.key + "</span> : " + d.value;
 
     });
     //magic graph
     projectPriceOrdinalChart.width(550)
                 .height(350)
-                .margins({top: 10, right: 10, bottom: 40, left: 70})
+                .margins({top: 10, right: 10, bottom: 40, left: 30})
                 .dimension(propertyName)
                 .xUnits(dc.units.ordinal)
                 .group(projectPriceGroup)
                 .transitionDuration(10)
-                .xAxisLabel('Property Name') 
-                .yAxisLabel('Price $ psf')
+                .xAxisLabel('Address') 
+                .yAxisLabel('Psf$')
                 .renderHorizontalGridLines(true)
-                .renderTitle(false)
+                .renderTitle(true)
                 .barPadding(0.05)
                 .outerPadding([1])
                 .x(d3.scale.ordinal().domain(filtereddata.map(function (d) {return d.address; })))
                 .elasticY(true)
+                .title(function (d) {
+                    return  d.key + ": $" + d.value;
+                })
                 .renderlet(function(chart){
                     
                     chart.selectAll(".bar").call(barTip);
@@ -98,7 +101,8 @@ function generateCircleCharts(filtereddata){
                                 .on("mouseleave", barTip.hide);
                     }) 
                 .xAxis().tickFormat();
-        
+         
+        projectPriceOrdinalChart.onClick = function() {};
         dc.renderAll();
     
 }
@@ -146,21 +150,24 @@ function generatePolyCharts(filtereddata){
                 .attr('class', 'd3-tip')
                 .offset([-10, 0])
                 .html(function (d) {
-                    return "<span style='color: #c6dbef'>" + d.data.key + "</span> : " + numberFormat(d.y)
+                    return "<span style='color: #c6dbef'>" + d.key + "</span> : " + d.value
 
     });
     //magic graph
     projectPriceOrdinalChart.width(550)
                 .height(350)
-                .margins({top: 10, right: 10, bottom: 40, left: 70})
+                .margins({top: 10, right: 10, bottom: 40, left: 30})
                 .dimension(propertyName)
                 .xUnits(dc.units.ordinal)
                 .group(projectPriceGroup)
                 .transitionDuration(10)
-                .xAxisLabel('Property Name') 
-                .yAxisLabel('Price $ psf')
+                .xAxisLabel('Address') 
+                .yAxisLabel('Psf$')
                 .renderHorizontalGridLines(true)
-                .renderTitle(false)
+                .renderTitle(true)
+                .title(function (d) {
+                    return  d.key + ": $" + d.value;
+                })
                 .barPadding(0.05)
                 .outerPadding([1])
                 .x(d3.scale.ordinal().domain(filtereddata.map(function (d) {return d.address; })))
@@ -172,23 +179,11 @@ function generatePolyCharts(filtereddata){
                                 .on("mouseleave", barTip.hide);
                     }) 
                 .xAxis().tickFormat();
+        projectPriceOrdinalChart.onClick = function() {};
         
         dc.renderAll();
     
 }
-
-function generatePolygonCharts(filtereddata){
-    
-    loadData(filtereddata);
-    var facts = crossfilter(filtereddata);
-    var all = facts.groupAll();
-    var propertyName = facts.dimension(function (d) {
-        return d.propertyName;
-    });
-    var propertyPriceGroup = propertyName.group
-}
-
-
 function generateMapAndCharts(geoJsonData){
 
     //dateVolumeBarChart = dc.barChart("#dc-dateVolume-chart");
@@ -362,8 +357,6 @@ function generateMapAndCharts(geoJsonData){
             var f2 = getFilters(propertyVolumePieChart);
             propertyVolumeRowChart = dc.rowChart("#dc-propertyVolume-chart");
             plotRowChart(propertyVolumeRowChart,propertyVolumeDimension,propertyVolumeGroup,280,180,3,5,5,"property",0,10,20,80);
-            applyFilter(propertyVolumeRowChart, f2);
-            filterMap(propertyVolumeRowChart,propertyDimension);
             
            
         } else {

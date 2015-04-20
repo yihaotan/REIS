@@ -1,45 +1,35 @@
-/*function plotDataTable(tableName, widthSize, heightSize, dimensionName, tableSize) {
+function plotDataTable(tableName, widthSize, heightSize, dimensionName, tableSize) {
 
-    tableName.width(widthSize)
-            .height(heightSize)
+    tableName.width(widthSize).height(heightSize)
             .dimension(dimensionName)
-            .group(function () {
-                return "";
-            })
-            .size(tableSize)
-            .columns([
-                function (d) {
-                    return   d.projectName;
-                },
-                function (d) {
+              .group(function () {return "";})
+              .size(tableSize)
+              .columns([
+               function (d) {
+                  return   d.projectName;
+                },function (d) {
                     return  d.propertyType;
-                },
-                function (d) {
+                },function (d) {
                     return  d.sale;
-                },
-                function (d) {
+                },function (d) {
                     return d.address;
-                },
-                function (d) {
+                },function (d) {
                     return dateFormat(d.date);
-                },
-                function (d) {
+                },function (d) {
                     return d.areasqm;
-                },
-                function (d) {
+                },function (d) {
                     return "$" + d.price;
-                },
-                function (d) {
-                    return (d.planningRegion).substring(0, (d.planningRegion).lastIndexOf(" "));
+                },function (d) {
+                    return (d.planningRegion).substring
+                    (0, (d.planningRegion).lastIndexOf(" "));
                 }
-            ])
-            .sortBy(function (d) {
+            ]).sortBy(function (d) {
                 return d.price;
-            })
-            .order(d3.ascending);
-}*/
+            }).order(d3.ascending);
+}
 
 function plotTable(dimensionName) {
+    
     var dynaTable = $('#dc-table-graph').dynatable({
         features: {
             pushState: false
@@ -57,9 +47,7 @@ function plotTable(dimensionName) {
     return dynaTable;
 }
 function myAttributeWriter(record) {
-    // `this` is the column object in settings.columns
-    // TODO: automatically convert common types, such as arrays and objects, to string
-   
+    
     if(this.id==="propertyType"){
         if(record[this.id] === "Terrace House"){
             return "Terrace";
