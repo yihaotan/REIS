@@ -101,7 +101,13 @@ function rangeChartForTimeSeries(rangeChart,chart1,chart2){
     });
 }
 var colors = {}; 
-colors["Apartment"]='#1f77b4';
+//apartment #1f77b4
+//condo #ff7f0e
+//detached house #2ca02c
+//executive condominium #d62728
+//semi detached house #9467bd
+// terrace house #8c564b
+colors["Apartment"]='#1f77b4'; //orange
 colors["Condominium"]='#ff7f0e';
 colors["Detached House"]='#2ca02c';
 colors["Executive Condominium"]='#d62728';
@@ -114,11 +120,18 @@ colors['Freehold']='#67000d';
 colors['New Sale']='#2ca02c';
 colors['Resale']='#d62728';
 colors['Sub Sale']='#1f77b4';
-colors["North East Region"]='#1f77b4';
-colors["West Region"]='#ff7f0e';
-colors["Central Region"]='#2ca02c';
-colors["North Region"]='#d62728';
-colors["East Region"]='#9467bd';
+
+// north east region #1f77b4
+// West Region #ff7f0e
+// central region #2ca02
+// north region #d62728
+// east region #9467bd
+
+colors["North East Region"]='#9467bd';
+colors["West Region"]='#1f77b4';
+colors["Central Region"]='#ff7f0e';
+colors["North Region"]='#d62728'    ;
+colors["East Region"]='#2ca02c';
 
 function getColors(k) {
     return colors[k];

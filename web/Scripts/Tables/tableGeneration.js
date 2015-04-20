@@ -84,7 +84,7 @@ function myAttributeWriter(record) {
         }
     }else if(this.id==="date"){
         return dateFormat(record[this.id]);
-    }else if(this.id==="price" || this.id==="sale"){
+    }else if(this.id==="price" ){
         return numberFormat(record[this.id]);
     }
     return record[this.id];

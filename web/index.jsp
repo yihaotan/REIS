@@ -9,7 +9,7 @@
 
         <!--Mobile first-->
         <meta name="viewport" content="width=device-width, initial-scale=1">
-         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/css/bootstrap.min.css">
         <link rel="stylesheet" href="Css/Leaflet.awesome-markers.css">
         <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/1.5.2/css/ionicons.min.css">
         <link rel="stylesheet" href="Css/iThing.css" type="text/css">
@@ -18,13 +18,13 @@
         <!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"> -->
         <link rel="stylesheet" href="Css/L.Control.Opencagesearch.css" type="text/css">
         <link rel="stylesheet" href="Css/button1.css" type="text/css">
-        <link rel="stylesheet" href="Css/jquery.slidepanel.css" type="text/css">
-        <link rel="stylesheet" href="Css/jquery.sidr.light.css" type="text/css">
+
         <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css"  type="text/css">
         <link rel="stylesheet" href="Css/leaflet.draw.css" type="text/css">
         <link type="text/css" href="d3-Leafletlib/leaflet.markercluster.css" rel="stylesheet"/>
         <link type="text/css" href="d3-Leafletlib/leaflet.css" rel="stylesheet"/>
         <link type="text/css" href="Css/jquery.dynatable.css" rel="stylesheet"/>
+        <link type="text/css" href="Css/bootstrap-multiselect.css" rel="stylesheet"/>
         <!--Unknown-->
         <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=false"></script>
 
@@ -89,7 +89,7 @@
         <script src="Scripts/Maps/mapUtilities.js"></script>
         <script src="Scripts/Run/main.js"></script> 
         <script src="Scripts/Run/run.js"></script>
-        <script src="https://github.com/jrideout/histogram-pretty/blob/master/histogram-pretty.js"></script>
+
 
         <!-- Jquery -->
 
@@ -100,7 +100,7 @@
 
 
         <!-- Bootstrap -->
-       
+
 
         <!-- Font Awesome -->
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
@@ -261,7 +261,7 @@
                 top: 100%;
                 left: 0;
             }
-            
+
 
             #holder {
                 width:850px;
@@ -385,59 +385,67 @@
 
                         %>
 
-                          <h4>
-                        <div class="dc-data-count" id='count-table' style="margin-top:10px">
-                          
-                            <span>
-                                
-                                <strong>
-                                    <i class="glyphicon glyphicon-zoom-in" ></i> 
-                                    You have selected
-                                    <span class="filter-count" style="color:goldenrod">0</span>
-                                    out of 
-                                    <span class="total-count" style="color:goldenrod">0</span>
-                                    records   
-                                </strong>
-                                
-                            </span>
-                            
-                            <a href="javascript:dc.filterAll(); dc.renderAll();" class="btn btn-warning btn-sm" style="color:#2f0058" >
-                                <i class="glyphicon glyphicon-zoom-in"></i> Reset
-                            </a>
-                            
-                        </div>
+                        <h4>
+                            <div class="dc-data-count" id='count-table' style="margin-top:10px">
+
+                                <span>
+
+                                    <strong>
+                                        <i class="glyphicon glyphicon-zoom-in" ></i> 
+                                        You have selected
+                                        <span class="filter-count" style="color:goldenrod">0</span>
+                                        out of 
+                                        <span class="total-count" style="color:goldenrod">0</span>
+                                        records   
+                                    </strong>
+
+                                </span>
+
+                                <a href="javascript:dc.filterAll(); dc.renderAll();" class="btn btn-warning btn-sm" style="color:#2f0058" >
+                                    <i class="glyphicon glyphicon-zoom-in"></i> Reset
+                                </a>
+
+                            </div>
                         </h4>
                         <div class="row">
                             <div class="form-group">
                                 <div class="row">
 
-                                    
-                                        
-                                        <form class="navbar-form" action="DBServlet"> 
-                                            
-                                            
-                                            <div class="col-lg-3 col-md-6 input-group input-group input-sm" style="float:left;margin-top:-40px;margin-left:30px">
-                                                <h5><Strong>Select Area:</Strong></h5>
-                                                <select class="form-control" name="region_select">
-                                                    <option value="ccr" <%=ccr_string%>>Core Central Region (CCR)</option>
-                                                    <option value="rcr" <%=rcr_string%>>Rest of Central Region (RCR)</option>
-                                                    <option value="ocr" <%=ocr_string%>>Outside Central Region (OCR)</option>
-                                                    <option value="all" <%=all_string%>>All Transaction Records</option>
-                                                </select>
-                                                
-                                            </div>
-                                            <div class="col-lg-3 col-md-6" style="margin-top:0px;margin-left:-10px">
-                                                <button type="submit" class="btn btn-primary">Submit</button>
-                                            </div>
-                                        </form>
 
-                                              
+
+                                    <form class="navbar-form" action="DBServlet"> 
+
+
+                                        <div class="col-lg-3 col-md-6 input-group input-group input-sm" style="float:left;margin-top:-40px;margin-left:30px">
+                                            <h5><Strong>Select Area:</Strong></h5>
+                                            <select class="form-control" name="region_select">
+                                                <option value="ccr" <%=ccr_string%>>Core Central Region (CCR)</option>
+                                                <option value="rcr" <%=rcr_string%>>Rest of Central Region (RCR)</option>
+                                                <option value="ocr" <%=ocr_string%>>Outside Central Region (OCR)</option>
+                                                <option value="all" <%=all_string%>>All Transaction Records</option>
+                                            </select>
+
+                                        </div>
+                                        <div class="col-lg-3 col-md-6" style="margin-top:0px;margin-left:-10px">
+                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                        </div>
+                                               
+                                       
+           
+                        
+                                        
+                                    </form>
+                                            
+   
 
                                 </div>
 
                             </div>
 
                         </div>
+
+
+
 
                     </div><!-- /.main-bar -->
 
@@ -452,14 +460,14 @@
 
                         <div class="row">
                             <div class="col-lg-5 " id="sortable2">
-                                <div class="box">
+                                <div class="box" >
 
                                     <!-- Header -->
                                     <header>
                                         <div class="icons">
                                             <i class="fa fa-dollar"></i>
                                         </div>
-                                        <h5>Price and Size View</h5>
+                                        <h5>Price & Size View</h5>
                                         <div class="toolbar">
 
                                             <div class="btn-group">
@@ -504,7 +512,7 @@
                                             </div>
 
                                         </div>
-
+                                      
                                         <div class="row">
                                             <div id="dc-sizeHistogram">
                                                 <h6><strong>Size Histogram</strong>
@@ -929,6 +937,9 @@
 
     <!--Bootstrap -->
     <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    <script src="Libraries/bootstrap-multiselect.js"></script>
+
+
 
     <!-- MetisMenu -->
     <script src="//cdnjs.cloudflare.com/ajax/libs/metisMenu/1.1.3/metisMenu.min.js"></script>
@@ -966,7 +977,13 @@
 
 
                             //map = L.map('map').setView([1.3667,103.8], 11);
-    </script>
+    </script>   
+    <script type="text/javascript">
+    $(document).ready(function() {
+        $('#example-getting-started').multiselect();
+    });
+</script>                 
+    
 
     <!--LINK MODULE-->
     <script>
