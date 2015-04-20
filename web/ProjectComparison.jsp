@@ -409,145 +409,145 @@
                                 </div><!-- box -->
                             </div>
                         </div>
-
-                    </div><!-- /.inner -->
-                </div><!-- /.outer -->
-            </div><!-- /#content -->
-
-
+                    </div>
+                </div><!-- /.inner -->
+            </div><!-- /.outer -->
+        </div><!-- /#content -->
 
 
 
 
-            <footer class="Footer bg-dark dker">
-                <p>2015 &copy; Real Estate Information System</p>
-            </footer><!-- /#footer -->
 
-            <!-- #helpModal -->
-            <div id="helpModal" class="modal fade">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                            <h4 class="modal-title">Modal title</h4>
-                        </div>
-                        <div class="modal-body">
-                            <p>
-                                This is it!
-                            </p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        </div>
-                    </div><!-- /.modal-content -->
-                </div><!-- /.modal-dialog -->
-            </div><!-- /.modal --><!-- /#helpModal -->
 
-            <div id="right" class="bg-light lter">
-                <div class="alert alert-danger">
-                    <button type="button" class="close" data-dismiss="alert">&times;</button>
-                    <strong>Warning!</strong>  Best check yo self, you're not looking too good.
+        <footer class="Footer bg-dark dker">
+            <p>2015 &copy; Real Estate Information System</p>
+        </footer><!-- /#footer -->
+
+        <!-- #helpModal -->
+        <div id="helpModal" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">Modal title</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                            This is it!
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal --><!-- /#helpModal -->
+
+        <div id="right" class="bg-light lter">
+            <div class="alert alert-danger">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Warning!</strong>  Best check yo self, you're not looking too good.
+            </div>
+
+            <!-- .well well-small -->
+            <div class="well well-small dark">
+                <ul class="list-unstyled">
+                    <li>Visitor <span class="inlinesparkline pull-right">1,4,4,7,5,9,10</span> 
+                    </li>
+                    <li>Online Visitor <span class="dynamicsparkline pull-right">Loading..</span> 
+                    </li>
+                    <li>Popularity <span class="dynamicbar pull-right">Loading..</span> 
+                    </li>
+                    <li>New Users <span class="inlinebar pull-right">1,3,4,5,3,5</span> 
+                    </li>
+                </ul>
+            </div><!-- /.well well-small -->
+
+            <!-- .well well-small -->
+            <div class="well well-small dark">
+                <button class="btn btn-block">Default</button>
+                <button class="btn btn-primary btn-block">Primary</button>
+                <button class="btn btn-info btn-block">Info</button>
+                <button class="btn btn-success btn-block">Success</button>
+                <button class="btn btn-danger btn-block">Danger</button>
+                <button class="btn btn-warning btn-block">Warning</button>
+                <button class="btn btn-inverse btn-block">Inverse</button>
+                <button class="btn btn-metis-1 btn-block">btn-metis-1</button>
+                <button class="btn btn-metis-2 btn-block">btn-metis-2</button>
+                <button class="btn btn-metis-3 btn-block">btn-metis-3</button>
+                <button class="btn btn-metis-4 btn-block">btn-metis-4</button>
+                <button class="btn btn-metis-5 btn-block">btn-metis-5</button>
+                <button class="btn btn-metis-6 btn-block">btn-metis-6</button>
+            </div><!-- /.well well-small -->
+
+            <!-- .well well-small -->
+            <div class="well well-small dark">
+                <span>Default</span> <span class="pull-right"><small>20%</small> </span> 
+                <div class="progress xs">
+                    <div class="progress-bar progress-bar-info" style="width: 20%"></div>
                 </div>
-
-                <!-- .well well-small -->
-                <div class="well well-small dark">
-                    <ul class="list-unstyled">
-                        <li>Visitor <span class="inlinesparkline pull-right">1,4,4,7,5,9,10</span> 
-                        </li>
-                        <li>Online Visitor <span class="dynamicsparkline pull-right">Loading..</span> 
-                        </li>
-                        <li>Popularity <span class="dynamicbar pull-right">Loading..</span> 
-                        </li>
-                        <li>New Users <span class="inlinebar pull-right">1,3,4,5,3,5</span> 
-                        </li>
-                    </ul>
-                </div><!-- /.well well-small -->
-
-                <!-- .well well-small -->
-                <div class="well well-small dark">
-                    <button class="btn btn-block">Default</button>
-                    <button class="btn btn-primary btn-block">Primary</button>
-                    <button class="btn btn-info btn-block">Info</button>
-                    <button class="btn btn-success btn-block">Success</button>
-                    <button class="btn btn-danger btn-block">Danger</button>
-                    <button class="btn btn-warning btn-block">Warning</button>
-                    <button class="btn btn-inverse btn-block">Inverse</button>
-                    <button class="btn btn-metis-1 btn-block">btn-metis-1</button>
-                    <button class="btn btn-metis-2 btn-block">btn-metis-2</button>
-                    <button class="btn btn-metis-3 btn-block">btn-metis-3</button>
-                    <button class="btn btn-metis-4 btn-block">btn-metis-4</button>
-                    <button class="btn btn-metis-5 btn-block">btn-metis-5</button>
-                    <button class="btn btn-metis-6 btn-block">btn-metis-6</button>
-                </div><!-- /.well well-small -->
-
-                <!-- .well well-small -->
-                <div class="well well-small dark">
-                    <span>Default</span> <span class="pull-right"><small>20%</small> </span> 
-                    <div class="progress xs">
-                        <div class="progress-bar progress-bar-info" style="width: 20%"></div>
-                    </div>
-                    <span>Success</span> <span class="pull-right"><small>40%</small> </span> 
-                    <div class="progress xs">
-                        <div class="progress-bar progress-bar-success" style="width: 40%"></div>
-                    </div>
-                    <span>warning</span> <span class="pull-right"><small>60%</small> </span> 
-                    <div class="progress xs">
-                        <div class="progress-bar progress-bar-warning" style="width: 60%"></div>
-                    </div>
-                    <span>Danger</span> <span class="pull-right"><small>80%</small> </span> 
-                    <div class="progress xs">
-                        <div class="progress-bar progress-bar-danger" style="width: 80%"></div>
-                    </div>
+                <span>Success</span> <span class="pull-right"><small>40%</small> </span> 
+                <div class="progress xs">
+                    <div class="progress-bar progress-bar-success" style="width: 40%"></div>
                 </div>
-            </div><!-- /#right -->
+                <span>warning</span> <span class="pull-right"><small>60%</small> </span> 
+                <div class="progress xs">
+                    <div class="progress-bar progress-bar-warning" style="width: 60%"></div>
+                </div>
+                <span>Danger</span> <span class="pull-right"><small>80%</small> </span> 
+                <div class="progress xs">
+                    <div class="progress-bar progress-bar-danger" style="width: 80%"></div>
+                </div>
+            </div>
+        </div><!-- /#right -->
 
-        </div>
+    </div>
 
-        <!--jQuery -->
-        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-        <script src="Libraries/jquery.dynatable.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/datatables/1.10.4/js/jquery.dataTables.min.js"></script>
-        <script src="//cdn.datatables.net/plug-ins/3cfcc339e89/integration/bootstrap/3/dataTables.bootstrap.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.18.4/js/jquery.tablesorter.min.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+    <!--jQuery -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="Libraries/jquery.dynatable.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/datatables/1.10.4/js/jquery.dataTables.min.js"></script>
+    <script src="//cdn.datatables.net/plug-ins/3cfcc339e89/integration/bootstrap/3/dataTables.bootstrap.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.18.4/js/jquery.tablesorter.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
 
-        <!--Bootstrap -->
-        <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    <!--Bootstrap -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
 
-        <!-- MetisMenu -->
-        <script src="//cdnjs.cloudflare.com/ajax/libs/metisMenu/1.1.3/metisMenu.min.js"></script>
+    <!-- MetisMenu -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/metisMenu/1.1.3/metisMenu.min.js"></script>
 
-        <!-- Screenfull -->
-        <script src="//cdnjs.cloudflare.com/ajax/libs/screenfull.js/2.0.0/screenfull.min.js"></script>
+    <!-- Screenfull -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/screenfull.js/2.0.0/screenfull.min.js"></script>
 
-        <!-- Metis core scripts -->
-        <script src="assets/js/core.min.js"></script>
+    <!-- Metis core scripts -->
+    <script src="assets/js/core.min.js"></script>
 
-        <!-- Metis demo scripts -->
-        <script src="assets/js/app.js"></script>
-        <script type="text/javascript" language="javascript" src="//cdn.datatables.net/1.10.5/js/jquery.dataTables.min.js"></script>
-        <script type="text/javascript" language="javascript" src="//cdn.datatables.net/plug-ins/f2c75b7247b/integration/bootstrap/3/dataTables.bootstrap.js"></script>
-
-
-
-        <!--LINK MODULE-->
-        <script src="Libraries/hexbin.js"></script>
-
-        <script src="Libraries/d3-leaflet.js"></script>
+    <!-- Metis demo scripts -->
+    <script src="assets/js/app.js"></script>
+    <script type="text/javascript" language="javascript" src="//cdn.datatables.net/1.10.5/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" language="javascript" src="//cdn.datatables.net/plug-ins/f2c75b7247b/integration/bootstrap/3/dataTables.bootstrap.js"></script>
 
 
-        <script>
-            var markerslayer;
-            $('#resetmap').on('click', function () {
-                map.setView([1.3667, 103.8], 11)
-            });
 
-            var value;
-            init_function();
-        </script>
-        <%if (coor.length > 0) {%>                        
-        <script>
+    <!--LINK MODULE-->
+    <script src="Libraries/hexbin.js"></script>
+
+    <script src="Libraries/d3-leaflet.js"></script>
+
+
+    <script>
+        var markerslayer;
+        $('#resetmap').on('click', function () {
+            map.setView([1.3667, 103.8], 11)
+        });
+
+        var value;
+        init_function();
+    </script>
+    <%if (coor.length > 0) {%>                        
+    <script>
             var lat =<%=coor[0]%>;
             var lng =<%=coor[1]%>;
             var redMarker = L.AwesomeMarkers.icon({
@@ -558,9 +558,31 @@
             markerslayer = L.marker([lat, lng], {icon: redMarker}).addTo(map);
 
 
-        </script>
-        <%}%>
-        <script>
+    </script>
+    <%}%>
+    <script>
+        var drawnItems = L.featureGroup().addTo(map);
+        map.addControl(new L.Control.Draw({
+            edit: {
+                featureGroup: drawnItems
+            }
+        }));
+        map.on('draw:created', function (event) {
+            var layer = event.layer;
+            if (event.layerType == 'marker') {
+                var marker = layer.getLatLng();
+                document.getElementById("latlng").value = marker.lat + "," + marker.lng;
+            }
+            layer.on('click', function () {
+                var marker = layer.getLatLng();
+                document.getElementById("latlng").value = marker.lat + "," + marker.lng;
+            });
+            drawnItems.addLayer(layer);
+
+        });
+        $('#clearmap').on('click', function () {
+            map.remove();
+            init_function();
             var drawnItems = L.featureGroup().addTo(map);
             map.addControl(new L.Control.Draw({
                 edit: {
@@ -580,111 +602,89 @@
                 drawnItems.addLayer(layer);
 
             });
-            $('#clearmap').on('click', function () {
-                map.remove();
-                init_function();
-                var drawnItems = L.featureGroup().addTo(map);
-                map.addControl(new L.Control.Draw({
-                    edit: {
-                        featureGroup: drawnItems
-                    }
-                }));
-                map.on('draw:created', function (event) {
-                    var layer = event.layer;
-                    if (event.layerType == 'marker') {
-                        var marker = layer.getLatLng();
-                        document.getElementById("latlng").value = marker.lat + "," + marker.lng;
-                    }
-                    layer.on('click', function () {
-                        var marker = layer.getLatLng();
-                        document.getElementById("latlng").value = marker.lat + "," + marker.lng;
-                    });
-                    drawnItems.addLayer(layer);
+        });
 
-                });
+    </script>
+
+
+    <%
+        String result = String.valueOf(request.getAttribute("project_comparison_result"));
+
+        if (!result.equals("null")) {
+    %>
+    <script type="text/javascript">
+
+        var data = <%=result%>;
+
+        var list = [];
+
+
+        //Charts
+        data.forEach(function (d) {
+            var pointmarker = [];
+            pointmarker.push(d.project_name);
+            pointmarker.push(d.geojson.coordinates);
+            list.push(pointmarker);
+        });
+
+
+        for (var i = 0; i < list.length; i++) {
+            var point = list[i];
+
+            var projectname = point[0];
+
+            var lat = point[1][1];
+
+            var lng = point[1][0];
+
+            var blueMarker = L.AwesomeMarkers.icon({
+                icon: 'home',
+                markerColor: 'blue'
             });
 
-        </script>
+            L.marker([lat, lng], {icon: blueMarker}).addTo(map).bindPopup(projectname);
 
+        }
 
-        <%
-            String result = String.valueOf(request.getAttribute("project_comparison_result"));
+        function myAttributeWriter(record) {
+            // `this` is the column object in settings.columns
+            // TODO: automatically convert common types, such as arrays and objects, to string
 
-            if (!result.equals("null")) {
-        %>
-        <script type="text/javascript">
-
-            var data = <%=result%>;
-
-            var list = [];
-
-
-            //Charts
-            data.forEach(function (d) {
-                var pointmarker = [];
-                pointmarker.push(d.project_name);
-                pointmarker.push(d.geojson.coordinates);
-                list.push(pointmarker);
-            });
-
-
-            for (var i = 0; i < list.length; i++) {
-                var point = list[i];
-
-                var projectname = point[0];
-
-                var lat = point[1][1];
-
-                var lng = point[1][0];
-
-                var blueMarker = L.AwesomeMarkers.icon({
-                    icon: 'home',
-                    markerColor: 'blue'
-                });
-
-                L.marker([lat, lng], {icon: blueMarker}).addTo(map).bindPopup(projectname);
-
-            }
-
-            function myAttributeWriter(record) {
-                // `this` is the column object in settings.columns
-                // TODO: automatically convert common types, such as arrays and objects, to string
-
-                if (this.id === "propertyType") {
-                    if (record[this.id] === "Terrace House") {
-                        return "Terrace";
-                    } else if (record[this.id] === "Executive Condominium") {
-                        return "E.Condominium";
-                    } else if (record[this.id] === "Semi-Detached House") {
-                        return "Semi-Detached";
-                    } else if (record[this.id] === "Detached House") {
-                        return "Detached";
-                    }
-                } else if (this.id === "distance" || this.id === "median_price_psf") {
-                    return (d3.round(record[this.id]));
-
+            if (this.id === "propertyType") {
+                if (record[this.id] === "Terrace House") {
+                    return "Terrace";
+                } else if (record[this.id] === "Executive Condominium") {
+                    return "E.Condominium";
+                } else if (record[this.id] === "Semi-Detached House") {
+                    return "Semi-Detached";
+                } else if (record[this.id] === "Detached House") {
+                    return "Detached";
                 }
-                return record[this.id];
+            } else if (this.id === "distance" || this.id === "median_price_psf") {
+                return (d3.round(record[this.id]));
+
             }
-            ;
+            return record[this.id];
+        }
+        ;
 
 
-            $('#magic-table').dynatable({
-                features: {
-                    pushState: false
-                },
-                dataset: {
-                    records: data
-                }, writers: {
-                    _attributeWriter: myAttributeWriter
-                }
-            });
-
-
-        </script>
-        <%
+        $('#magic-table').dynatable({
+            features: {
+                pushState: false
+            },
+            dataset: {
+                records: data
+            }, writers: {
+                _attributeWriter: myAttributeWriter
             }
-        %>
+        });
+
+
+    </script>
+    <%
+        }
+    %>
 
 
 
@@ -693,5 +693,5 @@
 
 
 
-    </body>
+</body>
 </html>
